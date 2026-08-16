@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Starfall.ogg-43586c6be0f7a23f2353eeda8334982c.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/serenade/Starfall.ogg"
+dest_files=[ "res://.import/Starfall.ogg-43586c6be0f7a23f2353eeda8334982c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

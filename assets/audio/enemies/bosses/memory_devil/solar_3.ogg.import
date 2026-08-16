@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/solar_3.ogg-2c2890fa441c0980a33c8a3a24577d20.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/memory_devil/solar_3.ogg"
+dest_files=[ "res://.import/solar_3.ogg-2c2890fa441c0980a33c8a3a24577d20.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

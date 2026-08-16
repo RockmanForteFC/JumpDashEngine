@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dash.ogg-d1ca9f2886a7838c075eac300aaa72bb.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/arctic_man/dash.ogg"
+dest_files=[ "res://.import/dash.ogg-d1ca9f2886a7838c075eac300aaa72bb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

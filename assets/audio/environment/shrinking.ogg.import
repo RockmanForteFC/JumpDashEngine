@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shrinking.ogg-033725ed28baccf7056757f11c7321b5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/shrinking.ogg"
+dest_files=[ "res://.import/shrinking.ogg-033725ed28baccf7056757f11c7321b5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

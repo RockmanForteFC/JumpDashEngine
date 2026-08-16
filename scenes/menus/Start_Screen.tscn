@@ -1,0 +1,344 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://assets/audio/songs/menu/01. Title Screen.mp3" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/menu/menu_logo_shine.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/menus/Start_Screen.gd" type="Script" id=4]
+[ext_resource path="res://scenes/themes/MegaManTheme.tres" type="Theme" id=5]
+[ext_resource path="res://scenes/common/MenuContainer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/images/tilesets/black_tile.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/backgrounds/cut_scenes/title_screen/megaman_logo_fade_in.png" type="Texture" id=16]
+[ext_resource path="res://assets/audio/environment/DigitalAppear.ogg" type="AudioStream" id=19]
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float outerRadius : hint_range(0.0, 5.0) = 1.0;
+uniform float MainAlpha : hint_range(0.0, 1.0) = 1.0;
+
+void fragment() {
+	float x = abs(UV.x-.5)*2.0;
+	float y = abs(UV.y-.5)*2.0;
+	float v = (sqrt((x*x)+(y*y))/outerRadius);
+	COLOR = vec4(0,0,0,v*MainAlpha);
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 10 )
+shader_param/outerRadius = 0.001
+shader_param/MainAlpha = 1.0
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 16 )
+region = Rect2( 185, 0, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 16 )
+region = Rect2( 370, 0, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 16 )
+region = Rect2( 555, 0, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 36, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 16 )
+region = Rect2( 185, 36, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 16 )
+region = Rect2( 370, 36, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 16 )
+region = Rect2( 555, 36, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 72, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 16 )
+region = Rect2( 185, 72, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 16 )
+region = Rect2( 370, 72, 185, 36 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 16 )
+region = Rect2( 555, 72, 185, 36 )
+
+[sub_resource type="SpriteFrames" id=64]
+animations = [ {
+"frames": [ null, SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ) ],
+"loop": false,
+"name": "fade_in",
+"speed": 15.0
+} ]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+
+[sub_resource type="Animation" id=2]
+resource_name = "StartUp"
+length = 2.6
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "subtitle_fade_in"
+}, {
+"args": [  ],
+"method": "thunderclap"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "FadeIn"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Logo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Logo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Logo:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Logo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Logo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Logo:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 11 ) ]
+}
+
+[node name="Start_Screen" type="Control"]
+margin_right = 256.0
+margin_bottom = 224.0
+theme = ExtResource( 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="BlackBG" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_right = 256.0
+margin_bottom = 224.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BlackBG2" type="ColorRect" parent="."]
+show_behind_parent = true
+material = SubResource( 11 )
+margin_right = 256.0
+margin_bottom = 224.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Logo" type="Sprite" parent="Sprites"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+light_mask = 0
+position = Vector2( -133, 152 )
+texture = ExtResource( 11 )
+
+[node name="megaman_title_text" type="AnimatedSprite" parent="Sprites"]
+light_mask = 0
+position = Vector2( 112, 48 )
+frames = SubResource( 64 )
+animation = "fade_in"
+
+[node name="Labels" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Year" type="Label" parent="Labels"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -13.0
+margin_right = 48.0
+margin_bottom = 6.0
+text = "<Team Name>
+2026"
+align = 1
+
+[node name="Version" type="Label" parent="Labels"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -48.0
+margin_top = -5.0
+margin_right = 8.0
+margin_bottom = 4.0
+text = "0.0.0"
+
+[node name="MenuContainer" parent="Labels" instance=ExtResource( 9 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -52.0
+margin_right = 52.0
+margin_bottom = -9.0
+rect_pivot_offset = Vector2( 4, 0 )
+alignment = 1
+is_active = false
+
+[node name="StartLabel" type="Label" parent="Labels/MenuContainer"]
+margin_top = 10.0
+margin_right = 72.0
+margin_bottom = 19.0
+text = "START"
+align = 1
+uppercase = true
+
+[node name="QuitLabel" type="Label" parent="Labels/MenuContainer"]
+margin_top = 23.0
+margin_right = 72.0
+margin_bottom = 32.0
+text = "QUIT"
+align = 1
+uppercase = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 1 )
+bus = "Music"
+
+[node name="Thunder" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+pitch_scale = 2.09
+bus = "Sound Effects"
+
+[node name="shine" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 19 )
+bus = "Sound Effects"
+
+[node name="Animations" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 1 )
+anims/StartUp = SubResource( 2 )
+
+[node name="LabelAnimation" type="AnimationPlayer" parent="Animations"]
+root_node = NodePath("../..")
+anims/FadeIn = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="pulse_tween" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="black_overlay" type="ColorRect" parent="."]
+visible = false
+margin_right = 256.0
+margin_bottom = 224.0
+color = Color( 0, 0, 0, 1 )
+
+[connection signal="menu_item_selected" from="Labels/MenuContainer" to="." method="_on_MenuContainer_menu_item_selected"]
+[connection signal="animation_finished" from="Animations/LabelAnimation" to="." method="_on_LabelAnimation_animation_finished"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BatteryShieldAttackerExplode.ogg-887feffb21a7bf53c39424074a69e97b.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/BatteryShieldAttackerExplode.ogg"
+dest_files=[ "res://.import/BatteryShieldAttackerExplode.ogg-887feffb21a7bf53c39424074a69e97b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

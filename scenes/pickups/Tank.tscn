@@ -1,0 +1,147 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/e_tank.png" type="Texture" id=1]
+[ext_resource path="res://assets/audio/pickups/e-tank.ogg" type="AudioStream" id=2]
+[ext_resource path="res://scenes/players/Mega Man/shaders/ColorSwap.tres" type="Material" id=3]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/m_tank.png" type="Texture" id=4]
+[ext_resource path="res://scenes/pickups/Tank.gd" type="Script" id=5]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/w_tank.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "E"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Idle"
+length = 1.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 5, 6, 9, 10, 1 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "M"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 9 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "W"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 7, 7 )
+
+[node name="Tank" type="KinematicBody2D"]
+z_index = 2
+collision_layer = 8
+collision_mask = 270626
+script = ExtResource( 5 )
+item_type = "tank"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+material = ExtResource( 3 )
+texture = ExtResource( 1 )
+hframes = 12
+frame = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/E = SubResource( 3 )
+anims/Idle = SubResource( 14 )
+anims/M = SubResource( 10 )
+anims/RESET = SubResource( 2 )
+anims/W = SubResource( 11 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sound Effects"
+
+[node name="PickupDetector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
+visible = false
+shape = SubResource( 13 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
+[connection signal="body_entered" from="PickupDetector" to="." method="_on_PickupDetector_body_entered"]

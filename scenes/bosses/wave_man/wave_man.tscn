@@ -1,0 +1,270 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scenes/bosses/base/boss_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/bosses/wave_man/wave_man.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/bosses/wave_man/wave_man.png" type="Texture" id=3]
+[ext_resource path="res://scenes/bosses/wave_man/states/idle.gd" type="Script" id=4]
+[ext_resource path="res://scenes/bosses/wave_man/scripts/wave_man_state_machine.gd" type="Script" id=5]
+[ext_resource path="res://scenes/bosses/wave_man/states/jump.gd" type="Script" id=6]
+[ext_resource path="res://scenes/bosses/wave_man/states/shoot.gd" type="Script" id=7]
+[ext_resource path="res://scenes/bosses/wave_man/states/water_wave.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 9.5, 14.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 9.5, 11 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 144, 48, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=3]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "PumpingFloor",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "Shoot",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterSprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharacterSprites/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharacterSprites/Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CharacterSprites/AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Taunt"
+length = 0.72
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterSprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12, 0.24, 0.36, 0.48, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharacterSprites/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharacterSprites/Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.72 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CharacterSprites/AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.72 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Water_Wave"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterSprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharacterSprites/AnimatedSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharacterSprites/Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="WaveMan" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+contact_damage = 5
+boss_color = Color( 0, 0.345098, 0.972549, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2( -0.5, 4.5 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( -0.5, 4 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" parent="CharacterSprites" index="0"]
+position = Vector2( 0, -256 )
+frames = SubResource( 3 )
+animation = "PumpingFloor"
+
+[node name="Sprite" type="Sprite" parent="CharacterSprites" index="1"]
+texture = ExtResource( 3 )
+offset = Vector2( 0, -4 )
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+pause_mode = 2
+anims/RESET = SubResource( 4 )
+anims/Taunt = SubResource( 5 )
+anims/Water_Wave = SubResource( 10 )
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 5 )
+
+[node name="Idle" parent="StateMachine" index="1"]
+script = ExtResource( 4 )
+
+[node name="Jump" type="Node" parent="StateMachine" index="4"]
+script = ExtResource( 6 )
+
+[node name="Shoot" type="Node" parent="StateMachine" index="5"]
+script = ExtResource( 7 )
+
+[node name="WaterWave" type="Node" parent="StateMachine" index="6"]
+script = ExtResource( 8 )
+
+[node name="TimerIdleDelay" type="Timer" parent="." index="9"]
+process_mode = 0
+wait_time = 0.7
+one_shot = true
+
+[node name="TimerCooldown" type="Timer" parent="." index="10"]
+process_mode = 0
+wait_time = 0.7
+one_shot = true
+
+[node name="TimerShootDelay" type="Timer" parent="." index="11"]
+process_mode = 0
+wait_time = 0.33
+one_shot = true
+
+[node name="TimerWaterWave" type="Timer" parent="." index="12"]
+wait_time = 0.33
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="." index="13"]
+position = Vector2( -25, 3 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_animation_finished"]

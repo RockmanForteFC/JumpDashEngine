@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/electricity.ogg-2b53ae35b1500d45caf86353314c8514.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/electricity.ogg"
+dest_files=[ "res://.import/electricity.ogg-2b53ae35b1500d45caf86353314c8514.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

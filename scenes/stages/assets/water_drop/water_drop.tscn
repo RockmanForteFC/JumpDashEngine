@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/images/sprites/level_assets/water_drop/drop.png" type="Texture" id=1]
+[ext_resource path="res://scenes/stages/assets/water_drop/water_drop.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Drop"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7, 2 )
+
+[node name="water_drop" type="KinematicBody2D"]
+position = Vector2( 0, 8 )
+collision_layer = 0
+collision_mask = 34
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Drop = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -6 )
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, 5 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

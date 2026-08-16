@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/eye_laser_start.ogg-77fafa613813aab6ce2335a22070e4f4.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/teddy/eye_laser_start.ogg"
+dest_files=[ "res://.import/eye_laser_start.ogg-77fafa613813aab6ce2335a22070e4f4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

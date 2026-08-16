@@ -1,0 +1,169 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/images/sprites/weapons/drillbomb/drillbomb.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/weapons/drilling.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/images/sprites/enemies/explosions/non-damaging-large.png" type="Texture" id=5]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/drillbomb/drill_bomb.gd" type="Script" id=6]
+[ext_resource path="res://assets/audio/environment/RegularExplosion.ogg" type="AudioStream" id=7]
+
+[sub_resource type="RectangleShape2D" id=17]
+resource_local_to_scene = true
+extents = Vector2( 4, 4 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 16 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "drilling",
+"speed": 12.0
+} ]
+
+[sub_resource type="Animation" id=14]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:shape:extents")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4, 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "collision_change"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:shape:extents")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, 4 ), Vector2( 32, 32 ), Vector2( 4, 4 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 59, 56 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 59, 0, 59, 56 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 118, 0, 59, 56 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 177, 0, 59, 56 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 236, 0, 59, 56 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 56, 59, 56 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 59, 56, 59, 56 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 118, 56, 59, 56 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": false,
+"name": "Explosion",
+"speed": 15.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "Nothing",
+"speed": 5.0
+} ]
+
+[node name="Drill_bomb" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 162
+script = ExtResource( 6 )
+damage = 2
+element = 7
+key_name = "drill_bomb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 17 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 4 )
+animation = "drilling"
+frame = 1
+playing = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="drilling" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[node name="deflect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 2 )
+bus = "Sound Effects"
+
+[node name="explosion" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 7 )
+bus = "Sound Effects"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 3, -1.78814e-07 )
+scale = Vector2( 0.7, 0.6 )
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 14 )
+anims/collision_change = SubResource( 15 )
+
+[node name="explosion" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 16 )
+animation = "Nothing"
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

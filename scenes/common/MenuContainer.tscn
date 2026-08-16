@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/audio/menu/menu_option.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/menu/menu_ok.ogg" type="AudioStream" id=2]
+[ext_resource path="res://scenes/common/MenuContainer.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/sprites/menus/arrow_2.png" type="Texture" id=4]
+[ext_resource path="res://scenes/themes/MegaManTheme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/audio/menu/error.ogg" type="AudioStream" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 7, 0, 7, 7 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "Menu",
+"speed": 3.0
+} ]
+
+[node name="MenuContainer" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 5 )
+script = ExtResource( 3 )
+
+[node name="MenuOption" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Sound Effects"
+
+[node name="MenuSelection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sound Effects"
+
+[node name="Arrow" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 3 )
+animation = "Menu"
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Sound Effects"

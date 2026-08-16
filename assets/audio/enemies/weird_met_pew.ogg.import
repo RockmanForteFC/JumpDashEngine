@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/weird_met_pew.ogg-32c9f5e18416cca6dab033c305dbc6db.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/weird_met_pew.ogg"
+dest_files=[ "res://.import/weird_met_pew.ogg-32c9f5e18416cca6dab033c305dbc6db.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

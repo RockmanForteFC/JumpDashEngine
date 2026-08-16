@@ -1,0 +1,130 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/images/sprites/enemies/double_blaster/double_blaster.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/double_blaster/StateMachine.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/double_blaster/double_blaster.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/double_blaster/states/single_Idle.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/double_blaster/states/TurnAround.gd" type="Script" id=7]
+[ext_resource path="res://scenes/enemies/double_blaster/states/Shoot.gd" type="Script" id=8]
+[ext_resource path="res://assets/images/sprites/enemies/double_blaster/blaster.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 9.5, 9.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 9.5, 9.5 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 44, 47 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 44, 47 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 9 )
+region = Rect2( 44, 0, 44, 47 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 9 )
+region = Rect2( 88, 0, 44, 47 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 132, 0, 44, 47 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 9 )
+region = Rect2( 308, 0, 44, 47 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": false,
+"name": "Shoot",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "Turn",
+"speed": 5.0
+} ]
+
+[node name="Single_Blaster" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
+enemy_name = "single_blaster"
+hit_points_max = 3
+contact_damage = 3
+projectile_damage = 3
+score = 75
+enemy_size = "extralarge"
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 0.5, 13.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0.5, 13.5 )
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+visible = false
+position = Vector2( 0, 1 )
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="AnimatedSprite" parent="." index="3"]
+frames = SubResource( 7 )
+animation = "Idle"
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( 0, 13 )
+scale = Vector2( 1, 0.9 )
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 3 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 5 )
+
+[node name="Shoot" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 8 )
+
+[node name="TurnAround" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 7 )
+
+[node name="BaseShootPos" parent="." index="10"]
+position = Vector2( -17, 12 )
+
+[node name="IdleShootTimer" type="Timer" parent="." index="12"]
+process_mode = 0
+wait_time = 0.75
+one_shot = true
+
+[node name="IdleBombTimer" type="Timer" parent="." index="13"]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="BombPosition" type="Position2D" parent="." index="14"]
+position = Vector2( 0, -12 )
+
+[node name="BetweenBulletTimer" type="Timer" parent="." index="15"]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="After_bomb_cooldown" type="Timer" parent="." index="16"]
+process_mode = 0
+wait_time = 0.4
+one_shot = true

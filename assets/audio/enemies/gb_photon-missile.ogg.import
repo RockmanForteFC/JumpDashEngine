@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gb_photon-missile.ogg-cee0517a5b3c5685607dfcc750a4222a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/gb_photon-missile.ogg"
+dest_files=[ "res://.import/gb_photon-missile.ogg-cee0517a5b3c5685607dfcc750a4222a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

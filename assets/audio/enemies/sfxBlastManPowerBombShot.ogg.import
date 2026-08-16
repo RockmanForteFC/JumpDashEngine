@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfxBlastManPowerBombShot.ogg-662c18ed8c80da8c3ef4f6d34fe995c9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/sfxBlastManPowerBombShot.ogg"
+dest_files=[ "res://.import/sfxBlastManPowerBombShot.ogg-662c18ed8c80da8c3ef4f6d34fe995c9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/do_.ogg-43587b13e6d1d8e3bc51fdbe8b9c3a99.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/piano_keys/do_.ogg"
+dest_files=[ "res://.import/do_.ogg-43587b13e6d1d8e3bc51fdbe8b9c3a99.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

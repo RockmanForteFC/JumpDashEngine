@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tstrike.ogg-289dc258799b5ee6c80a2c3c467ca412.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/tstrike.ogg"
+dest_files=[ "res://.import/tstrike.ogg-289dc258799b5ee6c80a2c3c467ca412.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

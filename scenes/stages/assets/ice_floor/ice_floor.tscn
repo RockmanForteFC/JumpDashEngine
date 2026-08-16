@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/stages/assets/ice_floor/ice_floor.gd" type="Script" id=1]
+
+[node name="IceFloor" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+
+[connection signal="body_exited" from="." to="." method="_on_IceFloor_body_exited"]

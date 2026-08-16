@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/c_flash.ogg-5046543a5b10704f4ebe827ec235f900.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/c_flash.ogg"
+dest_files=[ "res://.import/c_flash.ogg-5046543a5b10704f4ebe827ec235f900.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

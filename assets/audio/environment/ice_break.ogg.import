@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ice_break.ogg-b16703b02bdca69f0fbd704b48270da0.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/ice_break.ogg"
+dest_files=[ "res://.import/ice_break.ogg-b16703b02bdca69f0fbd704b48270da0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

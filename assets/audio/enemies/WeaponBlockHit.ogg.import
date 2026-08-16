@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WeaponBlockHit.ogg-e84eda7a05f080c40fa0fdc150f19d32.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/WeaponBlockHit.ogg"
+dest_files=[ "res://.import/WeaponBlockHit.ogg-e84eda7a05f080c40fa0fdc150f19d32.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

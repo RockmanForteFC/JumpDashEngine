@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WeaponBlockShatter.ogg-7d7db5a00bde22d1920a1c36eb12fed3.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/WeaponBlockShatter.ogg"
+dest_files=[ "res://.import/WeaponBlockShatter.ogg-7d7db5a00bde22d1920a1c36eb12fed3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

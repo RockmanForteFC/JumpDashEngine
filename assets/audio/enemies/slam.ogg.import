@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/slam.ogg-b35e4b1a77744966a24e65ad3c3bdf93.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/slam.ogg"
+dest_files=[ "res://.import/slam.ogg-b35e4b1a77744966a24e65ad3c3bdf93.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

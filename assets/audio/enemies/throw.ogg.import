@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/throw.ogg-e901ca1130f0e2ed694e94f01c4f6a7a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/throw.ogg"
+dest_files=[ "res://.import/throw.ogg-e901ca1130f0e2ed694e94f01c4f6a7a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

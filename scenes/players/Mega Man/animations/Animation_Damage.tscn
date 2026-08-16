@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/players/Mega Man/animations/Animation_Damage.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/sprites/players/damage.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/players/megaman_hurt.ogg" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 0, 0 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Damage"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[node name="Animation_Damage" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+show_behind_parent = true
+texture = ExtResource( 2 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Damage = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="sweat_1" type="Position2D" parent="."]
+position = Vector2( 0, -18 )
+
+[node name="sweat_2" type="Position2D" parent="."]
+position = Vector2( 9, -16 )
+
+[node name="sweat_3" type="Position2D" parent="."]
+position = Vector2( -9, -16 )
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

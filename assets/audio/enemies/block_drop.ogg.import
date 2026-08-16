@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/block_drop.ogg-9113fa973549c4f29e27091f2679cab7.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/block_drop.ogg"
+dest_files=[ "res://.import/block_drop.ogg-9113fa973549c4f29e27091f2679cab7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

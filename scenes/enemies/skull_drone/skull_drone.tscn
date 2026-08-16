@@ -1,0 +1,116 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/sprites/enemies/skull_drone/skull_drone.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/enemies/HatchOpen.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/enemies/skull_drone/skull_drone.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/skull_drone/StateMachine.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/skull_drone/Fly.gd" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/skull_drone/Zoom away.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=5]
+resource_local_to_scene = true
+extents = Vector2( 16.5, 7 )
+
+[sub_resource type="RectangleShape2D" id=6]
+resource_local_to_scene = true
+extents = Vector2( 10, 9.5 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "dropped",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 7, 112 )
+
+[node name="skull_drone" instance=ExtResource( 1 )]
+collision_layer = 131072
+collision_mask = 0
+script = ExtResource( 4 )
+enemy_name = "skull_drone"
+hit_points_max = 1
+contact_damage = 2
+projectile_damage = 3
+enemy_size = "medium"
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( -0.5, -1 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 1.5 )
+shape = SubResource( 6 )
+
+[node name="Sprite" parent="." index="2"]
+visible = false
+
+[node name="AnimatedSprite" parent="." index="3"]
+z_index = 1
+frames = SubResource( 4 )
+playing = true
+
+[node name="Drop" type="AudioStreamPlayer" parent="Audio" index="2"]
+stream = ExtResource( 3 )
+volume_db = 10.0
+bus = "Sound Effects"
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 5 )
+start_state = NodePath("Fly")
+
+[node name="Fly" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 6 )
+
+[node name="Zoom_away" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 8 )
+
+[node name="BaseShootPos" parent="." index="10"]
+position = Vector2( -1, 14 )
+
+[node name="Timer" type="Timer" parent="." index="12"]
+process_mode = 0
+wait_time = 1.5
+one_shot = true
+
+[node name="Player_Detector_Straight" type="Area2D" parent="." index="13"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector_Straight" index="0"]
+position = Vector2( 0, 112 )
+shape = SubResource( 7 )
+
+[connection signal="timeout" from="Timer" to="StateMachine/Fly" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Player_Detector_Straight" to="StateMachine/Fly" method="_on_Player_Detector_Straight_body_entered"]

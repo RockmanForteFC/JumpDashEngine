@@ -1,0 +1,1099 @@
+[gd_scene load_steps=70 format=2]
+
+[ext_resource path="res://assets/images/sprites/menus/boss_select/template.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/sprites/menus/boss_icons/question_mark.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/sprites/menus/Stage_Select_Center_Bottom_Frame.png" type="Texture" id=3]
+[ext_resource path="res://scenes/menus/BossSelect.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/menu/menu_option.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/menu/menu_select.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/themes/MegaManTheme.tres" type="Theme" id=7]
+[ext_resource path="res://assets/audio/songs/menu/03 Stage Select.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/menu/error.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/images/decorations/3232wrench2.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/sprites/menus/Stage_Select_Portrait_Frames.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/sprites/menus/under_construction.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/sprites/menus/select_screen_shop_icon.png" type="Texture" id=14]
+[ext_resource path="res://assets/images/sprites/menus/stage_select_mega_head.png" type="Texture" id=15]
+[ext_resource path="res://assets/images/tilesets/dual_w_fortress/fortress_1/dual_w_plate_1.png" type="Texture" id=16]
+[ext_resource path="res://assets/images/decorations/weaseletta_boss_select_plate.png" type="Texture" id=17]
+[ext_resource path="res://assets/images/sprites/menus/determined_face.png" type="Texture" id=23]
+[ext_resource path="res://assets/images/decorations/happy_mega.png" type="Texture" id=24]
+[ext_resource path="res://assets/images/sprites/menus/boss_icons/serenade.png" type="Texture" id=25]
+[ext_resource path="res://assets/images/sprites/menus/beat_bosses/serenade.png" type="Texture" id=26]
+[ext_resource path="res://assets/images/sprites/menus/arrow_right_full_menu.png" type="Texture" id=29]
+[ext_resource path="res://assets/images/sprites/menus/arrow_left_full_menu.png" type="Texture" id=30]
+[ext_resource path="res://assets/images/sprites/menus/scan_lines/scanlines.tres" type="Texture" id=33]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_e.png" type="Texture" id=34]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_s.png" type="Texture" id=35]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_r.png" type="Texture" id=36]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_d.png" type="Texture" id=37]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_a.png" type="Texture" id=38]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_n.png" type="Texture" id=39]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Flash_Screen"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("ColorRect:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "loadStage"
+} ]
+}
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectedMenuObject:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ColorRect:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ColorRect:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("ColorRect:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("ColorRect:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("SelectedMenuObject:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SelectedMenuObject:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("SelectedMenuObject:vframes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Shine"
+length = 0.8
+loop = true
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectedMenuObject:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectedMenuObject:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SelectedMenuObject:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SelectedMenuObject:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Shine_Shop"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectedMenuObject:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectedMenuObject:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SelectedMenuObject:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SelectedMenuObject:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("select:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Stage_Select"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("select:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("shop_icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "ShopFlash"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("shop_icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 23 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 10 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 25 ) ],
+"loop": true,
+"name": "Determined",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "Doctor_Wily",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "Down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "DownLeft",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "DownRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "Happy",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "Left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ) ],
+"loop": true,
+"name": "Middle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "Miss_Wily",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ) ],
+"loop": true,
+"name": "Right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "Serenade",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "Serenade_Defeated",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "Shop",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ) ],
+"loop": true,
+"name": "Up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ) ],
+"loop": true,
+"name": "UpLeft",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "UpRIght",
+"speed": 5.0
+} ]
+
+[sub_resource type="Shader" id=19]
+code = "shader_type canvas_item;
+
+uniform float num_lines = 20.;
+uniform float y_threshold: hint_range(0.0, 1.0) = 0.5;
+uniform vec4 line_color_a: hint_color = vec4(1.);
+uniform vec4 line_color_b: hint_color = vec4(0., 0., 0., 1.0);
+
+void fragment() {
+	vec2 tiled_uv = vec2(fract(UV.y * num_lines / 2.), UV.x);
+	if (tiled_uv.x < 0.5){
+		if(tiled_uv.y < y_threshold){
+			COLOR = line_color_a;
+		} else {
+			COLOR = vec4(0.0);
+		}
+	} else {
+		if (tiled_uv.y > 1. - y_threshold){
+			COLOR = line_color_b;
+		} else {
+			COLOR = vec4(0.0);
+		}
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = SubResource( 19 )
+shader_param/num_lines = 5.0
+shader_param/y_threshold = 1.0
+shader_param/line_color_a = Color( 0, 0, 0, 1 )
+shader_param/line_color_b = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=21]
+resource_name = "Close_Transition"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/y_threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "Open_Transition"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/y_threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/y_threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 30 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 30 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 30 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 30 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 30 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=34]
+animations = [ {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"loop": true,
+"name": "flash",
+"speed": 7.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "nothing",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 29 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 29 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 29 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 29 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 29 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 29 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=41]
+animations = [ {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": true,
+"name": "flash",
+"speed": 7.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "nothing",
+"speed": 5.0
+} ]
+
+[node name="BossSelect" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_right = 256.0
+margin_bottom = 224.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash_Screen = SubResource( 3 )
+anims/RESET = SubResource( 1 )
+anims/Shine = SubResource( 2 )
+anims/Shine_Shop = SubResource( 4 )
+
+[node name="StageSelectFlash" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/Stage_Select = SubResource( 6 )
+
+[node name="shop_icon" type="Sprite" parent="."]
+position = Vector2( 127, 216 )
+texture = ExtResource( 14 )
+vframes = 4
+
+[node name="Animate_Shop_Icon" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 7 )
+anims/ShopFlash = SubResource( 8 )
+
+[node name="SelectedMenuObject" type="Sprite" parent="."]
+position = Vector2( 128, 96 )
+texture = ExtResource( 11 )
+hframes = 3
+frame = 1
+
+[node name="Boss_Layer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="Boss_Layer"]
+margin_right = 256.0
+margin_bottom = 224.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BossLabels" type="Control" parent="Boss_Layer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 7 )
+
+[node name="GladiatorMan" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 88.0
+margin_bottom = 72.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "TL"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="NinjaMan" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 168.0
+margin_top = 56.0
+margin_right = 216.0
+margin_bottom = 72.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "TR"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="TremorMan" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 168.0
+margin_top = 184.0
+margin_right = 216.0
+margin_bottom = 200.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "BR"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MaelstromWoman" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 40.0
+margin_top = 184.0
+margin_right = 88.0
+margin_bottom = 200.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "BL"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="DetonateMan" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 40.0
+margin_top = 120.0
+margin_right = 88.0
+margin_bottom = 136.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "LM"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="IncinerateLady" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 168.0
+margin_top = 120.0
+margin_right = 216.0
+margin_bottom = 136.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "RM"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="BeamMan" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 104.0
+margin_top = 56.0
+margin_right = 152.0
+margin_bottom = 72.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "TM"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ArcticMan" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 104.0
+margin_top = 184.0
+margin_right = 152.0
+margin_bottom = 200.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "BM"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Middle_Label" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 104.0
+margin_top = 120.0
+margin_right = 152.0
+margin_bottom = 136.0
+text = "MM"
+align = 1
+valign = 1
+
+[node name="BossImages" type="CanvasLayer" parent="Boss_Layer"]
+
+[node name="Boss_Top_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 80.0
+margin_bottom = 48.0
+texture = ExtResource( 12 )
+
+[node name="Boss_Top_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 112.0
+margin_top = 16.0
+margin_right = 144.0
+margin_bottom = 48.0
+texture = ExtResource( 12 )
+
+[node name="Boss_Top_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 176.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 48.0
+texture = ExtResource( 12 )
+
+[node name="Boss_Mid_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 48.0
+margin_top = 80.0
+margin_right = 80.0
+margin_bottom = 112.0
+texture = ExtResource( 12 )
+
+[node name="Boss_Mid_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 176.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 112.0
+texture = ExtResource( 2 )
+
+[node name="Boss_Bottom_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 48.0
+margin_top = 144.0
+margin_right = 80.0
+margin_bottom = 176.0
+texture = ExtResource( 12 )
+
+[node name="Boss_Bottom_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 112.0
+margin_top = 144.0
+margin_right = 144.0
+margin_bottom = 176.0
+texture = ExtResource( 12 )
+
+[node name="Boss_Bottom_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
+margin_left = 176.0
+margin_top = 144.0
+margin_right = 208.0
+margin_bottom = 176.0
+texture = ExtResource( 12 )
+
+[node name="Eye_Location" type="AnimatedSprite" parent="Boss_Layer/BossImages"]
+position = Vector2( 128, 96 )
+frames = SubResource( 18 )
+animation = "Middle"
+playing = true
+
+[node name="scanlines" type="CanvasLayer" parent="Boss_Layer"]
+
+[node name="Boss_Top_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 80.0
+margin_bottom = 48.0
+texture = ExtResource( 33 )
+
+[node name="Boss_Top_Middle" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 112.0
+margin_top = 16.0
+margin_right = 158.0
+margin_bottom = 55.0
+texture = ExtResource( 33 )
+
+[node name="Boss_Top_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 176.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 48.0
+texture = ExtResource( 33 )
+
+[node name="Boss_Mid_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 48.0
+margin_top = 80.0
+margin_right = 80.0
+margin_bottom = 118.0
+texture = ExtResource( 33 )
+
+[node name="Boss_Mid_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 176.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 118.0
+texture = ExtResource( 33 )
+
+[node name="Boss_Bottom_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 48.0
+margin_top = 144.0
+margin_right = 80.0
+margin_bottom = 176.0
+texture = ExtResource( 33 )
+flip_h = true
+
+[node name="Boss_Bottom_Middle" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 112.0
+margin_top = 144.0
+margin_right = 144.0
+margin_bottom = 176.0
+texture = ExtResource( 33 )
+
+[node name="Boss_Bottom_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 176.0
+margin_top = 144.0
+margin_right = 208.0
+margin_bottom = 176.0
+texture = ExtResource( 33 )
+
+[node name="Boss_Mid_Mid" type="TextureRect" parent="Boss_Layer/scanlines"]
+visible = false
+margin_left = 112.0
+margin_top = 80.0
+margin_right = 144.0
+margin_bottom = 112.0
+texture = ExtResource( 33 )
+
+[node name="letters" type="CanvasLayer" parent="Boss_Layer"]
+
+[node name="letter_8" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 48, 16 )
+texture = ExtResource( 34 )
+hframes = 2
+
+[node name="letter_4" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 112, 16 )
+texture = ExtResource( 34 )
+hframes = 2
+
+[node name="letter_3" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 176, 16 )
+texture = ExtResource( 36 )
+hframes = 2
+
+[node name="letter_5" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 48, 80 )
+texture = ExtResource( 39 )
+hframes = 2
+
+[node name="letter_1" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 176, 80 )
+texture = ExtResource( 35 )
+hframes = 2
+
+[node name="letter_7" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 48, 144 )
+texture = ExtResource( 37 )
+hframes = 2
+
+[node name="letter_2" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 112, 144 )
+texture = ExtResource( 34 )
+hframes = 2
+
+[node name="letter_6" type="Sprite" parent="Boss_Layer/letters"]
+visible = false
+position = Vector2( 176, 144 )
+texture = ExtResource( 38 )
+hframes = 2
+
+[node name="Switch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[node name="Boss_Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Sound Effects"
+
+[node name="Error" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "Sound Effects"
+
+[node name="BGM_loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+bus = "Music"
+
+[node name="stage" type="Label" parent="."]
+visible = false
+margin_left = 24.0
+margin_top = 206.0
+margin_right = 64.0
+margin_bottom = 220.0
+theme = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_constants/shadow_offset_x = 0
+text = "Stage"
+uppercase = true
+
+[node name="select" type="Label" parent="."]
+visible = false
+margin_left = 188.0
+margin_top = 206.0
+margin_right = 236.0
+margin_bottom = 220.0
+theme = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+text = "select"
+uppercase = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+anims/Close_Transition = SubResource( 21 )
+anims/Open_Transition = SubResource( 22 )
+anims/RESET = SubResource( 23 )
+
+[node name="left_arrow" type="AnimatedSprite" parent="."]
+position = Vector2( 101, 128 )
+z_index = 2
+frames = SubResource( 34 )
+animation = "flash"
+frame = 2
+playing = true
+
+[node name="right_arrow" type="AnimatedSprite" parent="."]
+position = Vector2( 155, 128 )
+frames = SubResource( 41 )
+animation = "flash"
+frame = 2
+playing = true
+
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_transition_animation"]

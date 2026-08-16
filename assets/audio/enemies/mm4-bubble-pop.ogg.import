@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mm4-bubble-pop.ogg-83918df36ca72263672c4e9ee28cc9b9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/mm4-bubble-pop.ogg"
+dest_files=[ "res://.import/mm4-bubble-pop.ogg-83918df36ca72263672c4e9ee28cc9b9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

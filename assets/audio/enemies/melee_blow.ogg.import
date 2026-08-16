@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/melee_blow.ogg-ce555694e83517b0000b52d8c7c88da6.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/melee_blow.ogg"
+dest_files=[ "res://.import/melee_blow.ogg-ce555694e83517b0000b52d8c7c88da6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

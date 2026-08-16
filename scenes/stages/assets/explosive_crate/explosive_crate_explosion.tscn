@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/enemies/common/damaging_explosion/explosion.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scenes/stages/assets/explosive_crate/explosive_crate_explosion.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/environment/RegularExplosion.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 19.0263
+
+[node name="ExplosiveCrateExplosion" type="Area2D"]
+light_mask = 2
+collision_layer = 32768
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+z_index = 5
+frames = ExtResource( 1 )
+animation = "non-damaging_explosion"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+script = ExtResource( 4 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

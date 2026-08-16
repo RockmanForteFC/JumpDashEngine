@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pipetto_refill.ogg-22184b010ae498139fabbb1ab4b344ea.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/pipetto_refill.ogg"
+dest_files=[ "res://.import/pipetto_refill.ogg-22184b010ae498139fabbb1ab4b344ea.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

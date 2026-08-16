@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/AcidShot.ogg-9a8b447eba76443dcc01ebafd1147b51.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/AcidShot.ogg"
+dest_files=[ "res://.import/AcidShot.ogg-9a8b447eba76443dcc01ebafd1147b51.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

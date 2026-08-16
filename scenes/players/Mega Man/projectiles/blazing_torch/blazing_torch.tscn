@@ -1,0 +1,294 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/images/sprites/weapons/blazing_torch/blazing_torch_ball.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/sprites/weapons/blazing_torch/blazing_torch_dragon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/blazing_torch/blazing_torch.gd" type="Script" id=3]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/enemies/Fire_ball_2.ogg" type="AudioStream" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 144, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 48, 64 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Dragon",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": false,
+"name": "Head",
+"speed": 9.0
+} ]
+
+[sub_resource type="Animation" id=7]
+resource_name = "Ball"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Dragon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "BallExplode"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Dragon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Dragon:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "Head", "Dragon" ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Dragon:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Dragon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Dragon:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Head" ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Dragon:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 13.0384
+
+[node name="Blazing Torch" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 3 )
+damage = 6
+is_piercing = true
+element = 0
+key_name = "blazing_torch"
+
+[node name="Dragon" type="AnimatedSprite" parent="."]
+visible = false
+light_mask = 2
+position = Vector2( 5, 0 )
+frames = SubResource( 6 )
+animation = "Head"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 1 )
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Ball = SubResource( 7 )
+anims/BallExplode = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 11 )
+disabled = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 6 )
+bus = "Sound Effects"
+
+[node name="Reflect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 16, 16 )
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

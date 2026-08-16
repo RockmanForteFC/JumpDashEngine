@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/thunderbolt/thunderbolt.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/weapons/thunderbolt/tboltmoreeven.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/weapons/tstrike.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/weapons/thunder.ogg" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 7.5 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "startup"
+length = 0.31
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 5, 1, 6, 7, 2, 10, 15 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "thunderbolt"
+length = 0.25
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.15, 0.22 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 8, 3, 9 ]
+}
+
+[node name="Thunder_Bolt" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 2 )
+damage = 3
+element = 2
+key_name = "thunder_bolt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 0.5 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 3 )
+hframes = 5
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/RESET = SubResource( 2 )
+anims/startup = SubResource( 3 )
+anims/thunderbolt = SubResource( 4 )
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="tstrike" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[node name="thunder" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 6 )
+bus = "Sound Effects"
+
+[node name="deflect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -4, 0.5 )
+scale = Vector2( 0.6, 0.85 )
+script = ExtResource( 1 )
+
+[connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="screen_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_screen_exited"]

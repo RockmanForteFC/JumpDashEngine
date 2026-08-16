@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/players/Mega Man/projectiles/hyper_bomb/hyper_bomb_explosion.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/weapons/Hyper_bomb_explosion.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/images/sprites/weapons/hyperbomb/hyperbombexplosion.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 27, 27 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "explode"
+length = 0.57
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
+}
+
+[node name="hyper bomb explosion" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 1 )
+damage = 4
+is_piercing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["PlayerWeapons"]]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 3 )
+hframes = 10
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/RESET = SubResource( 2 )
+anims/explode = SubResource( 3 )
+
+[node name="Node" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource( 2 )
+
+[connection signal="finished" from="Node/AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

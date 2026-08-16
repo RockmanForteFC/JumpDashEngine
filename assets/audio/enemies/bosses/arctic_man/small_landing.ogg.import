@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/small_landing.ogg-969b18ac16f8431d46af24492d3da387.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/arctic_man/small_landing.ogg"
+dest_files=[ "res://.import/small_landing.ogg-969b18ac16f8431d46af24492d3da387.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

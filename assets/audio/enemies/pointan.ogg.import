@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pointan.ogg-7ea4e02fc80b2293dc7d824f830e2246.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/pointan.ogg"
+dest_files=[ "res://.import/pointan.ogg-7ea4e02fc80b2293dc7d824f830e2246.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

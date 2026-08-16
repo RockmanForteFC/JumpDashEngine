@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/sprites/weapons/solar_blaze/solarblaze_waves.png" type="Texture" id=2]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/solar_blaze/solar_blaze_wave/solar_blaze_wave.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "wave",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 4, 11 )
+
+[node name="solar_blaze_wave" type="KinematicBody2D" groups=["PlayerWeapons"]]
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 3 )
+damage = 3
+is_piercing = true
+element = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 3 )
+animation = "wave"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, -0.5 )
+scale = Vector2( 0.4, 0.55 )
+script = ExtResource( 1 )
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

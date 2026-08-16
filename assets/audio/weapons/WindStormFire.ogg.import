@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WindStormFire.ogg-3934b17e557d25e317fa150752b0e526.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/WindStormFire.ogg"
+dest_files=[ "res://.import/WindStormFire.ogg-3934b17e557d25e317fa150752b0e526.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

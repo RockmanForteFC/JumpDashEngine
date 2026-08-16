@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chargetestshort.ogg-5fac66b3c23de40050cddfda0f16e16e.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/chargetestshort.ogg"
+dest_files=[ "res://.import/chargetestshort.ogg-5fac66b3c23de40050cddfda0f16e16e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

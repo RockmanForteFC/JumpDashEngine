@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/la.ogg-42bc67cc2d86bc1202b82a868fa018a0.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/serenade_tones/la.ogg"
+dest_files=[ "res://.import/la.ogg-42bc67cc2d86bc1202b82a868fa018a0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

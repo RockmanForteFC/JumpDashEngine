@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/electriri_loop.ogg-c2493ed90eef34810001765201597736.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/electriri_loop.ogg"
+dest_files=[ "res://.import/electriri_loop.ogg-c2493ed90eef34810001765201597736.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

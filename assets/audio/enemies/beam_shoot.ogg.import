@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/beam_shoot.ogg-0ee13bce532db2795a81f80dcffb759f.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/beam_shoot.ogg"
+dest_files=[ "res://.import/beam_shoot.ogg-0ee13bce532db2795a81f80dcffb759f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

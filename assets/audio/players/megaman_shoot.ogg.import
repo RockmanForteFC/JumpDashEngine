@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/megaman_shoot.ogg-72675ed5fc5a49f62501ee48b82ff068.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/players/megaman_shoot.ogg"
+dest_files=[ "res://.import/megaman_shoot.ogg-72675ed5fc5a49f62501ee48b82ff068.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

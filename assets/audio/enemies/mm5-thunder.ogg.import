@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mm5-thunder.ogg-cb1ce3b7b996395d9775aa88c714a0a2.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/mm5-thunder.ogg"
+dest_files=[ "res://.import/mm5-thunder.ogg-cb1ce3b7b996395d9775aa88c714a0a2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

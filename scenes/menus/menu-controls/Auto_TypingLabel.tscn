@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/menus/menu-controls/Auto_TypingLabel.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/environment/text_character_sound.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/images/sprites/menus/text_arrow/text_arrow.tres" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float brightness : hint_range(-1, 1) = 0;
+uniform sampler2D source_palette;
+uniform sampler2D target_palette;
+
+void fragment() {
+	vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	ivec2 pal_size = textureSize(source_palette, 0);
+	
+	float color_diff = 1.0;
+	int nearest_swatch = 0;
+		
+	for (int swatch=0; swatch < pal_size.x; swatch++) {
+		vec4 sampled_color = texelFetch(source_palette, ivec2(swatch,0), 0);
+		float new_color_diff = distance(sampled_color, screen_color);
+		
+		if (new_color_diff < color_diff) {
+			color_diff = new_color_diff;
+			nearest_swatch = swatch;
+		}
+	}
+	
+	int swatch_offset = int(brightness * float(pal_size.x));
+	int target_swatch = clamp(nearest_swatch + swatch_offset, 0, pal_size.x -1);
+	
+	COLOR = texelFetch(target_palette, ivec2(target_swatch, 0), 0);
+}"
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.302041, 0.653061, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.333333, 0.333333, 0.333333, 1, 0.666667, 0.666667, 0.666667, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.15102, 0.310204, 0.428571 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.293878, 0.261412, 0.0860969, 1, 0.706122, 0.628115, 0.206872, 1, 0.941176, 0.721569, 0.219608, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/brightness = -0.301
+shader_param/source_palette = SubResource( 4 )
+shader_param/target_palette = SubResource( 6 )
+
+[node name="Auto_TypingLabel" type="Label"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "this is an example of what the text looks like "
+autowrap = true
+clip_text = true
+script = ExtResource( 1 )
+
+[node name="CharacterDelay" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -9.0
+margin_top = -9.0
+texture = ExtResource( 3 )
+stretch_mode = 3
+
+[node name="CharacterSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sound Effects"
+
+[node name="Speaker" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 2 )
+margin_right = 256.0
+margin_bottom = 10.0

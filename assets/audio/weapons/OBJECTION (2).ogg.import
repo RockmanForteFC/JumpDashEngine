@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/OBJECTION (2).ogg-dd46393ae09b002e1f7bc557a4919228.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/OBJECTION (2).ogg"
+dest_files=[ "res://.import/OBJECTION (2).ogg-dd46393ae09b002e1f7bc557a4919228.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

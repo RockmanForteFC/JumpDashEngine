@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hotton_shoot.ogg-11b502a94356e49ee3d79b45678c8a8c.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/hotton_shoot.ogg"
+dest_files=[ "res://.import/hotton_shoot.ogg-11b502a94356e49ee3d79b45678c8a8c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/small_TP.ogg-a67183ecf2c5581ca33ae7e906185aa5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/small_TP.ogg"
+dest_files=[ "res://.import/small_TP.ogg-a67183ecf2c5581ca33ae7e906185aa5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fire_ball.ogg-2a119a10c8401393bbec37537779b58b.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/fire_ball.ogg"
+dest_files=[ "res://.import/fire_ball.ogg-2a119a10c8401393bbec37537779b58b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

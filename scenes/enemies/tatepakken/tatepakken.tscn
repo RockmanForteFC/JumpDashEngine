@@ -1,0 +1,176 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/enemies/tatepakken/Shoot.gd" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/tatepakken/Idle.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/tatepakken/StateMachine.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/tatepakken/tatepakken.gd" type="Script" id=4]
+[ext_resource path="res://assets/images/sprites/enemies/tatepakken/tatepakken.png" type="Texture" id=5]
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=7]
+
+[sub_resource type="RectangleShape2D" id=5]
+resource_local_to_scene = true
+extents = Vector2( 8.5, 11.5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+resource_local_to_scene = true
+extents = Vector2( 7, 11.5 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/original_0 = Color( 1, 0.627451, 0.266667, 1 )
+shader_param/original_1 = Color( 1, 1, 1, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 1, 0.627451, 0.266667, 1 )
+shader_param/replace_1 = Color( 1, 1, 1, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Unhide"
+length = 1.75
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("StateMachine/Shoot")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 11, 3.5 )
+
+[node name="tatepakken" instance=ExtResource( 6 )]
+script = ExtResource( 4 )
+enemy_name = "tatepakken"
+hit_points_max = 3
+contact_damage = 4
+projectile_damage = 2
+primary_color = Color( 1, 0.627451, 0.266667, 1 )
+secondary_color = Color( 1, 1, 1, 1 )
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 2.5, 4.5 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 1, 4.5 )
+shape = SubResource( 6 )
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 7 )
+position = Vector2( -3, 25 )
+texture = ExtResource( 5 )
+offset = Vector2( 3, -25 )
+hframes = 3
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( 2, 3.5 )
+scale = Vector2( 0.8, 0.95 )
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 3 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 2 )
+
+[node name="Shoot" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+anims/Idle = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/Unhide = SubResource( 3 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="13"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
+position = Vector2( 3, -12.5 )
+shape = SubResource( 4 )
+disabled = true
+one_way_collision = true
+
+[node name="Timer" type="Timer" parent="." index="14"]
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="." index="15"]
+position = Vector2( -8, 5 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Shoot" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="Timer" to="StateMachine/Idle" method="_on_Timer_timeout"]

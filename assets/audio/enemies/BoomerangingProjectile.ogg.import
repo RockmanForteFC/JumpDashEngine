@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BoomerangingProjectile.ogg-58e56b5bc2d62c6570957c2ca42dbc1a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/BoomerangingProjectile.ogg"
+dest_files=[ "res://.import/BoomerangingProjectile.ogg-58e56b5bc2d62c6570957c2ca42dbc1a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SwordBoomerangLoop.ogg-1dbdb90970bc5e7d480a2076d4b1db43.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/SwordBoomerangLoop.ogg"
+dest_files=[ "res://.import/SwordBoomerangLoop.ogg-1dbdb90970bc5e7d480a2076d4b1db43.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

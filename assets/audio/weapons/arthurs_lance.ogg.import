@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/arthurs_lance.ogg-30b8f8ba5188dd5fe8fb97ccf3e6bdaf.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/arthurs_lance.ogg"
+dest_files=[ "res://.import/arthurs_lance.ogg-30b8f8ba5188dd5fe8fb97ccf3e6bdaf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

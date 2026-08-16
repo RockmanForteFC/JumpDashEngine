@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tiger.ogg-9c1c1d2a7c63e41415b15bf46c5788d6.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/tiger.ogg"
+dest_files=[ "res://.import/tiger.ogg-9c1c1d2a7c63e41415b15bf46c5788d6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

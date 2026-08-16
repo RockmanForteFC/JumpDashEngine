@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MM1 - GutsQuake.ogg-9ad673900165936009680f0dca8bd9b7.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/MM1 - GutsQuake.ogg"
+dest_files=[ "res://.import/MM1 - GutsQuake.ogg-9ad673900165936009680f0dca8bd9b7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

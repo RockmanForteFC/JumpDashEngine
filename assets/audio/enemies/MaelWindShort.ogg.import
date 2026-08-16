@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MaelWindShort.ogg-2918d487e611eadae50a41b0693d2f2b.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/MaelWindShort.ogg"
+dest_files=[ "res://.import/MaelWindShort.ogg-2918d487e611eadae50a41b0693d2f2b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

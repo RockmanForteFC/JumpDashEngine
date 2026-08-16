@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/trophy_get.ogg-6cec31f843eedbc752fa47a471f9d702.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/trophy_get.ogg"
+dest_files=[ "res://.import/trophy_get.ogg-6cec31f843eedbc752fa47a471f9d702.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

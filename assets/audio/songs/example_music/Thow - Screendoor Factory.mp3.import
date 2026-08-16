@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Thow - Screendoor Factory.mp3-efa6aa181528f147fde61db85814b5f2.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/songs/example_music/Thow - Screendoor Factory.mp3"
+dest_files=[ "res://.import/Thow - Screendoor Factory.mp3-efa6aa181528f147fde61db85814b5f2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MM4 - Wily UFO.ogg-b86384bfd3abce68e569a64e2019c046.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/MM4 - Wily UFO.ogg"
+dest_files=[ "res://.import/MM4 - Wily UFO.ogg-b86384bfd3abce68e569a64e2019c046.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

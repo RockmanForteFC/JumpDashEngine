@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/phase_in.ogg-8677bcc29e5a9839d7b8a64722ab00e3.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/phase_in.ogg"
+dest_files=[ "res://.import/phase_in.ogg-8677bcc29e5a9839d7b8a64722ab00e3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

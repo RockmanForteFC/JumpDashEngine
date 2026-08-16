@@ -1,0 +1,154 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/images/sprites/enemies/suzy2/suzy2.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/suzy2_vertical.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/states/Attack.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/states/Idle.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=9]
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_param/original_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/original_1 = null
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/replace_1 = null
+shader_param/replace_2 = null
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 7, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 7, 8 )
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_param/original_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/original_1 = Color( 0.988235, 0.627451, 0.266667, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/replace_1 = Color( 0.988235, 0.627451, 0.266667, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="Animation" id=11]
+resource_name = "Attack_Down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 5 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Attack_Up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[node name="suzy2_vertical" instance=ExtResource( 8 )]
+material = SubResource( 9 )
+script = ExtResource( 2 )
+enemy_name = "suzy_2"
+hit_points_max = 5
+contact_damage = 4
+projectile_damage = 0
+enemy_size = "small"
+timer = 3.0
+starting_direction = "Down"
+color = Color( 0.894118, 0, 0.345098, 1 )
+color2 = Color( 0.988235, 0.627451, 0.266667, 1 )
+
+[node name="Collider" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 10 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 2
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( -2.563e-07, 3.57628e-07 )
+scale = Vector2( 0.7, 0.8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+anims/Attack_Down = SubResource( 11 )
+anims/Attack_Up = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Stop = SubResource( 5 )
+
+[node name="StateMachine" parent="." index="9"]
+script = ExtResource( 4 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 5 )
+
+[node name="Attack" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 3 )
+
+[node name="wait_time" type="Timer" parent="." index="12"]
+process_mode = 0
+wait_time = 3.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="wait_time" to="StateMachine/Idle" method="_on_wait_time_timeout"]

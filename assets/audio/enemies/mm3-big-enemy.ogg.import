@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mm3-big-enemy.ogg-0d91b7cc55b2ffbcb9c074c6f518e8c1.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/mm3-big-enemy.ogg"
+dest_files=[ "res://.import/mm3-big-enemy.ogg-0d91b7cc55b2ffbcb9c074c6f518e8c1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/CoccotriceScream.ogg-d724a5ded565b8fbc8d0b36666d6e7b0.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/CoccotriceScream.ogg"
+dest_files=[ "res://.import/CoccotriceScream.ogg-d724a5ded565b8fbc8d0b36666d6e7b0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

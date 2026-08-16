@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ice_boss_freeze.ogg-7b2a8e3c88527d4a694a1fd054258188.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/ice_boss_freeze.ogg"
+dest_files=[ "res://.import/ice_boss_freeze.ogg-7b2a8e3c88527d4a694a1fd054258188.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

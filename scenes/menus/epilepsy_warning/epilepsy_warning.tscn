@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/menus/epilepsy_warning/epilepsy_warning.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade-in-out"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.8, 6.7, 7.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "quick-fade-out"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -112.0
+margin_right = 128.0
+margin_bottom = 112.0
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 256.0
+margin_bottom = 224.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 248.0
+margin_bottom = 208.0
+text = "-Epilepsy WARNING-
+  
+This game contains bright,
+flashing colors; if you are
+sensitive to flashing 
+lights, proceed with 
+caution before playing 
+or consult your doctor.
+  
+Mega Man is 
+a registered trademark
+of Capcom Co., Ltd."
+align = 1
+valign = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade-in-out = SubResource( 1 )
+anims/quick-fade-out = SubResource( 2 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

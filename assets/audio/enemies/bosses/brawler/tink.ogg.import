@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tink.ogg-0431c483cb8cf873ec182d1bb5b4cd8a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/brawler/tink.ogg"
+dest_files=[ "res://.import/tink.ogg-0431c483cb8cf873ec182d1bb5b4cd8a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

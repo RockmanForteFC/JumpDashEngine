@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BeastNetSwing.ogg-06a7df0a411d26b40ada277fe18d016c.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/BeastNetSwing.ogg"
+dest_files=[ "res://.import/BeastNetSwing.ogg-06a7df0a411d26b40ada277fe18d016c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

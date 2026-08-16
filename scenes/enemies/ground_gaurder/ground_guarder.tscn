@@ -1,0 +1,226 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/images/sprites/enemies/ground_guarder/ground_guard.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/ground_gaurder/ground_guarder.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/ground_gaurder/StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/ground_gaurder/states/Idle.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/ground_gaurder/states/Up.gd" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/ground_gaurder/states/Shoot.gd" type="Script" id=7]
+[ext_resource path="res://scenes/enemies/ground_gaurder/states/Down.gd" type="Script" id=8]
+[ext_resource path="res://assets/audio/enemies/enemy_shoot.ogg" type="AudioStream" id=9]
+
+[sub_resource type="RectangleShape2D" id=7]
+resource_local_to_scene = true
+extents = Vector2( 6, 7 )
+
+[sub_resource type="RectangleShape2D" id=8]
+resource_local_to_scene = true
+extents = Vector2( 6, 4.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 2.5 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Pop_Up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Sink_Down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Spin"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 4 ]
+}
+
+[node name="ground_guarder" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+enemy_name = "ground_guarder"
+hit_points_max = 1
+contact_damage = 2
+projectile_damage = 2
+score = 50
+enemy_size = "small"
+shoot_direction = "up"
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 3.5 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="1"]
+position = Vector2( 0, -3.5 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( 0, 2 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Audio" index="2"]
+stream = ExtResource( 9 )
+bus = "Sound Effects"
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 4 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 5 )
+
+[node name="Up" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 6 )
+
+[node name="Shoot" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 7 )
+
+[node name="Down" type="Node" parent="StateMachine" index="4"]
+script = ExtResource( 8 )
+
+[node name="BaseShootPos" parent="." index="10"]
+position = Vector2( 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+anims/Idle = SubResource( 2 )
+anims/Pop_Up = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/Sink_Down = SubResource( 5 )
+anims/Spin = SubResource( 6 )
+
+[node name="IdleTimer" type="Timer" parent="." index="13"]
+process_mode = 0
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="." index="14"]
+process_mode = 0
+wait_time = 0.8
+one_shot = true
+
+[node name="InitialShootTimer" type="Timer" parent="." index="15"]
+process_mode = 0
+wait_time = 0.3
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_animation_finished"]

@@ -1,0 +1,164 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/enemies/mets/spinning_met/spinning_met.gd" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/mets/spinning_met/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/images/sprites/enemies/spinning_met/spinningmet.png" type="Texture" id=4]
+[ext_resource path="res://scenes/enemies/mets/mm9_met/states/trigger.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/mets/spinning_met/Idle.gd" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/mets/spinning_met/Spinning.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 8, 5.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 8, 5.5 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "popdown"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 3, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "popup"
+length = 0.44
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "spinning"
+length = 0.33
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8 ]
+}
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 57.0088
+
+[node name="Spinning_Met" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+enemy_name = "metall_-_spin"
+hit_points_max = 3
+contact_damage = 2
+projectile_damage = 2
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+position = Vector2( 0, -10 )
+texture = ExtResource( 4 )
+hframes = 9
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( 5.96046e-08, 0.5 )
+scale = Vector2( 0.8, 0.55 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+root_node = NodePath("../Sprite")
+anims/RESET = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/popdown = SubResource( 8 )
+anims/popup = SubResource( 5 )
+anims/spinning = SubResource( 6 )
+
+[node name="StateMachine" parent="." index="9"]
+script = ExtResource( 2 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 6 )
+
+[node name="Spinning" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 7 )
+
+[node name="TriggerArea" type="Area2D" parent="." index="13"]
+visible = false
+collision_layer = 2
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea" index="0"]
+shape = SubResource( 7 )
+
+[node name="Timer" type="Timer" parent="." index="14"]
+process_mode = 0
+wait_time = 5.0
+autostart = true
+
+[node name="shot_delay" type="Timer" parent="." index="15"]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Spinning" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="TriggerArea" to="TriggerArea" method="on_body_entered"]
+[connection signal="body_exited" from="TriggerArea" to="TriggerArea" method="on_body_exited"]
+[connection signal="timeout" from="Timer" to="StateMachine/Idle" method="_on_Timer_timeout"]
+[connection signal="timeout" from="shot_delay" to="StateMachine/Spinning" method="_on_shot_delay_timeout"]

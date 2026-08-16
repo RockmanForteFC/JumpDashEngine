@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/StarExplode.ogg-b7c1f6f5a23c6683253037335d72e410.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/serenade/StarExplode.ogg"
+dest_files=[ "res://.import/StarExplode.ogg-b7c1f6f5a23c6683253037335d72e410.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

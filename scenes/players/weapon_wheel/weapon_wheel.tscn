@@ -1,0 +1,125 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/themes/shop_sold_out.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/audio/menu/menu_tick.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/images/sprites/players/empty_weapon_wheel.png" type="Texture" id=3]
+[ext_resource path="res://scenes/players/weapon_wheel/weapon_wheel.gd" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/is_sold_out = true
+
+[node name="Weapon_Wheel" type="Node2D"]
+pause_mode = 1
+visible = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="slot_1" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( -24, -24 )
+texture = ExtResource( 3 )
+
+[node name="slot_2" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 0, -24 )
+texture = ExtResource( 3 )
+
+[node name="slot_3" type="Sprite" parent="."]
+material = SubResource( 3 )
+position = Vector2( 24, -24 )
+texture = ExtResource( 3 )
+
+[node name="slot_4" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 24, 0 )
+texture = ExtResource( 3 )
+
+[node name="slot_5" type="Sprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( 24, 24 )
+texture = ExtResource( 3 )
+
+[node name="slot_6" type="Sprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( 0, 24 )
+texture = ExtResource( 3 )
+
+[node name="slot_7" type="Sprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -24, 24 )
+texture = ExtResource( 3 )
+
+[node name="slot_8" type="Sprite" parent="."]
+material = SubResource( 8 )
+position = Vector2( -24, 0 )
+texture = ExtResource( 3 )
+
+[node name="slot_9" type="Sprite" parent="."]
+visible = false
+material = SubResource( 8 )
+position = Vector2( -24, 0 )
+texture = ExtResource( 3 )
+
+[node name="slot_10" type="Sprite" parent="."]
+visible = false
+material = SubResource( 8 )
+position = Vector2( -24, 0 )
+texture = ExtResource( 3 )
+
+[node name="slot_11" type="Sprite" parent="."]
+visible = false
+material = SubResource( 8 )
+position = Vector2( -24, 0 )
+texture = ExtResource( 3 )
+
+[node name="slot_12" type="Sprite" parent="."]
+visible = false
+material = SubResource( 8 )
+position = Vector2( -24, 0 )
+texture = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="swap_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sound Effects"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/EnemyChargeUp.ogg-90b1c20e3e1efd44d6c868a96f41438a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/EnemyChargeUp.ogg"
+dest_files=[ "res://.import/EnemyChargeUp.ogg-90b1c20e3e1efd44d6c868a96f41438a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Thow - Heaven Fortress.mp3-d8ff0921ab38172f90d2a570a1c840f8.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/songs/example_music/Thow - Heaven Fortress.mp3"
+dest_files=[ "res://.import/Thow - Heaven Fortress.mp3-d8ff0921ab38172f90d2a570a1c840f8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

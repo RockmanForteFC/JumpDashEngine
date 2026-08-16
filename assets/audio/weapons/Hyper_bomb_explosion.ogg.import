@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Hyper_bomb_explosion.ogg-70d66a258392a9f214e758d0dab314d0.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/Hyper_bomb_explosion.ogg"
+dest_files=[ "res://.import/Hyper_bomb_explosion.ogg-70d66a258392a9f214e758d0dab314d0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

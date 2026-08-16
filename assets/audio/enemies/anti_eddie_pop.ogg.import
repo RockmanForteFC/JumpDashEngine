@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/anti_eddie_pop.ogg-ecc21f11b7a0ad72364cf4fabf8c5320.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/anti_eddie_pop.ogg"
+dest_files=[ "res://.import/anti_eddie_pop.ogg-ecc21f11b7a0ad72364cf4fabf8c5320.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

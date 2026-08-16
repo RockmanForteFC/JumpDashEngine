@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SnowMeiser_White_Christmas.mp3-dd44eace4f54866f3b4f1e473469ff7b.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/songs/example_music/SnowMeiser_White_Christmas.mp3"
+dest_files=[ "res://.import/SnowMeiser_White_Christmas.mp3-dd44eace4f54866f3b4f1e473469ff7b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

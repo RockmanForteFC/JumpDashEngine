@@ -1,0 +1,1803 @@
+[gd_scene load_steps=100 format=2]
+
+[ext_resource path="res://assets/images/backgrounds/menu_ui/pause_menu.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/mega_man_11_1_up.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/e_tank.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/m_tank.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/w_tank.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/large_bolt_11.png" type="Texture" id=6]
+[ext_resource path="res://scenes/menus/PauseMenuWeapon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_n.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_e.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_r.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_a.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_s.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/sprites/pickups/letters/letter_d.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/sprites/menus/menu_letter_border.png" type="Texture" id=14]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=15]
+[ext_resource path="res://assets/images/backgrounds/menu_ui/pause_menu_part_2.png" type="Texture" id=16]
+[ext_resource path="res://scenes/menus/pause_menu/pause_menu.gd" type="Script" id=17]
+[ext_resource path="res://assets/images/decorations/menu_bg_lines.png" type="Texture" id=18]
+[ext_resource path="res://assets/audio/menu/menu_open.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/images/sprites/menus/arrow_left_full_menu.png" type="Texture" id=20]
+[ext_resource path="res://assets/images/sprites/menus/arrow_right_full_menu.png" type="Texture" id=21]
+[ext_resource path="res://assets/audio/menu/text_box_open.ogg" type="AudioStream" id=22]
+[ext_resource path="res://assets/audio/menu/menu_option.ogg" type="AudioStream" id=23]
+[ext_resource path="res://assets/audio/menu/menu_ok.ogg" type="AudioStream" id=24]
+[ext_resource path="res://assets/audio/menu/error.ogg" type="AudioStream" id=25]
+[ext_resource path="res://assets/images/sprites/menus/FocusFrameAnimated2_alt.png" type="Texture" id=26]
+[ext_resource path="res://assets/images/sprites/menus/FocusFrameAnimated1_alt.png" type="Texture" id=27]
+[ext_resource path="res://assets/images/sprites/menus/empty_ram_slot.png" type="Texture" id=28]
+[ext_resource path="res://assets/images/sprites/menus/self_destruct.png" type="Texture" id=29]
+[ext_resource path="res://assets/images/sprites/menus/exit.png" type="Texture" id=30]
+[ext_resource path="res://assets/images/sprites/menus/FocusFrameAnimated2.png" type="Texture" id=31]
+[ext_resource path="res://assets/images/sprites/menus/FocusFrameAnimated1.png" type="Texture" id=32]
+[ext_resource path="res://assets/images/items/gold_charge_upgrade.png" type="Texture" id=33]
+[ext_resource path="res://assets/images/sprites/menus/not_applicable.png" type="Texture" id=34]
+[ext_resource path="res://assets/images/items/gold_energy_balancer.png" type="Texture" id=35]
+[ext_resource path="res://assets/images/items/chip.png" type="Texture" id=36]
+[ext_resource path="res://assets/images/items/shock_absorber.png" type="Texture" id=37]
+[ext_resource path="res://assets/images/items/energy_balancer.png" type="Texture" id=38]
+[ext_resource path="res://assets/images/items/book.png" type="Texture" id=39]
+[ext_resource path="res://assets/images/items/chip_2.png" type="Texture" id=40]
+[ext_resource path="res://assets/images/items/bolt_attractor.png" type="Texture" id=41]
+[ext_resource path="res://assets/images/items/slide.png" type="Texture" id=42]
+[ext_resource path="res://assets/images/items/charge_upgrade.png" type="Texture" id=43]
+[ext_resource path="res://assets/images/items/cd_locator.png" type="Texture" id=44]
+[ext_resource path="res://assets/images/items/music_upgrade.png" type="Texture" id=45]
+[ext_resource path="res://assets/audio/pickups/energy-fill.ogg" type="AudioStream" id=46]
+[ext_resource path="res://assets/images/sprites/pickups/curse_icons1.png" type="Texture" id=47]
+[ext_resource path="res://assets/images/sprites/pickups/curse_icons2.png" type="Texture" id=48]
+[ext_resource path="res://assets/images/backgrounds/menu_ui/pause_rogue_boxpng.png" type="Texture" id=49]
+
+[sub_resource type="ShaderMaterial" id=28]
+
+[sub_resource type="Shader" id=53]
+code = "shader_type canvas_item;
+
+uniform vec4 color:hint_color;
+
+void fragment(){
+	float pulse = abs(sin(TIME *0.2));
+	
+	vec4 final_color = mix(color,vec4(0.06,0.045,0.25,color.a),pulse);
+	
+	COLOR = final_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=54]
+shader = SubResource( 53 )
+shader_param/color = Color( 0.184314, 0, 0.211765, 1 )
+
+[sub_resource type="Shader" id=25]
+code = "shader_type canvas_item;
+
+uniform float horizontal_speed;
+uniform float vertical_speed;
+
+void fragment () {
+	COLOR = texture(TEXTURE, vec2(UV.x + TIME * horizontal_speed, UV.y + TIME * vertical_speed));
+}"
+
+[sub_resource type="ShaderMaterial" id=26]
+shader = SubResource( 25 )
+shader_param/horizontal_speed = 0.0
+shader_param/vertical_speed = null
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 21 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 21 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 21 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 21 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 21 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=33]
+animations = [ {
+"frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 2 )
+region = Rect2( 1, 1, 18, 18 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=44]
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 5 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=50]
+animations = [ {
+"frames": [ SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = Color( 0, 0, 0, 1 )
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = Color( 0, 0, 0, 1 )
+
+[sub_resource type="AtlasTexture" id=5]
+resource_local_to_scene = true
+atlas = ExtResource( 12 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 10 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 8 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 11 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 13 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="ShaderMaterial" id=20]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/original_0 = Color( 0, 0.533333, 0.533333, 1 )
+shader_param/original_1 = Color( 0.721569, 0.972549, 0.847059, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0, 0, 0, 0 )
+shader_param/replace_1 = Color( 0.721569, 0.972549, 0.721569, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 9 )
+region = Rect2( 4, 4, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 20 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 20 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 20 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 20 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 20 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=43]
+animations = [ {
+"frames": [ SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 32 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 31 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=47]
+animations = [ {
+"frames": [ SubResource( 45 ), SubResource( 46 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=22]
+resource_name = "Menu_1_to_Menu_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu_Left:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -256, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu_Right:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 256, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Menu_Left/RightArrow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Menu_Right/LeftArrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Audio/Page_Swap:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Menu_Left/RightArrow:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Menu_Right/LeftArrow:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_default_page_2"
+} ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "Menu_2_to_Menu_1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu_Left:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -256, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu_Right:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 256, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Menu_Right/LeftArrow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Menu_Left/RightArrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Audio/Page_Swap:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Menu_Right/LeftArrow:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Menu_Left/RightArrow:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_default_page_1"
+} ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu_Left:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu_Right:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Menu_Left/RightArrow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Menu_Right/LeftArrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Audio/Page_Swap:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Menu_Right/LeftArrow:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Menu_Left/RightArrow:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Pause_Menu" type="Control"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 17 )
+
+[node name="Background" type="Control" parent="."]
+material = SubResource( 28 )
+margin_right = 256.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background_Color" type="ColorRect" parent="Background"]
+material = SubResource( 54 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0.737255, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GridLines" type="TextureRect" parent="Background"]
+material = SubResource( 26 )
+margin_right = 256.0
+margin_bottom = 224.0
+texture = ExtResource( 18 )
+expand = true
+stretch_mode = 2
+flip_h = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Menu_Left" type="Control" parent="."]
+margin_right = 256.0
+margin_bottom = 224.0
+
+[node name="UI" type="TextureRect" parent="Menu_Left"]
+margin_right = 256.0
+margin_bottom = 224.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightArrow" type="AnimatedSprite" parent="Menu_Left"]
+position = Vector2( 248, 104 )
+frames = SubResource( 33 )
+frame = 5
+playing = true
+
+[node name="Ram Slots" type="Control" parent="Menu_Left"]
+margin_left = 32.0
+margin_top = 136.0
+margin_right = 224.0
+margin_bottom = 152.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Ram1" type="TextureRect" parent="Menu_Left/Ram Slots"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.0
+margin_right = 80.0
+margin_bottom = 8.0
+texture = ExtResource( 28 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ram2" type="TextureRect" parent="Menu_Left/Ram Slots"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -8.0
+margin_bottom = 8.0
+texture = ExtResource( 28 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Rogue_Items" type="Control" parent="Menu_Left"]
+visible = false
+margin_left = 32.0
+margin_top = 136.0
+margin_right = 224.0
+margin_bottom = 152.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Item_Box" type="TextureRect" parent="Menu_Left/Rogue_Items"]
+margin_left = -32.0
+margin_top = -40.0
+margin_right = 224.0
+margin_bottom = 24.0
+texture = ExtResource( 49 )
+
+[node name="Item1" type="TextureRect" parent="Menu_Left/Rogue_Items"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -31.0
+margin_right = 16.0
+margin_bottom = -15.0
+texture = ExtResource( 47 )
+
+[node name="Knock_Count" type="Label" parent="Menu_Left/Rogue_Items/Item1"]
+margin_left = 19.0
+margin_top = 4.0
+margin_right = 35.0
+margin_bottom = 13.0
+text = "1"
+
+[node name="Item2" type="TextureRect" parent="Menu_Left/Rogue_Items"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 56.0
+margin_top = -31.0
+margin_right = 72.0
+margin_bottom = -15.0
+texture = ExtResource( 48 )
+
+[node name="Dmg_Count" type="Label" parent="Menu_Left/Rogue_Items/Item2"]
+margin_left = 19.0
+margin_top = 4.0
+margin_right = 51.0
+margin_bottom = 13.0
+text = "0.5"
+
+[node name="Weapons_Container" type="Control" parent="Menu_Left"]
+margin_left = 28.0
+margin_top = 23.0
+margin_right = 234.0
+margin_bottom = 127.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Column_Left" type="VBoxContainer" parent="Menu_Left/Weapons_Container"]
+margin_right = 96.0
+margin_bottom = 104.0
+custom_constants/separation = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_1" type="Control" parent="Menu_Left/Weapons_Container/Column_Left"]
+margin_right = 96.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mega_Buster" parent="Menu_Left/Weapons_Container/Column_Left/Slot_1" instance=ExtResource( 7 )]
+
+[node name="Slot_2" type="Control" parent="Menu_Left/Weapons_Container/Column_Left"]
+margin_top = 21.0
+margin_right = 96.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Incinerate" parent="Menu_Left/Weapons_Container/Column_Left/Slot_2" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_3" type="Control" parent="Menu_Left/Weapons_Container/Column_Left"]
+margin_top = 42.0
+margin_right = 96.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tremor_Pulse" parent="Menu_Left/Weapons_Container/Column_Left/Slot_3" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_4" type="Control" parent="Menu_Left/Weapons_Container/Column_Left"]
+margin_top = 63.0
+margin_right = 96.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Maelstrom" parent="Menu_Left/Weapons_Container/Column_Left/Slot_4" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_5" type="Control" parent="Menu_Left/Weapons_Container/Column_Left"]
+margin_top = 84.0
+margin_right = 96.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Silhouette_Kunai" parent="Menu_Left/Weapons_Container/Column_Left/Slot_5" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Control" type="Control" parent="Menu_Left/Weapons_Container/Column_Left"]
+margin_top = 105.0
+margin_right = 96.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 4, 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_6" type="Control" parent="Menu_Left/Weapons_Container/Column_Left"]
+margin_top = 112.0
+margin_right = 96.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Utility_Slot_A" parent="Menu_Left/Weapons_Container/Column_Left/Slot_6" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Column_Right" type="VBoxContainer" parent="Menu_Left/Weapons_Container"]
+margin_left = 101.0
+margin_top = 1.0
+margin_right = 197.0
+margin_bottom = 131.0
+custom_constants/separation = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_7" type="Control" parent="Menu_Left/Weapons_Container/Column_Right"]
+margin_right = 96.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Beam" parent="Menu_Left/Weapons_Container/Column_Right/Slot_7" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_8" type="Control" parent="Menu_Left/Weapons_Container/Column_Right"]
+margin_top = 21.0
+margin_right = 96.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Brawler" parent="Menu_Left/Weapons_Container/Column_Right/Slot_8" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_9" type="Control" parent="Menu_Left/Weapons_Container/Column_Right"]
+margin_top = 42.0
+margin_right = 96.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Arctic" parent="Menu_Left/Weapons_Container/Column_Right/Slot_9" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_10" type="Control" parent="Menu_Left/Weapons_Container/Column_Right"]
+margin_top = 63.0
+margin_right = 96.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Detonate" parent="Menu_Left/Weapons_Container/Column_Right/Slot_10" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_11" type="Control" parent="Menu_Left/Weapons_Container/Column_Right"]
+margin_top = 84.0
+margin_right = 96.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MsWilyCollectables" parent="Menu_Left/Weapons_Container/Column_Right/Slot_11" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Control" type="Control" parent="Menu_Left/Weapons_Container/Column_Right"]
+margin_top = 105.0
+margin_right = 96.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 4, 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slot_12" type="Control" parent="Menu_Left/Weapons_Container/Column_Right"]
+margin_top = 112.0
+margin_right = 96.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 96, 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Utility_Slot_B" parent="Menu_Left/Weapons_Container/Column_Right/Slot_12" instance=ExtResource( 7 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lives_Container" type="Control" parent="Menu_Left"]
+margin_left = 195.0
+margin_top = 179.0
+margin_right = 236.0
+margin_bottom = 204.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lives" type="Control" parent="Menu_Left/Lives_Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -12.0
+margin_right = 8.0
+margin_bottom = 12.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Lives_Icon" type="TextureRect" parent="Menu_Left/Lives_Container/Lives"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_right = 2.0
+margin_bottom = -2.0
+texture = SubResource( 52 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lives_Count" type="Label" parent="Menu_Left/Lives_Container/Lives"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -7.0
+margin_top = -9.0
+margin_right = 9.0
+text = "00"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bolts_Container" type="Control" parent="Menu_Left"]
+margin_left = 132.0
+margin_top = 179.0
+margin_right = 172.0
+margin_bottom = 205.0
+
+[node name="Bolts" type="Control" parent="Menu_Left/Bolts_Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -12.0
+margin_right = 8.0
+margin_bottom = 12.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Bolt_Icon" type="TextureRect" parent="Menu_Left/Bolts_Container/Bolts"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -8.0
+margin_right = 8.0
+margin_bottom = 16.0
+texture = SubResource( 51 )
+
+[node name="Bolt_Count" type="Label" parent="Menu_Left/Bolts_Container/Bolts"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -19.0
+margin_top = -9.0
+margin_right = 21.0
+text = "00000"
+
+[node name="Tanks_Container" type="Control" parent="Menu_Left"]
+margin_left = 22.0
+margin_top = 179.0
+margin_right = 96.0
+margin_bottom = 205.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="E_Tank" type="Control" parent="Menu_Left/Tanks_Container"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -12.0
+margin_right = 16.0
+margin_bottom = 12.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="E_Tank_Icon" type="TextureRect" parent="Menu_Left/Tanks_Container/E_Tank"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -8.0
+margin_top = -1.0
+margin_right = 8.0
+margin_bottom = 15.0
+texture = SubResource( 2 )
+
+[node name="E_Tank_Count" type="Label" parent="Menu_Left/Tanks_Container/E_Tank"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -7.0
+margin_top = -9.0
+margin_right = 9.0
+text = "00"
+
+[node name="E_Tank_Position" type="Position2D" parent="Menu_Left/Tanks_Container/E_Tank"]
+position = Vector2( 8, 11 )
+
+[node name="W_Tank" type="Control" parent="Menu_Left/Tanks_Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -12.0
+margin_right = 8.0
+margin_bottom = 12.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="W_Tank_Icon" type="TextureRect" parent="Menu_Left/Tanks_Container/W_Tank"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -8.0
+margin_top = -1.0
+margin_right = 8.0
+margin_bottom = 15.0
+texture = SubResource( 3 )
+
+[node name="W_Tank_Count" type="Label" parent="Menu_Left/Tanks_Container/W_Tank"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -7.0
+margin_top = -9.0
+margin_right = 9.0
+text = "00"
+
+[node name="W_Tank_Position" type="Position2D" parent="Menu_Left/Tanks_Container/W_Tank"]
+position = Vector2( 8, 11 )
+
+[node name="M_Tank" type="Control" parent="Menu_Left/Tanks_Container"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -12.0
+margin_bottom = 12.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="M_Tank_Icon" type="TextureRect" parent="Menu_Left/Tanks_Container/M_Tank"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -8.0
+margin_top = -1.0
+margin_right = 8.0
+margin_bottom = 15.0
+texture = SubResource( 4 )
+
+[node name="M_Tank_Count" type="Label" parent="Menu_Left/Tanks_Container/M_Tank"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -7.0
+margin_top = -9.0
+margin_right = 9.0
+text = "00"
+
+[node name="M_Tank_Position" type="Position2D" parent="Menu_Left/Tanks_Container/M_Tank"]
+position = Vector2( 8, 11 )
+
+[node name="Tank_Selection" type="AnimatedSprite" parent="Menu_Left/Tanks_Container"]
+visible = false
+position = Vector2( 8, 12 )
+frames = SubResource( 44 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="W_Tank_Sprite" type="AnimatedSprite" parent="Menu_Left/Tanks_Container"]
+visible = false
+position = Vector2( 0, -4 )
+frames = SubResource( 50 )
+
+[node name="Letters_Container" type="Control" parent="Menu_Left"]
+margin_left = 128.0
+margin_top = 114.0
+margin_right = 236.0
+margin_bottom = 125.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu_Left/Letters_Container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = -2.0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_1" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_right = 11.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_1" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_1"]
+visible = false
+material = SubResource( 13 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_2" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_left = 13.0
+margin_right = 24.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_2" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_2"]
+visible = false
+material = SubResource( 14 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_3" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_left = 26.0
+margin_right = 37.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_3" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_3"]
+visible = false
+material = SubResource( 15 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_4" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_left = 39.0
+margin_right = 50.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_4" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_4"]
+visible = false
+material = SubResource( 16 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_5" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_left = 52.0
+margin_right = 63.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_5" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_5"]
+visible = false
+material = SubResource( 17 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_6" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_left = 65.0
+margin_right = 76.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_6" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_6"]
+visible = false
+material = SubResource( 18 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_7" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_left = 78.0
+margin_right = 89.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_7" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_7"]
+visible = false
+material = SubResource( 19 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Letter_Slot_8" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer"]
+margin_left = 91.0
+margin_right = 102.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Letter_8" type="TextureRect" parent="Menu_Left/Letters_Container/HBoxContainer/Letter_Slot_8"]
+visible = false
+material = SubResource( 20 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+texture = SubResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Menu_Right" type="Control" parent="."]
+margin_left = 256.0
+margin_right = 511.999
+margin_bottom = 224.0
+
+[node name="UI" type="TextureRect" parent="Menu_Right"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftArrow" type="AnimatedSprite" parent="Menu_Right"]
+position = Vector2( 8, 104 )
+frames = SubResource( 43 )
+
+[node name="Function_Buttons" type="GridContainer" parent="Menu_Right"]
+margin_left = 24.0
+margin_top = 25.0
+margin_right = 232.0
+margin_bottom = 41.0
+custom_constants/vseparation = 3
+custom_constants/hseparation = 10
+columns = 4
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Self_Destruct" type="VBoxContainer" parent="Menu_Right/Function_Buttons"]
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Function_Buttons/Self_Destruct"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 29 )
+
+[node name="Position2D" type="Position2D" parent="Menu_Right/Function_Buttons/Self_Destruct"]
+position = Vector2( 8, 8 )
+
+[node name="Stage_Exit" type="VBoxContainer" parent="Menu_Right/Function_Buttons"]
+margin_left = 26.0
+margin_right = 42.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Function_Buttons/Stage_Exit"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 30 )
+
+[node name="Position2D" type="Position2D" parent="Menu_Right/Function_Buttons/Stage_Exit"]
+position = Vector2( 8, 8 )
+
+[node name="Selection_Icon" type="AnimatedSprite" parent="Menu_Right"]
+position = Vector2( 32, 33 )
+frames = SubResource( 47 )
+playing = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Description_Box" type="Control" parent="Menu_Right"]
+margin_left = 100.0
+margin_top = 36.0
+margin_right = 220.0
+margin_bottom = 51.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Highlighted_Item_Description" type="Label" parent="Menu_Right/Description_Box"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -4.5
+margin_bottom = 4.5
+text = "PAUSE_MENU_SELF_DESTRUCT"
+align = 1
+
+[node name="Weapon_Upgrade_Area" type="Control" parent="Menu_Right"]
+margin_left = 24.0
+margin_top = 75.0
+margin_right = 232.0
+margin_bottom = 95.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Upgrade_Weapon_Area_Title" type="Control" parent="Menu_Right/Weapon_Upgrade_Area"]
+visible = false
+margin_right = 64.0
+margin_bottom = 9.0
+
+[node name="Upgrade_Label" type="Label" parent="Menu_Right/Weapon_Upgrade_Area/Upgrade_Weapon_Area_Title"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -4.5
+margin_right = 64.0
+margin_bottom = 4.5
+text = "PAUSE_MENU_UPGRADE"
+
+[node name="Upgraded_Weapon" type="Control" parent="Menu_Right/Weapon_Upgrade_Area"]
+margin_left = 72.0
+margin_right = 200.0
+margin_bottom = 20.0
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Weapon_Upgrade_Area/Upgraded_Weapon"]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.0
+margin_right = 16.0
+margin_bottom = 8.0
+texture = ExtResource( 34 )
+
+[node name="Weapons_Upgrade_Unlock_Message" type="Control" parent="Menu_Right/Weapon_Upgrade_Area"]
+margin_left = 8.0
+margin_top = 2.0
+margin_right = 200.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Book_Icon" type="TextureRect" parent="Menu_Right/Weapon_Upgrade_Area/Weapons_Upgrade_Unlock_Message"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 39 )
+
+[node name="Unlock_Label" type="Label" parent="Menu_Right/Weapon_Upgrade_Area/Weapons_Upgrade_Unlock_Message"]
+visible = false
+margin_left = 20.0
+margin_top = 4.0
+margin_right = 189.0
+margin_bottom = 13.0
+text = "PAUSE_MENU_REQUIRES_WEAPON_BOOK"
+
+[node name="Collected_Powerups" type="Control" parent="Menu_Right"]
+margin_left = 24.0
+margin_top = 107.0
+margin_right = 232.0
+margin_bottom = 152.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GridContainer" type="GridContainer" parent="Menu_Right/Collected_Powerups"]
+margin_top = 5.0
+margin_right = 208.0
+margin_bottom = 46.0
+custom_constants/vseparation = 9
+custom_constants/hseparation = 16
+columns = 7
+
+[node name="Slide_Powerup" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Slide_Powerup"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 42 )
+
+[node name="Charge_Powerup" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 32.0
+margin_right = 48.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Charge_Powerup"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 43 )
+
+[node name="Super_Charge_Powerup" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 64.0
+margin_right = 80.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Super_Charge_Powerup"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 33 )
+
+[node name="Shock_Absorber" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 96.0
+margin_right = 112.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Shock_Absorber"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 37 )
+
+[node name="Bolt_Attractor" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 128.0
+margin_right = 144.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Bolt_Attractor"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 41 )
+
+[node name="Weapon_Book" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 160.0
+margin_right = 176.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Weapon_Book"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 39 )
+
+[node name="Empty_Space" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 192.0
+margin_right = 208.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Empty_Space"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 41 )
+
+[node name="Energy_Balancer" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_top = 25.0
+margin_right = 16.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Energy_Balancer"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 38 )
+
+[node name="Energy_Balancer_Neo" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 32.0
+margin_top = 25.0
+margin_right = 48.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Energy_Balancer_Neo"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 35 )
+
+[node name="Ability_Slot_A" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 64.0
+margin_top = 25.0
+margin_right = 80.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Ability_Slot_A"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 36 )
+
+[node name="Ability_Slot_B" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 96.0
+margin_top = 25.0
+margin_right = 112.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Ability_Slot_B"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 40 )
+
+[node name="Music_Upgrade" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 128.0
+margin_top = 25.0
+margin_right = 144.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Music_Upgrade"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 45 )
+
+[node name="cd_locator" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 160.0
+margin_top = 25.0
+margin_right = 176.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/cd_locator"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 44 )
+
+[node name="Nothing3" type="CenterContainer" parent="Menu_Right/Collected_Powerups/GridContainer"]
+margin_left = 192.0
+margin_top = 25.0
+margin_right = 208.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="Icon" type="TextureRect" parent="Menu_Right/Collected_Powerups/GridContainer/Nothing3"]
+visible = false
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 40 )
+
+[node name="cd_x" type="Label" parent="Menu_Right/Collected_Powerups"]
+visible = false
+margin_left = 180.0
+margin_top = 34.0
+margin_right = 188.0
+margin_bottom = 43.0
+text = "x"
+
+[node name="cd_count" type="Label" parent="Menu_Right/Collected_Powerups"]
+margin_left = 192.0
+margin_top = 34.0
+margin_right = 208.0
+margin_bottom = 43.0
+text = "0"
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Menu_Open" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 19 )
+bus = "Sound Effects"
+
+[node name="Page_Swap" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 22 )
+bus = "Sound Effects"
+
+[node name="Focus_Change" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 23 )
+bus = "Sound Effects"
+
+[node name="Select" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 24 )
+bus = "Sound Effects"
+
+[node name="Error" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 25 )
+bus = "Sound Effects"
+
+[node name="ammo_sound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 46 )
+bus = "Sound Effects"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Menu_1_to_Menu_2 = SubResource( 22 )
+anims/Menu_2_to_Menu_1 = SubResource( 23 )
+anims/RESET = SubResource( 24 )
+
+[node name="score" type="Label" parent="."]
+visible = false
+margin_left = 16.0
+margin_top = 211.0
+margin_right = 239.0
+margin_bottom = 220.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

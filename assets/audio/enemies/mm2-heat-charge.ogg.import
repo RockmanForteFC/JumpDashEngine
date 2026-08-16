@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mm2-heat-charge.ogg-4c6d39d3962c20e71a6432551076561e.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/mm2-heat-charge.ogg"
+dest_files=[ "res://.import/mm2-heat-charge.ogg-4c6d39d3962c20e71a6432551076561e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

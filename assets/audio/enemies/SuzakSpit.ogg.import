@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SuzakSpit.ogg-d90262968bc5355fd704fd77f9929ab5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/SuzakSpit.ogg"
+dest_files=[ "res://.import/SuzakSpit.ogg-d90262968bc5355fd704fd77f9929ab5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

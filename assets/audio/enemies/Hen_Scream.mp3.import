@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Hen_Scream.mp3-c84474224d0a96f002c30c3646802528.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/enemies/Hen_Scream.mp3"
+dest_files=[ "res://.import/Hen_Scream.mp3-c84474224d0a96f002c30c3646802528.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

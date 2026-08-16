@@ -1,0 +1,323 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/images/backgrounds/menu_ui/menu_bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/small_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/common/MenuContainer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/menus/key_mapping/key_mapping.gd" type="Script" id=5]
+[ext_resource path="res://scenes/menus/MenuTileMap.tres" type="TileSet" id=6]
+
+[node name="Key_Bindings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 65538, 9, 0, 65539, 10, 0, 65540, 10, 0, 65541, 10, 0, 65542, 10, 0, 65543, 10, 0, 65544, 10, 0, 65545, 10, 0, 65546, 10, 0, 65547, 10, 0, 65548, 10, 0, 65549, 52, 0, 131074, 12, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 4, 0, 131081, 4, 0, 131082, 4, 0, 131083, 4, 0, 131084, 4, 0, 131085, 14, 0, 196610, 12, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0, 196615, 4, 0, 196616, 4, 0, 196617, 4, 0, 196618, 4, 0, 196619, 4, 0, 196620, 4, 0, 196621, 14, 0, 262144, 24, 0, 262145, 24, 0, 262146, 12, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 4, 0, 262152, 4, 0, 262153, 4, 0, 262154, 4, 0, 262155, 4, 0, 262156, 4, 0, 262157, 14, 0, 327680, 48, 0, 327681, 49, 0, 327682, 12, 0, 327683, 4, 0, 327684, 4, 0, 327685, 4, 0, 327686, 4, 0, 327687, 4, 0, 327688, 4, 0, 327689, 4, 0, 327690, 4, 0, 327691, 4, 0, 327692, 4, 0, 327693, 14, 0, 393217, 24, 0, 393218, 12, 0, 393219, 4, 0, 393220, 4, 0, 393221, 4, 0, 393222, 4, 0, 393223, 4, 0, 393224, 4, 0, 393225, 4, 0, 393226, 4, 0, 393227, 4, 0, 393228, 4, 0, 393229, 14, 0, 458753, 49, 0, 458754, 12, 0, 458755, 4, 0, 458756, 4, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0, 458760, 4, 0, 458761, 4, 0, 458762, 4, 0, 458763, 4, 0, 458764, 4, 0, 458765, 14, 0, 524290, 12, 0, 524291, 4, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 524300, 4, 0, 524301, 14, 0, 589826, 12, 0, 589827, 4, 0, 589828, 4, 0, 589829, 4, 0, 589830, 4, 0, 589831, 4, 0, 589832, 4, 0, 589833, 4, 0, 589834, 4, 0, 589835, 4, 0, 589836, 4, 0, 589837, 14, 0, 655362, 12, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 4, 0, 655371, 4, 0, 655372, 4, 0, 655373, 14, 0, 720898, 12, 0, 720899, 4, 0, 720900, 4, 0, 720901, 4, 0, 720902, 4, 0, 720903, 4, 0, 720904, 4, 0, 720905, 4, 0, 720906, 4, 0, 720907, 4, 0, 720908, 4, 0, 720909, 14, 0, 720910, 19, 0, 786434, 54, 0, 786435, 16, 0, 786436, 16, 0, 786437, 16, 0, 786438, 16, 0, 786439, 16, 0, 786440, 16, 0, 786441, 16, 0, 786442, 16, 0, 786443, 16, 0, 786444, 16, 0, 786445, 17, 0, 786446, 49, 0, 851970, 47, 0, 851971, 49, 0, 851972, 48, 0, 851973, 49, 0, 851974, 48, 0, 851975, 49, 0, 851976, 48, 0, 851977, 42, 0, 851978, 43, 0, 851979, 49, 0, 851980, 48, 0, 851981, 49, 0 )
+
+[node name="Menu" type="Control" parent="."]
+margin_left = 37.0
+margin_top = 20.0
+margin_right = 220.0
+margin_bottom = 190.0
+
+[node name="button_main_list" parent="Menu" instance=ExtResource( 4 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -79.5
+margin_right = 136.0
+margin_bottom = 62.5
+custom_constants/separation = 2
+
+[node name="d_pad_up" type="Label" parent="Menu/button_main_list"]
+margin_right = 272.0
+margin_bottom = 10.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_UP"
+
+[node name="d_pad_right" type="Label" parent="Menu/button_main_list"]
+margin_top = 12.0
+margin_right = 272.0
+margin_bottom = 22.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_RIGHT"
+
+[node name="d_pad_down" type="Label" parent="Menu/button_main_list"]
+margin_top = 24.0
+margin_right = 272.0
+margin_bottom = 34.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_DOWN"
+
+[node name="d_pad_left" type="Label" parent="Menu/button_main_list"]
+margin_top = 36.0
+margin_right = 272.0
+margin_bottom = 46.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_LEFT"
+
+[node name="Shoot" type="Label" parent="Menu/button_main_list"]
+margin_top = 48.0
+margin_right = 272.0
+margin_bottom = 58.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_SHOOT"
+
+[node name="Jump" type="Label" parent="Menu/button_main_list"]
+margin_top = 60.0
+margin_right = 272.0
+margin_bottom = 70.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_JUMP"
+
+[node name="Slide" type="Label" parent="Menu/button_main_list"]
+margin_top = 72.0
+margin_right = 272.0
+margin_bottom = 82.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_SLIDE"
+
+[node name="swap_left" type="Label" parent="Menu/button_main_list"]
+margin_top = 84.0
+margin_right = 272.0
+margin_bottom = 94.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_SWAP_LEFT"
+
+[node name="swap_right" type="Label" parent="Menu/button_main_list"]
+margin_top = 96.0
+margin_right = 272.0
+margin_bottom = 106.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_SWAP_RIGHT"
+
+[node name="Pause" type="Label" parent="Menu/button_main_list"]
+margin_top = 108.0
+margin_right = 272.0
+margin_bottom = 118.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_PAUSE"
+
+[node name="Skip" type="Label" parent="Menu/button_main_list"]
+margin_top = 120.0
+margin_right = 272.0
+margin_bottom = 130.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_SKIP"
+
+[node name="restore defaults" type="Label" parent="Menu/button_main_list"]
+modulate = Color( 0.972549, 0.847059, 0.470588, 1 )
+margin_top = 132.0
+margin_right = 272.0
+margin_bottom = 141.0
+custom_constants/line_spacing = 0
+text = "CONFIG_CONTROLLER_RESTORE_DEFAULTS"
+
+[node name="Bindings" type="Control" parent="."]
+margin_left = 36.0
+margin_top = 20.0
+margin_right = 221.0
+margin_bottom = 190.0
+
+[node name="ButtonList" parent="Bindings" instance=ExtResource( 4 )]
+modulate = Color( 0.513726, 1, 0.772549, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -138.0
+margin_top = -79.0
+margin_right = -2.0
+margin_bottom = 63.0
+custom_constants/separation = 2
+is_active = false
+
+[node name="d_pad_up" type="Label" parent="Bindings/ButtonList"]
+margin_right = 136.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 2 )
+text = "Up"
+align = 2
+
+[node name="d_pad_right" type="Label" parent="Bindings/ButtonList"]
+margin_top = 12.0
+margin_right = 136.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 2 )
+text = "Right"
+align = 2
+
+[node name="d_pad_down" type="Label" parent="Bindings/ButtonList"]
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 2 )
+text = "Down"
+align = 2
+
+[node name="d_pad_left" type="Label" parent="Bindings/ButtonList"]
+margin_top = 36.0
+margin_right = 136.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 2 )
+text = "Left"
+align = 2
+
+[node name="Shoot" type="Label" parent="Bindings/ButtonList"]
+margin_top = 48.0
+margin_right = 136.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 2 )
+text = "X"
+align = 2
+
+[node name="Jump" type="Label" parent="Bindings/ButtonList"]
+margin_top = 60.0
+margin_right = 136.0
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 2 )
+text = "Z"
+align = 2
+
+[node name="Slide" type="Label" parent="Bindings/ButtonList"]
+margin_top = 72.0
+margin_right = 136.0
+margin_bottom = 82.0
+custom_fonts/font = ExtResource( 2 )
+text = "C"
+align = 2
+
+[node name="swap_left" type="Label" parent="Bindings/ButtonList"]
+margin_top = 84.0
+margin_right = 136.0
+margin_bottom = 94.0
+custom_fonts/font = ExtResource( 2 )
+text = "A"
+align = 2
+
+[node name="swap_right" type="Label" parent="Bindings/ButtonList"]
+margin_top = 96.0
+margin_right = 136.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 2 )
+text = "S"
+align = 2
+
+[node name="Pause" type="Label" parent="Bindings/ButtonList"]
+margin_top = 108.0
+margin_right = 136.0
+margin_bottom = 118.0
+custom_fonts/font = ExtResource( 2 )
+text = "Enter"
+align = 2
+
+[node name="Skip" type="Label" parent="Bindings/ButtonList"]
+margin_top = 120.0
+margin_right = 136.0
+margin_bottom = 130.0
+custom_fonts/font = ExtResource( 2 )
+text = "ESC"
+align = 2
+
+[node name="nothing" type="Label" parent="Bindings/ButtonList"]
+margin_top = 132.0
+margin_right = 136.0
+margin_bottom = 142.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="ModalController" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="dim_background" type="ColorRect" parent="ModalController"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.752941 )
+
+[node name="Popup" type="Control" parent="ModalController"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.5
+margin_top = -89.0
+margin_right = 88.5
+margin_bottom = 89.0
+
+[node name="small_popup_BG" type="ColorRect" parent="ModalController/Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -5.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="TileMap" type="TileMap" parent="ModalController/Popup"]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 2, 0, 65536, 3, 0, 65546, 5, 0, 131072, 3, 0, 131082, 5, 0, 196608, 3, 0, 196618, 5, 0, 262144, 3, 0, 262154, 5, 0, 327680, 3, 0, 327690, 5, 0, 393216, 3, 0, 393226, 5, 0, 458752, 3, 0, 458762, 5, 0, 524288, 3, 0, 524298, 5, 0, 589824, 3, 0, 589834, 5, 0, 655360, 6, 0, 655361, 7, 0, 655362, 7, 0, 655363, 7, 0, 655364, 7, 0, 655365, 7, 0, 655366, 7, 0, 655367, 7, 0, 655368, 7, 0, 655369, 7, 0, 655370, 8, 0 )
+
+[node name="press_key_prompt" type="Label" parent="ModalController/Popup"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -83.0
+margin_top = 8.0
+margin_right = 83.0
+margin_bottom = 27.0
+text = "CONFIG_CONTROLLER_PRESS_PROMPT"
+align = 1
+
+[node name="escape_prompt2" type="Label" parent="ModalController/Popup"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -83.0
+margin_top = -32.0
+margin_right = 83.0
+margin_bottom = -13.0
+custom_fonts/font = ExtResource( 2 )
+text = "CONFIG_CONTROLLER_APPLY"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModalController/Popup"]
+margin_left = 10.0
+margin_top = 21.0
+margin_right = 166.0
+margin_bottom = 156.0
+
+[node name="emergency_restore" type="RichTextLabel" parent="."]
+margin_left = 38.0
+margin_top = 183.0
+margin_right = 221.0
+margin_bottom = 202.0
+bbcode_enabled = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[connection signal="menu_item_selected" from="Menu/button_main_list" to="." method="_on_GameStart_menu_item_selected"]
+[connection signal="menu_item_selected" from="Bindings/ButtonList" to="." method="_on_GameStart_menu_item_selected"]

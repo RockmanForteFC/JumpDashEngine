@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/click_area.bmp-d92735b514e0b7c4604bb629a74e6bb1.res"
+
+[deps]
+
+source_file="res://assets/images/sprites/menus/texture_button/click_area.bmp"
+dest_files=[ "res://.import/click_area.bmp-d92735b514e0b7c4604bb629a74e6bb1.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

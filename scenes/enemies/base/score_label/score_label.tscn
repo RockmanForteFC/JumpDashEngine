@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/enemies/base/score_label/score_label.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/small_font.tres" type="DynamicFont" id=2]
+
+[node name="score_label" type="Node2D"]
+position = Vector2( 91, 61 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -23.0
+margin_top = -7.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_clip_content = false
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center][rainbow][wave amp=50]1000[/wave][/rainbow]"
+text = "1000"
+custom_effects = [ null ]
+
+[node name="Tween" type="Tween" parent="."]
+playback_process_mode = 0

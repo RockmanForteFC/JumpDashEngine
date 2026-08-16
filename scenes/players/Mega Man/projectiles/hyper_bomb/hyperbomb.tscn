@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/hyper_bomb/hyperbomb.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/weapons/hyperbomb/hyperbomb.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 7 )
+
+[node name="Hyper Bomb" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 262306
+script = ExtResource( 2 )
+damage = 0
+is_piercing = true
+key_name = "hyper_bomb"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.78814e-07, -4.17233e-07 )
+scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

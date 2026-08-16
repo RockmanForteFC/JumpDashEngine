@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/anti-health.ogg-5bd64c6ccb51d97de0e42e145d85b933.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/pickups/anti-health.ogg"
+dest_files=[ "res://.import/anti-health.ogg-5bd64c6ccb51d97de0e42e145d85b933.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

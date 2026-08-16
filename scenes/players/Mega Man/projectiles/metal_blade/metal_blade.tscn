@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=1]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/weapons/metal_blade.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/images/sprites/weapons/metal_blade/metal_blade.png" type="Texture" id=4]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/metal_blade/metal_blade.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 7.0
+
+[node name="Metal_blade" type="KinematicBody2D" groups=["PlayerWeapons"]]
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 5 )
+damage = 2
+element = 7
+key_name = "metal_blade"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 3 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.72853e-07, 2.08616e-07 )
+scale = Vector2( 0.4, 0.4 )
+script = ExtResource( 2 )
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="blade" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[node name="deflect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 1 )
+bus = "Sound Effects"
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

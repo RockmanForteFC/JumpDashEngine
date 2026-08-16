@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MMW_KunaiHit.ogg-d5c25808f2db27f95c42956e3edf68af.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/MMW_KunaiHit.ogg"
+dest_files=[ "res://.import/MMW_KunaiHit.ogg-d5c25808f2db27f95c42956e3edf68af.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

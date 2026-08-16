@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MaelWind.ogg-068d45e23926a9eec528230fc5fa910a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/maelstrom/MaelWind.ogg"
+dest_files=[ "res://.import/MaelWind.ogg-068d45e23926a9eec528230fc5fa910a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

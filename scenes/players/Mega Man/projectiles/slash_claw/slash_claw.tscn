@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/players/Mega Man/projectiles/slash_claw/slash_claw.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/weapons/slash_claw_sfx.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/images/sprites/weapons/slash_claw/slash_claw_slash.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "slash"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.08, 0.13, 0.18, 0.23 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 3, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.09 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.5, 0 ), Vector2( 3.5, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7.5, 10 )
+
+[node name="Slash_Claw" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 1 )
+damage = 7
+is_piercing = true
+element = 7
+key_name = "slash_claw"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 3 )
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+anims/RESET = SubResource( 1 )
+anims/slash = SubResource( 2 )
+
+[node name="Slash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sound Effects"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3.5, 0 )
+scale = Vector2( 3, 1 )
+shape = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

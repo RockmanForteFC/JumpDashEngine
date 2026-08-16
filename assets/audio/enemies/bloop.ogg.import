@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bloop.ogg-a66f162f7137694c4bcff196aefe9dba.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bloop.ogg"
+dest_files=[ "res://.import/bloop.ogg-a66f162f7137694c4bcff196aefe9dba.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

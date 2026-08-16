@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hotton_charge_mid.ogg-5ee94ab3bebb7125bdc7f6c79f07e1cc.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/hotton_charge_mid.ogg"
+dest_files=[ "res://.import/hotton_charge_mid.ogg-5ee94ab3bebb7125bdc7f6c79f07e1cc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

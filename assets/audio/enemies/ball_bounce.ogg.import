@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ball_bounce.ogg-b7cdb05d99e751a4b380a6547eac878a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/ball_bounce.ogg"
+dest_files=[ "res://.import/ball_bounce.ogg-b7cdb05d99e751a4b380a6547eac878a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

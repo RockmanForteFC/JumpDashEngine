@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shiny_knuckle.ogg-1dbcdf60af87394421d361e4ac4c4dae.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/shiny_knuckle.ogg"
+dest_files=[ "res://.import/shiny_knuckle.ogg-1dbcdf60af87394421d361e4ac4c4dae.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

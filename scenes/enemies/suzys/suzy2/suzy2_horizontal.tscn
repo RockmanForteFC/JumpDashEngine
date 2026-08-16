@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/enemies/suzys/adhering_suzy/adhering_suzy_vertical.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/states/Attack_Horizontal.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/states/Idle_Horizontal.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/suzy2_horizontal.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/suzys/suzy2/StateMachine_Horizontal.gd" type="Script" id=5]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=6]
+[ext_resource path="res://assets/images/sprites/enemies/suzy2/suzy2.png" type="Texture" id=7]
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/original_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/original_1 = null
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/replace_1 = null
+shader_param/replace_2 = null
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 8, 7 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 8, 7 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/original_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/original_1 = Color( 0.988235, 0.627451, 0.266667, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/replace_1 = Color( 0.988235, 0.627451, 0.266667, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="Animation" id=5]
+resource_name = "Attack_Left"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 4 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Attack_Right"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[node name="suzy2_horizontal" instance=ExtResource( 1 )]
+material = SubResource( 4 )
+script = ExtResource( 4 )
+enemy_name = "suzy_2"
+starting_direction = "Right"
+color2 = Color( 0.988235, 0.627451, 0.266667, 1 )
+
+[node name="Collider" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 3 )
+texture = ExtResource( 7 )
+vframes = 2
+frame = 0
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( -3.27826e-07, -5.96046e-08 )
+scale = Vector2( 0.7, 0.8 )
+
+[node name="AnimationPlayer" parent="." index="6"]
+anims/Attack_Left = SubResource( 5 )
+anims/Attack_Right = SubResource( 6 )
+
+[node name="StateMachine" parent="." index="9"]
+script = ExtResource( 5 )
+
+[node name="Idle" parent="StateMachine" index="1"]
+script = ExtResource( 3 )
+
+[node name="Attack" parent="StateMachine" index="2"]
+script = ExtResource( 2 )

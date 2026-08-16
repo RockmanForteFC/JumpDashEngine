@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Shine.ogg-3ad1ba4da7fd24c6f45576afd8cb7ce6.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/Shine.ogg"
+dest_files=[ "res://.import/Shine.ogg-3ad1ba4da7fd24c6f45576afd8cb7ce6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tornado_blow.ogg-b2f9218984f3cf16d2de0a6ea8d79c15.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/tornado_blow.ogg"
+dest_files=[ "res://.import/tornado_blow.ogg-b2f9218984f3cf16d2de0a6ea8d79c15.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

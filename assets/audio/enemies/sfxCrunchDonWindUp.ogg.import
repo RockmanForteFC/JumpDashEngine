@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfxCrunchDonWindUp.ogg-79ce4016b56a1b953b36e68990028a7a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/sfxCrunchDonWindUp.ogg"
+dest_files=[ "res://.import/sfxCrunchDonWindUp.ogg-79ce4016b56a1b953b36e68990028a7a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

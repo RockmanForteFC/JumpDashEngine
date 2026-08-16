@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MM1 - ThunderBeam.ogg-97a07e6d1e1bd4a697de75e63fd0013e.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/memory_devil/MM1 - ThunderBeam.ogg"
+dest_files=[ "res://.import/MM1 - ThunderBeam.ogg-97a07e6d1e1bd4a697de75e63fd0013e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

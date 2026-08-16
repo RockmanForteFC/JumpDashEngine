@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/images/sprites/level_assets/force_beam/horizontal/middle/force_beam_middle.tres" type="Texture" id=1]
+[ext_resource path="res://scenes/stages/assets/force_beam/force_beam.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/level_assets/force_beam/laser_direction.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/environment/ForceBeam.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=5]
+
+[sub_resource type="SegmentShape2D" id=1]
+resource_local_to_scene = true
+a = Vector2( 0, 7.5 )
+b = Vector2( 0, 7.5 )
+
+[sub_resource type="SegmentShape2D" id=2]
+resource_local_to_scene = true
+a = Vector2( 0, -7.5 )
+b = Vector2( 0, -7.5 )
+
+[node name="Force_Beam" type="Node2D" groups=["force_beam"]]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+time = 0.1
+
+[node name="icon" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="force_beam" type="RayCast2D" parent="."]
+position = Vector2( -0.05, 0 )
+cast_to = Vector2( 0, 0 )
+collision_mask = 268443682
+
+[node name="Line2D" type="Line2D" parent="force_beam"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 1 )
+texture_mode = 1
+
+[node name="Tween" type="Tween" parent="force_beam"]
+
+[node name="Area2D" type="Area2D" parent="force_beam"]
+collision_layer = 0
+
+[node name="A" type="CollisionShape2D" parent="force_beam/Area2D"]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="B" type="CollisionShape2D" parent="force_beam/Area2D"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+script = ExtResource( 5 )

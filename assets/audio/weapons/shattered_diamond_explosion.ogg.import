@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shattered_diamond_explosion.ogg-e12a5958cc3cb03f05e4b555e15d04d0.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/shattered_diamond_explosion.ogg"
+dest_files=[ "res://.import/shattered_diamond_explosion.ogg-e12a5958cc3cb03f05e4b555e15d04d0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

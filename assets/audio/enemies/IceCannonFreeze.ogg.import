@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/IceCannonFreeze.ogg-47ad3672f95f4c36d3fcf6be898e8333.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/IceCannonFreeze.ogg"
+dest_files=[ "res://.import/IceCannonFreeze.ogg-47ad3672f95f4c36d3fcf6be898e8333.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

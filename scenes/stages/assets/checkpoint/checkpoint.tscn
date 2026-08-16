@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/stages/assets/checkpoint/checkpoint.gd" type="Script" id=3]
+
+[node name="Checkpoint" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 3 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, 3 )
+scale = Vector2( 1, 1.3 )
+script = ExtResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="viewport_entered" from="PreciseVisibilityNotifier2D" to="." method="on_viewport_entered"]
+[connection signal="viewport_exited" from="PreciseVisibilityNotifier2D" to="." method="on_viewport_exited"]

@@ -1,0 +1,110 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/sprites/weapons/solar_blaze/solar_blaze_sphere.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/weapons/solar_blaze/solarblaze_split.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/weapons/solar_blaze/solar_blaze_shoot.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/images/sprites/enemies/small_explosion.png" type="Texture" id=5]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/solar_blaze/solar_blaze_shot.gd" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "blaze",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 72, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 120, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), null ],
+"loop": false,
+"name": "default",
+"speed": 18.0
+} ]
+
+[node name="Solar_blaze_shot" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 6 )
+damage = 3
+is_piercing = true
+breaks_on_enemy = true
+element = 0
+key_name = "solar_blaze"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 4 )
+animation = "blaze"
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[node name="Split" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 2.38419e-07, -0.5 )
+scale = Vector2( 0.5, 0.45 )
+script = ExtResource( 1 )
+
+[node name="explode_timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 1.05
+one_shot = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+visible = false
+light_mask = 2
+frames = SubResource( 11 )
+
+[node name="stop_time" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.365
+one_shot = true
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]
+[connection signal="timeout" from="explode_timer" to="." method="_on_explode_timer_timeout"]
+[connection signal="timeout" from="stop_time" to="." method="_on_stop_time_timeout"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Mega_Man_W_-_Bubble_Maker_Bubble_Make.ogg-c25ef49c46aab6aadb7fb1d72a67bf1f.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/Mega_Man_W_-_Bubble_Maker_Bubble_Make.ogg"
+dest_files=[ "res://.import/Mega_Man_W_-_Bubble_Maker_Bubble_Make.ogg-c25ef49c46aab6aadb7fb1d72a67bf1f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

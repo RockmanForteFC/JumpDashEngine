@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MMW_KunaiThrow.ogg-cc24a5f6f554468d3153ad96c9c282c4.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/MMW_KunaiThrow.ogg"
+dest_files=[ "res://.import/MMW_KunaiThrow.ogg-cc24a5f6f554468d3153ad96c9c282c4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

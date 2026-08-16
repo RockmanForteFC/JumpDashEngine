@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/audio/weapons/arthurs_lance.ogg" type="AudioStream" id=1]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/images/sprites/weapons/arthurs_lance/arthurs_lance.png" type="Texture" id=4]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/arthurs_lance/arthurs_lance.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 1.5 )
+
+[node name="Arthurs Lance" type="KinematicBody2D"]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 5 )
+element = 11
+key_name = "arthurs_lance"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+position = Vector2( 0, 2 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1.5 )
+shape = SubResource( 1 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, 1.5 )
+scale = Vector2( 1.2, 0.15 )
+script = ExtResource( 2 )
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 1 )
+bus = "Sound Effects"
+
+[node name="Reflect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

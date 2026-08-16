@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shield_wall_hit.ogg-59cedf0bac2f45697131cdd094b81278.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/brawler/shield_wall_hit.ogg"
+dest_files=[ "res://.import/shield_wall_hit.ogg-59cedf0bac2f45697131cdd094b81278.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

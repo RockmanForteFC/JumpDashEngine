@@ -1,0 +1,151 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/images/sprites/level_assets/gate.png" type="Texture" id=1]
+[ext_resource path="res://scenes/stages/assets/card_gate/card_gate.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/enemies/bloop.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/players/Mega Man/shaders/ColorSwap.tres" type="Material" id=4]
+[ext_resource path="res://scenes/themes/MegaManTheme.tres" type="Theme" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Locked"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Open"
+length = 0.57
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Unlocked"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_disable_collision"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 4, 24 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 7, 22.5 )
+
+[node name="CardGate" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
+z_index = 3000
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Locked = SubResource( 1 )
+anims/Open = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+anims/Unlocked = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
+
+[node name="OpenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 6 )
+
+[node name="RangeToMakeSounds" type="VisibilityNotifier2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+margin_left = -103.0
+margin_top = -45.0
+margin_right = 102.0
+margin_bottom = -29.0
+color = Color( 0, 0, 0, 0.666667 )
+
+[node name="Label" type="Label" parent="Control/ColorRect"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 203.0
+margin_bottom = 18.0
+theme = ExtResource( 5 )
+text = "requires level 1 key card"
+uppercase = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="on_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]
+[connection signal="screen_entered" from="RangeToMakeSounds" to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="RangeToMakeSounds" to="." method="_on_screen_exited"]

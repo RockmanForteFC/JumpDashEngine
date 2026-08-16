@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/sprites/weapons/air_shooter/sprAirShooter2.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/sprites/weapons/air_shooter/sprAirShooter1.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/sprites/weapons/air_shooter/sprAirShooter3.png" type="Texture" id=4]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/air_shooter/air_shooter.gd" type="Script" id=5]
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/weapons/air_shooter.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/images/sprites/weapons/air_shooter/air_smoke.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 8 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "AirSmoke"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("AirCloud/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AirCloud/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.02, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AirCloud/Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[node name="AirShooter" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 5 )
+damage = 2
+element = 9
+key_name = "air_shooter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 1.19209e-07, 4.17233e-07 )
+scale = Vector2( 0.7, 0.8 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Shot" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 7 )
+bus = "Sound Effects"
+
+[node name="Deflect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 6 )
+bus = "Sound Effects"
+
+[node name="AirCloud" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="AirCloud"]
+visible = false
+texture = ExtResource( 8 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AirCloud"]
+root_node = NodePath("../..")
+anims/AirSmoke = SubResource( 3 )
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]
+[connection signal="animation_finished" from="AirCloud/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

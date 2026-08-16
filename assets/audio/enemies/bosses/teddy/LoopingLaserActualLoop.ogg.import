@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LoopingLaserActualLoop.ogg-3022da87afd72e887b60c7c66999de03.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/teddy/LoopingLaserActualLoop.ogg"
+dest_files=[ "res://.import/LoopingLaserActualLoop.ogg-3022da87afd72e887b60c7c66999de03.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

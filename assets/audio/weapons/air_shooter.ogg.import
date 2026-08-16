@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/air_shooter.ogg-4b11982a46c66cbb27888e66e55349dd.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/air_shooter.ogg"
+dest_files=[ "res://.import/air_shooter.ogg-4b11982a46c66cbb27888e66e55349dd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

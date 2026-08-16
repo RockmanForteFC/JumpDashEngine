@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfxCrunchDonHammerReset.ogg-5d9266ff8f2a60e4e36d884ed07d3008.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/sfxCrunchDonHammerReset.ogg"
+dest_files=[ "res://.import/sfxCrunchDonHammerReset.ogg-5d9266ff8f2a60e4e36d884ed07d3008.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/maelstrom_wind_3.ogg-397b92e88231c5f0e87d6a636f8d32a5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/maelstrom/maelstrom_wind_3.ogg"
+dest_files=[ "res://.import/maelstrom_wind_3.ogg-397b92e88231c5f0e87d6a636f8d32a5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/megaman_warp_in.ogg-9aa0f06c7f4694aafaa5440f7fd239e9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/players/megaman_warp_in.ogg"
+dest_files=[ "res://.import/megaman_warp_in.ogg-9aa0f06c7f4694aafaa5440f7fd239e9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

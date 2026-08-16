@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/players/Mega Man/projectiles/bubble_lead/bubble_lead.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/sprites/weapons/bubble_lead/bubble_lead_weapon.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/players/megaman_shoot.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=5]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 7, 7 )
+
+[node name="Bubble_Lead" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+position = Vector2( 85, 100 )
+collision_layer = 4
+collision_mask = 270754
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+damage = 3
+element = 1
+key_name = "bubble_lead"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
+shape = SubResource( 5 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[node name="Reflect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

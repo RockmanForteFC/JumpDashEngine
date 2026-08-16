@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mine_sweeper.ogg-f84ca4a74fe9778ea489e0a5402e899d.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/mine_sweeper.ogg"
+dest_files=[ "res://.import/mine_sweeper.ogg-f84ca4a74fe9778ea489e0a5402e899d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

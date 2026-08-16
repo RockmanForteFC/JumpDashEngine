@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/triple_get.ogg-33b20f3d475287c84dec633e48455392.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/pickups/triple_get.ogg"
+dest_files=[ "res://.import/triple_get.ogg-33b20f3d475287c84dec633e48455392.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Worm SFX Land.ogg-3d3fb869c61ecd7da611c7308a2aa1c5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/Worm SFX Land.ogg"
+dest_files=[ "res://.import/Worm SFX Land.ogg-3d3fb869c61ecd7da611c7308a2aa1c5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sword_land.ogg-13a4e57d107a5293b13c05d3d8950a69.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/ninja/sword_land.ogg"
+dest_files=[ "res://.import/sword_land.ogg-13a4e57d107a5293b13c05d3d8950a69.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ChangkeyAntivirusShot.ogg-ac12ef5e9c5ad525a754f80f565b695a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/changkey_virus/ChangkeyAntivirusShot.ogg"
+dest_files=[ "res://.import/ChangkeyAntivirusShot.ogg-ac12ef5e9c5ad525a754f80f565b695a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

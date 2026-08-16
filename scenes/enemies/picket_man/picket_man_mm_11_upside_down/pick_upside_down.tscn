@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/images/sprites/enemies/projectiles/pick11.png" type="Texture" id=1]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/picket_man/picket_man_mm_11_upside_down/pick_upside_down.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 10, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 20, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 30, 0, 10, 10 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 5.0
+
+[node name="Pick_upside_down" type="KinematicBody2D" groups=["enemy_projectile"]]
+z_index = 4000
+collision_layer = 4096
+collision_mask = 0
+script = ExtResource( 3 )
+damage = 4
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+frame = 1
+playing = true
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource( 10 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 4.76837e-07, 4.76837e-07 )
+scale = Vector2( 0.6, 0.6 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_body_entered"]
+[connection signal="viewport_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_screen_exit"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfxBrickBreak.ogg-f193da07b15725c2ed142924010b15bd.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/block_dropper/sfxBrickBreak.ogg"
+dest_files=[ "res://.import/sfxBrickBreak.ogg-f193da07b15725c2ed142924010b15bd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

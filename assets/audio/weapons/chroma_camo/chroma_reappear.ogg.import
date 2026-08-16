@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chroma_reappear.ogg-96db855d589d6776aecd3a16d6d29cfb.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/chroma_camo/chroma_reappear.ogg"
+dest_files=[ "res://.import/chroma_reappear.ogg-96db855d589d6776aecd3a16d6d29cfb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

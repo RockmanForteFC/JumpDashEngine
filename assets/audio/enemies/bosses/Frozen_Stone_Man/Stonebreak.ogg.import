@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Stonebreak.ogg-33249b7c981f44020d3e2f4bb88c8169.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/Frozen_Stone_Man/Stonebreak.ogg"
+dest_files=[ "res://.import/Stonebreak.ogg-33249b7c981f44020d3e2f4bb88c8169.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

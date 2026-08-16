@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/buckler_barrage.ogg-9e4c8005bf7040333d2f83298e434d1c.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/buckler_barrage.ogg"
+dest_files=[ "res://.import/buckler_barrage.ogg-9e4c8005bf7040333d2f83298e434d1c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

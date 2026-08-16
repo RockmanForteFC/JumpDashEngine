@@ -1,0 +1,152 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/images/sprites/enemies/small_explosion.png" type="Texture" id=1]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/weapons/block_dropper/blockdrop.png" type="Texture" id=3]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/block_dropper/block_dropper.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/weapons/block_dropper/sfxBrickBreak.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/weapons/block_dropper/sfxBrickSpawn.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/images/sprites/enemies/block_blocky/956ed8dc-0230-4d0f-ad50-8c3717968477.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 9 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 72, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 120, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), null ],
+"loop": false,
+"name": "default",
+"speed": 16.0
+} ]
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "spawn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=14]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=15]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 198, 0 )
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 98.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="Block_dropper" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 4 )
+damage = 4
+element = 3
+key_name = "block_dropper"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 3 )
+hframes = 2
+frame = 1
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Drop" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 6 )
+bus = "Sound Effects"
+
+[node name="Break" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+light_mask = 2
+frames = SubResource( 11 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 7.15256e-07, 5.96046e-07 )
+scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 12 )
+anims/spawn = SubResource( 13 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+light_mask = 2
+material = SubResource( 14 )
+emitting = false
+amount = 5
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+local_coords = false
+process_material = SubResource( 15 )
+texture = ExtResource( 7 )
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

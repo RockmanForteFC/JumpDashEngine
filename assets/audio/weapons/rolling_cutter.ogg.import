@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rolling_cutter.ogg-4b50e9e10e417dc2b32c9a0385ec6632.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/rolling_cutter.ogg"
+dest_files=[ "res://.import/rolling_cutter.ogg-4b50e9e10e417dc2b32c9a0385ec6632.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

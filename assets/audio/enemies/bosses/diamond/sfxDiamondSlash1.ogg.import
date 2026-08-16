@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfxDiamondSlash1.ogg-838830fdcfe3082520f30f75fe078e28.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/diamond/sfxDiamondSlash1.ogg"
+dest_files=[ "res://.import/sfxDiamondSlash1.ogg-838830fdcfe3082520f30f75fe078e28.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

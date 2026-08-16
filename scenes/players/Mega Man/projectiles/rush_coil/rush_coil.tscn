@@ -1,0 +1,317 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/images/sprites/npc/rush.png" type="Texture" id=1]
+[ext_resource path="res://assets/audio/players/megaman_land.ogg" type="AudioStream" id=2]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/rush_coil/rush_coil.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/players/megaman_warp_in.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Bounce"
+length = 0.9
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12, 0.24, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Spawn_In"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -255 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Spawn_In_And_Out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -255 ), Vector2( 0, 255 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Spawn_Out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -255 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Touch_Down"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="SegmentShape2D" id=10]
+a = Vector2( -10, 10 )
+b = Vector2( 2, 10 )
+
+[sub_resource type="SegmentShape2D" id=11]
+a = Vector2( 12, 10 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 9.5, 6 )
+
+[node name="RushCoil" type="KinematicBody2D" groups=["PlayerUtilities"]]
+z_index = 4000
+collision_layer = 2048
+collision_mask = 8482
+script = ExtResource( 3 )
+damage_type = 3
+key_name = "rush_coil"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 16
+frame = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 12 )
+shape = SubResource( 1 )
+
+[node name="SpawnCheckRight" type="RayCast2D" parent="CollisionShape2D"]
+enabled = true
+cast_to = Vector2( 15, 0 )
+collision_mask = 2
+
+[node name="SpawnCheckLeft" type="RayCast2D" parent="CollisionShape2D"]
+enabled = true
+cast_to = Vector2( -15, 0 )
+collision_mask = 2
+
+[node name="SpawnCheckUp" type="RayCast2D" parent="CollisionShape2D"]
+enabled = true
+cast_to = Vector2( 0, -20 )
+collision_mask = 2
+
+[node name="SpawnCheckDown" type="RayCast2D" parent="CollisionShape2D"]
+enabled = true
+cast_to = Vector2( 0, 120 )
+collision_mask = 258
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Bounce = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+anims/Spawn_In = SubResource( 6 )
+anims/Spawn_In_And_Out = SubResource( 9 )
+anims/Spawn_Out = SubResource( 7 )
+anims/Touch_Down = SubResource( 8 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="WarpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[node name="CoilSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sound Effects"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( -1.5, 4.5 )
+scale = Vector2( 1.05, 1.05 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Spring" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring"]
+position = Vector2( 1, -8 )
+shape = SubResource( 10 )
+disabled = true
+one_way_collision = true
+
+[node name="spring_player_detector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spring_player_detector"]
+position = Vector2( -9, -9 )
+shape = SubResource( 11 )
+
+[node name="player_invalid_zone" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_invalid_zone"]
+position = Vector2( -3.5, 9 )
+shape = SubResource( 12 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="on_screen_leave"]
+[connection signal="body_entered" from="player_invalid_zone" to="." method="_on_invalid_zone_body_entered"]
+[connection signal="body_exited" from="player_invalid_zone" to="." method="_on_invalid_zone_body_exited"]

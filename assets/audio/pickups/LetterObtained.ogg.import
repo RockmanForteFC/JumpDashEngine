@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LetterObtained.ogg-f2c1488c897107ee1e328997d186546d.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/pickups/LetterObtained.ogg"
+dest_files=[ "res://.import/LetterObtained.ogg-f2c1488c897107ee1e328997d186546d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

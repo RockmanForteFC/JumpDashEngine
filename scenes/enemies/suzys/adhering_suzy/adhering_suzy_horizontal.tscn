@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/enemies/suzys/adhering_suzy/adhering_suzy_vertical.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/suzys/adhering_suzy/states/Attack_Horizontal.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/suzys/adhering_suzy/states/Idle_Horizontal.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/suzys/adhering_suzy/adhering_suzy_horizontal.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/suzys/adhering_suzy/StateMachine_Horizontal.gd" type="Script" id=5]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=6]
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/original_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/original_1 = null
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/replace_1 = null
+shader_param/replace_2 = null
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 8, 7 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 8, 7 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/original_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/original_1 = null
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.894118, 0, 0.345098, 1 )
+shader_param/replace_1 = null
+shader_param/replace_2 = null
+
+[node name="adhering_suzy_horizontal" instance=ExtResource( 1 )]
+material = SubResource( 4 )
+script = ExtResource( 4 )
+enemy_name = "suzy"
+starting_direction = "Right"
+
+[node name="Collider" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 3 )
+
+[node name="StateMachine" parent="." index="9"]
+script = ExtResource( 5 )
+
+[node name="Idle" parent="StateMachine" index="1"]
+script = ExtResource( 3 )
+
+[node name="Attack" parent="StateMachine" index="2"]
+script = ExtResource( 2 )

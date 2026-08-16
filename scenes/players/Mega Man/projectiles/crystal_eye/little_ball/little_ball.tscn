@@ -1,0 +1,106 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/audio/players/shot_deflect.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/images/sprites/enemies/small_explosion.png" type="Texture" id=2]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/sprites/weapons/crystal_eye/crystal_eye_projectile.png" type="Texture" id=4]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/crystal_eye/little_ball/little_ball.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 48, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 16, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 72, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 120, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": false,
+"name": "explode",
+"speed": 18.0
+} ]
+
+[node name="Little_ball" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 270498
+script = ExtResource( 5 )
+damage = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 7 )
+
+[node name="Explosion" type="AnimatedSprite" parent="."]
+visible = false
+light_mask = 2
+frames = SubResource( 14 )
+animation = "explode"
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 5.96046e-08, 2.38419e-07 )
+scale = Vector2( 0.3, 0.3 )
+script = ExtResource( 3 )
+
+[node name="deflect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Sound Effects"
+
+[node name="Timer" type="Timer" parent="." groups=["PlayerWeapons"]]
+process_mode = 0
+wait_time = 3.25
+one_shot = true
+
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

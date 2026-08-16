@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mmw_menu.mp3-b204b2ffc38d1fc667a67e457281dd00.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/songs/menu/mmw_menu.mp3"
+dest_files=[ "res://.import/mmw_menu.mp3-b204b2ffc38d1fc667a67e457281dd00.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

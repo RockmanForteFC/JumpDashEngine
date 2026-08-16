@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfxDiamondBarrier.ogg-51a88ee2da8a32dd8cb031512b693dbd.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/diamond/sfxDiamondBarrier.ogg"
+dest_files=[ "res://.import/sfxDiamondBarrier.ogg-51a88ee2da8a32dd8cb031512b693dbd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ninja_smoke.ogg-8d574719a36e802fdd345cfa59b70fd9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/ninja/ninja_smoke.ogg"
+dest_files=[ "res://.import/ninja_smoke.ogg-8d574719a36e802fdd345cfa59b70fd9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

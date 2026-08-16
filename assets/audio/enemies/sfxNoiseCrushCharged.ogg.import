@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfxNoiseCrushCharged.ogg-28ad10f275b1b356d125018115e2bd82.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/sfxNoiseCrushCharged.ogg"
+dest_files=[ "res://.import/sfxNoiseCrushCharged.ogg-28ad10f275b1b356d125018115e2bd82.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

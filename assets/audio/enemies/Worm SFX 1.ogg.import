@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Worm SFX 1.ogg-38ea27dc3736e45c8995304d0d0530b9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/Worm SFX 1.ogg"
+dest_files=[ "res://.import/Worm SFX 1.ogg-38ea27dc3736e45c8995304d0d0530b9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

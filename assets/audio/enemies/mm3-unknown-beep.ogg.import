@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mm3-unknown-beep.ogg-ed175e8ab2b942a7f8d968e4c1f6b667.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/mm3-unknown-beep.ogg"
+dest_files=[ "res://.import/mm3-unknown-beep.ogg-ed175e8ab2b942a7f8d968e4c1f6b667.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,51 @@
+extends State
+
+#-------------------------------------------------
+#      Constants
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Signals
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Properties
+#-------------------------------------------------
+onready var _trigger_area = $"../../TriggerArea"
+#-------------------------------------------------
+#      Processes
+#-------------------------------------------------
+
+func _ready():
+	pass
+func _enter():
+	owner.is_blocking = true
+	$"../../AnimationPlayer".play("idle")
+	
+func _update(delta: float) -> void:
+	get_parent().velocity.y = \
+		clamp(get_parent().velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
+	owner.move_and_slide(get_parent().velocity, Vector2.UP)
+	if owner.is_on_floor():
+		get_parent().velocity = Vector2.ZERO
+#-------------------------------------------------
+#      Public Methods
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Private Methods
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Connections
+#-------------------------------------------------
+
+
+func _on_Timer_timeout():
+	if _trigger_area.player:
+		# Change facing direction if necessary
+		owner.face_player()
+			
+		emit_signal("finished", "shoot")
+	else:
+		_trigger_area.is_shot_ready = true

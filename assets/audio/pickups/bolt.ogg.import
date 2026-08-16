@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bolt.ogg-2de15a9b95ddbb9d806124d93e287ab2.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/pickups/bolt.ogg"
+dest_files=[ "res://.import/bolt.ogg-2de15a9b95ddbb9d806124d93e287ab2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

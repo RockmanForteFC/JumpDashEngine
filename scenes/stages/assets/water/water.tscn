@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/stages/assets/water/water.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/water/basic_water/waterTop.tres" type="Texture" id=2]
+[ext_resource path="res://assets/audio/environment/water_splash.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/images/water/basic_water/waterBody.tres" type="Texture" id=4]
+[ext_resource path="res://assets/audio/environment/continuous_damage.ogg" type="AudioStream" id=5]
+
+[sub_resource type="SegmentShape2D" id=5]
+resource_local_to_scene = true
+b = Vector2( 16, 0 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 8, 8 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "tool
+extends Node2D
+
+#-------------------------------------------------
+#      Constants
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Signals
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Properties
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Processes
+#-------------------------------------------------
+
+func _draw() -> void:
+	if not Engine.editor_hint:
+		return
+
+	var rect_size = Vector2(get_parent().width, get_parent().height)
+	draw_rect(Rect2(Vector2(-8,-8), rect_size), Color.blue, false, 2, false)
+
+#-------------------------------------------------
+#      Public Methods
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Private Methods
+#-------------------------------------------------
+
+#-------------------------------------------------
+#      Connections
+#-------------------------------------------------
+"
+
+[node name="Water" type="StaticBody2D"]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 1 )
+textureTop = ExtResource( 2 )
+textureBody = ExtResource( 4 )
+
+[node name="Top" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -8, -8 )
+scale = Vector2( 1, -1 )
+shape = SubResource( 5 )
+one_way_collision = true
+
+[node name="WaterTop" type="TextureRect" parent="."]
+margin_left = -8.0
+margin_top = -6.0
+margin_right = 8.0
+margin_bottom = 10.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+
+[node name="WaterBody" type="TextureRect" parent="."]
+visible = false
+margin_left = -8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 24.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 141
+
+[node name="WaterBodyCollision" type="CollisionShape2D" parent="Body"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Splash" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+bus = "Sound Effects"
+
+[node name="ColdWaterTick" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[node name="BubbleTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="WaterShape" type="Node2D" parent="."]
+script = SubResource( 4 )
+
+[node name="WaterWarmupTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="Body" to="." method="_on_water_entered"]
+[connection signal="body_exited" from="Body" to="." method="_on_water_exited"]
+[connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer"]

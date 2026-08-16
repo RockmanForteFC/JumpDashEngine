@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DonbuckleOrder.ogg-c178b274146cd6e626037d0b7dd5bc8f.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/donbuckle/DonbuckleOrder.ogg"
+dest_files=[ "res://.import/DonbuckleOrder.ogg-c178b274146cd6e626037d0b7dd5bc8f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

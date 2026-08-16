@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/electric_discharge.ogg-6bdd0ebaffdf215b7d2d918c6b165739.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/thunder_man/electric_discharge.ogg"
+dest_files=[ "res://.import/electric_discharge.ogg-6bdd0ebaffdf215b7d2d918c6b165739.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

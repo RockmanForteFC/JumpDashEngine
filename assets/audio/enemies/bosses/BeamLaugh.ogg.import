@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BeamLaugh.ogg-d5d1a22760ed4cc02d5b3e8c2a472250.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/BeamLaugh.ogg"
+dest_files=[ "res://.import/BeamLaugh.ogg-d5d1a22760ed4cc02d5b3e8c2a472250.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

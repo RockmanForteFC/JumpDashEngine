@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/images/sprites/weapons/star_crash/starcrashprojectile.png" type="Texture" id=1]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=2]
+[ext_resource path="res://scenes/players/Mega Man/projectiles/star_crash/star_crash.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "spawn"
+length = 0.175
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.13 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "spinning"
+length = 0.42
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12, 0.22, 0.34 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 23.75, 23.5 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 23, 22.5 )
+
+[node name="Star Crash" type="KinematicBody2D" groups=["PlayerWeapons"]]
+z_index = 4000
+collision_layer = 4
+collision_mask = 128
+script = ExtResource( 3 )
+damage = 2
+element = 10
+key_name = "star_crash"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 1 )
+hframes = 6
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/RESET = SubResource( 1 )
+anims/spawn = SubResource( 2 )
+anims/spinning = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 4 )
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+scale = Vector2( 0.55, 0.4 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -1.5 )
+shape = SubResource( 5 )
+
+[connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

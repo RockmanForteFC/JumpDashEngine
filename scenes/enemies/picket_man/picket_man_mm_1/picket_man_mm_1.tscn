@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/picket_man/picket_man_mm_1/picket_man_state_machine.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/picket_man/picket_man_mm_1/picket_man_mm_1.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/sprites/enemies/picket_men/picket_man_mm1.png" type="Texture" id=4]
+[ext_resource path="res://scenes/enemies/picket_man/picket_man_mm_1/states/idle.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/picket_man/picket_man_mm_1/states/attack.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 11.5, 11.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 11.5, 11.5 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.116761 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[node name="Picket_Man_MM1" instance=ExtResource( 1 )]
+z_index = 1
+script = ExtResource( 3 )
+enemy_name = "picket_man_v1"
+hit_points_max = 10
+contact_damage = 3
+projectile_damage = 2
+min_thrown = 9
+max_thrown = 12
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( -2.5, 3.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -2.5, 3.5 )
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 4 )
+hframes = 3
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="4"]
+visible = false
+position = Vector2( -2.5, 2 )
+scale = Vector2( 1.15, 1.3 )
+
+[node name="EnemyAnimations" type="AnimationPlayer" parent="." index="6"]
+anims/Attack = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 2 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 5 )
+
+[node name="Attack" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 6 )
+
+[node name="BaseShootPos" parent="." index="10"]
+position = Vector2( -18, 10 )
+
+[node name="AttackTimer" type="Timer" parent="." index="11"]
+wait_time = 2.5
+one_shot = true
+
+[node name="MultiAttackDelay" type="Timer" parent="." index="12"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="animation_finished" from="EnemyAnimations" to="StateMachine" method="_on_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="StateMachine/Idle" method="_on_timer_timeout"]
+[connection signal="timeout" from="MultiAttackDelay" to="StateMachine/Attack" method="_on_timeout"]

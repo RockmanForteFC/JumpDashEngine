@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flameblastshot.ogg-6ded52c9536e2792843e203184586d48.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/flameblastshot.ogg"
+dest_files=[ "res://.import/flameblastshot.ogg-6ded52c9536e2792843e203184586d48.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

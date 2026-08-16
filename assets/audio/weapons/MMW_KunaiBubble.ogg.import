@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MMW_KunaiBubble.ogg-325ae5133431ac3b3f8780b27047e383.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/MMW_KunaiBubble.ogg"
+dest_files=[ "res://.import/MMW_KunaiBubble.ogg-325ae5133431ac3b3f8780b27047e383.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

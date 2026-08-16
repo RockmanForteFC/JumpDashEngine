@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BeastiaryObtained.ogg-fda06119aee2fb389d5cb62710eaa65c.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/BeastiaryObtained.ogg"
+dest_files=[ "res://.import/BeastiaryObtained.ogg-fda06119aee2fb389d5cb62710eaa65c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

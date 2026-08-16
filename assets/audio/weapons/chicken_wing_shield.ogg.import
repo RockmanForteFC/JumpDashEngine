@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chicken_wing_shield.ogg-34682d0c34feb324cbae9008ab27d734.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/chicken_wing_shield.ogg"
+dest_files=[ "res://.import/chicken_wing_shield.ogg-34682d0c34feb324cbae9008ab27d734.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

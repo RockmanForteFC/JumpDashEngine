@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gb_ice-slasher.ogg-3b618b5f25d8f1ff2ab0c0740a898f06.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/gb_ice-slasher.ogg"
+dest_files=[ "res://.import/gb_ice-slasher.ogg-3b618b5f25d8f1ff2ab0c0740a898f06.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

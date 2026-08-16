@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/challenge_complete.ogg-7c905d23c873fcce7f3b91b9e9dfff8d.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/challenge_complete.ogg"
+dest_files=[ "res://.import/challenge_complete.ogg-7c905d23c873fcce7f3b91b9e9dfff8d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

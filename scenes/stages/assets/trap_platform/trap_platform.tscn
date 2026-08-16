@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/images/sprites/level_assets/drop_platforms/drop_platform.png" type="Texture" id=1]
+[ext_resource path="res://scenes/stages/assets/trap_platform/trap_platform.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/environment/MMW_LeavesLand.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/environment/MMW_LeavesPass.ogg" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Close"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 3, 2, 1, 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "close"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "open"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 15, 6 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15, 4 )
+
+[node name="TrapPlatform" type="StaticBody2D"]
+collision_layer = 8192
+collision_mask = 0
+script = ExtResource( 2 )
+time_to_drop = 0.3
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 1 )
+hframes = 5
+
+[node name="StandOnTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 5 )
+anims/Open = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="playerDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
+position = Vector2( 0, -5 )
+shape = SubResource( 4 )
+
+[node name="MainCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+z_index = 900
+shape = SubResource( 1 )
+
+[node name="landing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[node name="passing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[connection signal="timeout" from="StandOnTimer" to="." method="_on_timer_threshold_reached"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="playerDetector" to="." method="_on_player_entered"]
+[connection signal="body_exited" from="playerDetector" to="." method="_on_player_exited"]

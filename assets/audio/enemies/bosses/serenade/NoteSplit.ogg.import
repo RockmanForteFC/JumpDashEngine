@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/NoteSplit.ogg-5472ca2a9c852bc25a8c0c6484e81b88.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/serenade/NoteSplit.ogg"
+dest_files=[ "res://.import/NoteSplit.ogg-5472ca2a9c852bc25a8c0c6484e81b88.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

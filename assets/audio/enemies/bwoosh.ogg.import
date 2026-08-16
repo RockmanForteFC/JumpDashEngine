@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bwoosh.ogg-e2a4fb1c051a3aeaf73689ff863783c9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bwoosh.ogg"
+dest_files=[ "res://.import/bwoosh.ogg-e2a4fb1c051a3aeaf73689ff863783c9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

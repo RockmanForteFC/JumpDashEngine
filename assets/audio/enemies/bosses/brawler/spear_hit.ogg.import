@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spear_hit.ogg-8f8cf313a612df3996e2c6bcc2b30233.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/brawler/spear_hit.ogg"
+dest_files=[ "res://.import/spear_hit.ogg-8f8cf313a612df3996e2c6bcc2b30233.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,254 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/images/sprites/enemies/joes/gattling_joe/gatling_joe.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/joes/gattling_joes/gattling_joe.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/joes/gattling_joes/states/idle.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/joes/gattling_joes/states/shoot.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/joes/gattling_joes/state_machine.gd" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/joes/gattling_joes/states/prepare_to_shoot.gd" type="Script" id=7]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=8]
+[ext_resource path="res://assets/audio/enemies/enemy_shoot.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/images/sprites/enemies/small_explosion.png" type="Texture" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 8, 11 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 8, 11 )
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/original_0 = Color( 0.345098, 0.847059, 0.329412, 1 )
+shader_param/original_1 = Color( 1, 1, 1, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.345098, 0.847059, 0.329412, 1 )
+shader_param/replace_1 = Color( 1, 1, 1, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="SegmentShape2D" id=7]
+a = Vector2( 0, -10 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shield/shield_collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "PrepareToShoot"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.35, 0.5, 0.65, 0.75, 0.85, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 12, 13, 12, 9, 14, 9 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shield/shield_collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "ShieldHit"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 15 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Shoot"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 4, 5, 6, 7, 8, 2, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shield/shield_collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("StateMachine/Shoot")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.45, 0.55, 0.65, 0.75, 0.85, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
+[node name="Gattling Joe" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+enemy_name = "gattling_joe"
+hit_points_max = 4
+contact_damage = 4
+projectile_damage = 3
+score = 120
+enemy_size = "medium"
+primary_color = Color( 0.345098, 0.847059, 0.329412, 1 )
+secondary_color = Color( 1, 1, 1, 1 )
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 7, 2 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 7, 2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 10 )
+texture = ExtResource( 1 )
+hframes = 9
+vframes = 2
+
+[node name="Shield" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 5
+
+[node name="shield_collision" type="CollisionShape2D" parent="Shield" index="0"]
+position = Vector2( -10, 2 )
+shape = SubResource( 7 )
+
+[node name="SpriteExplosion" parent="." index="5"]
+texture = ExtResource( 10 )
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="6"]
+visible = false
+position = Vector2( 1, 0.874999 )
+scale = Vector2( 1.4, 1.3125 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+anims/Idle = SubResource( 4 )
+anims/PrepareToShoot = SubResource( 8 )
+anims/RESET = SubResource( 5 )
+anims/ShieldHit = SubResource( 9 )
+anims/Shoot = SubResource( 6 )
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Audio" index="2"]
+stream = ExtResource( 9 )
+bus = "Sound Effects"
+
+[node name="StateMachine" parent="." index="10"]
+script = ExtResource( 6 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 4 )
+
+[node name="Shoot" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 5 )
+
+[node name="PrepareToShoot" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 7 )
+
+[node name="BaseShootPos" parent="." index="12"]
+position = Vector2( -19, 4 )
+
+[node name="ShieldTimer" type="Timer" parent="." index="13"]
+process_mode = 0
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="Shield" to="." method="_on_Shield_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_animation_finished"]

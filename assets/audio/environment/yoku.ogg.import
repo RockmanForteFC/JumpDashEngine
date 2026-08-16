@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/yoku.ogg-8e3c2718a86c1939c5239845a0893d33.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/yoku.ogg"
+dest_files=[ "res://.import/yoku.ogg-8e3c2718a86c1939c5239845a0893d33.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

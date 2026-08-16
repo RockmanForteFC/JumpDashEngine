@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MM2 - Heat Charge 3 Loop.ogg-82c3e125e77ac6647d18d3a5fd0be319.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/MM2 - Heat Charge 3 Loop.ogg"
+dest_files=[ "res://.import/MM2 - Heat Charge 3 Loop.ogg-82c3e125e77ac6647d18d3a5fd0be319.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

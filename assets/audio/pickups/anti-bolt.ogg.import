@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/anti-bolt.ogg-a6ddf188bd5962c732003d38be1f5001.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/pickups/anti-bolt.ogg"
+dest_files=[ "res://.import/anti-bolt.ogg-a6ddf188bd5962c732003d38be1f5001.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fanfare_chime3.ogg-f9f10c4b33b1007f7bc02b69e9d702c3.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/players/fanfare_chime3.ogg"
+dest_files=[ "res://.import/fanfare_chime3.ogg-f9f10c4b33b1007f7bc02b69e9d702c3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

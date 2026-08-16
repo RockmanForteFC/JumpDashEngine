@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/images/sprites/pickups/npc/press_up.png" type="Texture" id=1]
+[ext_resource path="res://scenes/stages/assets/npc/npc_area.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/pickups/npc/text_box.png" type="Texture" id=3]
+[ext_resource path="res://scenes/themes/MegaManTheme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/audio/menu/text_box_close.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/menu/text_box_open.ogg" type="AudioStream" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[node name="NPC" type="Area2D"]
+pause_mode = 2
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="UpQueue" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 5 )
+playing = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+offset = Vector2( 0, -66 )
+transform = Transform2D( 1, 0, 0, 1, 0, -66 )
+
+[node name="TextBoxScreenContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_bottom = 64.0
+
+[node name="TextBox" type="TextureRect" parent="CanvasLayer/TextBoxScreenContainer"]
+margin_right = 256.0
+margin_bottom = 64.0
+texture = ExtResource( 3 )
+
+[node name="TextBoxLabelContainer" type="MarginContainer" parent="CanvasLayer/TextBoxScreenContainer/TextBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -7.0
+margin_bottom = -6.0
+
+[node name="TextBody" type="Label" parent="CanvasLayer/TextBoxScreenContainer/TextBox/TextBoxLabelContainer"]
+margin_top = 6.0
+margin_right = 243.0
+margin_bottom = 45.0
+theme = ExtResource( 4 )
+text = "this is an example of some text. 
+press enter to exit this menu.
+some more text."
+autowrap = true
+max_lines_visible = 4
+
+[node name="Audio" type="Node" parent="."]
+pause_mode = 2
+
+[node name="Open" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 6 )
+bus = "Sound Effects"
+
+[node name="Close" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+
+[connection signal="body_entered" from="." to="." method="_on_NPC_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_NPC_body_exited"]

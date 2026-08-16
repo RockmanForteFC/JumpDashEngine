@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/zenny_land.ogg-ff970686d930a9554db6e2a439657a54.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/zenny_rain/zenny_land.ogg"
+dest_files=[ "res://.import/zenny_land.ogg-ff970686d930a9554db6e2a439657a54.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BoxDropping.ogg-0bc74e61e0a591fcf88b81a8187a6aad.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/BoxDropping.ogg"
+dest_files=[ "res://.import/BoxDropping.ogg-0bc74e61e0a591fcf88b81a8187a6aad.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

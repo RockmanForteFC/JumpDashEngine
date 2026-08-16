@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DigitalAppear.ogg-dfe7f93ffe76eff21a18104d99afea34.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/DigitalAppear.ogg"
+dest_files=[ "res://.import/DigitalAppear.ogg-dfe7f93ffe76eff21a18104d99afea34.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

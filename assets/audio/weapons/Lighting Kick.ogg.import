@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Lighting Kick.ogg-213afca0a84f7f6120a4d58e9d361770.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/Lighting Kick.ogg"
+dest_files=[ "res://.import/Lighting Kick.ogg-213afca0a84f7f6120a4d58e9d361770.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

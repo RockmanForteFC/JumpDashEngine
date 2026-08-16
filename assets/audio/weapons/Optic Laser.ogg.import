@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Optic Laser.ogg-b56ac22da32f9a8e84d4fad543d36ac8.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/Optic Laser.ogg"
+dest_files=[ "res://.import/Optic Laser.ogg-b56ac22da32f9a8e84d4fad543d36ac8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

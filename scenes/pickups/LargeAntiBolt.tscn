@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/audio/pickups/anti-bolt.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/images/sprites/pickups/individual_items/large_anti_bolt.png" type="Texture" id=2]
+[ext_resource path="res://scenes/pickups/LargeAntiBolt.gd" type="Script" id=3]
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7, 5.75 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Shine"
+length = 1.45
+loop = true
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 1.24, 1.28, 1.32, 1.36, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 3, 4, 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Spin"
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 7, 5 )
+
+[node name="LargeAntiBolt" type="KinematicBody2D"]
+z_index = 2
+collision_layer = 8
+collision_mask = 270626
+script = ExtResource( 3 )
+item_type = "bolt"
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = ExtResource( 2 )
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 2.25 )
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/Shine = SubResource( 3 )
+anims/Spin = SubResource( 6 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Sound Effects"
+
+[node name="PickupDetector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
+visible = false
+position = Vector2( 0, 3 )
+shape = SubResource( 5 )
+
+[node name="DespawnTimerNormal" type="Timer" parent="."]
+wait_time = 3.2
+
+[node name="DespawnTimerFlash" type="Timer" parent="."]
+wait_time = 1.8
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( -4.76837e-07, 2 )
+scale = Vector2( 0.8, 0.6 )
+script = ExtResource( 4 )
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
+[connection signal="body_entered" from="PickupDetector" to="." method="_on_PickupDetector_body_entered"]
+[connection signal="timeout" from="DespawnTimerNormal" to="." method="_on_DespawnTimerNormal_timeout"]
+[connection signal="timeout" from="DespawnTimerFlash" to="." method="_on_DespawnTimerFlash_timeout"]
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_screen_exited"]

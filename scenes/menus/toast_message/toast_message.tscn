@@ -1,0 +1,174 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/images/sprites/menus/toast_border.png" type="Texture" id=1]
+[ext_resource path="res://scenes/menus/toast_message/toast_message.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/menus/trophy.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/environment/challenge_clear.ogg" type="AudioStream" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("toast:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -24 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("toast:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("toast:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -24 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("toast/Control2/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("toast:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("toast:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -24 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("toast/Control2/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.13 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Wait"
+length = 1.5
+
+[node name="ToastMessage" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="toast" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -24.0
+margin_bottom = -232.0
+
+[node name="ColorRect" type="ColorRect" parent="toast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Control" type="Control" parent="toast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -224.0
+margin_bottom = -222.0
+
+[node name="Icon" type="TextureRect" parent="toast/Control"]
+margin_left = 20.0
+margin_top = 4.0
+margin_right = 30.0
+margin_bottom = 14.0
+texture = ExtResource( 3 )
+
+[node name="Control2" type="Control" parent="toast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_bottom = -222.0
+
+[node name="Label" type="Label" parent="toast/Control2"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 3.0
+margin_right = -110.0
+margin_bottom = 12.0
+text = "1: JUMP Count"
+valign = 1
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="toast/Control2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hide = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/Show = SubResource( 3 )
+anims/Wait = SubResource( 4 )
+
+[node name="Toast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_toast_state_changed"]

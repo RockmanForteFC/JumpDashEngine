@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hornet_chaser_short.ogg-27767a64f5a6d524be500af5ebef7b18.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/hornet_chaser_short.ogg"
+dest_files=[ "res://.import/hornet_chaser_short.ogg-27767a64f5a6d524be500af5ebef7b18.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0.0

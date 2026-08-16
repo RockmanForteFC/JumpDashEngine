@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/character_type.ogg-6e48fb7540b3a36c2577a330d01d2bff.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/character_type.ogg"
+dest_files=[ "res://.import/character_type.ogg-6e48fb7540b3a36c2577a330d01d2bff.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

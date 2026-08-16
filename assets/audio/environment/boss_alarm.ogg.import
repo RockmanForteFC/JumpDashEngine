@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boss_alarm.ogg-8635d34a41a36d2f9f594f2b5f978cde.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/boss_alarm.ogg"
+dest_files=[ "res://.import/boss_alarm.ogg-8635d34a41a36d2f9f594f2b5f978cde.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

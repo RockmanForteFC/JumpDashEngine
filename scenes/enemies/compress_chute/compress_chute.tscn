@@ -1,0 +1,165 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/compress_chute/compress_chute.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/enemies/compress_chute/compress_chute.png" type="Texture" id=3]
+[ext_resource path="res://scenes/enemies/compress_chute/states/Idle.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/compress_chute/states/Landing.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/compress_chute/StateMachine.gd" type="Script" id=6]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=7]
+[ext_resource path="res://scenes/enemies/compress_chute/states/Jump.gd" type="Script" id=8]
+[ext_resource path="res://assets/audio/enemies/big_eye_stomp.ogg" type="AudioStream" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 16, 22 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 16, 22 )
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/original_0 = Color( 0.972549, 0.721569, 0, 1 )
+shader_param/original_1 = Color( 0.972549, 0.219608, 0, 1 )
+shader_param/original_2 = null
+shader_param/replace_0 = Color( 0.972549, 0.721569, 0, 1 )
+shader_param/replace_1 = Color( 0.972549, 0.219608, 0, 1 )
+shader_param/replace_2 = null
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle-Jump"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Prepare-Landing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Audio/big_eye_stomp:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Audio/big_eye_stomp:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="Compress_Chute" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+enemy_name = "compress_chute"
+hit_points_max = 15
+contact_damage = 8
+projectile_damage = 4
+score = 450
+explosion_type = "large"
+enemy_size = "extralarge"
+color1 = Color( 0.972549, 0.721569, 0, 1 )
+color2 = Color( 0.972549, 0.219608, 0, 1 )
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 0, 2 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 6 )
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( 0, 0.5 )
+scale = Vector2( 0.7, 1.55 )
+
+[node name="EnemyAnimations" type="AnimationPlayer" parent="." index="6"]
+anims/Idle-Jump = SubResource( 3 )
+anims/Prepare-Landing = SubResource( 5 )
+anims/RESET = SubResource( 4 )
+
+[node name="Explosion" parent="Audio" index="1"]
+stream = ExtResource( 9 )
+
+[node name="big_eye_stomp" type="AudioStreamPlayer" parent="Audio" index="2"]
+stream = ExtResource( 9 )
+bus = "Sound Effects"
+
+[node name="StateMachine" parent="." index="9"]
+script = ExtResource( 6 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 4 )
+
+[node name="Landing" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 5 )
+
+[node name="Jump" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 8 )
+
+[node name="StandingTimer" type="Timer" parent="." index="13"]
+process_mode = 0
+wait_time = 1.5
+one_shot = true
+
+[node name="ProjectileSpawner" type="Position2D" parent="." index="14"]
+position = Vector2( 0, -22 )
+
+[connection signal="animation_finished" from="EnemyAnimations" to="StateMachine" method="_on_animation_finished"]
+[connection signal="timeout" from="StandingTimer" to="StateMachine/Idle" method="_on_StandingTimer_timeout"]

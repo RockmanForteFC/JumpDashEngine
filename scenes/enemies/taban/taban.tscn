@@ -1,0 +1,136 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/taban/Idle.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/taban/Fly.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/sprites/enemies/taban/bat.png" type="Texture" id=4]
+[ext_resource path="res://scenes/enemies/taban/taban.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/taban/StateMachine.gd" type="Script" id=6]
+[ext_resource path="res://assets/audio/weapons/chicken_wing_shield.ogg" type="AudioStream" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 9, 7 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fly"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "unhide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 82.0
+
+[node name="Taban" instance=ExtResource( 1 )]
+collision_mask = 0
+script = ExtResource( 5 )
+hit_points_max = 1
+contact_damage = 2
+projectile_damage = 2
+
+[node name="Collider" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 4 )
+hframes = 5
+
+[node name="Fly" type="AudioStreamPlayer" parent="Audio" index="2"]
+stream = ExtResource( 7 )
+bus = "Sound Effects"
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 6 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 2 )
+
+[node name="Fly" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+anims/RESET = SubResource( 3 )
+anims/fly = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/unhide = SubResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="." index="13"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 7 )
+
+[node name="Timer" type="Timer" parent="." index="14"]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Idle" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="StateMachine/Idle" method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="StateMachine/Fly" method="_on_Timer_timeout"]

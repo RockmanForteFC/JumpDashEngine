@@ -1,0 +1,148 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/sprites/enemies/shield_cannon/bouncy_ball.png" type="Texture" id=2]
+[ext_resource path="res://scenes/enemies/bouncy_ball/states/state_machine.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/bouncy_ball/states/moving.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/bouncy_ball/cannon_ball.gd" type="Script" id=5]
+[ext_resource path="res://assets/audio/environment/challenge_complete.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/themes/simple_color_replace.gdshader" type="Shader" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.0
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/original_0 = Color( 1, 1, 1, 1 )
+shader_param/original_1 = Color( 0.972549, 0.470588, 0.972549, 1 )
+shader_param/original_2 = Color( 0.847059, 0, 0.8, 1 )
+shader_param/replace_0 = Color( 1, 1, 1, 1 )
+shader_param/replace_1 = Color( 0.972549, 0.470588, 0.972549, 1 )
+shader_param/replace_2 = Color( 0.847059, 0, 0.8, 1 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/replace_0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/replace_1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.972549, 0.470588, 0.972549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:material:shader_param/replace_2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.847059, 0, 0.8, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "shine"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/replace_0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.658824, 0.878431, 0.972549, 1 ), Color( 0.847059, 0.972549, 0.470588, 1 ), Color( 0.988235, 0.878431, 0.658824, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/replace_1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.972549, 0.470588, 0.972549, 1 ), Color( 0.235294, 0.737255, 0.988235, 1 ), Color( 0.501961, 0.815686, 0.0627451, 1 ), Color( 0.972549, 0.721569, 0, 1 ), Color( 0.972549, 0.470588, 0.972549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:material:shader_param/replace_2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.847059, 0, 0.8, 1 ), Color( 0, 0.470588, 0.972549, 1 ), Color( 0, 0.564706, 0, 1 ), Color( 0.67451, 0.486275, 0, 1 ), Color( 0.847059, 0, 0.8, 1 ) ]
+}
+
+[node name="cannon_ball" groups=["enemy_projectile", "kumotek_ball"] instance=ExtResource( 1 )]
+z_index = 100
+collision_layer = 20480
+collision_mask = 271138
+script = ExtResource( 5 )
+damage_type = 1
+hit_points_max = 10
+contact_damage = 4
+projectile_damage = 4
+score = 5
+drops_items = false
+enemy_size = "small"
+
+[node name="Collider" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 3 )
+texture = ExtResource( 2 )
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+visible = false
+position = Vector2( -1.19209e-07, -1.19209e-07 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="change_direction" type="AudioStreamPlayer" parent="Audio" index="2"]
+stream = ExtResource( 6 )
+pitch_scale = 1.2
+bus = "Sound Effects"
+
+[node name="StateMachine" parent="." index="8"]
+script = ExtResource( 3 )
+start_state = NodePath("Moving")
+
+[node name="Moving" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+anims/RESET = SubResource( 4 )
+anims/shine = SubResource( 5 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/growing.ogg-7c0bd29a085464b9a11f9e51c50c933a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/environment/growing.ogg"
+dest_files=[ "res://.import/growing.ogg-7c0bd29a085464b9a11f9e51c50c933a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ChangkeylingSpawn.ogg-22e8b33cab5538fb4df7e20be0a994cd.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/changkey_virus/ChangkeylingSpawn.ogg"
+dest_files=[ "res://.import/ChangkeylingSpawn.ogg-22e8b33cab5538fb4df7e20be0a994cd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

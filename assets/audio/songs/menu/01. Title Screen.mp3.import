@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/01. Title Screen.mp3-80bd4059f8766258660ab23924e7c162.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/songs/menu/01. Title Screen.mp3"
+dest_files=[ "res://.import/01. Title Screen.mp3-80bd4059f8766258660ab23924e7c162.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boss_landing.ogg-9bcd709be25de59ec5ad70aca429e159.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/boss_landing.ogg"
+dest_files=[ "res://.import/boss_landing.ogg-9bcd709be25de59ec5ad70aca429e159.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

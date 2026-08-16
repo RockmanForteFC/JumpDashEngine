@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/recall.ogg-afdf74a2f804d5b7af9bd894aebdeaed.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/enemies/bosses/brawler/recall.ogg"
+dest_files=[ "res://.import/recall.ogg-afdf74a2f804d5b7af9bd894aebdeaed.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

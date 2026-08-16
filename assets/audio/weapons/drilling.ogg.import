@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/drilling.ogg-e209ea69662551b7b242ab88f2a585ef.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/weapons/drilling.ogg"
+dest_files=[ "res://.import/drilling.ogg-e209ea69662551b7b242ab88f2a585ef.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

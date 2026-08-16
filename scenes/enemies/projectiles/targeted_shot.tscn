@@ -1,0 +1,93 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/sprites/enemies/projectiles/MetallBullet.png" type="Texture" id=2]
+[ext_resource path="res://scenes/enemies/projectiles/targeted_shot.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/enemies/enemy_shoot.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/images/sprites/enemies/boltrix/Eyeball_Guy_Assets.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/sprites/bosses/auto/spark.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 80, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 112, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "electric",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "firework_spark",
+"speed": 15.0
+} ]
+
+[sub_resource type="CircleShape2D" id=5]
+resource_local_to_scene = true
+radius = 4.0
+
+[node name="targeted_shot" type="KinematicBody2D" groups=["enemy_projectile"]]
+collision_layer = 0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+z_index = 1
+frames = SubResource( 4 )
+playing = true
+
+[node name="PlayerDetector" type="Area2D" parent="." groups=["enemy_projectile_base"]]
+collision_layer = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PreciseVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
+[connection signal="camera_exited" from="PreciseVisibilityNotifier2D" to="." method="_on_PreciseVisibilityNotifier2D_camera_exited"]

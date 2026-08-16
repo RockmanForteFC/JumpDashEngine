@@ -1,0 +1,211 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://scenes/enemies/mets/swim_met/swim_met.gd" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/mets/mm9_met/states/trigger.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/sprites/enemies/met/swim_metall.png" type="Texture" id=3]
+[ext_resource path="res://scenes/enemies/mets/swim_met/Swimming.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/mets/swim_met/Descending.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/mets/swim_met/Idle.gd" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/mets/swim_met/StateMachine.gd" type="Script" id=7]
+[ext_resource path="res://scenes/enemies/base/enemy_base.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/mets/swim_met/Popup.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 7.5, 5.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 7.5, 5.5 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "floatdown"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "popdown"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 1 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "popup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "swim"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 3, 4, 5 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../StateMachine/Swimming")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.55 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot"
+} ]
+}
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 103.005
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 8, 0.5 )
+
+[node name="swim_met" instance=ExtResource( 8 )]
+script = ExtResource( 1 )
+enemy_name = "metall_-_swim"
+hit_points_max = 1
+contact_damage = 4
+projectile_damage = 2
+enemy_size = "small"
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 0, 1.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 1.5 )
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="." index="2"]
+position = Vector2( 0, -9 )
+texture = ExtResource( 3 )
+hframes = 6
+
+[node name="PreciseVisibilityNotifier2D" parent="." index="5"]
+position = Vector2( 2.98023e-07, 1.5 )
+scale = Vector2( 0.9, 0.55 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+root_node = NodePath("../Sprite")
+anims/RESET = SubResource( 3 )
+anims/floatdown = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/popdown = SubResource( 6 )
+anims/popup = SubResource( 7 )
+anims/swim = SubResource( 8 )
+
+[node name="StateMachine" parent="." index="9"]
+script = ExtResource( 7 )
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 6 )
+
+[node name="Popup" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 9 )
+
+[node name="Swimming" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 4 )
+
+[node name="Descending" type="Node" parent="StateMachine" index="4"]
+script = ExtResource( 5 )
+
+[node name="TriggerArea" type="Area2D" parent="." index="13"]
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea" index="0"]
+shape = SubResource( 9 )
+
+[node name="Timer" type="Timer" parent="." index="14"]
+wait_time = 3.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." index="15"]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, -4.5 )
+shape = SubResource( 10 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Popup" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Swimming" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Descending" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="TriggerArea" to="TriggerArea" method="on_body_entered"]
+[connection signal="body_exited" from="TriggerArea" to="TriggerArea" method="on_body_exited"]
+[connection signal="timeout" from="Timer" to="StateMachine/Idle" method="_on_Timer_timeout"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
