@@ -14,13 +14,13 @@ const COLD_WATER = preload("res://scenes/stages/assets/water/effects/cold_water_
 #-------------------------------------------------
 #      Properties
 #-------------------------------------------------
-export var textureTop:Texture 
+export var textureTop:Texture
 export var textureBody:Texture
 export(int, 16, 1024, 16) var width := 16 setget _set_width
 export(int, 16, 1024, 16) var height := 16 setget _set_height
 export(bool) var is_cold_water:bool = false
 export(bool) var is_upside_down:bool = false
-var player:LadderController 
+var player:LadderController
 var _canvas = null
 #-------------------------------------------------
 #      Processes
@@ -34,7 +34,7 @@ func _ready():
 		$WaterWarmupTimer.connect("timeout",self,"_on_warmup_water")
 
 func _physics_process(_delta):
-	if not player == null and !PlayerValues.player.is_dead and $Body.overlaps_body(player): 
+	if not player == null and !PlayerValues.player.is_dead and $Body.overlaps_body(player):
 		if not PlayerValues.player.is_in_water:
 			 PlayerValues.player.is_in_water = true
 		if  is_cold_water and PlayerValues.player.is_in_water and !_canvas:
@@ -84,7 +84,7 @@ func _update_size() -> void:
 		$WaterBody.show()
 	$Body/WaterBodyCollision.position.x -= 8
 	$Body/WaterBodyCollision.position.y -= 8
-		
+
 func _make_splash():
 	$Audio/Splash.play()
 	var splash = SPLASH.instance()
@@ -127,7 +127,7 @@ func _on_water_exited(body):
 	if body == player:
 		if not PlayerValues.player.number_of_in_contact_water > 1:
 			_make_splash()
-			PlayerValues.player.is_in_water = false 
+			PlayerValues.player.is_in_water = false
 			$BubbleTimer.stop()
 		PlayerValues.player.number_of_in_contact_water = clamp(PlayerValues.player.number_of_in_contact_water -1,0,100)
 		player = null
@@ -136,7 +136,7 @@ func _on_water_exited(body):
 			_canvas = null
 	if body.is_in_group("Bubble"):
 		body.queue_free()
-		
+
 func _on_bubble_timer():
 	if PlayerValues.player.number_of_in_contact_water >= 1:
 		_make_bubble()

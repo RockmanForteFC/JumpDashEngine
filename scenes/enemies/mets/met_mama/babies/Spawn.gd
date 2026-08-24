@@ -28,7 +28,7 @@ func _update(delta):
 		get_parent().velocity.y = -190
 	if owner.is_on_wall():
 		get_parent().velocity.x = MET_SPEED * -1
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

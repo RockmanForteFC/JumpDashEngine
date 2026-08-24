@@ -49,17 +49,17 @@ func pillar_vertical():
 	if !did_land_on_floor:
 		did_land_on_floor = true
 	queue_free()
-	
+
 func pillar_horizontal():
 	if !did_land_on_wall:
 		did_land_on_wall = true
-	
+
 	var ph = PILLAR_H.instance()
 	var dr
 	if direction == Vector2.LEFT:
-		dr = Vector2.RIGHT 
+		dr = Vector2.RIGHT
 	elif direction == Vector2.RIGHT:
-		dr = Vector2.LEFT 
+		dr = Vector2.LEFT
 	ph.direction = dr
 	get_parent().call_deferred("add_child", ph)
 	ph.set_deferred("global_position",global_position)
@@ -74,14 +74,14 @@ func queue_free() -> void:
 		$CollisionShape2D.set_deferred("disabled", true)
 		yield($Audio/Shoot, "finished")
 	.queue_free()
-	
+
 func reflect() -> void:
 	is_reflecting = true
 	_free_groups()
 	$Audio/Deflect.play()
 	velocity = Vector2(-velocity.x, -1)
 	$Sprite.flip_h = !$Sprite.flip_h
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

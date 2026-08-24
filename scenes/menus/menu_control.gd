@@ -28,7 +28,7 @@ func fade_in():
 	$Tween.start()
 	yield($Tween,"tween_all_completed")
 	emit_signal("fade_in")
-	
+
 func fade_out():
 	$Tween.interpolate_property($ColorRect,"modulate",Color(1,1,1,0), Color(1,1,1,1),Physics.MENU_FADE_TIME,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 	$Tween.start()

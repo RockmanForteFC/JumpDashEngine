@@ -25,7 +25,7 @@ func queue_free() -> void:
 	_free_groups()
 	consumed = true
 	.queue_free()
-	
+
 func reflect() -> void:
 	is_reflecting = true
 	_free_groups()

@@ -25,7 +25,7 @@ func _enter():
 
 func _update(delta):
 	pass
-	
+
 func _handle_command(command: String) -> void:
 	._handle_command(command)
 	if command.begins_with("weapon_"):

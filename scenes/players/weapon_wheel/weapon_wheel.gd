@@ -55,7 +55,7 @@ func _physics_process(delta):
 				appear()
 			if selected != Vector2.ZERO:
 				set_all_to_grey()
-				
+
 				if selected == (Vector2.LEFT + Vector2.UP):
 					$slot_1.material.set_shader_param("is_sold_out", false)
 					change_weapon(slots["1"])
@@ -117,8 +117,8 @@ func initialize_weapon_wheel():
 			t.region = Rect2(0,0,16,16)
 			get_node("slot_" + str(slot_number)).texture = t
 		slot_number += 1
-				
-	
+
+
 func change_weapon(slot):
 	if slot:
 		if PlayerValues.player.get_current_weapon_name() == slot.full_name:
@@ -126,16 +126,16 @@ func change_weapon(slot):
 		else:
 			$swap_sound.play()
 			PlayerValues.player.change_weapon("weapon_" + slot.key_name)
-		
+
 func appear():
 	if not Config.weapon_wheel_enabled:
 		return
 	show()
 	$Timer.start()
-	
+
 func _on_timeout():
 	hide()
-	
+
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------

@@ -54,7 +54,7 @@ func _spawn_enemy(show_animation:bool = false) -> void:
 	var enemy: Node = _spawn_ref.instance()
 	if enemy.enemy_name == "rogue_joe":
 		if get_tree().get_nodes_in_group("rogue_joe_spawned").size() > 0:
-			return 
+			return
 	if spawn_count_max < 0 or Physics.get_enemy_count(enemy.enemy_name) < spawn_count_max:
 		_can_respawn = false
 		enemy.position = position
@@ -70,7 +70,7 @@ func _spawn_enemy(show_animation:bool = false) -> void:
 func check_spawn_enemy():
 	if $PreciseVisibilityNotifier2D.is_on_screen():
 		_spawn_enemy()
-	
+
 func on_camera_entered() -> void:
 	_spawn_enemy(false)
 	if spawn_timer > 0.0:

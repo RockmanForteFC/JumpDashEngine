@@ -4,7 +4,7 @@ extends KinematicBody2D
 #      Constants
 #-------------------------------------------------
 const QUARTER_TILE = Physics.TILE_SIZE.x /2
-const LOB_HEIGHT = -400 
+const LOB_HEIGHT = -400
 #-------------------------------------------------
 #      Signals
 #-------------------------------------------------

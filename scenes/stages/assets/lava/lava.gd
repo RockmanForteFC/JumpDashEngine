@@ -33,19 +33,19 @@ func _ready():
 func unfreeze():
 	if is_in_group("lava_frozen"):
 		remove_from_group("lava_frozen")
-	is_hot = true 
+	is_hot = true
 	$CollisionShape2D.set_deferred("disabled",true)
 	if sprite.texture is AnimatedTexture:
-		sprite.texture.pause = false 
+		sprite.texture.pause = false
 	sprite.material.shader = null
-	
+
 func freeze():
 	if !is_in_group("lava_frozen"):
 		add_to_group("lava_frozen")
 	is_hot = false
 	$CollisionShape2D.set_deferred("disabled",false)
 	if sprite.texture is AnimatedTexture:
-		sprite.texture.pause = true 	
+		sprite.texture.pause = true
 	sprite.material = ShaderMaterial.new()
 	sprite.material.shader = freeze_shader
 	sprite.material.set_shader_param("from",Color("ff2b00"))
@@ -70,7 +70,7 @@ func update():
 	$lava_collision/CollisionShape2D.position.x = Physics.TILE_SIZE.x/2 * (width-1)
 
 	$PreciseVisibilityNotifier2D.rect = Rect2(-8,-8,Physics.TILE_SIZE.x * width,Physics.TILE_SIZE.y * height)
-	
+
 	$TextureRect.rect_size.y = (Physics.TILE_SIZE.y * height)
 	$CollisionShape2D.shape.extents.y =  (Physics.TILE_SIZE.y /2) * height
 	$CollisionShape2D.position.y = Physics.TILE_SIZE.y/2 * (height-1)
@@ -78,7 +78,7 @@ func update():
 	$Area2D/CollisionShape2D.position.y = Physics.TILE_SIZE.y/2 * (height-1)
 	$lava_collision/CollisionShape2D.shape.extents.y = (Physics.TILE_SIZE.y/2) * height
 	$lava_collision/CollisionShape2D.position.y = Physics.TILE_SIZE.y/2 * (height-1)
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
@@ -95,4 +95,4 @@ func _on_Area2D_body_entered(body):
 			elif body.is_in_group("PlayerWeapons") and body.element == Physics.Element.ice:
 				freeze()
 				emit_signal("freeze" ,lava_id)
-			
+

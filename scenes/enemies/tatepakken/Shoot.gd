@@ -29,7 +29,7 @@ func _shoot():
 	var pos = $"../../Position2D"
 	owner.get_parent().call_deferred("add_child", b)
 	b.damage = owner.projectile_damage
-	b.speed = 128 
+	b.speed = 128
 	b.direction = owner.get_facing_direction()
 	b.set_deferred("global_position", pos.global_position)
 #-------------------------------------------------

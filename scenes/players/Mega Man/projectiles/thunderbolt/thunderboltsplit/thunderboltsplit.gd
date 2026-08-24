@@ -19,7 +19,7 @@ var velocity: Vector2 = Vector2.ZERO
 func _ready():
 	$Sprite/AnimationPlayer.play("verticalbolt")
 	$thunder.play()
-	
+
 func _physics_process(delta: float) -> void:
 	move_and_slide((direction.normalized() * VBOLT_SPEED), Vector2.UP)
 #-------------------------------------------------

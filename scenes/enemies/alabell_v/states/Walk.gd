@@ -24,7 +24,7 @@ func _enter():
 	get_parent().velocity.y = 0
 	owner.current_state = "walk"
 	$"../../AnimationPlayer".play("Walk" + owner.animation_modifier)
-	
+
 
 func _update(delta):
 	get_parent().velocity.y = clamp(get_parent().velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)

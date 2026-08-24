@@ -19,7 +19,7 @@ var current_frame = 0
 
 func _ready():
 	frame_to_check = Physics.rng.randi_range(1,2)
-	
+
 func _physics_process(delta):
 	if current_frame == frame_to_check:
 		if monitoring:

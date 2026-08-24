@@ -23,7 +23,7 @@ func _enter():
 	$"../../AnimationPlayer".play("Hide")
 	owner.is_blocking = true
 	$"../../IdleTimer".start()
-	
+
 func _update(delta):
 	get_parent().velocity.y =  clamp(get_parent().velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
 	owner.move_and_slide(get_parent().velocity, Vector2.UP)

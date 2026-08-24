@@ -27,15 +27,15 @@ func _ready():
 func can_use() -> bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group("SuperArrowP%s" % owner.player_number)
 	return on_screen_bullets.size() < SUPER_ARROW_MAX_ON_SCREEN and weapon_energy > 0
-	
+
 func use() -> void:
 	if can_use():
 		if not _deplete_energy():
 			return
-			
+
 		mega_buster.position.x = abs(mega_buster.position.x) * owner.get_facing_direction().x
 		owner.get_parent().add_child(_get_bullet())
-		$"../../CollisionShape2D/SuperArrowRayCast".enabled = false 
+		$"../../CollisionShape2D/SuperArrowRayCast".enabled = false
 		$"../../CollisionShape2D/SuperArrowRayCast".force_raycast_update()
 #-------------------------------------------------
 #      Private Methods
@@ -48,7 +48,7 @@ func _get_bullet() -> Node:
 	bullet.direction = owner.get_facing_direction()
 	bullet.position = mega_buster.global_position
 	$"../../CollisionShape2D/SuperArrowRayCast".cast_to.x =  17 * owner.get_facing_direction().x
-	$"../../CollisionShape2D/SuperArrowRayCast".enabled = true 
+	$"../../CollisionShape2D/SuperArrowRayCast".enabled = true
 	$"../../CollisionShape2D/SuperArrowRayCast".force_raycast_update()
 	if $"../../CollisionShape2D/SuperArrowRayCast".is_colliding():
 		bullet.position.x = owner.global_position.x

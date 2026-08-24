@@ -29,7 +29,7 @@ func _replace_with_spawner() -> void:
 	spawn_info["dark_color"] = dark_color
 	spawn_info["light_color"] = light_color
 	._replace_with_spawner()
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

@@ -37,7 +37,7 @@ func _enter() -> void:
 	owner.buffering_charge = true
 	animation_player.play("Hurt")
 	velocity = Vector2()
-	
+
 
 #warning-ignore:unused_argument
 func _update(delta: float) -> void:

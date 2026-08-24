@@ -40,7 +40,7 @@ func activate(throwaway = null):
 	$AnimatedSprite.show()
 	$AnimatedSprite.play("Idle")
 	is_exploding = false
-	
+
 func deactivate():
 	var e = EXPLODE.instance()
 	call_deferred("add_child", e)

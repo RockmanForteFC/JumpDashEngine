@@ -40,7 +40,7 @@ func end():
 	t.tween_property(textbox,"rect_position",Vector2(textbox.rect_position.x, textbox.rect_position.y - 66), 1.0)
 	yield(t,"finished")
 	emit_signal("text_box_dismissed")
-	
+
 func add_label(label:Label):
 	label.rect_min_size = Vector2(239,47)
 	$TextBoxScreenContainer/TextBox/TextBoxLabelContainer.add_child(label)

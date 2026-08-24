@@ -18,7 +18,7 @@ extends State
 
 func _ready():
 	pass
-	
+
 func _enter():
 	owner.is_blocking = true
 	$"../../AnimationPlayer".play("SinkDown")

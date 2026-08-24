@@ -43,7 +43,7 @@ func _notification(what):
 
 func _physics_process(delta):
 	append_time_trial_frame()
-	
+
 func _restart() -> void:
 	._restart()
 #-------------------------------------------------
@@ -59,21 +59,21 @@ func _restart() -> void:
 #-------------------------------------------------
 func connect_signals() -> void:
 	._connect_signals()
-		
+
 	_try_connect(self, "restarted", _music, "on_restarted")
 	_try_connect(_pause, "game_paused", _music, "on_game_paused")
 	_try_connect(_pause, "game_resumed", _music, "on_game_resumed")
 	_try_connect(player, "died", _music, "on_died")
-	
+
 	# Stage Boss
 	_try_connect(self, "restarted", _boss, "reset")
 	_try_connect(_boss, "boss_ready", _music, "on_boss_ready")
 	_try_connect(_boss, "boss_died", self, "_on_boss_died")
 	_try_connect(_boss, "boss_died", _music, "on_boss_died")
-	_try_connect(_boss, "boss_died", player, "on_boss_died")	
+	_try_connect(_boss, "boss_died", player, "on_boss_died")
 	_try_connect(_music,"stage_clear_finish_warp_out", player, "on_level_end")
 	_try_connect(_music, "stage_clear_finish_warp_out",self, "on_teleport_out")
-	
+
 	# Stage Boss Doors
 	_try_connect(_bossDoor, "closed", _music, "on_boss_entered")
 	_try_connect(self, "start_boss_animation", _boss, "on_boss_entered")
@@ -109,7 +109,7 @@ func _on_background_change_body_entered(body):
 		$ParallaxBackground/sky_low.hide()
 		$ParallaxBackground/city_lower.hide()
 		$ParallaxBackground/clouds_lower.hide()
-		
+
 		$ParallaxBackground/sky_high.show()
 		$ParallaxBackground/city_upper.show()
 		$ParallaxBackground/clouds_upper.show()

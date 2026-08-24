@@ -61,10 +61,10 @@ func _physics_process(delta):
 					new_position.x = global_position.x + ((RUSH_FLY_SLOW * direction.x) * delta)
 				if Physics.is_action_pressed("action_up_p1"):
 					if not flight_ceiling.is_colliding():
-						new_position.y = global_position.y - (RUSH_FLY_VERTICAL * delta) 
+						new_position.y = global_position.y - (RUSH_FLY_VERTICAL * delta)
 				elif Physics.is_action_pressed("action_down_p1"):
 					if not down_front.is_colliding() and not down_back.is_colliding():
-						new_position.y = global_position.y + (RUSH_FLY_VERTICAL * delta) 
+						new_position.y = global_position.y + (RUSH_FLY_VERTICAL * delta)
 			if right.is_colliding():
 				_deactivate()
 			global_position = new_position
@@ -91,7 +91,7 @@ func is_obstructed():
 
 func despawn():
 	main_collision.set_deferred("disabled",true)
-	_is_leaving = true 
+	_is_leaving = true
 	ani.play("Touch_Down")
 #-------------------------------------------------
 #      Private Methods
@@ -128,7 +128,7 @@ func on_screen_leave():
 func _on_animation_finished(anim_name):
 	if anim_name == "Spawn_In":
 		if is_obstructed():
-			_is_leaving = true 
+			_is_leaving = true
 		if !_is_leaving:
 			$WarpSound.play()
 		ani.play("Touch_Down")

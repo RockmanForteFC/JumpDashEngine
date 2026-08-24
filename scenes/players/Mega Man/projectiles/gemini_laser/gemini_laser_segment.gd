@@ -30,7 +30,7 @@ func _ready():
 	velocity = Vector2( MOVE_SPEED * direction.x, 0)
 
 func _physics_process(delta):
-	current_frame +=1 
+	current_frame +=1
 	if check_frame == current_frame:
 		if !$PreciseVisibilityNotifier2D.is_on_screen():
 			queue_free()
@@ -49,16 +49,16 @@ func _process(delta):
 			elif laser_direction == "down":
 				anim.play("up_left_down_right") if direction == Vector2.LEFT else anim.play("up_right_down_left")
 			direction.x *= -1
-			bounces += 1 
+			bounces += 1
 			velocity.x =  direction.x
 		elif is_on_floor():
 			laser_direction = "up"
-			bounces += 1 
+			bounces += 1
 			velocity.y = Vector2.UP.y
 			anim.play("up_left_down_right") if direction == Vector2.LEFT else anim.play("up_right_down_left")
 		elif is_on_ceiling():
 			laser_direction = "down"
-			bounces += 1 
+			bounces += 1
 			velocity.y = Vector2.DOWN.y
 			anim.play("up_left_down_right") if direction == Vector2.RIGHT else anim.play("up_right_down_left")
 		if bounces == BOUNCE_LIMIT:
@@ -87,7 +87,7 @@ func reflect() -> void:
 	set_collision_mask_bit(Bitmask.enemy, false)
 	set_collision_layer_bit(Bitmask.projectile, false)
 	$CollisionShape2D.set_deferred("disabled", true)
-	
+
 func _free_groups():
 	if is_in_group("GeminiLaserSegmentP1"):
 		remove_from_group("GeminiLaserSegmentP1")

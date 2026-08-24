@@ -71,7 +71,7 @@ func spawn_block_four():
 	b4.set_deferred("global_position", Vector2(pos4.global_position.x, top_of_screen_y))
 	b4.connect("block_despawn",self,"block_died")
 	spawn_count += 1
-	
+
 func block_died():
 	kill_count += 1
 	if kill_count ==  spawn_count:
@@ -86,7 +86,7 @@ func queue_free() -> void:
 		hide()
 		yield($Drop, "finished")
 	.queue_free()
-	
+
 func _free_groups():
 	if is_in_group("BlockDropperP1"):
 		remove_from_group("BlockDropperP1")

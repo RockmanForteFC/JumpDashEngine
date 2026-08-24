@@ -30,9 +30,9 @@ func _ready():
 #-------------------------------------------------
 func jump() -> void:
 	if owner.is_on_floor() and timer_cooldown.is_stopped():
-		# Prevent jumping immediately when landing, and also to add a little bit of randomness to the pattern. 
-		# The cooldown is 0.7 * (random between 0-1) * 0.6 
-		# eg. 0.7 * 0.33584 * 0.6 results in a cooldown of 0.141 seconds 
+		# Prevent jumping immediately when landing, and also to add a little bit of randomness to the pattern.
+		# The cooldown is 0.7 * (random between 0-1) * 0.6
+		# eg. 0.7 * 0.33584 * 0.6 results in a cooldown of 0.141 seconds
 		timer_cooldown.start(COOLDOWN + Physics.rng.randf() * 0.6)
 		emit_signal("finished", "jump")
 	else:

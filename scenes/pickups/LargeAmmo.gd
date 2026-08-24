@@ -36,7 +36,7 @@ func _process(delta):
 						is_full_ammo = false
 				else:
 					continue
-			if is_full_ammo:	
+			if is_full_ammo:
 				ammoScore *= Score.HEALTH_AMMO_FULL_MODIFIER
 			Score.change(ammoScore)
 			if not $AudioStreamPlayer2D.playing:
@@ -65,7 +65,7 @@ func _maelstrom_absorb():
 		velocity = Vector2.ZERO * SUCTION_SPEED
 		$CollisionShape2D.set_deferred("disabled", true)
 		is_homing_on_player = true
-	
+
 func _on_AudioStreamPlayer2D_finished():
 	cleanup(emit and not can_despawn)
 

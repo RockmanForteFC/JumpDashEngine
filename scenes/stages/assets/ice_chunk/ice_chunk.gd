@@ -22,7 +22,7 @@ func _ready():
 	if !has_item and !Engine.editor_hint:
 		var random_number = Physics.rng.randi_range(0,100)
 		if random_number == 100:
-			is_carrying_crab = true 
+			is_carrying_crab = true
 			$Sprite.texture = load("res://assets/images/sprites/level_assets/ice_chunk/ice_chunk_crab.png")
 	if not get_parent().is_connected("transition_entered",self, "activate"):
 		get_parent().connect("transition_entered",self, "activate")
@@ -37,14 +37,14 @@ func _ready():
 #-------------------------------------------------
 func shine():
 	$AnimationPlayer.play("Shine")
-	
+
 func change_sprite(value:bool):
 	has_item = value
 	if has_item:
 		$Sprite.texture = load("res://assets/images/sprites/level_assets/ice_chunk/ice_chunk_item.png")
 	else:
 		$Sprite.texture = load("res://assets/images/sprites/level_assets/ice_chunk/ice_chunk.png")
-		
+
 func deactivate(section):
 	$IceFloor.set_process(false)
 	$Sprite.hide()

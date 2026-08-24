@@ -20,7 +20,7 @@ func _ready():
 	$AnimationPlayer.play("pillarh")
 	if direction == Vector2.LEFT:
 		scale.x *= -1
-		
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -28,7 +28,7 @@ func queue_free() -> void:
 	_free_groups()
 	consumed = true
 	.queue_free()
-	
+
 func reflect() -> void:
 	is_reflecting = true
 	_free_groups()

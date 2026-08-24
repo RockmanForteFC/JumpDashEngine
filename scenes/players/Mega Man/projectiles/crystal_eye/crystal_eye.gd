@@ -36,10 +36,10 @@ func split():
 	if direction.x == Vector2.LEFT.x:
 		dr = Vector2.RIGHT.x
 	elif direction.x == Vector2.RIGHT.x:
-		dr = Vector2.LEFT.x 
+		dr = Vector2.LEFT.x
 	lb.direction.x = dr
 	lb.set_deferred("global_position", global_position)
-	
+
 	var lb2 = LITTLE_BALL.instance()
 	var dr2
 	get_parent().call_deferred("add_child", lb2)
@@ -47,18 +47,18 @@ func split():
 		dr2 = Vector2.RIGHT.x
 	elif direction.x == Vector2.RIGHT.x:
 		dr2 = Vector2.LEFT.x
-	lb2.direction.x = dr2 
+	lb2.direction.x = dr2
 	lb2.direction.y = Vector2.DOWN.y
 	lb2.set_deferred("global_position", global_position)
-	
+
 	var lb3 = LITTLE_BALL.instance()
 	var dr3
 	get_parent().call_deferred("add_child", lb3)
 	if direction.x == Vector2.LEFT.x:
-		dr3 = Vector2.RIGHT.x 
+		dr3 = Vector2.RIGHT.x
 	elif direction.x == Vector2.RIGHT.x:
 		dr3 = Vector2.LEFT.x
-	lb3.direction.x = dr3 
+	lb3.direction.x = dr3
 	lb3.direction.y = Vector2.UP.y
 	lb3.set_deferred("global_position", global_position)
 	queue_free()
@@ -76,7 +76,7 @@ func queue_free() -> void:
 func _free_groups():
 	if is_in_group("CrystalEyeP1"):
 		remove_from_group("CrystalEyeP1")
-		
+
 func reflect() -> void:
 	_free_groups()
 	$Audio/deflect.play()

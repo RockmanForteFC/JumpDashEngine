@@ -41,12 +41,12 @@ func _update(_delta) -> void:
 
 		var direction:Vector2 = get_input_direction()
 		var _dir = update_sprite_direction(direction)
-		
+
 		var fall_speed: float = Physics.FALL_SPEED_MAX
-		velocity.y = clamp(velocity.y + owner.gravity, 
+		velocity.y = clamp(velocity.y + owner.gravity,
 			-fall_speed * (1.5 + 0.5 * owner.gravity_direction.y),
 			fall_speed * (1.5 - 0.5 * owner.gravity_direction.y))
-		
+
 		if owner.is_on_ceiling() and sign(velocity.y) == -sign(owner.gravity_direction.y):
 			velocity.y = 0
 		var speed_jump_multiplier:float = 1.0
@@ -60,10 +60,10 @@ func _update(_delta) -> void:
 				owner.get_parent().call_deferred("add_child",t)
 				t.set_deferred("global_position",$"../../Sprite".global_position)
 			speed_jump_multiplier = owner.ICE_SPEED_MULTIPLIER + .2
-			
+
 		velocity.x = owner.walking_speed * direction.x * speed_jump_multiplier
 		owner.move_and_slide_with_snap(velocity, owner.snap, -owner.gravity_direction)
-		
+
 		if owner.is_on_floor():
 			landing_sound.play()
 			owner.is_bouncing = false

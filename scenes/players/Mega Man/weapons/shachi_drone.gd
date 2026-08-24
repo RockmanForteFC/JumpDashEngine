@@ -29,7 +29,7 @@ func can_use() -> bool:
 	"Shachi_DroneP%s" % owner.player_number)
 
 
-	return on_screen_bullets.size() < DOLPHIN_MAX_ON_SCREEN 
+	return on_screen_bullets.size() < DOLPHIN_MAX_ON_SCREEN
 
 func use() -> void:
 	if can_use():
@@ -43,10 +43,10 @@ func use() -> void:
 		proj.position = mega_buster.global_position
 		proj.position.x += (10 * owner.get_facing_direction().x)
 		owner.get_parent().add_child(proj)
-		
+
 		if not _deplete_energy():
 			return
-			
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

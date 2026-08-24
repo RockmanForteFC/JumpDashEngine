@@ -33,7 +33,7 @@ func _replace_with_spawner() -> void:
 	spawn_info["starting_direction"] = starting_direction
 	spawn_info["color"] = color
 	._replace_with_spawner()
-	
+
 func _on_hit(body: PhysicsBody2D) -> void:
 	if body and body.is_in_group("PlayerWeapons"):
 		body.did_hit_enemy = true

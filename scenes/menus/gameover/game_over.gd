@@ -39,7 +39,7 @@ func handle_main_menu():
 	get_tree().change_scene("res://scenes/menus/Start_Screen.tscn")
 	PlayerValues.session_playtime = 0.0
 	PlayerValues._is_timer_running = false
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
@@ -57,7 +57,7 @@ func _on_GameOver_finished():
 	yield(get_tree().create_timer(0.7),"timeout")
 	$MenuContainer.is_active = true
 	$MenuContainer.enable()
-	
+
 func on_menu_selection(selectedMenuOption):
 	$MenuContainer.is_active = false
 	fade_out()

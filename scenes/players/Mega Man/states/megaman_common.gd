@@ -47,36 +47,36 @@ func shoot(anim:String = "Idle_Shoot", anim_pos:float = 0.0) -> bool:
 					var pos = animation_player.current_animation_position
 					animation_player.play(anim)
 					animation_player.seek(pos, true)
-				else: 
+				else:
 					animation_player.stop()
 					animation_player.play(anim)
 			else:
 				owner.pause_feet()
 #				yield(get_tree().create_timer(0.1),"timeout")
 				if owner.is_feet_locked:
-					if anim.substr(anim.find("_"),-1) == "_Slash": 
-						animation_player.play("Idle_Slash") 
-					elif anim.substr(anim.find("_"),-1) == "_Hold_Shoot": 
+					if anim.substr(anim.find("_"),-1) == "_Slash":
+						animation_player.play("Idle_Slash")
+					elif anim.substr(anim.find("_"),-1) == "_Hold_Shoot":
 						animation_player.play("Idle_Hold_Shoot")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot":
 						animation_player.play("Idle_Shoot")
-					elif anim.substr(anim.find("_"),-1) == "_Non_Shoot": 
+					elif anim.substr(anim.find("_"),-1) == "_Non_Shoot":
 						animation_player.play("Idle_Non_Shoot")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt":
 						animation_player.play("Idle_Shoot_Alt")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot_Shield": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot_Shield":
 						animation_player.play("Idle_Shoot_Shield")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot_TV": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot_TV":
 						animation_player.play("Idle_Shoot_TV")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_2": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_2":
 						animation_player.play("Idle_Shoot_Alt_2")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_3": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_3":
 						animation_player.play("Idle_Shoot_Alt_3")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_4": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_4":
 						animation_player.play("Idle_Shoot_Alt_4")
-					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_5": 
+					elif anim.substr(anim.find("_"),-1) == "_Shoot_Alt_5":
 						animation_player.play("Idle_Shoot_Alt_5")
-					elif anim.substr(anim.find("_"),-1) == "_Flex": 
+					elif anim.substr(anim.find("_"),-1) == "_Flex":
 						animation_player.play("Idle_Flex")
 				else:
 					animation_player.play(anim)
@@ -91,13 +91,13 @@ func shoot(anim:String = "Idle_Shoot", anim_pos:float = 0.0) -> bool:
 			emit_signal("finished", "climb")
 		return false
 	else:return false
-		
+
 func hold_shoot(anim:String ="Idle_Shoot", anim_pos:float = 0.0) -> void:
 		if not anim_pos == 0.0:
 			var pos = animation_player.current_animation_position
 			animation_player.play(anim)
 			animation_player.seek(pos, true)
-		else: 
+		else:
 			animation_player.stop()
 			animation_player.play(anim)
 

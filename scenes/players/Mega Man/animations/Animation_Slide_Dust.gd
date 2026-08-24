@@ -2,7 +2,7 @@ extends Area2D
 
 func _ready():
 	$AnimationPlayer.play("Dust")
-	
+
 func face_right():
 	$Sprite.flip_h = true
 

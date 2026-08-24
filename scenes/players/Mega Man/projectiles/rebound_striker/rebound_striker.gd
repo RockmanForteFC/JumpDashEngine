@@ -45,19 +45,19 @@ func _bounce_on_wall():
 	$Bounce.play()
 	bounces += 1
 	damage += 1
-	
+
 func _bounce_on_ceiling_floor():
 	direction.y *= -1
 	$Bounce.play()
 	bounces += 1
 	damage += 1
-	
+
 func third_bounce_blink():
 	$AnimatedSprite.play("third_bounce")
-	
+
 func fourth_bounce_flash():
 	$AnimatedSprite.play("fourth_fifth_bounce")
-	
+
 func explode():
 	$AnimatedSprite.hide()
 	move_speed = 0.0
@@ -66,13 +66,13 @@ func explode():
 	$AnimatedSprite2.play("default")
 	yield($AnimatedSprite2, "animation_finished")
 	queue_free()
-	
-	
+
+
 func queue_free() -> void:
 	_free_groups()
 	consumed = true
 	.queue_free()
-	
+
 func reflect() -> void:
 	if bounces == 0:
 		direction.y = Vector2.UP.y

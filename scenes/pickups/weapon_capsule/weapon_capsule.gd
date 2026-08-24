@@ -23,7 +23,7 @@ var weapon = PlayerValues.plant_barrier
 #-------------------------------------------------
 
 func _ready():
-	
+
 	if Engine.editor_hint:
 		return
 
@@ -33,7 +33,7 @@ func _ready():
 		set_physics_process(false)
 	weapon = PlayerValues.get(weapon_key_name)
 	set_weapon()
-		
+
 func _physics_process(delta):
 	velocity.y = clamp(velocity.y + gravity_direction.y * Physics.GRAVITY,
 		-Physics.FALL_SPEED_MAX,Physics.FALL_SPEED_MAX)

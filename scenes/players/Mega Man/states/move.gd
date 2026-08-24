@@ -67,36 +67,36 @@ func _exit() -> void:
 	_walk_speed = 0
 	_velocity_init = Vector2()
 	frame_count_init = -1
-	
+
 func _handle_command(command: String) -> void:
 	._handle_command(command)
-	
+
 	if command == "shoot" and _current_standstill_count == 0:
 		if weapons.current_state.anim_name == "Kick":
 			stop_moving_when_shooting = true
 			shoot("Idle_" + weapons.current_state.anim_name,_current_animation_pos)
 		else:
-			
+
 			if not animation_player.current_animation.begins_with("Move_Shoot"):
 				_current_animation_pos = animation_player.current_animation_position
 			if shoot("Move_" + weapons.current_state.anim_name,_current_animation_pos):
 				_shoot_frame_count = -1
 	if command.begins_with("weapon_"):
 		weapons.change_weapon(command)
-	
+
 func _update(_delta: float) -> void:
 	if !owner.is_dead:
 		owner.moving_duration += _delta
 		if stop_moving_when_shooting:
-			_current_standstill_count += 1 
+			_current_standstill_count += 1
 			get_parent().locked = true
 			if _current_standstill_count == _standstill_frame_count:
-				get_parent().locked = false 
+				get_parent().locked = false
 				stop_moving_when_shooting = false
 				_current_standstill_count = 0
 			else:
 				return
-		
+
 		_frame_count += 1
 		_shoot_frame_count += 1
 		_direction = get_input_direction()
@@ -110,12 +110,12 @@ func _update(_delta: float) -> void:
 				return
 		elif _frame_count == 0 and _shoot_frame_count > SHOOT_FRAME_COUNT_MAX:
 			animation_player.play("TipToe")
-		
+
 		if owner.stopper_ray_cast.cast_to.x  < 0 and owner.get_facing_direction() == Vector2.RIGHT:
 			owner.stopper_ray_cast.cast_to.x = owner.stopper_ray_cast.cast_to.x * -1
 		elif owner.stopper_ray_cast.cast_to.x  > 0 and owner.get_facing_direction() == Vector2.LEFT:
 			owner.stopper_ray_cast.cast_to.x = owner.stopper_ray_cast.cast_to.x * -1
-		
+
 		_velocity.y += owner.gravity
 
 		if _frame_count < 1 and _tiptoe_frame_count > 0:
@@ -133,7 +133,7 @@ func _update(_delta: float) -> void:
 				_walk_speed = owner.walking_speed * _direction.x
 		else:
 			_walk_speed = 0
-		
+
 		_velocity.x = _walk_speed
 
 		_velocity = owner.move_and_slide_with_snap(_velocity, owner.snap, -owner.gravity_direction)

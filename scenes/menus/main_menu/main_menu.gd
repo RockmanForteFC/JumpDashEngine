@@ -17,7 +17,7 @@ const LOCKED_TEXT = "Locked"
 #-------------------------------------------------
 
 func _ready():
-	# BGM is set to use the bus "Music" which seperates the audio channels if 
+	# BGM is set to use the bus "Music" which seperates the audio channels if
 	# someone wants to music the songs but still have SFX or vice versa
 	$BGM/BGM.play()
 	PlayerValues.player = null
@@ -44,7 +44,7 @@ func handle_button_config():
 func handle_quit():
 	Config.save_config()
 	get_tree().quit()
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
@@ -53,8 +53,8 @@ func handle_quit():
 #      Connections
 #-------------------------------------------------
 
-# This method for using the menu using the "scenes/Common/MenuContainer object is easy to use, but 
-# it does not support scrolling for longer lists. to reference the object you are selecting you 
+# This method for using the menu using the "scenes/Common/MenuContainer object is easy to use, but
+# it does not support scrolling for longer lists. to reference the object you are selecting you
 # need to compare the Node's name in the node-tree
 func _on_MenuContainer_menu_item_selected(selectedMenuOption):
 	$GameStart.is_active = false

@@ -27,10 +27,10 @@ func _ready():
 func get_water_position()->Vector2:
 	var x: float = owner.global_position.x
 	if PlayerValues.player is Player:
-		x = PlayerValues.player.global_position.x 
+		x = PlayerValues.player.global_position.x
 		var xoffset = Physics.rng.randi_range(10,32)
 		xoffset *= 1 if randf() >= 0.5 else -1
-		x += xoffset 
+		x += xoffset
 
 
 	var y: float = owner.global_position.y + distance_from_center_of_waveman_to_floor
@@ -43,7 +43,7 @@ func _enter():
 	_animation_player.play("Water_Wave")
 	_water_wave = WATER_WAVE.instance()
 	_timer_strike.start()
-	
+
 func _update(_delta):
 	pass
 #-------------------------------------------------

@@ -59,7 +59,7 @@ func explode():
 		$CollisionShape2D.set_deferred("disabled",true)
 		yield($Audio/explosion,"finished")
 		queue_free()
-	
+
 func queue_free() -> void:
 	_free_groups()
 	consumed = true
@@ -80,7 +80,7 @@ func reflect() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	set_collision_mask_bit(Bitmask.enemy, false)
 	set_collision_layer_bit(Bitmask.projectile, false)
-	
+
 func _free_groups():
 	if is_in_group("DrillBombP1"):
 		remove_from_group("DrillBombP1")

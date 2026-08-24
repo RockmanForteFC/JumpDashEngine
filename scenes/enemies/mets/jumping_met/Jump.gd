@@ -20,12 +20,12 @@ const JUMP_SPEED:int = 72
 
 func _ready():
 	pass
-	
+
 func _enter():
 	get_parent().velocity.y = JUMP_HEIGHT
 	get_parent().velocity.x = owner.get_facing_direction().x * JUMP_SPEED
 	$"../../AnimationPlayer".play("jump")
-	
+
 func _update(delta):
 	get_parent().velocity.y = \
 		clamp(get_parent().velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)

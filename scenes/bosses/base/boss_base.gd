@@ -48,7 +48,7 @@ func _ready() -> void:
 	if !$Area2D.is_connected("body_entered", self, "_on_hit"):
 		$Area2D.connect("body_entered", self, "_on_hit")
 	_start_pos = global_position
-	
+
 func _physics_process(delta: float) -> void:
 	if $Area2D:
 		for body in Physics.get_overlapping_bodies($Area2D):
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 #      Public Methods
 #-------------------------------------------------
 func reset() -> void:
-	
+
 	is_restarting = true
 	emit_signal("change_state", "await")
 	$StateMachine.set_active(false)
@@ -85,13 +85,13 @@ func die() -> void:
 
 func set_facing_direction(dir: Vector2) -> void:
 	_animated_sprite.flip_h = true if dir == Vector2.RIGHT else false
-	
+
 func get_facing_direction() -> Vector2:
 	return Vector2.RIGHT if _animated_sprite.flip_h else Vector2.LEFT
 
 func face_other_way():
 	set_facing_direction(get_facing_direction() * Vector2(-1,0))
-	
+
 func face_player() -> void:
 	if PlayerValues.player is Player:
 		set_facing_direction(Vector2(sign(PlayerValues.player.global_position.x - global_position.x), 0))
@@ -114,7 +114,7 @@ func _take_damage(damage: int) -> void:
 		get_parent().add_child(damage_number)
 	if _hit_points < 1:
 		die()
-		
+
 func _heal_damage(damage:int) ->void:
 	_hit_points = clamp(_hit_points + damage, 0, 28)
 	emit_signal("hit_points_changed", _hit_points)
@@ -173,10 +173,10 @@ func on_boss_entered() -> void:
 
 func _force_hit(key_name:String) -> void:
 		if immunity.has(key_name):
-			return 
+			return
 		else:
 			if !is_dead:
-				#by default all damage should be 1 on bosses. 
+				#by default all damage should be 1 on bosses.
 				var damage = 1
 				_play_hit_feedback(self, true)
 				var multiplier = 1
@@ -199,7 +199,7 @@ func _on_hit(body: PhysicsBody2D) -> void:
 				body.reflect()
 		else:
 			if !is_dead:
-				#by default all damage should be 1 on bosses. 
+				#by default all damage should be 1 on bosses.
 				var damage = 1
 				if body.key_name == "mega_buster":
 					damage = body.damage

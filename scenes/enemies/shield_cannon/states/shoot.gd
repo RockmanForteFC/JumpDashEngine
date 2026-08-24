@@ -22,7 +22,7 @@ func _ready():
 func _enter():
 	owner.face_player()
 	$"../../AnimationPlayer".play("Shoot")
-	
+
 func _update(delta):
 	pass
 #-------------------------------------------------

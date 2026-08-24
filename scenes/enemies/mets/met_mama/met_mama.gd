@@ -47,13 +47,13 @@ func _on_hit(body: PhysicsBody2D) -> void:
 						buster_damage = 1
 					buster_damage *= 2
 				_take_damage(buster_damage,false, was_beast_net)
-				
-				
-				
+
+
+
 	if body and body.is_in_group("Trap"):
 		if not is_dead:
 			_external_damage(body.damage)
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

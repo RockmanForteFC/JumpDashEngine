@@ -22,7 +22,7 @@ var current_speed = SPEED_MIN
 func _ready():
 	$AnimatedSprite.play("default")
 	set_physics_process(true)
-	
+
 
 func _physics_process(delta):
 	current_speed = clamp( current_speed + SPEED_STEP, SPEED_MIN,SPEED_MAX )

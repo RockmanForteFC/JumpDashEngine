@@ -25,7 +25,7 @@ func _ready():
 #-------------------------------------------------
 func open():
 	$MainCollision.disabled = true
-	
+
 func close():
 	$MainCollision.disabled = false
 #-------------------------------------------------

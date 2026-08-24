@@ -22,7 +22,7 @@ func _ready():
 	set_physics_process(false)
 	$startup.start()
 	$Timer.start()
-	
+
 	if direction.x < 0:
 		$AnimatedSprite.flip_h = true
 

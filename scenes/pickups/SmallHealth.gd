@@ -32,7 +32,7 @@ func _process(delta):
 			Score.change(healScore)
 			if not $AudioStreamPlayer2D.playing:
 				cleanup(emit and not can_despawn)
-				
+
 func _physics_process(delta):
 	if !is_homing_on_player:
 		if not is_on_floor():

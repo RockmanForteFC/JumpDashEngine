@@ -60,7 +60,7 @@ func _input(event):
 			if event.is_pressed():
 				keys.append(event)
 				var key_label = Label.new()
-				key_label.autowrap = true 
+				key_label.autowrap = true
 				key_label.add_font_override("font", load("res://assets/fonts/small_font.tres"))
 				var text = event.as_text()
 				if text.begins_with("InputEventJoypadButton"):
@@ -111,7 +111,7 @@ func save_bindings():
 	var right_swap_keys = _get_keys("action_right_swap_p1")
 	var pause_keys = _get_keys("action_enter_p1")
 	var skip_keys = _get_keys("action_skip_cutscene")
-	
+
 	write_to_file({
 		"up": up_keys,
 		"right": right_keys,
@@ -125,7 +125,7 @@ func save_bindings():
 		"pause": pause_keys,
 		"skip": skip_keys
 	})
-	
+
 func write_to_file(settings):
 	var file = File.new()
 	var err = file.open(BUTTON_MAPPINGS_FILE, File.WRITE)
@@ -154,7 +154,7 @@ func update_bindings():
 		down_keys += key + " "
 	key_down.text = down_keys
 	key_down.align =Label.ALIGN_RIGHT
-	
+
 	var left_map = InputMap.get_action_list("action_left_p1")
 	var left_keys:String = ""
 	for i in range(left_map.size()):
@@ -164,7 +164,7 @@ func update_bindings():
 		left_keys += key + " "
 	key_left.text = left_keys
 	key_left.align =Label.ALIGN_RIGHT
-	
+
 	var right_map = InputMap.get_action_list("action_right_p1")
 	var right_keys:String = ""
 	for i in range(right_map.size()):
@@ -174,7 +174,7 @@ func update_bindings():
 		right_keys += key + " "
 	key_right.text = right_keys
 	key_right.align =Label.ALIGN_RIGHT
-	
+
 	var shoot_map = InputMap.get_action_list("action_shoot_p1")
 	var shoot_keys:String = ""
 	for i in range(shoot_map.size()):
@@ -194,7 +194,7 @@ func update_bindings():
 		jump_keys += key + " "
 	key_jump.text = jump_keys
 	key_jump.align =Label.ALIGN_RIGHT
-	
+
 	var slide_map = InputMap.get_action_list("action_slide_p1")
 	var slide_keys:String = ""
 	for i in range(slide_map.size()):
@@ -204,7 +204,7 @@ func update_bindings():
 		slide_keys += key + " "
 	key_slide.text = slide_keys
 	key_slide.align =Label.ALIGN_RIGHT
-	
+
 	var swap_left_map = InputMap.get_action_list("action_left_swap_p1")
 	var swap_l_keys:String = ""
 	for i in range(swap_left_map.size()):
@@ -224,7 +224,7 @@ func update_bindings():
 		swap_r_keys += key + " "
 	key_swap_right.text = swap_r_keys
 	key_swap_right.align =Label.ALIGN_RIGHT
-	
+
 	var pause_map = InputMap.get_action_list("action_enter_p1")
 	var pause_keys:String = ""
 	for i in range(pause_map.size()):
@@ -234,7 +234,7 @@ func update_bindings():
 		pause_keys += key + " "
 	key_pause.text = pause_keys
 	key_pause.align =Label.ALIGN_RIGHT
-	
+
 	var skip_map = InputMap.get_action_list("action_skip_cutscene")
 	var skip_keys:String = ""
 	for i in range(skip_map.size()):
@@ -244,14 +244,14 @@ func update_bindings():
 		skip_keys += key + " "
 	key_skip.text = skip_keys
 	key_skip.align =Label.ALIGN_RIGHT
-	
+
 func apply_keys(binding:String ):
 	if binding == "up":
 		for key in keys:
 			if key is InputEventKey:
 				InputMap.action_add_event("action_up_p1",key)
 				InputMap.action_add_event("ui_up",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_up_p1",key)
 				InputMap.action_add_event("ui_up",key)
@@ -260,7 +260,7 @@ func apply_keys(binding:String ):
 			if key is InputEventKey:
 				InputMap.action_add_event("action_right_p1",key)
 				InputMap.action_add_event("ui_right",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_right_p1",key)
 				InputMap.action_add_event("ui_right",key)
@@ -269,7 +269,7 @@ func apply_keys(binding:String ):
 			if key is InputEventKey:
 				InputMap.action_add_event("action_down_p1",key)
 				InputMap.action_add_event("ui_down",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_down_p1",key)
 				InputMap.action_add_event("ui_down",key)
@@ -278,7 +278,7 @@ func apply_keys(binding:String ):
 			if key is InputEventKey:
 				InputMap.action_add_event("action_left_p1",key)
 				InputMap.action_add_event("ui_left",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_left_p1",key)
 				InputMap.action_add_event("ui_left",key)
@@ -287,7 +287,7 @@ func apply_keys(binding:String ):
 			if key is InputEventKey:
 				InputMap.action_add_event("action_shoot_p1",key)
 				InputMap.action_add_event("ui_cancel",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_shoot_p1",key)
 				InputMap.action_add_event("ui_cancel",key)
@@ -295,28 +295,28 @@ func apply_keys(binding:String ):
 		for key in keys:
 			if key is InputEventKey:
 				InputMap.action_add_event("action_jump_p1",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_jump_p1",key)
 	if binding == "slide":
 		for key in keys:
 			if key is InputEventKey:
 				InputMap.action_add_event("action_slide_p1",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_slide_p1",key)
 	if binding == "left_swap":
 		for key in keys:
 			if key is InputEventKey:
 				InputMap.action_add_event("action_left_swap_p1",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_left_swap_p1",key)
 	if binding == "right_swap":
 		for key in keys:
 			if key is InputEventKey:
 				InputMap.action_add_event("action_right_swap_p1",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_right_swap_p1",key)
 	if binding == "pause":
@@ -324,7 +324,7 @@ func apply_keys(binding:String ):
 			if key is InputEventKey:
 				InputMap.action_add_event("action_enter_p1",key)
 				InputMap.action_add_event("ui_accept",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_enter_p1",key)
 				InputMap.action_add_event("ui_accept",key)
@@ -333,10 +333,10 @@ func apply_keys(binding:String ):
 		for key in keys:
 			if key is InputEventKey:
 				InputMap.action_add_event("action_skip_cutscene",key)
-			
+
 			if key is InputEventJoypadButton:
 				InputMap.action_add_event("action_skip_cutscene",key)
-				
+
 	for child in $ModalController/Popup/VBoxContainer.get_children():
 		 $ModalController/Popup/VBoxContainer.remove_child(child)
 	save_bindings()
@@ -351,7 +351,7 @@ func _default_up():
 	var ev =  InputEventKey.new()
 	ev.scancode = KEY_UP
 	InputMap.action_add_event("action_up_p1",ev)
-		
+
 	var ev2 = InputEventJoypadButton.new()
 	ev2.device = 0
 	ev2.button_index = JOY_DPAD_UP
@@ -362,12 +362,12 @@ func _default_right():
 	var ev =  InputEventKey.new()
 	ev.scancode = KEY_RIGHT
 	InputMap.action_add_event("action_right_p1",ev)
-		
+
 	var ev2 = InputEventJoypadButton.new()
 	ev2.device = 0
 	ev2.button_index = JOY_DPAD_RIGHT
 	InputMap.action_add_event("action_right_p1",ev2)
-	
+
 func _default_down():
 	InputMap.action_erase_events("action_down_p1")
 	var ev =  InputEventKey.new()
@@ -389,7 +389,7 @@ func _default_left():
 	ev2.device = 0
 	ev2.button_index = JOY_DPAD_LEFT
 	InputMap.action_add_event("action_left_p1",ev2)
-	
+
 func _default_shoot():
 	InputMap.action_erase_events("action_shoot_p1")
 	InputMap.action_erase_events("ui_cancel")
@@ -470,25 +470,25 @@ func _default_skip():
 	var ev2 = InputEventJoypadButton.new()
 	ev2.device = 0
 	ev2.button_index = JOY_BUTTON_10
-	
+
 	InputMap.action_add_event("action_skip_cutscene",ev2)
-	
+
 func _get_keys(mapping:String)->Array:
 	var keys:Array
 	var map = InputMap.get_action_list(mapping)
 	for i in range(map.size()):
 		var array_item = {}
 		if map[i] is InputEventKey:
-			array_item["type"] = "key" 
+			array_item["type"] = "key"
 			array_item["device"] = 0
 			array_item["scan_code"] =  map[i].scancode
 		elif map[i] is InputEventJoypadButton:
-			array_item["type"] = "joypad" 
+			array_item["type"] = "joypad"
 			array_item["device"] = 0
 			array_item["scan_code"] =  map[i].button_index
 		keys.append(array_item)
 	return keys
-	
+
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------
@@ -563,10 +563,10 @@ func _on_GameStart_menu_item_selected(selected_menu_option):
 		_default_swap_right()
 		_default_pause()
 		_default_skip()
-		
+
 		update_bindings()
 	save_bindings()
-	
+
 func bring_up_modal():
 	modal.show()
 	$emergency_restore.hide()

@@ -11,7 +11,7 @@ extends "res://scenes/enemies/base/enemy_base.gd"
 #-------------------------------------------------
 #      Properties
 #-------------------------------------------------
-var player_detected = false 
+var player_detected = false
 #-------------------------------------------------
 #      Processes
 #-------------------------------------------------

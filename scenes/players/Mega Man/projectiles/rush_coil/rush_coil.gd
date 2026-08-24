@@ -69,7 +69,7 @@ func is_obstructed():
 		_is_leaving = true
 
 func despawn():
-	_is_leaving = true 
+	_is_leaving = true
 	ani.play("Touch_Down")
 #-------------------------------------------------
 #      Private Methods
@@ -86,7 +86,7 @@ func on_screen_leave():
 func _on_animation_finished(anim_name):
 	if anim_name == "Spawn_In":
 		if is_obstructed():
-			_is_leaving = true 
+			_is_leaving = true
 		if !_is_leaving:
 			$WarpSound.play()
 		ani.play("Touch_Down")

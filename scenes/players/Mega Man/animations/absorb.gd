@@ -11,7 +11,7 @@ const ENERGY = preload("res://scenes/players/Mega Man/animations/energy_to_absor
 #-------------------------------------------------
 #      Properties
 #-------------------------------------------------
-var posx = 0 
+var posx = 0
 var posy = 0
 var has_started:bool = false
 var absorb_count = 0
@@ -70,4 +70,4 @@ func _on_Timer_timeout():
 		queue_free()
 	else:
 		has_started = false
-		
+

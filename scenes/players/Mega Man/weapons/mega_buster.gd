@@ -6,7 +6,7 @@ const Projectile: Resource = preload("res://scenes/players/Mega Man/projectiles/
 const ProjectileCharged1: Resource = preload("res://scenes/players/Mega Man/projectiles/mega_buster_charged_lvl1.tscn")
 const ProjectileCharged2: Resource = preload("res://scenes/players/Mega Man/projectiles/mega_buster_charged_lvl2.tscn")
 const ProjectileCharged3: Resource = preload("res://scenes/players/Mega Man/projectiles/mega_buster_charged_lvl3.tscn")
-#-------------------------------------------------	
+#-------------------------------------------------
 #      Signals
 #-------------------------------------------------
 
@@ -55,11 +55,11 @@ func _get_bullet() -> Node:
 			bullet.add_to_group("BusterProjectilesP%s" % owner.player_number)
 		2:
 			bullet = ProjectileCharged2.instance()
-			#This is a seperate group so that you can have 1 charge shot and 3 buster shots on screen at the same time. 
+			#This is a seperate group so that you can have 1 charge shot and 3 buster shots on screen at the same time.
 			bullet.add_to_group("BusterChargedProjectileP%s" % owner.player_number)
 		3:
 			bullet = ProjectileCharged3.instance()
-			#This is a seperate group so that you can have 1 charge shot and 3 buster shots on screen at the same time. 
+			#This is a seperate group so that you can have 1 charge shot and 3 buster shots on screen at the same time.
 			bullet.add_to_group("BusterChargedProjectileP%s" % owner.player_number)
 	bullet.position = mega_buster.global_position
 	bullet.direction = owner.get_facing_direction()

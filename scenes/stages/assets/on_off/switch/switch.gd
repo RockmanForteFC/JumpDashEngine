@@ -12,7 +12,7 @@ signal change_state(state)
 #      Properties
 #-------------------------------------------------
 var current_state = Physics.lever_state
-var was_t_pulsed:bool = false 
+var was_t_pulsed:bool = false
 
 #-------------------------------------------------
 #      Processes
@@ -35,7 +35,7 @@ func _physics_process(delta):
 			$AnimatedSprite.play("switch_change_red")
 			yield($AnimatedSprite,"animation_finished")
 			$AnimatedSprite.play("switch_red")
-			
+
 	for body in $switch_collision.get_overlapping_bodies():
 		if body.is_in_group("PlayerWeapons"):
 			if body.key_name != "tremor_pulse":

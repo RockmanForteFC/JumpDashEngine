@@ -69,12 +69,12 @@ var item_despawn_rate:float = 1.0
 # used for item drops
 var rng = RandomNumberGenerator.new()
 # for challenges
-var challenge_id:int 
+var challenge_id:int
 var endless_id:int = 1
 func _ready():
 	rng.randomize()
 	pause_mode = PAUSE_MODE_PROCESS
-	
+
 const LEFT_STICK_DEADZONE := 0.5
 const LEFT_STICK_DIRECTION_DEBOUNCE := 0.25
 
@@ -207,29 +207,29 @@ func _is_left_stick_direction_debounced(direction_key: String, is_pressed_now: b
 func get_action_strength(action: String) -> float:
 	# Temporary workaround until the following engine issue will be fixed.
 	# https://github.com/godotengine/godot/issues/45628
-	
+
 	var action_strength := Input.get_action_strength(action)
 	if action_strength == 0:
 		action_strength = 1 if is_action_pressed(action) else 0
-	
+
 	return action_strength
 
 func get_walking_speed()->float:
 	return WALKING_SPEED
-	
+
 func get_jump_velocity()->float:
 	return JUMP_VELOCITY
-	
+
 func increase_enemy_count(enemy_name: String) -> void:
 	if not enemies_count.has(enemy_name):
 		enemies_count[enemy_name] = 0
 	enemies_count[enemy_name] += 1
-	
+
 
 func decrease_enemy_count(enemy_name: String) -> void:
 	if enemies_count.has(enemy_name):
 		enemies_count[enemy_name] -= 1
-	
+
 		if enemies_count[enemy_name] < 0:
 			printerr("Enemy Count (%s) is smaller than 0: %s" % [enemy_name, enemies_count[enemy_name]])
 
@@ -302,7 +302,7 @@ static func x_speed_aim(from: Vector2, to: Vector2, y_speed: float, \
 	#elif discr > 0.0:
 	#	roots.push_back((-b + sqrt(discr)) / (2.0 * a))
 	#	roots.push_back((-b - sqrt(discr)) / (2.0 * a))
-	
+
 	var steps: float = 0.0 if discr < 0.0 else \
 		(-b + float(move_full_arc) * sqrt(discr)) / (2.0 * a)
 	var result: float = (delta[axis] / steps / dt if steps else \

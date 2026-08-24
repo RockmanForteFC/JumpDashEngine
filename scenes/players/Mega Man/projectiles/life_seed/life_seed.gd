@@ -40,7 +40,7 @@ func _physics_process(delta):
 		spawn_flower()
 		yield($AnimatedSprite,"animation_finished")
 		queue_free()
-		
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -70,7 +70,7 @@ func spawn_flower():
 func _free_groups():
 	if is_in_group("LifeSeedP1"):
 		remove_from_group("LifeSeedP1")
-		
+
 func reflect() -> void:
 	is_reflecting = true
 #	_free_groups()

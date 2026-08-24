@@ -41,8 +41,8 @@ func _ready():
 	default_body_collision = body_collision.shape.extents
 	default_body_position = body_collision.global_position
 	stop_timer.wait_time = time_inactive
-	initial_delay_timer.wait_time = initial_delay 
-	
+	initial_delay_timer.wait_time = initial_delay
+
 	set_physics_process(false)
 	if not get_parent().is_connected("transition_entered",self, "activate"):
 		get_parent().connect("transition_entered",self, "activate")
@@ -73,11 +73,11 @@ func _notification(what: int)-> void:
 				if head.global_position.y <= self.stop_position.y:
 					if $PreciseVisibilityNotifier2D.is_on_screen():
 						$press_down.play()
-					is_stopped = true 
+					is_stopped = true
 					stop_timer.start()
 			elif direction == Vector2.DOWN:
 				if head.global_position.y >= default_head_position.y:
-					is_stopped = true 
+					is_stopped = true
 					stop_timer.start()
 
 func activate(section):
@@ -89,7 +89,7 @@ func activate(section):
 	body_collision.global_position = default_body_position
 	direction = Vector2.UP
 	initial_delay_timer.start()
-	
+
 func deactivate(section):
 	is_stopped = true
 	set_physics_process(false)
@@ -102,7 +102,7 @@ func deactivate(section):
 	direction = Vector2.UP
 	stop_timer.stop()
 	initial_delay_timer.stop()
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

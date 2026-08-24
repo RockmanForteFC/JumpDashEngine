@@ -15,7 +15,7 @@ const BUBBLE_SPEED = -50
 #to create a wobble in the water we will shift it back and forth every few frames
 var frame:int = 0
 var velocity:Vector2 = Vector2()
-var water_body 
+var water_body
 
 #-------------------------------------------------
 #      Processes
@@ -23,9 +23,9 @@ var water_body
 
 func _ready():
 	if get_tree().get_nodes_in_group("Bubble").size() >= 1:
-		queue_free() 
+		queue_free()
 	add_to_group("Bubble")
-	
+
 func _process(delta):
 	if water_body != null and not water_body.is_in_group("Water"):
 		queue_free()
@@ -45,7 +45,7 @@ func _process(delta):
 		velocity.x = 5
 		frame = 0
 	move_and_slide(velocity,Vector2.UP)
-	
+
 	if is_on_ceiling():
 		queue_free()
 

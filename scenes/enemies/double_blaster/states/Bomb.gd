@@ -30,17 +30,17 @@ func _enter():
 	yield($"../../AnimatedSprite","animation_finished")
 	$"../../AnimatedSprite".play("Idle")
 	$"../../After_bomb_cooldown".start()
-	
+
 func _update(delta):
 	._update(delta)
 	owner.check_turn_around()
-	
+
 func _exit():
 	distance = Vector2.ZERO
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
-	
+
 func lob_bomb():
 	if !owner.is_dead and distance.x != 0:
 		var projectile = BOMB.instance()
@@ -50,7 +50,7 @@ func lob_bomb():
 		if sign(distance.x) == -1 :
 			projectile.direction = -1
 		projectile.velocity.x = (abs(distance.x) / (sqrt(47/Physics.GRAVITY) + sqrt(2*abs(distance.y)/Physics.GRAVITY))) * projectile.direction * 4.25
-		
+
 		get_parent().velocity = Vector2.ZERO
 #-------------------------------------------------
 #      Private Methods

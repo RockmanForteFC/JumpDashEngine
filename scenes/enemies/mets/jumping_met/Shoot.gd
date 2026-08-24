@@ -21,7 +21,7 @@ func _ready():
 func _enter():
 	owner.is_blocking = false
 	$"../../AnimationPlayer".play("popup")
-	
+
 func _update(delta):
 	get_parent().velocity.y = \
 		clamp(get_parent().velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
@@ -39,13 +39,13 @@ func _shoot():
 		b.direction = owner.get_facing_direction()
 		b.damage = owner.projectile_damage
 		b.set_deferred("global_position", owner.global_position)
-	
+
 		var b2 = Bullet.instance()
 		owner.get_parent().call_deferred("add_child", b2)
 		b2.direction = owner.get_facing_direction() + Vector2.UP
 		b2.damage = owner.projectile_damage
 		b2.set_deferred("global_position", owner.global_position)
-	
+
 		var b3 = Bullet.instance()
 		owner.get_parent().call_deferred("add_child", b3)
 		b3.direction = owner.get_facing_direction() + Vector2.DOWN

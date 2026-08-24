@@ -23,13 +23,13 @@ func _ready():
 func _enter():
 		$"../../AnimationPlayer".play("Fall")
 		idle_timer.stop()
-		
+
 func _update(delta):
 	falling_frame_count += 1
 	get_parent().velocity.y = \
 		clamp(ceil(get_parent().velocity.y + Physics.GRAVITY), -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
 	owner.move_and_slide(get_parent().velocity, Vector2.UP)
-	
+
 	if owner.is_on_floor():
 		if falling_frame_count > 10:
 			$"../../Audio/FallLanding".play()

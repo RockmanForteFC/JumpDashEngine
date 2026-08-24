@@ -43,10 +43,10 @@ func draw(is_heal:bool):
 			var was_paused: bool = get_tree().paused
 			get_tree().paused = true
 			Physics.is_in_pausible_state = false
-			$AudioStreamPlayer.play() 
+			$AudioStreamPlayer.play()
 			yield(get_tree().create_timer(FILL_DELAY), "timeout")
 		var p = PELLET.instance()
-		# start the width half of the bar height (3) + 1 px border. 
+		# start the width half of the bar height (3) + 1 px border.
 		p.position = start
 		# you want to start the health bar 1 pixels up from the bottom for a border
 		p.position.y = start.y - (n*2)
@@ -139,7 +139,7 @@ func set_bar_color(value: Color) -> void:
 #-------------------------------------------------
 func on_hit_points_changed(is_item:bool) -> void:
 		update(is_item)
-		
+
 #func on_weapon_changed(weapon_energy: int, new_color: Color) -> void:
 #	if new_color == Color.transparent:
 #		visible = false

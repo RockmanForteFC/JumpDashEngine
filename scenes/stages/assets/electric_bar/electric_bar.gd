@@ -40,7 +40,7 @@ func shoot():
 	$shoot_timer.start()
 	yield($shoot_timer,"timeout")
 	stop()
-	
+
 func stop():
 	$body.play("Idle")
 	$stop_timer.start()
@@ -48,7 +48,7 @@ func stop():
 	$electricity.hide()
 	yield($stop_timer,"timeout")
 	shoot()
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

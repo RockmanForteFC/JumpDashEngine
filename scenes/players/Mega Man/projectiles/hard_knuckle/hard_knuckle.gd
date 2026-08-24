@@ -37,9 +37,9 @@ func _process(delta):
 func _physics_process(delta):
 	if !is_reflecting:
 		 velocity.x = clamp(velocity.x + SPEED_INCREASE * direction.x, -MAX_SPEED, MAX_SPEED)
-		
+
 	move_and_slide(velocity, Vector2.UP)
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -56,7 +56,7 @@ func queue_free() -> void:
 func _free_groups():
 	if is_in_group("HardKnuckleP1"):
 		remove_from_group("HardKnuckleP1")
-		
+
 func reflect()-> void:
 	_free_groups()
 	PlayerValues.player.hard_knuckle_pause_off()

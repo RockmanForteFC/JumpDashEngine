@@ -27,13 +27,13 @@ func _ready() -> void:
 		node.animation = theme
 	_update()
 	var is_left:bool = false
-	var left_theme:String = "" 
+	var left_theme:String = ""
 	if velocity.x < 0:
-		is_left = true 
+		is_left = true
 		left_theme += "_left"
 	$StartSprite.animation = theme + left_theme
 	$SpriteEnd.animation = theme + left_theme
-	
+
 	for child in $SpriteInbetweens.get_children():
 		child.play(theme + left_theme)
 
@@ -62,7 +62,7 @@ func _set_active(value: bool) -> void:
 func _change_size(value: int) -> void:
 	size = value
 	_update()
-	
+
 func _set_theme(value: String) -> void:
 	theme = value
 	_update()
@@ -79,11 +79,11 @@ func _update() -> void:
 	var extents := Vector2(size * 8, 8)
 	$CollisionShape2D.position = extents
 	$CollisionShape2D.shape.extents = extents
-	
+
 	$Area2D/CollisionShape2D.position = extents
 	$Area2D/CollisionShape2D.shape.extents = Vector2(extents.x, 2)
 	$Area2D/CollisionShape2D.position.y = extents.y -8
-	
+
 	var last_index: int = size - 3
 	var i: int = 0
 	for sprite in $SpriteInbetweens.get_children():
@@ -94,7 +94,7 @@ func _update() -> void:
 		i += 1
 
 	$SpriteEnd.position.x = 40 + last_index * 16
-	$SpriteEnd.frame = 0 
+	$SpriteEnd.frame = 0
 	$SpriteEnd.playing = active
 	$StartSprite.frame = 0
 	$StartSprite.playing = active

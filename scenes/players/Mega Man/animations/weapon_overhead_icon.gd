@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 
-	#gets player's position in the stage 
+	#gets player's position in the stage
 	rect_position = PlayerValues.player.get_global_transform_with_canvas().origin
 #-------------------------------------------------
 #      Public Methods

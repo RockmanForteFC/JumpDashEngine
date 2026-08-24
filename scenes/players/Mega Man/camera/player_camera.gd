@@ -35,10 +35,10 @@ onready var _base_width: int = Config.DEFAULT_WINDOW_WIDTH
 onready var _base_height: int = Config.DEFAULT_WINDOW_HEIGHT
 
 #var if player strays too far out of the camera zone they should die
-#this is about 226 
+#this is about 226
 # onready var _death_distance: float = sqrt(pow(_base_width, 2) + pow(_base_height, 2)) / 1.5
 
-#the highest i was able to get was 193.8 
+#the highest i was able to get was 193.8
 onready var _death_distance: float = 196.00
 #-------------------------------------------------
 #      Processes
@@ -58,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 			PlayerValues.player.in_pit()
 	global_position =  _camera_target.global_position
 	if PlayerValues.is_teleporting and global_position == _camera_target.global_position:
-		frame_count_after_teleport+= 1 
+		frame_count_after_teleport+= 1
 		if frame_count_after_teleport >= TP_RESET_FRAMES:
 			frame_count_after_teleport = 0
 			PlayerValues.is_teleporting = false
@@ -70,13 +70,13 @@ func _physics_process(_delta: float) -> void:
 #-------------------------------------------------
 func stop_camera():
 	set_physics_process(false)
-	
+
 func start_camera():
 	set_physics_process(true)
 
 func teleport_section(section:Section):
 	if PlayerValues.is_teleporting:
-	
+
 		limit_left = -10000
 		limit_top = -10000
 		limit_right = 10000
@@ -107,7 +107,7 @@ func transition_section(section: Section) -> void:
 		set_physics_process(false)
 	var direction: Vector2 = section.transition_dir
 	var old_cam_pos: Vector2 = get_camera_screen_center()
-	
+
 	limit_left = -10000
 	limit_top = -10000
 	limit_right = 10000
@@ -134,14 +134,14 @@ func transition_section(section: Section) -> void:
 			target_position = Vector2(transition_pos + _base_width / 2 * direction.x, position.y)
 		else:
 			target_position = Vector2(position.x, transition_pos + _base_height / 2 * direction.y)
-		
+
 		get_tree().call_group("Enemies", "on_camera_exited")
 		get_tree().call_group("enemy_projectile", "queue_free")
 		get_tree().call_group("SuperArrowP1","queue_free")
 		get_tree().call_group("WreckingBeamP1","queue_free")
 		get_tree().call_group("spawner_created_rail_lift","queue_free")
 		get_tree().call_group("spawning_sand_platform","queue_free")
-		
+
 		var tween: SceneTreeTween = create_tween()
 		tween.set_pause_mode(SceneTreeTween.TWEEN_PAUSE_PROCESS)
 		tween \
@@ -161,7 +161,7 @@ func transition_section(section: Section) -> void:
 			.as_relative() \
 			.set_trans(Tween.TRANS_LINEAR) \
 			.set_ease(Tween.EASE_IN_OUT)
-		
+
 		if rush:
 			tween \
 				.parallel() \
@@ -169,7 +169,7 @@ func transition_section(section: Section) -> void:
 				.as_relative() \
 				.set_trans(Tween.TRANS_LINEAR) \
 				.set_ease(Tween.EASE_IN_OUT)
-				
+
 		yield(tween, "finished")
 		if rush:
 			rush.frame_count = 0
@@ -237,14 +237,14 @@ func _get_player_target_position_offset(transition_direction: Vector2, target_se
 	var player_collision: CollisionShape2D = Physics.get_collision(PlayerValues.player)
 	assert(player_collision.shape is RectangleShape2D)
 	# Step 1: find out global position where we should stop after the transition finishes. Oferall offset
-	# is a sum of player's collision extents, boss door width and some custom offsets could be set. 
-	# Here we add at least 2 pixels to offset as a temporary workaround to avoid a bug that may occur 
-	# when the player starts moving in opposite direction right after the transition and section areas 
+	# is a sum of player's collision extents, boss door width and some custom offsets could be set.
+	# Here we add at least 2 pixels to offset as a temporary workaround to avoid a bug that may occur
+	# when the player starts moving in opposite direction right after the transition and section areas
 	# might not detect the player left it and won't trigger transition to the previous screen
 	var transition_axis = int(transition_direction.y != 0.0)
 	var collision_extent: float = player_collision.shape.extents[transition_axis]
 	var transition_offset: float = collision_extent + target_section.add_boss_door_offset + \
-		max(_get_custom_transition_offsets(transition_axis, collision_extent), 
+		max(_get_custom_transition_offsets(transition_axis, collision_extent),
 			_MINIMUM_TRANSITION_OFFSETS[transition_axis])
 	var axis_multiplier: float = 2.0 * transition_axis - 1.0
 	var trim_margin: int = round(fmod(TAU + axis_multiplier * transition_direction.angle(), TAU) / (PI / 2.0))
@@ -282,9 +282,9 @@ func on_restarted() -> void:
 		connect("transition_end", PlayerValues.player, "on_camera_transition_end")
 	if not is_connected("teleport_section_end",PlayerValues.player, "on_camera_transition_end"):
 		connect("teleport_section_end",PlayerValues.player, "on_camera_transition_end")
-		
+
 	global_position = _camera_target.global_position
 	set_physics_process(true)
-	
+
 func reinit_weapon_wheel():
 	$Weapon_Wheel.initialize_weapon_wheel()

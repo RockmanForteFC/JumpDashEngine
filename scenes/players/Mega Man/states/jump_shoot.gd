@@ -37,13 +37,13 @@ func _enter() -> void:
 func _handle_command(command: String) -> void:
 	if command == "jump_stop" and sign(velocity.y) == -sign(owner.gravity_direction.y) and not owner.is_bouncing:
 		velocity.y = 0
-			
+
 	if command == "hold_shoot":
 		hold_shoot("Jump_" + weapons.current_state.anim_name)
-		
+
 	if command == "shoot":
 		shoot("Jump_" + weapons.current_state.anim_name)
-		
+
 	if command.begins_with("weapon_"):
 		weapons.change_weapon(command)
 #-------------------------------------------------

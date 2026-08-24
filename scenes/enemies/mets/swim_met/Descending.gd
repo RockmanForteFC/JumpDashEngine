@@ -18,10 +18,10 @@ extends State
 
 func _ready():
 	pass
-	
+
 func _enter():
 	$"../../AnimationPlayer".play("floatdown")
-	
+
 func _update(delta):
 	get_parent().velocity.y = \
 		clamp(get_parent().velocity.y + Physics.GRAVITY_WATER, -Physics.FALL_SPEED_MAX_IN_WATER, Physics.FALL_SPEED_MAX_IN_WATER)

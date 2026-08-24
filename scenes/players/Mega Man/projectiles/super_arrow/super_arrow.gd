@@ -32,7 +32,7 @@ func _physics_process(delta):
 		var movement = Vector2(-direction.x, sign(scale.y) * Vector2.UP.y)
 		global_position +=  ((movement * ARROW_SPEED) * delta)
 	else:
-		global_position.x = global_position.x + ((direction.x * ARROW_SPEED) * delta) 
+		global_position.x = global_position.x + ((direction.x * ARROW_SPEED) * delta)
 		if stopping_point != null:
 			global_position.x = stopping_point.x  - (8* direction.x)
 			set_physics_process(false)

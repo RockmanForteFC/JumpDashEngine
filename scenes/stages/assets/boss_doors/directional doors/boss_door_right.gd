@@ -11,9 +11,9 @@ signal closed()
 #-------------------------------------------------
 #      Properties
 #-------------------------------------------------
-export var lightest_color:Color = Color("ffffff") 
-export var mid_color:Color = Color("bcbcbc") 
-export var darkest_color:Color = Color("787878") 
+export var lightest_color:Color = Color("ffffff")
+export var mid_color:Color = Color("bcbcbc")
+export var darkest_color:Color = Color("787878")
 
 var temp_lock = false
 var locked := false setget locked_collision
@@ -25,7 +25,7 @@ var _reset_lock := true
 #      Processes
 #-------------------------------------------------
 func _ready() -> void:
-	
+
 	if Engine.editor_hint:
 		$arrow.show()
 	else:
@@ -34,7 +34,7 @@ func _ready() -> void:
 	$Sprite.material.set_shader_param("replace_1", mid_color)
 	$Sprite.material.set_shader_param("replace_2", darkest_color)
 	add_to_group("BossDoors")
-	
+
 
 #-------------------------------------------------
 #      Public Methods
@@ -45,7 +45,7 @@ func locked_collision(value:bool):
 		$locked_shape/CollisionShape2D.set_deferred("disabled",false)
 	else:
 		$locked_shape/CollisionShape2D.set_deferred("disabled",true)
-		
+
 func open() -> void:
 	get_tree().paused = true
 	$"Sprite/AnimationPlayer".play("Open_and_Close")

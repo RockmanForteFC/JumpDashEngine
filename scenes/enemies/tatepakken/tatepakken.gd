@@ -22,7 +22,7 @@ func _ready():
 	$Sprite.material.set_shader_param("replace_1", secondary_color)
 	if flip_direction == true:
 		$Position2D.position.x *= -1
-	
+
 func toggle_flip_h() -> void:
 	$Sprite.flip_h = !$Sprite.flip_h
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h

@@ -40,7 +40,7 @@ func _process(delta):
 #      Connections
 #-------------------------------------------------
 func _on_PlayerDetector_body_entered(body):
-	if body is Player: 
+	if body is Player:
 		body.on_hit(damage, damage_type, element)
 		queue_free()
 

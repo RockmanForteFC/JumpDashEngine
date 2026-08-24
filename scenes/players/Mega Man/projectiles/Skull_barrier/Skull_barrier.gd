@@ -22,7 +22,7 @@ func _ready():
 
 func _physics_process(delta):
 	global_position = PlayerValues.player.global_position
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

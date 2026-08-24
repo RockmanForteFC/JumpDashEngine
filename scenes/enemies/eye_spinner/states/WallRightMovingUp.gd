@@ -38,7 +38,7 @@ func _update(delta):
 			emit_signal("finished","wall-down-moving-right")
 		if owner.is_on_ceiling():
 			emit_signal("finished", "wall-up-moving-left")
-		
+
 
 #-------------------------------------------------
 #      Public Methods

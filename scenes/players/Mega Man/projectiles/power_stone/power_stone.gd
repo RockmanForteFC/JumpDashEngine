@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
-	
+
 func queue_free() -> void:
 	hide()
 	$CollisionShape2D.set_deferred("disabled",true)

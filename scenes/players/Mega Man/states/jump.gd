@@ -46,7 +46,7 @@ func _enter() -> void:
 	animation_player.play("Jump")
 	velocity = _velocity_init
 	_velocity_init = Vector2()
-	
+
 func _handle_command(command: String) -> void:
 	if command == "jump_stop" and sign(velocity.y) == -sign(owner.gravity_direction.y) and not owner.is_bouncing:
 		velocity.y = 0
@@ -62,7 +62,7 @@ func _handle_command(command: String) -> void:
 		hold_shoot("Jump_" + weapons.current_state.anim_name)
 	if command.begins_with("weapon_"):
 		weapons.change_weapon(command)
-	
+
 func _update(_delta) -> void:
 	if !owner.is_dead:
 		if owner.charge_level > 0 and not weapons.is_holding_shoot():
@@ -76,9 +76,9 @@ func _update(_delta) -> void:
 			owner.emit_signal("action","jump")
 			var jump_vel = Physics.JUMP_VELOCITY * owner.gravity_direction.y
 			velocity.y = jump_vel - owner.gravity *2
-			
+
 		var fall_speed = Physics.FALL_SPEED_MAX if owner.gravity != Physics.GRAVITY_WATER else Physics.FALL_SPEED_MAX_IN_WATER
-		velocity.y = clamp(velocity.y + owner.gravity, 
+		velocity.y = clamp(velocity.y + owner.gravity,
 			-fall_speed * (1.5 + 0.5 * owner.gravity_direction.y),
 			fall_speed * (1.5 - 0.5 * owner.gravity_direction.y))
 		# bonk if there is a tile "above" your head
@@ -95,10 +95,10 @@ func _update(_delta) -> void:
 				owner.get_parent().call_deferred("add_child",t)
 				t.set_deferred("global_position",$"../../Sprite".global_position)
 			speed_jump_multiplier = owner.ICE_SPEED_MULTIPLIER + .2
-			
+
 		velocity.x = owner.walking_speed * direction.x * speed_jump_multiplier
 		owner.move_and_slide(velocity, -owner.gravity_direction)
-	
+
 	if owner.is_on_floor():
 		landing_sound.play()
 		owner.has_in_air_jump = true

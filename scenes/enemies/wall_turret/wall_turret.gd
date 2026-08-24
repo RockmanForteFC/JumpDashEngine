@@ -27,7 +27,7 @@ func _ready():
 func _replace_with_spawner() -> void:
 	spawn_info["delay_offset"] = delay_offset
 	._replace_with_spawner()
-	
+
 func go_hiding():
 	emit_signal("change_state","hide")
 #-------------------------------------------------

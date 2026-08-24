@@ -18,7 +18,7 @@ extends "res://scenes/enemies/base/states/death.gd"
 
 func _ready():
 	$"../../HitboxTimer".connect("timeout",self,"disable_collision")
-	
+
 func _enter() -> void:
 	$"../../explosion/CollisionShape2D" .set_deferred("disabled", false)
 	._enter()

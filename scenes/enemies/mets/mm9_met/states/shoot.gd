@@ -54,8 +54,8 @@ func _enter() -> void:
 	bullet.direction = Vector2.UP + owner.get_facing_direction()
 	Physics.current_stage.add_child(bullet)
 
-	
-	
+
+
 
 #fall down to the floor
 func _update(delta: float) -> void:

@@ -43,7 +43,7 @@ func _on_Timer_timeout() -> void:
 	if _trigger_area.player:
 		# Change facing direction if necessary
 		owner.face_player()
-			
+
 		emit_signal("finished", "shoot")
 	else:
 		_trigger_area.is_shot_ready = true

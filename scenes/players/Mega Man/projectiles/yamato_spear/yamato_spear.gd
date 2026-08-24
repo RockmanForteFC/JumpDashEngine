@@ -35,7 +35,7 @@ func queue_free() -> void:
 	if $yamatoshot.playing:
 		yield($yamatoshot, "finished")
 	.queue_free()
-	
+
 func reflect() -> void:
 	_free_groups()
 	$yamatoreflect.play()

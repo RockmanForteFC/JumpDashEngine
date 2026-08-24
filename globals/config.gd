@@ -37,7 +37,7 @@ var SECURITY_KEY = "FIBSFN3434NIND"
 
 var window_size: int = DEFAULTS.window_size setget _set_window_size
 var language = "ENG"
-var die_on_spikes:bool = true 
+var die_on_spikes:bool = true
 var default_lives:int = 2
 var show_damage_values:bool = false
 var global_config = {}
@@ -306,7 +306,7 @@ func set_volume() ->void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), music_volume)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound Effects"), sound_effect_volume)
 	pass
-	
+
 func get_playtime(is_short_form:bool = false)->String:
 	var _miliseconds = fmod(total_accumulated_playtime,1)*1000
 	var _seconds = fmod(total_accumulated_playtime,60)
@@ -504,7 +504,7 @@ func load_bindings():
 					var ev = InputEventJoypadButton.new()
 					ev.device = u.device
 					ev.button_index = u.scan_code
-					InputMap.action_add_event("action_jump_p1",ev)	
+					InputMap.action_add_event("action_jump_p1",ev)
 		if global_config.has("slide"):
 			InputMap.action_erase_events("action_slide_p1")
 			for u in global_config.slide:
@@ -516,7 +516,7 @@ func load_bindings():
 					var ev = InputEventJoypadButton.new()
 					ev.device = u.device
 					ev.button_index = u.scan_code
-					InputMap.action_add_event("action_slide_p1",ev)	
+					InputMap.action_add_event("action_slide_p1",ev)
 		if global_config.has("left_swap"):
 			InputMap.action_erase_events("action_left_swap_p1")
 			for u in global_config.left_swap:

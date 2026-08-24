@@ -27,7 +27,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	move_and_slide((direction.normalized() * THUNDER_BOLT_SPEED), Vector2.UP)
-	
+
 func _process(delta):
 	if did_hit_enemy:
 		if not did_split:
@@ -43,7 +43,7 @@ func split():
 	bolt1.direction = Vector2.UP
 	get_parent().call_deferred("add_child", bolt1)
 	bolt1.set_deferred("global_position",global_position)
-	var bolt2 = BOLT.instance() 
+	var bolt2 = BOLT.instance()
 	bolt2.direction = Vector2.DOWN
 	get_parent().call_deferred("add_child", bolt2)
 	bolt2.set_deferred("global_position", Vector2(global_position.x,global_position.y -4))
@@ -68,7 +68,7 @@ func reflect() -> void:
 	$Sprite.flip_h = !$Sprite.flip_h
 	set_collision_mask_bit(Bitmask.enemy, false)
 	set_collision_layer_bit(Bitmask.projectile, false)
-	
+
 
 func _free_groups():
 	if is_in_group("ThunderBoltP1"):

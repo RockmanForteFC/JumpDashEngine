@@ -29,7 +29,7 @@ func toggle_flip_h() -> void:
 	$Hitbox/CollisionShape2D.position.x *= -1
 	$BaseShootPos.position.x *= -1
 	$Hitbox/CollisionShape2D2.position.x *= -1
-	
+
 func set_flip_direction(value: bool) -> void:
 	$Sprite.flip_h = value
 	if value == true:

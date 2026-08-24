@@ -36,7 +36,7 @@ func toggle_flip_h():
 		$Shield/shield_collision.position.x =  SHIELD_POSITION_X_RIGHT
 	else:
 		$Shield/shield_collision.position.x = SHIELD_POSITION_X_LEFT
-		
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

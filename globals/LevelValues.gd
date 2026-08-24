@@ -77,12 +77,12 @@ func _on_item_pickup(item_name):
 func get_picked_up_item_count():
 	var count = 0
 	for item in items_picked_up:
-		count += items_picked_up[item] 
+		count += items_picked_up[item]
 	return count
 
 func was_pacifist():
 	var was_pacifist = true
 	if enemies_killed.size() > 0:
 		was_pacifist = false
-		
+
 	return was_pacifist

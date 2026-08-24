@@ -26,7 +26,7 @@ func _ready():
 	$PlugSound.play()
 	$AnimatedSprite.play("default")
 	direction.y = 1
-	
+
 func _physics_process(_delta):
 	if state == "fall":
 		velocity = Vector2(0,speed*direction.y)
@@ -57,7 +57,7 @@ func _physics_process(_delta):
 			state = "fall"
 			direction.y = 1
 			$plugBallCollision.disabled = true
-		
+
 	move_and_slide(velocity,Vector2.UP)
 
 #-------------------------------------------------

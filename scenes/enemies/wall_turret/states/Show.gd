@@ -37,7 +37,7 @@ func shoot():
 		s.direction = (PlayerValues.player.global_position - $"../../BaseShootPos".global_position)
 		owner.get_parent().call_deferred("add_child", s)
 		s.set_deferred("global_position",$"../../BaseShootPos".global_position)
-		
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

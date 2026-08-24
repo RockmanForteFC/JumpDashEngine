@@ -30,7 +30,7 @@ func _replace_with_spawner() -> void:
 	spawn_info["moving_direction"] = moving_direction
 	spawn_info["move_speed"] = move_speed
 	._replace_with_spawner()
-	
+
 func _on_hit(body: PhysicsBody2D) -> void:
 	._on_hit(body)
 	if body and is_blocking and body.is_in_group("BeastNetP1"):

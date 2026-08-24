@@ -13,7 +13,7 @@ const STEP_SIZE:float = 25.0
 #-------------------------------------------------
 var low_position:Vector2
 var high_position:Vector2
-var can_go_up:bool = true 
+var can_go_up:bool = true
 var is_riding:bool = false
 export(float,10.0,100.0,2.0) var  speed:float = 26.0
 #-------------------------------------------------
@@ -25,20 +25,20 @@ func _ready():
 	low_position = global_position
 	high_position = global_position
 	high_position.y -= (Physics.TILE_SIZE.y *4)
-	
+
 func _physics_process(delta):
 	is_riding = false
 	if $no_player_zone.get_overlapping_bodies().size() > 0 :
 		can_go_up = false
 	else:
 		can_go_up = true
-		
+
 	if can_go_up:
 		for body in $player_detector.get_overlapping_bodies():
 			if body and body is Player and body.is_on_floor():
-				is_riding = true 
+				is_riding = true
 	else:
-		is_riding = false 
+		is_riding = false
 
 	if global_position != low_position and global_position != high_position:
 		$AnimatedSprite.play("Moving")

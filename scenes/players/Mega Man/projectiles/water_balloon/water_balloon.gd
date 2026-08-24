@@ -61,7 +61,7 @@ func reflect() -> void:
 	set_collision_mask_bit(Bitmask.enemy, false)
 	set_collision_layer_bit(Bitmask.projectile, false)
 	$CollisionShape2D.set_deferred("disabled", true)
-	
+
 func _free_groups():
 	if is_in_group("WaterBalloonP1"):
 		remove_from_group("WaterBalloonP1")

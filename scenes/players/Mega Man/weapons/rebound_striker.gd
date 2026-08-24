@@ -20,7 +20,7 @@ var direction_modifier = ""
 func _ready() -> void:
 	_get_weapon_reference_index()
 	anim_name = ANIMATIONS[animation.throw]
-	
+
 func _process(delta):
 	if Physics.is_action_pressed("action_down_p1"):
 		direction_modifier= "down"
@@ -35,7 +35,7 @@ func _process(delta):
 func can_use() -> bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group("ReboundStrikerP%s" % owner.player_number)
 	return on_screen_bullets.size() < REBOUND_STRIKER_MAX_ON_SCREEN and weapon_energy > 0
-		
+
 func use() -> void:
 	if can_use():
 		if not _deplete_energy():
@@ -50,11 +50,11 @@ func _get_bullet() -> Node:
 	var bullet: Node
 	bullet = Projectile.instance()
 	bullet.add_to_group("ReboundStrikerP%s" % owner.player_number)
-	##Change direction code here 
+	##Change direction code here
 	bullet.direction = owner.get_facing_direction()
 	bullet.position = mega_buster.global_position
 	$"../../CollisionShape2D/SuperArrowRayCast".cast_to.x =  17 * owner.get_facing_direction().x
-	$"../../CollisionShape2D/SuperArrowRayCast".enabled = true 
+	$"../../CollisionShape2D/SuperArrowRayCast".enabled = true
 	$"../../CollisionShape2D/SuperArrowRayCast".force_raycast_update()
 	if $"../../CollisionShape2D/SuperArrowRayCast".is_colliding():
 		bullet.position.x = owner.global_position.x

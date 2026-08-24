@@ -26,19 +26,19 @@ func _ready() -> void:
 func can_use() -> bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group("SolarBlazeP%s" % owner.player_number)
 	return on_screen_bullets.size() < SOLAR_BLAZE_MAX_ON_SCREEN and weapon_energy > 0
-		
+
 func use() -> void:
 	if can_use():
 		if not _deplete_energy():
 			return
-			
+
 		mega_buster.position.x = abs(mega_buster.position.x) * owner.get_facing_direction().x
 		owner.get_parent().add_child(_get_bullet())
 
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
-	
+
 func _get_bullet() -> Node:
 	var bullet: Node
 	bullet = Projectile.instance()

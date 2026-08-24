@@ -43,7 +43,7 @@ onready var tab_accessibility = $ContentArea/Tabs/HBoxContainer/tab_accessibilit
 var can_change_screen:bool = true
 var is_modal_open:bool = false
 var _is_fading = true
-var is_game_selected:bool = true 
+var is_game_selected:bool = true
 var is_accessibility_selected:bool = false
 var confirmation_position:int = 1
 var selected_clear_option:int = 0
@@ -56,15 +56,15 @@ func _ready():
 	$Label/AnimationPlayer.play("flash")
 
 	populate_menu()
-	is_game_selected = true 
+	is_game_selected = true
 	is_accessibility_selected = false
-	
+
 	tab_game.modulate = Color(SELECTED_TAB)
 	tab_accessibility.modulate = Color(NON_SELECTED_TAB)
-	
+
 	game_container.show()
 	accessibility_container.hide()
-	
+
 	Config.connect("auto_fire_mode", self, "_on_auto_fire_mode_changed")
 	Config.connect("auto_charge_enabled", self, "_on_auto_charge_enabled_changed")
 	$ContentArea/Game_Container/VBoxContainer/screen_size.grab_focus()
@@ -76,7 +76,7 @@ func _ready():
 		if node is TextureButton:
 			node.connect("pressed", self, "_on_pressed",[node])
 			node.connect("focus_exited", self, "_click_sound")
-	
+
 	fade_in()
 	yield(self,"fade_in")
 	_is_fading = false
@@ -116,24 +116,24 @@ func _physics_process(delta):
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
-	
+
 func populate_menu():
 	if Config.window_size != Config.WINDOW_FULL_SCREEN:
 		screen_size.text = str(Config.window_size) + "X"
 	else:
 		screen_size.text = "FULL SCREEN"
-	
+
 	_get_lives()
-	
+
 	show_damage.text = "ON" if Config.show_damage_values else "OFF"
 	show_damage.modulate = GREEN if Config.show_damage_values else RED
-	
+
 	down_jump_slide.text = "ON" if Config.is_down_jump_enabled else "OFF"
 	down_jump_slide.modulate = GREEN if Config.is_down_jump_enabled else RED
 
 	lienient_timings.text = "DELAYED" if Config.lienient_timings else "NORMAL"
 	lienient_timings.modulate = GREEN if !Config.lienient_timings else RED
-	
+
 	show_bolts_on_pickup.text = "ON" if Config.show_Bolts_on_pickup else "OFF"
 	show_bolts_on_pickup.modulate = GREEN if Config.show_Bolts_on_pickup else RED
 
@@ -160,7 +160,7 @@ func _set_sfx():
 	Config.sound_effect_volume = sfx_volume.value
 	$Audio/sfx_test.play()
 	Config.save_config()
-		
+
 func _set_bgm():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), music_volume.value)
 	Config.music_volume = music_volume.value
@@ -226,7 +226,7 @@ func _on_pressed(node:TextureButton):
 			$ConfirmModal.show()
 			$ConfirmModal/Popup/Control.grab_focus()
 			selected_clear_option = 2
-			
+
 		elif node.name == "screen_size" and can_change_screen:
 			can_change_screen = false
 			$Audio/OK.play()
@@ -243,7 +243,7 @@ func _on_pressed(node:TextureButton):
 				Config.default_lives = 0
 			else:
 				Config.default_lives += 1
-				
+
 			_get_lives()
 
 		elif node.name == "down_slide":
@@ -327,23 +327,23 @@ func _on_auto_charge_enabled_changed(auto_charge_enabled: bool) -> void:
 
 
 func _on_tab_game_pressed():
-	is_game_selected = true 
+	is_game_selected = true
 	is_accessibility_selected = false
-	
+
 	tab_game.modulate = Color(SELECTED_TAB)
 	tab_accessibility.modulate = Color(NON_SELECTED_TAB)
-	
+
 	game_container.show()
 	accessibility_container.hide()
 	$ContentArea/Game_Container/VBoxContainer/screen_size.grab_focus()
 
 func _on_tab_accessibility_pressed():
-	is_game_selected = false 
+	is_game_selected = false
 	is_accessibility_selected = true
-	
+
 	tab_game.modulate = Color(NON_SELECTED_TAB)
 	tab_accessibility.modulate = Color(SELECTED_TAB)
-	
+
 	game_container.hide()
 	accessibility_container.show()
 	$ContentArea/Accessibility_Container/VBoxContainer/default_lives.grab_focus()

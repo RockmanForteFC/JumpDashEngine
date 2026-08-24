@@ -32,7 +32,7 @@ signal game_resumed()
 #-------------------------------------------------
 var can_pause:bool = false
 var current_page:int = 1
-var can_user_control:bool = false 
+var can_user_control:bool = false
 var is_paused:bool = false
 var highlighted_area:String = WEAPONS_LEFT
 var highlighted_index:int = 0
@@ -91,7 +91,7 @@ onready var cd_multiplication_label = $Menu_Right/Collected_Powerups/cd_x
 onready var cd_count_label = $Menu_Right/Collected_Powerups/cd_count
 onready var w_tank_sprite = $Menu_Left/Tanks_Container/W_Tank_Sprite
 
-var weapons:Array 
+var weapons:Array
 var left_side_weapons:Array
 var right_side_weapons:Array
 #-------------------------------------------------
@@ -103,12 +103,12 @@ func _ready():
 	if Config.default_lives == -100:
 		has_infinite_lives = true
 	instantiate()
-	
+
 func _process(delta):
 	if not can_user_control and Input.is_action_just_pressed("action_enter_p1") and Physics.is_in_pausible_state:
 		if not get_tree().paused and not Physics.is_game_paused:
 			open_menu()
-	
+
 	elif can_user_control:
 		#page_swaps
 		if Input.is_action_just_pressed("action_right_swap_p1") and current_page == PAGE_ONE:
@@ -119,7 +119,7 @@ func _process(delta):
 			can_user_control = false
 			current_page = PAGE_ONE
 			$AnimationPlayer.play("Menu_2_to_Menu_1")
-			
+
 		#weapon Select
 		if current_page == PAGE_ONE :
 			if highlighted_area == WEAPONS_LEFT:
@@ -423,7 +423,7 @@ func open_menu():
 			if number_of_letters == 8:
 				PlayerValues.is_serenade_unlocked = true
 				$Menu_Left/Letters_Container.hide()
-			
+
 		emit_signal("game_paused")
 		PlayerValues.player._charge_sound.pause_mode = Node.PAUSE_MODE_INHERIT
 		get_tree().paused = true
@@ -445,7 +445,7 @@ func open_menu():
 					weapons[index].set_weapon_special(PlayerValues.health)
 				else:
 					weapons[index].set_weapon()
-				
+
 				if weapon.is_equipped:
 					weapons[index].set_active()
 					var side_index = 0
@@ -468,32 +468,32 @@ func open_menu():
 		can_pause = true
 #		show()
 		can_user_control = true
-	
+
 func close_menu():
 	if is_paused and can_user_control:
 		$Tween.interpolate_property(self,"modulate",Color(1,1,1,1),Color(1,1,1,0),WAIT_TIME,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 		$Tween.start()
 		can_user_control = false
-		
+
 		$Audio/Menu_Open.play()
 		if highlighted_area == WEAPONS_LEFT:
 			_on_weapon_changed(left_side_weapons[highlighted_index].weapon.key_name)
 		elif highlighted_area == WEAPONS_RIGHT:
 			_on_weapon_changed(right_side_weapons[highlighted_index].weapon.key_name)
-#		hide()	
+#		hide()
 		yield($Tween,"tween_all_completed")
-		is_paused = false 
+		is_paused = false
 		PlayerValues.player._charge_sound.pause_mode = Node.PAUSE_MODE_PROCESS
 		get_tree().paused = false
 		emit_signal("game_resumed")
 		$Background/GridLines.material.set_shader_param("horizontal_speed", 0.0)
 		$Background/GridLines.material.set_shader_param("vertical_speed", 0.0)
-		
+
 		Physics.is_game_paused = false
 		if highlighted_area == FUNCTION_BUTTONS:
 			PlayerValues.player.die()
 			Physics.is_in_pausible_state = false
-		
+
 func instantiate():
 	weapons = [weapon0,weapon1,weapon2,weapon3,weapon4,weapon5,weapon6,weapon7,weapon8,weapon9,weapon10,weapon11]
 	left_side_weapons = [weapon0,weapon1,weapon2,weapon3,weapon4,weapon10]
@@ -511,7 +511,7 @@ func instantiate():
 				weapons[index].set_weapon_special(PlayerValues.health)
 			weapons[index].show()
 		index += 1
-	
+
 	if Physics.current_stage.get("BOSS_NAME") != null and  Physics.current_stage.BOSS_NAME == "auto":
 		can_exit_stage = false
 	if Physics.current_stage.get("BOSS_NAME") != null and !has_infinite_lives:
@@ -526,7 +526,7 @@ func instantiate():
 		exit_item.texture = load("res://assets/images/sprites/menus/exit_gold.png")
 	if !can_exit_stage:
 		exit_item.texture = load("res://assets/images/sprites/menus/exit_disabled.png")
-		
+
 	if !PlayerValues.game_mode == "time_trial":
 		exit_item.show() if (PlayerValues.has_stage_exit or has_infinite_lives) else exit_item.hide()
 	slide_item.show() if PlayerValues.can_slide else slide_item.hide()
@@ -540,7 +540,7 @@ func instantiate():
 	ability_slot_b_item.show() if PlayerValues.has_ability_slot_2 else ability_slot_b_item.hide()
 
 
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
@@ -548,7 +548,7 @@ func instantiate():
 func _change_focus(weapon_side:Array, index:int)->void:
 	for weapon in weapons:
 		weapon.set_inactive()
-	if not index == -1: 
+	if not index == -1:
 		weapon_side[index].set_active()
 
 func _function_button_selection_changed(index:int):
@@ -609,7 +609,7 @@ func _go_into_w_tank_mode():
 					return
 			i += 1
 	$Audio/Error.play()
-	
+
 func _use_w_tank(weapons:Array, index):
 	if PlayerValues.player and PlayerValues.w_tanks > 0 and \
 			(weapons[index].weapon.ammo != PlayerValues.NO_LIMIT and weapons[index].weapon.ammo < PlayerValues.MAX_HEALTH):
@@ -634,7 +634,7 @@ func _use_w_tank(weapons:Array, index):
 
 func _use_m_tank():
 	var str_i = str(w_tank_highlighted_index)
-	var is_ok_to_m_tank = false 
+	var is_ok_to_m_tank = false
 	if PlayerValues.player and PlayerValues.m_tanks > 0:
 		if PlayerValues.health < PlayerValues.MAX_HEALTH:
 			is_ok_to_m_tank = true
@@ -645,7 +645,7 @@ func _use_m_tank():
 						is_ok_to_m_tank = true
 	if is_ok_to_m_tank:
 		can_user_control = false
-		
+
 		#heal health first
 		var health_before = PlayerValues.health
 		PlayerValues.player.heal(PlayerValues.MAX_HEALTH)
@@ -654,7 +654,7 @@ func _use_m_tank():
 			health_before =  clamp(health_before + 1, 0 , PlayerValues.MAX_HEALTH)
 			yield(get_tree().create_timer(TANK_FILL_DELAY), "timeout")
 			weapons[0].set_weapon_special(health_before)
-		
+
 		for weapon in left_side_weapons:
 			if weapon.weapon != null and weapon.weapon.ammo != PlayerValues.NO_LIMIT:
 				var ammo_before = weapon.weapon.ammo
@@ -697,7 +697,7 @@ func _default_page_1():
 	highlighted_area = WEAPONS_LEFT
 	highlighted_index = DEFAULT
 	_change_focus(left_side_weapons,highlighted_index)
-	
+
 func _default_page_2():
 	_change_focus([],-1)
 	highlighted_area = FUNCTION_BUTTONS
@@ -709,7 +709,7 @@ func _default_page_2():
 	if tank_selection.playing:
 		tank_selection.stop()
 		tank_selection.hide()
-		
+
 func _get_weapon_icon(weapon_name:String)->String:
 	var weapon_icon_file = "res://assets/images/sprites/menus/not_applicable.png"
 	match weapon_name:
@@ -745,6 +745,6 @@ func _on_animation_finished(anim_name):
 
 func set_can_pause(value):
 	can_pause = value
-	
+
 func on_collect_music_upgrade():
 	music_upgrade_item.show() if PlayerValues.has_music_upgrade else music_upgrade_item.hide()

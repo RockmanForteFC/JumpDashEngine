@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 				_player.on_lava()
 			"acid":
 				_player.on_acid()
-			
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -55,7 +55,7 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		set_physics_process(true)
 	if body != null and body.is_in_group("RushPhase"):
 		body.despawn()
-		
+
 
 func _on_body_exited(body: PhysicsBody2D) -> void:
 	if body is Player:

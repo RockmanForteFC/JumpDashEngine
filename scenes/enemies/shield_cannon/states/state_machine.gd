@@ -48,8 +48,8 @@ func shoot():
 		$"../TripleShootTimer".start()
 
 func enable_blocking():
-	owner.is_blocking = true 
-	
+	owner.is_blocking = true
+
 func disable_blocking():
 	owner.is_blocking = false
 #-------------------------------------------------

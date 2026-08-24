@@ -19,12 +19,12 @@ extends State
 func _ready():
 	owner.connect("shield_hit", self, "_on_shield_hit")
 	$"../../ShieldTimer".connect("timeout",self, "_on_timeout")
-	
+
 
 func _enter():
 	$"../../AnimationPlayer".play("Idle")
 	$"../../ShieldTimer".start()
-	
+
 
 func _update(delta):
 	owner.face_player()

@@ -18,10 +18,10 @@ const Bullet: Resource = preload("res://scenes/enemies/mets/mm9_met/met_9_shot.t
 
 func _ready():
 	pass
-	
+
 func _enter():
 	$"../../AnimationPlayer".play("swim")
-	
+
 func shoot():
 	if !owner.is_dead:
 		var bullet_pos: Vector2 = $"../../BaseShootPos".global_position

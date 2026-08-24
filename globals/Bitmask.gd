@@ -37,7 +37,7 @@ const spike_tile_shape:int = 22
 const escort_object:int = 23
 const kunai_interaction_shape:int = 24
 const tar_fire:int = 25
-const walking_bomb_detector:int = 26 
+const walking_bomb_detector:int = 26
 const invisible_walls:int = 27
 const ramurunt_wall:int = 28
 

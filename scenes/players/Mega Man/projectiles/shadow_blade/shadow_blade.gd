@@ -21,7 +21,7 @@ var is_reflecting:bool = false
 func _ready():
 	$Audio/screech.play()
 	$firing.start()
-	
+
 func _physics_process(delta: float) -> void:
 	move_and_slide((direction.normalized() * SHADOW_BLADE_SPEED), Vector2.UP)
 
@@ -34,7 +34,7 @@ func queue_free() -> void:
 	if $Audio/screech.playing:
 		yield($Audio/screech, "finished")
 	.queue_free()
-	
+
 func reflect() -> void:
 	is_reflecting = true
 	_free_groups()

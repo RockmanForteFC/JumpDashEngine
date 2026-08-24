@@ -27,7 +27,7 @@ func _enter():
 	shoot_delay.start()
 	_animations_special.play("Shoot")
 	is_ready_to_shoot = true
-	
+
 func _update(delta):
 	if not did_shoot and is_ready_to_shoot:
 		if owner.is_on_floor():

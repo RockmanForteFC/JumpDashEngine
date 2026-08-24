@@ -29,7 +29,7 @@ func _ready():
 		$Sprite.flip_h = true
 	velocity = Vector2(SPEED * direction.x, 0)
 	$Timer.start()
-		
+
 func _physics_process(delta):
 	curveSpeed = clamp(curveSpeed + 1,-2,10)
 	velocity.y = clamp(velocity.y + curveSpeed, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
@@ -42,7 +42,7 @@ func _physics_process(delta):
 				velocity.x = 80 * direction.x
 			if bounces == 2:
 				velocity.y = -60
-				velocity.x = 40 * direction.x 
+				velocity.x = 40 * direction.x
 		elif bounces >= BOUNCE_LIMIT:
 			velocity = Vector2.ZERO
 	if is_on_wall():

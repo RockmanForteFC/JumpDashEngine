@@ -54,19 +54,19 @@ func _explode():
 	if $Split.playing:
 		yield($Split,"finished")
 	queue_free()
-	
+
 func _split():
 	set_process(false)
 	var w = WAVE.instance()
 	get_parent().call_deferred("add_child", w)
 	w.direction = Vector2.RIGHT
 	w.set_deferred("global_position", global_position)
-	
+
 	var wl = WAVE.instance()
 	get_parent().call_deferred("add_child", wl)
 	wl.direction = Vector2.LEFT
 	wl.set_deferred("global_position", global_position)
-	
+
 func queue_free() -> void:
 	_free_groups()
 	consumed = true

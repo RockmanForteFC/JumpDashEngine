@@ -15,7 +15,7 @@ export(float) var initial_delay:float = 1.5
 export(float) var time_inactive:float = 1.5
 export(float) var movement_speed:float = 75
 export(String,"small", "large")var size:String = "large"
-	
+
 var default_head_position:Vector2
 var default_texture_size:Vector2
 var default_body_collision:Vector2
@@ -41,15 +41,15 @@ func _ready():
 	for node in get_children():
 		if node is Position2D:
 			stop_position = node.global_position
-			var size_adjustment = 24 if size == "large" else 16	
+			var size_adjustment = 24 if size == "large" else 16
 			stop_position.y -= size_adjustment
 	default_head_position = head.global_position
 	default_texture_size = body_texture.region_rect.size
 	default_body_collision = body_collision.shape.extents
 	default_body_position = body_collision.global_position
 	stop_timer.wait_time = time_inactive
-	initial_delay_timer.wait_time = initial_delay 
-	
+	initial_delay_timer.wait_time = initial_delay
+
 	set_physics_process(false)
 	if not get_parent().is_connected("transition_entered",self, "activate"):
 		get_parent().connect("transition_entered",self, "activate")
@@ -78,13 +78,13 @@ func _notification(what: int)-> void:
 		if not is_stopped:
 			if direction == Vector2.UP:
 				if head.global_position.y <= default_head_position.y:
-					is_stopped = true 
+					is_stopped = true
 					stop_timer.start()
 			elif direction == Vector2.DOWN:
 				if head.global_position.y >= stop_position.y:
 					if $PreciseVisibilityNotifier2D.is_on_screen():
 						$press_down.play()
-					is_stopped = true 
+					is_stopped = true
 					stop_timer.start()
 
 func activate(section):
@@ -101,7 +101,7 @@ func activate(section):
 	$head/detectors/floor_detector_left.enabled = true
 	$head/detectors/floor_detector_right.enabled = true
 	initial_delay_timer.start()
-	
+
 func deactivate(section):
 	set_physics_process(false)
 	head.global_position = default_head_position
@@ -117,7 +117,7 @@ func deactivate(section):
 	direction = Vector2.DOWN
 	stop_timer.stop()
 	initial_delay_timer.stop()
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

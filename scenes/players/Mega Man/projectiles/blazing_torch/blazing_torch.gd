@@ -32,7 +32,7 @@ func _ready():
 	set_physics_process(false)
 	$Audio/Shoot.play()
 
-	
+
 
 func _physics_process(delta):
 	if !is_reflected:
@@ -56,7 +56,7 @@ func start():
 	yield($Tween,"tween_all_completed")
 	$AnimationPlayer.play("BallExplode", -1, 3.0)
 	velocity = direction * MOVE_SPEED
-	
+
 
 func queue_free() -> void:
 	_free_groups()
@@ -76,7 +76,7 @@ func reflect() -> void:
 	set_collision_layer_bit(Bitmask.projectile, false)
 	$CollisionShape2D.set_deferred("disabled", true)
 	$CollisionShape2D2.set_deferred("disabled", true)
-	
+
 func _free_groups():
 	if is_in_group("BlazingTorchP1"):
 		remove_from_group("BlazingTorchP1")

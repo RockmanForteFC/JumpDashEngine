@@ -23,7 +23,7 @@ func _enter():
 	$"../../Sprite".hide()
 	$"../../Hitbox/CollisionShape2D".set_deferred("disabled", true)
 	$"../../Hitbox/CollisionShape2D2".set_deferred("disabled", true)
-	
+
 func _update(delta):
 	distance_to_player = owner.global_position.x - PlayerValues.player.global_position.x
 	if distance_to_player < 0:
