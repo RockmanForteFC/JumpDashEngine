@@ -149,7 +149,7 @@ func _process(_delta):
 						selected_middle = "v"
 				elif selected_middle != "s" and PlayerValues.is_serenade_unlocked :
 					selected_middle = "s"
-		if Input.is_action_just_pressed("ui_accept") and is_accepting_inputs:
+		if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("action_jump_p1")) and is_accepting_inputs:
 			if selected == POS.RM or is_shop_highlighted:
 				is_accepting_inputs = false
 				$ColorRect.show()
