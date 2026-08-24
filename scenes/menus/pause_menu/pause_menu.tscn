@@ -59,9 +59,9 @@ uniform vec4 color:hint_color;
 
 void fragment(){
 	float pulse = abs(sin(TIME *0.2));
-	
+
 	vec4 final_color = mix(color,vec4(0.06,0.045,0.25,color.a),pulse);
-	
+
 	COLOR = final_color;
 }"
 
