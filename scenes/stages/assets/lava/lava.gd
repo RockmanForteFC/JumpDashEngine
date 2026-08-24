@@ -95,4 +95,3 @@ func _on_Area2D_body_entered(body):
 			elif body.is_in_group("PlayerWeapons") and body.element == Physics.Element.ice:
 				freeze()
 				emit_signal("freeze" ,lava_id)
-

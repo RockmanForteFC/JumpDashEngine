@@ -140,4 +140,3 @@ func on_locking_enemy_dead():
 	$Area2D/CollisionShape2D.set_deferred("disabled",true)
 	yield(get_tree(),"idle_frame")
 	$Area2D/CollisionShape2D.set_deferred("disabled",false)
-

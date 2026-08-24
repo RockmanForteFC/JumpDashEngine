@@ -61,4 +61,3 @@ func _on_body_exited(body: PhysicsBody2D) -> void:
 	if body is Player:
 		set_physics_process(false)
 		_player = null
-

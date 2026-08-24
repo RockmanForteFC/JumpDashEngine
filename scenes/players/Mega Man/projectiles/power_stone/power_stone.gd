@@ -65,4 +65,3 @@ func _free_groups():
 
 func _on_PreciseVisibilityNotifier2D_screen_exited():
 	.queue_free()
-

@@ -86,4 +86,3 @@ func _on_Hitbox_body_entered(body):
 func _on_StunTimer_timeout():
 	$"../../EnemyAnimations".play("move")
 	get_parent().velocity.x = direction * MOVE_SPEED
-

@@ -75,4 +75,3 @@ func on_rush_ammo_tick(first_tick):
 	_deplete_energy()
 	if weapon_energy <= 0 and rush != null:
 		rush._deactivate()
-

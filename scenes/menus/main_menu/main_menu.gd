@@ -68,4 +68,3 @@ func _on_MenuContainer_menu_item_selected(selectedMenuOption):
 		handle_button_config()
 	elif "quit" in selectedMenuOption.to_lower():
 		handle_quit()
-

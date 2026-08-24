@@ -58,4 +58,3 @@ func _on_Area2D_body_entered(body):
 		velocity.x = 0
 		body.on_hit(damage, Physics.Damage.projectile,element)
 		explode()
-

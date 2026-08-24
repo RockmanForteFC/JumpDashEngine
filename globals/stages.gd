@@ -631,4 +631,3 @@ func submit_to_timetrial_discord_server(time:float, level_name:String):
 
 func get_record_time_trial(time):
 	best_time_trial_world_record = time
-

@@ -81,5 +81,3 @@ func _on_projectile_detector_body_entered(body):
 
 func _on_explosion_detector_area_entered(area):
 	explode()
-
-

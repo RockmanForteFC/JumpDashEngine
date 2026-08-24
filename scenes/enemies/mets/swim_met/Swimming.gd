@@ -64,5 +64,3 @@ func _update(delta):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == ("swim"):
 		emit_signal("finished", "descending")
-
-

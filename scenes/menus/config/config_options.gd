@@ -347,5 +347,3 @@ func _on_tab_accessibility_pressed():
 	game_container.hide()
 	accessibility_container.show()
 	$ContentArea/Accessibility_Container/VBoxContainer/default_lives.grab_focus()
-
-

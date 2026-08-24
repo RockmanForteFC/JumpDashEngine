@@ -65,5 +65,3 @@ func on_weaopn_swapped():
 func _on_timeout() -> void:
 	hide()
 	set_process(false)
-
-

@@ -68,4 +68,3 @@ func _update(delta: float) -> void:
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "Shoot":
 		emit_signal("finished", "idle")
-

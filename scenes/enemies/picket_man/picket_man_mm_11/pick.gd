@@ -65,4 +65,3 @@ func _on_screen_exit(viewport):
 func _on_body_entered(body):
 	if body is Player:
 		body.on_hit(damage,damage_type,element)
-

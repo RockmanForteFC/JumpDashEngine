@@ -70,4 +70,3 @@ func _on_Timer_timeout():
 		queue_free()
 	else:
 		has_started = false
-

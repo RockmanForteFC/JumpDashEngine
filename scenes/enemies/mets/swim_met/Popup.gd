@@ -48,4 +48,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$"../../AnimationPlayer".play("popdown")
 	if anim_name == ("popdown"):
 		emit_signal("finished", "idle")
-

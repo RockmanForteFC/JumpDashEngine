@@ -47,4 +47,3 @@ func _on_Timer_timeout() -> void:
 		emit_signal("finished", "spinning")
 	else:
 		_trigger_area.is_shot_ready = true
-

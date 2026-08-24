@@ -82,4 +82,3 @@ func _on_animation_finished(anim_name):
 func _on_BGM_finished():
 	yield(get_tree().create_timer(1.5),"timeout")
 	get_tree().change_scene(PlayerValues.last_played_level)
-

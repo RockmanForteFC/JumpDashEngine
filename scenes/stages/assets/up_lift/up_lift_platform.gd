@@ -44,4 +44,3 @@ func activate():
 
 func _on_PreciseVisibilityNotifier2D_camera_exited():
 	queue_free()
-

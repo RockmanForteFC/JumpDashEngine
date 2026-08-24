@@ -72,4 +72,3 @@ func use() -> void:
 #-------------------------------------------------
 func on_bounced():
 	_deplete_energy()
-

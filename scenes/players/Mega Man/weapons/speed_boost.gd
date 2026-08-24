@@ -56,4 +56,3 @@ func on_speed_boost_ammo_tick(first_tick):
 	if weapon_energy <= 0 and sboost != null:
 		sboost.queue_free()
 		sboost = null
-

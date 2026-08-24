@@ -55,4 +55,3 @@ func on_viewport_exited(viewport: Viewport) -> void:
 
 func set_direction(value: String) -> void:
 	direction = value
-

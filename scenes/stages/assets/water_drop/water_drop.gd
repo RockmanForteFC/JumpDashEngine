@@ -61,4 +61,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$AnimationPlayer.play("Idle")
 		$Timer.start()
 		make_droplet()
-

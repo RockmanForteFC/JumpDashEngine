@@ -338,4 +338,3 @@ func _on_lava(area):
 		if area.get_collision_layer_bit(Bitmask.lava):
 			if not is_dead:
 				_die(true,false)
-

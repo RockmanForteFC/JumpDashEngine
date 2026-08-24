@@ -217,4 +217,3 @@ func _on_midboss_death():
 
 func _on_midboss_despawn():
 	emit_signal("signal_midboss_despawn")
-

@@ -43,4 +43,3 @@ func _update(delta):
 #-------------------------------------------------
 func _open():
 	get_parent().is_in_ready_state = true
-

@@ -57,5 +57,3 @@ func _on_Player_Detector_Straight_body_entered(body):
 		if not did_timer_start:
 			did_timer_start = true
 			$"../../Timer".start()
-
-

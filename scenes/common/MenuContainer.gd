@@ -87,4 +87,3 @@ func disable():
 	is_active = false
 	has_begun = false
 	ArrowSprite.hide()
-
