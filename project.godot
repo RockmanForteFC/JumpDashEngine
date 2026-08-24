@@ -139,7 +139,7 @@ scene_naming=2
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/code_style_setter/plugin.cfg" )
 
 [global]
 
