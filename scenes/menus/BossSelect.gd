@@ -2,16 +2,6 @@ extends Node2D
 #warning-ignore-all:return_value_discarded
 
 
-#This should be the scene path to the boss level
-const BOTTOM_RIGHT = ""
-const TOP_RIGHT = ""
-const TOP_LEFT = ""
-const MIDDLE_RIGHT = "res://scenes/stages/levels/example_1/example_1.tscn"
-const BOTTOM_MIDDLE = ""
-const BOTTOM_LEFT = ""
-const LEFT_MIDDLE = ""
-const TOP_MIDDLE = ""
-const BONUS_BOSS = ""
 const MENU = "res://scenes/menus/existing_game_menu/existing_game_menu.tscn"
 const LETTER_TEXTURE_MASK: String = "res://assets/images/sprites/pickups/letters/letter_%s.png"
 
@@ -47,7 +37,28 @@ var is_accepting_inputs = false
 var beat_level_count = 0
 var selected_middle = ""
 
+# tables containing stage ID & path to stage scene
+const STAGES = {
+	POS.TL: null,
+	POS.TM: null,
+	POS.TR: null,
+	POS.LM: null,
+	POS.MM: null,
+	POS.RM: {"id": "example_level", "scene": "res://scenes/stages/levels/example_1/example_1.tscn"},
+	POS.BL: null,
+	POS.BM: null,
+	POS.BR: null,
+	"bonus": null
+}
+
 onready var _eye_location = $Boss_Layer/BossImages/Eye_Location
+
+func _init():
+	# add custom stage IDs to beat levels registry
+	for pos in STAGES:
+		var stage = STAGES[pos]
+		if stage and not stage.id in PlayerValues.beat_levels:
+			PlayerValues.beat_levels[stage.id] = false
 
 func _ready():
 	PlayerValues.newly_obtained_weapon_name = ""
@@ -150,7 +161,7 @@ func _process(_delta):
 			elif selected_middle != "s" and PlayerValues.is_serenade_unlocked :
 				selected_middle = "s"
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("action_jump_p1")) and is_accepting_inputs:
-		if selected == POS.RM or is_shop_highlighted:
+		if (selected in STAGES and STAGES[selected] != null) or is_shop_highlighted:
 			is_accepting_inputs = false
 			$ColorRect.show()
 			$SelectedMenuObject.hide()
@@ -221,8 +232,8 @@ func _get_eye_location():
 					_eye_location.play("Doctor_Wily")
 					$Boss_Layer/scanlines/Mid_Mid.hide()
 				elif selected_middle == "s":
-					if PlayerValues.is_serenade_unlocked:
-						if PlayerValues.beat_levels[boss_names[boss.serenade]]:
+					if STAGES.bonus and PlayerValues.is_serenade_unlocked:
+						if PlayerValues.beat_levels[STAGES.bonus.id]:
 							_eye_location.play("Serenade_Defeated")
 							$Boss_Layer/scanlines/Mid_Mid.show()
 						else:
@@ -298,45 +309,32 @@ func hide_beat_bosses():
 func loadStage():
 	$CanvasLayer/AnimationPlayer.play("Close_Transition")
 	yield($CanvasLayer/AnimationPlayer,"animation_finished")
-	if selected == POS.BR:
-		$Error.play()
-	if selected == POS.TR:
-		$Error.play()
-	if selected == POS.TL:
-		$Error.play()
-	if selected == POS.RM:
-		PlayerValues.last_played_level = MIDDLE_RIGHT
-		PlayerValues.boss_display_name = boss_names[boss.incinerate]
+
+	var stage = STAGES[selected] if selected in STAGES else null
+	if stage:
+		PlayerValues.last_played_level = stage.scene
+		PlayerValues.boss_display_name = stage.id
 		PlayerValues.refill_everything()
-		if not PlayerValues.beat_levels[boss_names[boss.incinerate]]:
+		if not PlayerValues.beat_levels[stage.id]:
 			get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
 		else:
-			get_tree().change_scene(MIDDLE_RIGHT)
-	if selected == POS.BM:
-		$Error.play()
-	if selected == POS.BL:
-		$Error.play()
-	if selected == POS.LM:
-		$Error.play()
-	if selected == POS.TM:
-		$Error.play()
-	if selected == POS.MM:
-		if selected_middle == "v":
+			get_tree().change_scene(stage.scene)
+	elif selected == POS.MM:
+		if selected_middle == "v" or not STAGES.bonus:
 			pass
 		elif selected_middle == "dw":
-			PlayerValues.boss_display_name = boss_names[boss.serenade]
+			PlayerValues.boss_display_name = STAGES.bonus.id
 			get_tree().change_scene("res://scenes/cut_scene/wily_fortress_map/wily_fortress.tscn")
 		elif selected_middle == "s":
 			if PlayerValues.is_serenade_unlocked:
-				PlayerValues.last_played_level = BONUS_BOSS
-				PlayerValues.boss_display_name = boss_names[boss.serenade]
+				PlayerValues.last_played_level = STAGES.bonus.scene
+				PlayerValues.boss_display_name = STAGES.bonus.id
 				PlayerValues.refill_everything()
-				if not PlayerValues.beat_levels[boss_names[boss.serenade]]:
+				if not PlayerValues.beat_levels[STAGES.bonus.id]:
 					get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
 				else:
-					get_tree().change_scene(BONUS_BOSS)
-
-	if is_shop_highlighted:
+					get_tree().change_scene(STAGES.bonus.scene)
+	elif is_shop_highlighted:
 		PlayerValues.last_played_level = "existing_game_menu"
 		get_tree().change_scene(MENU)
 

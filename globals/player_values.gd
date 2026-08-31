@@ -120,17 +120,7 @@ var found_letters:Dictionary = {
 	"letter_8":false,
 	}
 
-var beat_levels:Dictionary = {
-	"a_man": false,
-	"c_man":false,
-	"d_man": false,
-	"example_level":false,
-	"e_man":false,
-	"f_man":false,
-	"g_man":false,
-	"b_woman":false,
-	"h":false
-}
+var beat_levels:Dictionary = {}
 
 enum fortress_levels {
 	L_1 = 0,
