@@ -241,7 +241,8 @@ func get_current_camera() -> void:
 
 #this will be used for when you die in a method without an explosion
 func play_death_sound()->void:
-	$Audio/DeathSound.play()
+	if $Audio/DeathSound:
+		$Audio/DeathSound.play()
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
