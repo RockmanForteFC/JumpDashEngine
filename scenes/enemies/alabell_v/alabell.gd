@@ -31,7 +31,7 @@ func _ready():
 	$CountDownTimer.connect("timeout",self,"countdown")
 	$Sprite/AnimatedSprite.play(str(timer))
 	$CountDownTimer.start()
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -40,7 +40,7 @@ func _replace_with_spawner() -> void:
 	._replace_with_spawner()
 	spawn_info["can_jump"] = can_jump
 	spawn_info["starting_timer"] = starting_timer
-	
+
 func countdown():
 	timer -= 1
 	$Audio/tick.play()
@@ -49,7 +49,7 @@ func countdown():
 		if timer <= 3 and animation_modifier == "":
 			animation_modifier = "_Ring"
 			if current_state == "freakout":
-				pass 
+				pass
 			elif current_state == "walk":
 				var pos = $AnimationPlayer.current_animation_position
 				$AnimationPlayer.play("Walk_Ring")
@@ -69,7 +69,7 @@ func jump():
 	if !is_dead:
 		if current_state ==  "walk":
 			emit_signal("change_state","jump_up")
-			
+
 func _die(prevent_appending_to_user_stats:bool = false, was_beast_net:bool = false) -> void:
 	is_dead = true
 	if  not prevent_appending_to_user_stats:

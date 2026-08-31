@@ -24,17 +24,17 @@ const positions = [
 	Vector2(64,32),
 	Vector2(128,32),
 	Vector2(192,32),
-	
+
 	#middle row
 	Vector2(64,96),
 	Vector2(128,96),
 	Vector2(192,96),
-	
+
 	#bottom row
 	Vector2(64,160),
 	Vector2(128,160),
 	Vector2(192,160),
-	
+
 	#shop icon
 	Vector2(128,212)
 ]
@@ -64,7 +64,7 @@ func _ready():
 			selected_middle = "v"
 		else:
 			selected_middle = "dw"
-			
+
 	# stage select is disabled, they need to go straight to the virus fortress
 	if beat_level_count == 8 and (PlayerValues.is_eight_boss_cutscene_seen and PlayerValues.is_in_virus_fortress):
 		get_tree().change_scene("res://scenes/cut_scene/virus_fortress_map/virus_fortress_map.tscn")
@@ -77,7 +77,7 @@ func _ready():
 	$CanvasLayer/AnimationPlayer.play("Open_Transition")
 	##Sets up the session Timer
 	PlayerValues.start_game_timer()
-	##updates the global timer 
+	##updates the global timer
 	$AnimationPlayer.play("Shine")
 #	$StageSelectFlash.play("Stage_Select")
 	$SelectedMenuObject.position = positions[selected]
@@ -103,7 +103,7 @@ func _process(_delta):
 				was_position_changed = true
 		elif Input.is_action_just_pressed("ui_right") and is_accepting_inputs:
 			if not is_shop_highlighted:
-				if selected == POS.TR or selected == POS.RM or selected == POS.BR: 
+				if selected == POS.TR or selected == POS.RM or selected == POS.BR:
 					selected -=2
 				else:
 					selected += 1
@@ -112,9 +112,9 @@ func _process(_delta):
 				pass
 		elif Input.is_action_just_pressed("ui_left") and is_accepting_inputs:
 			if not is_shop_highlighted:
-				if selected == POS.TL or selected == POS.LM or selected == POS.BL: 
+				if selected == POS.TL or selected == POS.LM or selected == POS.BL:
 					selected +=2
-				else: 
+				else:
 					selected -= 1
 				was_position_changed = true
 			else:
@@ -210,7 +210,7 @@ func _get_eye_location():
 			$right_arrow.play("nothing")
 		POS.MM:
 			if beat_level_count == 8 or PlayerValues.is_serenade_unlocked:
-				if beat_level_count == 8 and PlayerValues.is_serenade_unlocked:	
+				if beat_level_count == 8 and PlayerValues.is_serenade_unlocked:
 					$left_arrow.play("flash")
 					$right_arrow.play("flash")
 					$Boss_Layer/BossLabels/Middle_Label.show()
@@ -247,38 +247,38 @@ func _get_eye_location():
 			_eye_location.play("DownRight")
 			$left_arrow.play("nothing")
 			$right_arrow.play("nothing")
-	
+
 	if is_shop_highlighted:
 		_eye_location.play("Shop")
 		$left_arrow.play("nothing")
 		$right_arrow.play("nothing")
-	
+
 func hide_beat_bosses():
 	if PlayerValues.beat_levels[boss_names[boss.incinerate]]:
 		$Boss_Layer/BossLabels/IncinerateLady.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Mid_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/incinerate.png")
 		$Boss_Layer/scanlines/Boss_Mid_Right.show()
-	
+
 	if PlayerValues.beat_levels[boss_names[boss.tremor]]:
 		$Boss_Layer/BossLabels/TremorMan.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Bottom_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/tremor.png")
 		$Boss_Layer/scanlines/Boss_Bottom_Right.show()
-		
+
 	if PlayerValues.beat_levels[boss_names[boss.maelstrom]]:
 		$Boss_Layer/BossLabels/MaelstromWoman.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Bottom_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/maelstrom.png")
 		$Boss_Layer/scanlines/Boss_Bottom_Left.show()
-		
+
 	if PlayerValues.beat_levels[boss_names[boss.ninja]]:
 		$Boss_Layer/BossLabels/NinjaMan.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Top_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/ninja.png")
 		$Boss_Layer/scanlines/Boss_Top_Right.show()
-		
+
 	if PlayerValues.beat_levels[boss_names[boss.beam]]:
 		$Boss_Layer/BossLabels/BeamMan.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Top_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/beam.png")
 		$Boss_Layer/scanlines/Boss_Top_Middle.show()
-	
+
 	if PlayerValues.beat_levels[boss_names[boss.gladiator]]:
 		$Boss_Layer/BossLabels/GladiatorMan.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Top_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/gladiator.png")
@@ -288,7 +288,7 @@ func hide_beat_bosses():
 		$Boss_Layer/BossLabels/ArcticMan.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Bottom_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/arctic.png")
 		$Boss_Layer/scanlines/Boss_Bottom_Middle.show()
-		
+
 	if PlayerValues.beat_levels[boss_names[boss.detonate]]:
 		$Boss_Layer/BossLabels/DetonateMan.modulate = Color("bfb3b3")
 		$Boss_Layer/BossImages/Boss_Mid_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/detonate.png")
@@ -305,8 +305,8 @@ func loadStage():
 	if selected == POS.TL:
 		$Error.play()
 	if selected == POS.RM:
-		PlayerValues.last_played_level = MIDDLE_RIGHT 
-		PlayerValues.boss_display_name = boss_names[boss.incinerate] 
+		PlayerValues.last_played_level = MIDDLE_RIGHT
+		PlayerValues.boss_display_name = boss_names[boss.incinerate]
 		PlayerValues.refill_everything()
 		if not PlayerValues.beat_levels[boss_names[boss.incinerate]]:
 			get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
@@ -324,22 +324,22 @@ func loadStage():
 		if selected_middle == "v":
 			pass
 		elif selected_middle == "dw":
-			PlayerValues.boss_display_name = boss_names[boss.serenade] 
+			PlayerValues.boss_display_name = boss_names[boss.serenade]
 			get_tree().change_scene("res://scenes/cut_scene/wily_fortress_map/wily_fortress.tscn")
 		elif selected_middle == "s":
 			if PlayerValues.is_serenade_unlocked:
 				PlayerValues.last_played_level = BONUS_BOSS
-				PlayerValues.boss_display_name = boss_names[boss.serenade] 
+				PlayerValues.boss_display_name = boss_names[boss.serenade]
 				PlayerValues.refill_everything()
 				if not PlayerValues.beat_levels[boss_names[boss.serenade]]:
 					get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
 				else:
 					get_tree().change_scene(BONUS_BOSS)
-			
+
 	if is_shop_highlighted:
 		PlayerValues.last_played_level = "existing_game_menu"
 		get_tree().change_scene(MENU)
 
 func _on_transition_animation(anim_name):
 	if anim_name == "Open_Transition":
-		is_accepting_inputs = true	
+		is_accepting_inputs = true

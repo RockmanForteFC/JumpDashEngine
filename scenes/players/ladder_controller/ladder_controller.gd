@@ -18,10 +18,10 @@ class_name LadderController
 
 func _ready():
 	pass
-	
+
 func _process(delta):
 	if get_parent().is_sliding:
-		$CollisionShape2D.shape.extents.x = (6 * 2) 
+		$CollisionShape2D.shape.extents.x = (6 * 2)
 	else:
 		$CollisionShape2D.shape.extents.x = 6.5
 

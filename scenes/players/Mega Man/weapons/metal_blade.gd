@@ -21,7 +21,7 @@ func _ready() -> void:
 	_get_weapon_reference_index()
 	pause_on_floor = true
 	anim_name = ANIMATIONS[animation.throw]
-	
+
 func _process(delta):
 	if Physics.is_action_pressed("action_down_p1") and Physics.is_action_pressed("action_right_p1"):
 		direction_modifier= "down_right"
@@ -44,7 +44,7 @@ func _process(delta):
 func can_use() -> bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group("MetalBladeP%s" % owner.player_number)
 	return on_screen_bullets.size() < METAL_BLADE_MAX_ON_SCREEN and weapon_energy > 0
-		
+
 func use() -> void:
 	if can_use():
 		if not _deplete_energy():

@@ -23,7 +23,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		hide()
 		$AnimationPlayer.play("RESET")
 		$Ready_Flash_Animation.play("RESET")
-		
+
 func play_touchdown_sound():
 	$WarpInSound.play()
 

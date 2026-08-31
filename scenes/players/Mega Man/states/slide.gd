@@ -51,7 +51,7 @@ func _enter() -> void:
 	else:
 		_was_in_front_of_wall = false
 		_cancel_on_next_frame = false
-	
+
 	owner.was_previously_in_slide = true
 	owner.is_sliding = true
 	owner.buffering_charge = false
@@ -69,7 +69,7 @@ func _enter() -> void:
 	_frame_count = 0
 
 	var dust = DUST.instance()
-	
+
 	# Slide dust animation
 	dust.set_as_toplevel(true)
 	dust.global_position = owner.global_position
@@ -81,14 +81,14 @@ func _enter() -> void:
 		dust.position = Vector2(dust.position.x -10, dust.position.y + owner.gravity_direction.y * 10)
 		dust.face_right()
 	owner.call_deferred("add_child", dust)
-		
+
 func _handle_command(command: String) -> void:
 	if (command == "jump"
 		and _can_exit
 		and _frame_count >= LOCKED_FRAME_COUNT
 		and (not inputs.is_action_pressed(InputHandler.Action.DOWN))
 		):
-			
+
 		var ice_speed_modifier:float = 1
 		if owner.has_low_friction:
 			if owner.is_ready_frame_for_trail:
@@ -102,7 +102,7 @@ func _handle_command(command: String) -> void:
 			ice_speed_modifier = owner.ICE_SPEED_MULTIPLIER
 			owner.keep_momentum = true
 		velocity.x = (SLIDE_SPEED * owner.get_facing_direction().x) * ice_speed_modifier
-			
+
 		emit_signal("finished", "jump")
 
 	if command.begins_with("weapon_"):
@@ -128,12 +128,12 @@ func _update(delta: float) -> void:
 		var collision: CollisionShape2D = Physics.get_collision(owner)
 		collision.position.x = sign(owner.get_facing_direction().x) * _slide_position.position.x
 		$"../../slide".set_deferred("disabled", false)
-	slide_frames += 1 
+	slide_frames += 1
 	if !owner.is_dead:
 		if _cancel_on_next_frame:
 			emit_signal("finished", "idle")
 			return
-		
+
 		# Enough empty space above.
 		_can_exit = !_ray_cast.is_colliding() and !_ray_cast2.is_colliding() and !_ray_cast3.is_colliding() and !_ray_cast4.is_colliding()
 
@@ -167,13 +167,13 @@ func _update(delta: float) -> void:
 
 		if _frame_count > LOCKED_FRAME_COUNT and (not owner.is_on_floor() and not owner.is_on_ceiling()) and _can_exit:
 			emit_signal("finished", "idle")
-			
+
 		if _frame_count > LOCKED_FRAME_COUNT and _can_exit and owner.stopper_ray_cast.is_colliding():
 			emit_signal("finished", "idle")
 
 		if not _can_exit:
 			update_sprite_direction(input_direction)
-		
+
 		_frame_count += 1
 
 func _should_soft_stun() -> bool:
@@ -182,4 +182,3 @@ func _should_soft_stun() -> bool:
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------
-

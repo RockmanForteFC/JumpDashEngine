@@ -43,7 +43,7 @@ func _process(_delta):
 		selected = 0
 		highlightOption(selected)
 		has_begun = true
-	
+
 	if is_active and not labels.size() == 0:
 		if Input.is_action_just_pressed("ui_down"):
 			OptionSound.play()
@@ -74,7 +74,7 @@ func highlightOption(selectedItem):
 	if labels.size() > 0:
 		var label = labels[selectedItem]
 		ArrowSprite.position.y = label.rect_position.y + 5
-	
+
 func enable():
 	if labels.size() > 0 and is_active:
 		ArrowSprite.show()
@@ -85,6 +85,5 @@ func enable():
 
 func disable():
 	is_active = false
-	has_begun = false 
+	has_begun = false
 	ArrowSprite.hide()
-	

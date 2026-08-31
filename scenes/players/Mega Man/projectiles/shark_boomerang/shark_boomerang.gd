@@ -23,7 +23,7 @@ func _ready():
 	spawnPoint = global_position
 	$Audio/shoot.play()
 	$Timer.start()
-	
+
 func _physics_process(delta: float) -> void:
 	if !is_returning and !is_reflecting:
 		move_and_slide((direction.normalized() * SHARK_BOOMERANG_SPEED), Vector2.UP)
@@ -49,7 +49,7 @@ func queue_free() -> void:
 	if $Audio/shoot.playing:
 		yield($Audio/shoot, "finished")
 	.queue_free()
-	
+
 func reflect() -> void:
 	is_reflecting = true
 	_free_groups()

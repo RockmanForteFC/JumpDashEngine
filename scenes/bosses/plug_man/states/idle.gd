@@ -37,17 +37,17 @@ func _update(delta: float) -> void:
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------
-#here is the magic. when a timeout on the "Idle Delay" is done, perform your logic here. 
+#here is the magic. when a timeout on the "Idle Delay" is done, perform your logic here.
 func _on_timeout() -> void:
 		var distance:float = 0.0
 		if PlayerValues.player.global_position.x > owner.global_position.x:
 			distance = PlayerValues.player.global_position.x - owner.global_position.x
 		else:
 			distance = owner.global_position.x - PlayerValues.player.global_position.x
-		
+
 		if distance >= PLAYER_DISTANCE_TO_INITIATE_HOP:
 			hop()
-		
+
 		else:
 			# roll a random number between 0 and 5
 			var random_number: float = Physics.rng.randi_range(0, 5)

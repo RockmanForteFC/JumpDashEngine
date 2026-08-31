@@ -34,7 +34,7 @@ func _ready():
 	yield(get_tree().create_timer(1.5),"timeout")
 	$CenterBossDisplay/CenterDisplayAnimation.play("open")
 	PlayerValues.boss_display_name = ""
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -63,7 +63,7 @@ func _dialogue():
 	var boss_name:String = boss
 	if boss == "unknown":
 		boss_name = "Example Level"
-	
+
 	for letter in boss_name:
 		Timer.start()
 		if letter == "_":
@@ -82,4 +82,3 @@ func _on_animation_finished(anim_name):
 func _on_BGM_finished():
 	yield(get_tree().create_timer(1.5),"timeout")
 	get_tree().change_scene(PlayerValues.last_played_level)
-

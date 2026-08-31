@@ -22,17 +22,17 @@ func _ready():
 
 func _process(delta):
 	if show_up_queue and not Physics.is_game_paused:
-		
+
 		if Input.is_action_just_pressed("action_up_p1") and not show_dialog:
 			get_tree().paused = true
 			_open_dialog()
-		
+
 		if (Input.is_action_just_pressed("action_jump_p1") \
 				or Input.is_action_just_pressed("action_shoot_p1")
 				or Input.is_action_just_pressed("action_enter_p1")) and show_dialog:
 			_close_dialog()
 			get_tree().paused = false
-			
+
 	if Physics.is_game_paused and show_dialog:
 		_close_dialog()
 #-------------------------------------------------
@@ -51,7 +51,7 @@ func _open_dialog():
 	Physics.is_in_pausible_state = false
 	tween.tween_property($CanvasLayer,"offset",Vector2(0,0),0.25)
 	show_dialog = true
-	
+
 func _close_dialog():
 	get_parent().play("Idle")
 	$Audio/Close.play()

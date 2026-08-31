@@ -4,7 +4,7 @@ extends KinematicBody2D
 #      Constants
 #-------------------------------------------------
 const QUARTER_TILE = Physics.TILE_SIZE.x /2
-const LOB_HEIGHT = 300 
+const LOB_HEIGHT = 300
 #-------------------------------------------------
 #      Signals
 #-------------------------------------------------
@@ -65,4 +65,3 @@ func _on_screen_exit(viewport):
 func _on_body_entered(body):
 	if body is Player:
 		body.on_hit(damage,damage_type,element)
-

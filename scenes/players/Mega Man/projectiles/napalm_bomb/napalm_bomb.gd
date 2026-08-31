@@ -42,7 +42,7 @@ func _physics_process(delta):
 	if is_on_wall():
 		velocity.x *= -1
 	if is_on_ceiling():
-		velocity.y = 0	
+		velocity.y = 0
 	if did_hit_enemy:
 		explode()
 #-------------------------------------------------
@@ -59,7 +59,7 @@ func can_bounce():
 func _free_groups():
 	if is_in_group("NapalmBombP1"):
 		remove_from_group("NapalmBombP1")
-		
+
 func reflect()-> void:
 	_free_groups()
 	$Audio/Deflect.play()
@@ -71,7 +71,7 @@ func reflect()-> void:
 	velocity = Vector2(-direction.x , -1) * (NAPALM_SPEED * 4)
 	set_collision_mask_bit(Bitmask.enemy, false)
 	set_collision_layer_bit(Bitmask.projectile, false)
-	
+
 func explode():
 	if !did_explode:
 		did_hit_enemy = true

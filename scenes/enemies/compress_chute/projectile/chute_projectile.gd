@@ -21,15 +21,15 @@ var element:int
 
 func _ready():
 	match element :
-		0 : 
+		0 :
 			$AnimationPlayer.play("Fire")
-		2: 
+		2:
 			$AnimationPlayer.play("Electric")
-		3 : 
+		3 :
 			$AnimationPlayer.play("Ground")
-		5 : 
+		5 :
 			$AnimationPlayer.play("Neutral")
-		
+
 
 func _physics_process(delta):
 	velocity.y = clamp(velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX,Physics.FALL_SPEED_MAX)

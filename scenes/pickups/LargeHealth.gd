@@ -26,7 +26,7 @@ func _process(delta):
 				$AudioStreamPlayer2D.play()
 			body.heal(heal_amount)
 			emit = true
-		
+
 			var healScore = Score.HEALTH_AMMO_PICKUP_SCORE
 			if PlayerValues.health == PlayerValues.MAX_HEALTH:
 				healScore *= Score.HEALTH_AMMO_FULL_MODIFIER
@@ -49,14 +49,14 @@ func _physics_process(delta):
 		move_and_slide(velocity)
 		if PlayerValues.player.is_dead:
 			queue_free()
-			
+
 func _maelstrom_absorb():
 	if !is_homing_on_player:
 		velocity = Vector2.ZERO * SUCTION_SPEED
 		$CollisionShape2D.set_deferred("disabled", true)
 		is_homing_on_player = true
 
-			
+
 func _on_AudioStreamPlayer2D_finished():
 	cleanup(emit and not can_despawn)
 

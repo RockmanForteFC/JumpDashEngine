@@ -46,7 +46,7 @@ func _update(delta):
 	owner.move_and_slide(get_parent().velocity, Vector2.UP)
 	if owner.is_on_floor():
 		get_parent().velocity = Vector2.ZERO
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

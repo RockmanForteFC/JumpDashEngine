@@ -46,6 +46,6 @@ func _on_animation_finished(anim_name):
 		emit_signal("finished","idle")
 	if anim_name == "PrepareToShoot":
 		emit_signal("finished","shoot")
-		
+
 func _on_shield_hit():
 	$"../../AnimationPlayer".play("ShieldHit")

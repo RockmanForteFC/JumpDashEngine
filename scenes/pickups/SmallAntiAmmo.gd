@@ -53,7 +53,7 @@ func _on_PickupDetector_body_entered(body):
 			cleanup(emit and not can_despawn)
 	elif body.is_in_group("PlayerWeapons") and body.key_name == "maelstrom_absorber":
 		_maelstrom_absorb()
-			
+
 func _on_DespawnNormal_timeout():
 	modulate.a = 0.7
 	$DespawnFlashing.wait_time = $DespawnFlashing.wait_time * Physics.item_despawn_rate

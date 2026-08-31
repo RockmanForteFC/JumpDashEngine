@@ -29,7 +29,7 @@ func can_use() -> bool:
 	"LifeSeedP%s" % owner.player_number)
 
 
-	return on_screen_bullets.size() < LIFE_SEED_MAX 
+	return on_screen_bullets.size() < LIFE_SEED_MAX
 
 func use() -> void:
 	if can_use():
@@ -43,10 +43,10 @@ func use() -> void:
 
 		proj.position = mega_buster.global_position
 		owner.get_parent().add_child(proj)
-		
+
 		if not _deplete_energy():
 			return
-			
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

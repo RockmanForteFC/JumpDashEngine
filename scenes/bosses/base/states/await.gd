@@ -23,7 +23,7 @@ func _ready():
 # can be shifted after death, this code will ensure it doesnt move.
 func _update(delta):
 	owner.global_position = owner._start_pos
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

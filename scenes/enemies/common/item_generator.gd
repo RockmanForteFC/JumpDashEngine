@@ -44,7 +44,7 @@ var _is_tank:bool = false
 func _ready():
 	if PlayerValues.has_bolt_up_item:
 		weight_small_bolt *= 2
-		weight_large_bolt *= 2 
+		weight_large_bolt *= 2
 	if PlayerValues.is_in_special_game_mode:
 		weight_extra_life = 0
 		weight_small_bolt = 0
@@ -71,7 +71,7 @@ func drop_item() -> void:
 
 func drop_specific_item(item:String) -> void:
 	var item_drop = null
-	
+
 	if item == "E" or item == "W" or item == "M":
 		item_drop = EnergyTank.instance()
 		if item == "E":
@@ -85,9 +85,9 @@ func drop_specific_item(item:String) -> void:
 		item_drop = LifeEnergyBig.instance()
 	elif item == "Life":
 		item_drop = ExtraLife.instance()
-	
+
 	if item_drop:
-		item_drop.can_despawn = true 
+		item_drop.can_despawn = true
 		var pos = Vector2(global_position.x, global_position.y -10)
 		item_drop.global_position = pos
 		item_drop.velocity.y = -140
@@ -112,7 +112,7 @@ func _roll_item() -> Node:
 	var roll: int = 0
 	if total_weight > 0:
 		roll += Physics.rng.randi_range(1, total_weight)
-	
+
 	_accumulated_weight = weight_no_drop
 	if (roll <= _accumulated_weight):
 		return null
@@ -141,11 +141,11 @@ func _roll_item() -> Node:
 	if roll <= _accumulated_weight:
 		_is_tank = true
 		return EnergyTank.instance()
-	
+
 	_accumulated_weight += weight_small_bolt
 	if roll <= _accumulated_weight:
 		return SmallBolt.instance()
-		
+
 	_accumulated_weight += weight_large_bolt
 	if roll <= _accumulated_weight:
 		return LargeBolt.instance()

@@ -42,8 +42,8 @@ signal pre_boss_music()
 #      Properties
 #-------------------------------------------------
 
-# Identifiers for different areas must not be combined for a single tile type.	
-# Identifiers are the named representations of a tilemap object.  For example, all tiles named "ladder" will be replaced with 
+# Identifiers for different areas must not be combined for a single tile type.
+# Identifiers are the named representations of a tilemap object.  For example, all tiles named "ladder" will be replaced with
 # climbable nodes, This makes ladders reusable and not have to place each ladder node as a seperate object throughout the levels.
 export(Array, String) var instant_death_identifiers := ["acid", "lava", "spike"]
 export(Array, String) var ladder_identifiers := ["ladder"]
@@ -83,7 +83,7 @@ onready var _fade_effect := $"UI/FadeEffects"
 onready var _health_bar := $"UI/MarginContainer/HealthBar"
 onready var _weapon_bar := $"UI/MarginContainer/HealthBar/WeaponBar"
 onready var _pause := $"UI/PauseMenu"
-onready var _tt 
+onready var _tt
 #onready var _gui_game_over := $"GUI/GameOver"
 onready var _gui_weapon_icon_overhead := $"UI/WeaponIconOverhead"
 onready var noise = OpenSimplexNoise.new()
@@ -104,7 +104,7 @@ func _ready() -> void:
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT,SceneTree.STRETCH_ASPECT_KEEP,Vector2(256,224),1.0)
 	set_process(false)
 	set_physics_process(false)
-	var skip_dialog:bool = false 
+	var skip_dialog:bool = false
 	if (Config.skip_boss_dialog and Config.has_beat_game) or PlayerValues.is_in_special_game_mode:
 		skip_dialog = true
 		if PlayerValues.game_mode == "time_trial":
@@ -114,7 +114,7 @@ func _ready() -> void:
 			get_tree().call_group("item_bolt", "queue_free")
 			get_tree().call_group("item_treasure", "queue_free")
 			get_tree().call_group("item_life","queue_free")
-			
+
 	did_boss_dialog = skip_dialog
 	noise.seed = Physics.rng.randi()
 	noise.period = 2
@@ -142,7 +142,7 @@ func _ready() -> void:
 		_tt = tt_ui
 	if _is_campaign_level() and has_node("UI"):
 		get_node("UI").add_child(SCORE_DISPLAY.instance())
-		
+
 func _is_campaign_level() -> bool:
 	var path := filename
 	return path.begins_with("res://scenes/stages/levels/") \
@@ -151,7 +151,7 @@ func _is_campaign_level() -> bool:
 func _input(event):
 	if event is InputEventMouse or event is InputEventMouseButton or event is InputEventJoypadMotion or event is InputEventMouseMotion:
 		return
-		
+
 	if !time_trial_first_input and is_player_ready_for_first_input:
 		time_trial_first_input = true
 		start_timer()
@@ -165,7 +165,7 @@ func _process(delta):
 		if stage_playtime >= 60.0:
 			is_short = false
 		_tt.set_time(get_playtime(is_short))
-		
+
 	# about once every 10 seconds or so it saves stats.
 	stat_saving_frame += 1
 	if stat_saving_frame == 1000:
@@ -183,7 +183,7 @@ func _physics_process(delta):
 #      Public Methods
 #-------------------------------------------------
 func append_time_trial_frame():
-	count += 1 
+	count += 1
 	ghost_data[String(count)] = PlayerValues.player.global_position
 
 func save_time_trial_to_file():
@@ -212,13 +212,13 @@ func shake_screen(speed = NOISE_SHAKE_SPEED,strength = NOISE_SHAKE_STRENGTH,deca
 
 func stop_shaking_screen():
 	shake_strength = 0.0
-	
+
 func get_noise_offset(delta)->Vector2:
 	noise_i += delta * shake_speed
 	return Vector2(
 		noise.get_noise_2d(1,noise_i) *shake_strength,
 		noise.get_noise_2d(100,noise_i) *shake_strength)
-	
+
 # Returns the first Camera2D found in the stage. Should not be used in _ready() callbacks,
 # since some nodes' _ready() callbacks are called before the camera is instantiated.
 func get_current_camera() -> void:
@@ -235,7 +235,7 @@ func get_current_camera() -> void:
 			if child is Camera2D:
 				current_camera = child
 				break
-	
+
 	if not current_camera:
 		printerr("No camera found in current stage.")
 
@@ -292,7 +292,7 @@ func _game_over() -> void:
 func _set_stage_start_pos() -> void:
 	if not player:
 		return
-	
+
 	if start_pos:
 		player.global_position = start_pos
 	else:
@@ -333,7 +333,7 @@ func _connect_signals() -> void:
 	_try_connect(player, "ready_to_move", self, "set_is_player_ready_for_first_input")
 	_try_connect(self, "player_died", _fade_effect, "fade_out", [FADE_OUT_DURATION])
 	_try_connect(self, "stage_cleared", player, "on_stage_cleared")
-	
+
 	# Connect children signals to stage methods.
 	_try_connect(player, "died", self, "_on_died")
 	_try_connect(_fade_effect, "screen_faded_out", self, "_on_screen_faded_out")
@@ -368,7 +368,7 @@ func _try_connect(source: Object, signal_name: String, target: Object, method_na
 	if not target.has_method(method_name):
 		printerr(error_msg, " Method on %s does not exist." % target.name)
 		return false
-	
+
 	if not source.is_connected(signal_name, target, method_name):
 		return true if source.connect(signal_name, target, method_name, binds, flags) else false
 	else:
@@ -392,7 +392,7 @@ func _add_instant_death_areas() -> void:
 								tile_map.map_to_world(death_cell_pos) + Physics.TILE_SIZE / 2
 						var instant_death_area_global = tile_map.to_global(instant_death_area_local)
 						if identifier.to_lower() == "lava":
-							#lava should be moved down 1 pixel because it is not flush with the top of 
+							#lava should be moved down 1 pixel because it is not flush with the top of
 							instant_death_area_global.y += 1
 						instant_death_area.global_position = instant_death_area_global
 						instant_death_area.tile_type = tile_set.tile_get_name(tile_id).to_lower()
@@ -439,7 +439,7 @@ func _add_ladder_areas() -> void:
 						var ladder_tiles_local: Vector2 = tile_map.map_to_world(coord)
 						var ladder_tiles_global: Vector2 = tile_map.to_global(ladder_tiles_local)
 						ladder_tiles.append(ladder_tiles_global)
-	
+
 	while ladder_tiles.size() > 0:
 		ladder_node.call_deferred("add_child",_construct_ladder(ladder_tiles))
 
@@ -561,7 +561,7 @@ func weapon_shockwave(position:Vector2):
 	var y = 1-(position.y - current_section.position.y) /224.0
 	$UI/shockwave_shader.material.set_shader_param("center",Vector2(x,y))
 	$UI/Shockwave.play("shockwave")
-	
+
 func on_time_trial_complete():
 	pass
 
@@ -618,4 +618,3 @@ func submit_to_timetrial_discord_server(time:float, level_name:String):
 
 func get_record_time_trial(time):
 	best_time_trial_world_record = time
-

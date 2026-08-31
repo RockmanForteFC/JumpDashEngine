@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
-	
+
 func queue_free() -> void:
 	hide()
 	$CollisionShape2D.set_deferred("disabled",true)
@@ -65,4 +65,3 @@ func _free_groups():
 
 func _on_PreciseVisibilityNotifier2D_screen_exited():
 	.queue_free()
-

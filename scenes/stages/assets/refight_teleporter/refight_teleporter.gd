@@ -38,7 +38,7 @@ func _physics_process(delta):
 				yield(get_tree().create_timer(0.1),"timeout")
 				#PlayerValues.player._stop_moving()
 				var tween = get_tree().create_tween()
-				tween.tween_property(PlayerValues.player, "global_position:x", global_position.x, 0.1) 
+				tween.tween_property(PlayerValues.player, "global_position:x", global_position.x, 0.1)
 				yield(tween,"finished")
 				PlayerValues.is_teleporting = true
 				emit_signal("teleporter_touched")
@@ -55,7 +55,7 @@ func activate():
 	$Sprite.frame = 0
 
 func deactivate():
-	is_active = false 
+	is_active = false
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite.play("OFF")
 	$Sprite.frame = 1
@@ -78,7 +78,7 @@ func _on_Area2D_body_entered(body):
 #			yield(get_tree().create_timer(0.1),"timeout")
 #			#PlayerValues.player._stop_moving()
 #			var tween = get_tree().create_tween()
-#			tween.tween_property(PlayerValues.player, "global_position:x", global_position.x, 0.1) 
+#			tween.tween_property(PlayerValues.player, "global_position:x", global_position.x, 0.1)
 #			yield(tween,"finished")
 #			PlayerValues.is_teleporting = true
 #			emit_signal("teleporter_touched")

@@ -23,15 +23,15 @@ func _enter():
 
 func _update(delta):
 	if !owner.is_dead:
-		var fall_speed = Physics.FALL_SPEED_MAX 
+		var fall_speed = Physics.FALL_SPEED_MAX
 		velocity.y = clamp(velocity.y + owner.gravity, -fall_speed, fall_speed)
 		owner.move_and_slide_with_snap(Vector2(0,velocity.y), owner.snap, -owner.gravity_direction)
 		if owner.is_on_floor():
 			back_to_idle()
-	
+
 func _exit():
 	owner.is_forced_fall = false
-	
+
 func _handle_command(command: String) -> void:
 	._handle_command(command)
 	if command.begins_with("weapon_"):

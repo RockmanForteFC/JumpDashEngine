@@ -42,4 +42,3 @@ func sort_backwards(a, b) -> bool:
 		return true
 	else:
 		return false
-

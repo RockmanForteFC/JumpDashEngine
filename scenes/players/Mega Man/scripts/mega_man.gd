@@ -27,9 +27,9 @@ var is_dead := false
 var is_climbing := false
 var is_sliding := false
 var was_previously_in_slide := false
-var is_still := false  
+var is_still := false
 var moving_duration:float = 0
-var is_feet_locked:= false 
+var is_feet_locked:= false
 var is_climb_locked:= false
 var is_bouncing := false
 var is_climbing_disabled = false
@@ -38,7 +38,7 @@ var is_in_water:bool = false
 var is_in_space:bool = false
 var is_in_high_gravity:bool = false
 var is_speed_boosted:bool = false
-var is_red_bulled:bool = false 
+var is_red_bulled:bool = false
 var is_in_mid_charge:bool = false
 var is_in_cold_environment:bool = false
 var has_low_friction:bool = false
@@ -55,7 +55,7 @@ var explode_on_death := true
 var ladder: StaticBody2D
 var gravity_direction: Vector2 = Vector2.DOWN
 
-var gravity: float setget , _get_player_gravity 
+var gravity: float setget , _get_player_gravity
 var walking_speed:float setget, _get_player_walking_speed
 var climb_speed:float setget, _get_player_climbing_speed
 
@@ -80,7 +80,7 @@ onready var _iframes: AnimationPlayer = $InvincibilityFrames
 onready var _sprite: Sprite = $Sprite
 
 #used for ladder shooting
-var last_shooting_direction:Vector2 
+var last_shooting_direction:Vector2
 var intro_velocity := Vector2.ZERO
 #-------------------------------------------------s
 #      Signals
@@ -108,7 +108,7 @@ func _ready():
 	$Sprite.hide()
 	dont_accept_inputs()
 	set_physics_process(false)
-	
+
 func _process(delta):
 	intro_velocity.y = clamp(intro_velocity.y + Physics.GRAVITY,-Physics.FALL_SPEED_MAX,Physics.FALL_SPEED_MAX)
 	move_and_slide_with_snap(intro_velocity , self.snap, -self.gravity_direction)
@@ -129,10 +129,10 @@ func _physics_process(delta):
 #-------------------------------------------------
 func is_ready_to_teleport():
 	return !PlayerValues.is_teleporting and $Sprite.visible and !is_feet_locked and is_on_floor()
-	
+
 func lock_feet():
 	is_feet_locked = true
-	
+
 func unlock_feet():
 	is_feet_locked = false
 
@@ -173,16 +173,16 @@ func reset_color() -> void:
 func charge_weapon(weapon_energy: int, ignore_energy_balancer:bool = false) -> void:
 	if $Weapons.current_state.has_method("charge_energy"):
 		$Weapons.current_state.charge_energy(weapon_energy, ignore_energy_balancer)
-		
+
 
 func reinit_state_map():
 	$Weapons.reinit_state_map()
 	emit_signal("reinit")
-	
-	
+
+
 func set_reverse_gravity(is_reverse:bool):
 	if is_reverse:
-		self.is_upside_down = true 
+		self.is_upside_down = true
 		scale.y = -1
 	else:
 		self.is_upside_down = false
@@ -212,7 +212,7 @@ func stop_climb() -> void:
 # This Function seems useless at first. But for ladder climbing it will set your direction each ladder rung so if you tap climb you wont animate.
 func toggle_flip_h() -> void:
 	$Sprite.flip_h = !$Sprite.flip_h
-	
+
 func tick_damage(life_energy:int) ->void:
 	if (!has_i_frames and !has_invulnerability_shield) and !is_dead:
 		PlayerValues.sub_health(life_energy)
@@ -246,7 +246,7 @@ func take_damage(life_energy:int) -> void:
 	else:
 		_hurt()
 		emit_signal("hit_points_changed", hit_points)
-	
+
 func heal(life_energy: int) -> void:
 	PlayerValues.add_health(life_energy)
 	hit_points = PlayerValues.health
@@ -256,7 +256,7 @@ func swap_color(main: Color, secondary: Color) -> void:
 	$Sprite.material.set_shader_param("replace_0", main)
 	$Sprite.material.set_shader_param("replace_1", secondary)
 	$Sprite.use_parent_material = false
-	
+
 func proto_whistle_pause_on():
 	Physics.is_pause_enabled = false
 	Physics.is_in_pausible_state = false
@@ -312,7 +312,7 @@ func die():
 		if Physics.current_stage.get_node_or_null("UI/MarginContainer/HealthBar/BossBar2") != null:
 			Physics.current_stage.get_node("UI/MarginContainer/HealthBar/BossBar2").hide()
 		set_physics_process(false)
-	
+
 func _register_foot_step():
 	pass
 
@@ -358,7 +358,7 @@ func _get_player_gravity()->float:
 	if is_upside_down:
 		grav = -grav
 	return grav
-	
+
 func _get_player_walking_speed()->float:
 	if is_speed_boosted:
 		return Physics.WALKING_SPEED + Physics.SPEED_BOOST
@@ -411,7 +411,7 @@ func on_restarted():
 	set_physics_process(false)
 
 func on_iframes_expire() -> void:
-	has_i_frames = false 
+	has_i_frames = false
 
 func on_rush_coil() ->void:
 	emit_signal("change_state", "high-bounce")
@@ -483,7 +483,7 @@ func on_spike() -> void:
 				if not Config.die_on_spikes or PlayerValues.shock_absorber_inventory_count > 0:
 					PlayerValues.shock_absorber_inventory_count -= 1
 				on_hit(Physics.DAMAGE_ON_SPIKES_WHEN_PLAYER_HAS_PROTECTION,Physics.Damage.spike, Physics.Element.neutral)
-	else: 
+	else:
 		if !PlayerValues.is_teleporting and !PlayerValues.player.has_invulnerability_shield:
 			Score.change(Score.DAMAGE_BOOST_INSTANT_DEATH)
 
@@ -503,7 +503,7 @@ func on_laser():
 			hit_points = PlayerValues.health
 			die()
 			Score.change(Score.DEATH_BY_LASER)
-	else: 
+	else:
 		if !has_invulnerability_shield:
 			Score.change(Score.DAMAGE_BOOST_INSTANT_DEATH)
 
@@ -524,7 +524,7 @@ func on_lava() -> void:
 		die()
 		Score.change(Score.DEATH_BY_LAVA)
 
-	
+
 func on_acid() ->void:
 	on_spike()
 
@@ -545,7 +545,7 @@ func on_out_of_bounds()->void:
 		hit_points = PlayerValues.health
 		die()
 		Score.change(Score.DEATH)
-	
+
 func on_boss_entered() -> void:
 	fall()
 
@@ -604,12 +604,12 @@ func on_fortress_boss_stage_end():
 
 func on_boss_clear_begin_cutscene() ->void:
 	$StateMachine.active = false
-	
+
 func on_boss_clear_final_cutscene() ->void:
 	$StateMachine.active = false
 	_animation_player.play("Fanfare")
 	yield(_animation_player,"animation_finished")
-	
+
 func _teleport_out():
 	$Sprite.hide()
 	$TeleportOut.teleport()
@@ -617,11 +617,11 @@ func _teleport_out():
 func _on_teleport_out_leave_level():
 	emit_signal("exited")
 	pass # Replace with function body.
-	
+
 func _stop_moving():
 	is_climbing_disabled = true
 	emit_signal("change_state","do_nothing")
-	
+
 func _start_moving():
 	is_climbing_disabled = false
 	emit_signal("change_state", "idle")
@@ -642,7 +642,7 @@ func _start_flying(direction:Vector2):
 		emit_signal("change_state","fly_side")
 
 func _get_caught(mode:String = ""):
-	is_caught = true 
+	is_caught = true
 	caught_mode = mode
 	if mode == "crab":
 		emit_signal("change_state","crab_caught")
@@ -653,18 +653,18 @@ func _get_caught(mode:String = ""):
 func _get_thrown(direction:Vector2):
 	set_facing_direction(direction)
 	emit_signal("change_state","thrown")
-	
+
 func is_caught_animation()->bool:
 	return is_caught
 
 func _get_released():
 	if is_caught:
-		is_caught = false 
+		is_caught = false
 		emit_signal("change_state", "idle")
 
 func _get_released_bounce():
 	if is_caught:
-		is_caught = false 
+		is_caught = false
 		emit_signal("change_state", "beam-boost")
 
 func is_on_crushable_state()->bool:
@@ -711,7 +711,7 @@ func on_teleporter_in():
 	_animation_player.play("Idle")
 
 func reinitialize_collision():
-	$CollisionShape2D.disabled = true 
+	$CollisionShape2D.disabled = true
 	yield(get_tree().create_timer(0.01),"timeout")
 	$CollisionShape2D.disabled = false
 

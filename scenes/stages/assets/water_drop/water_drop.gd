@@ -24,8 +24,8 @@ func _ready():
 		get_parent().connect("transition_entered_by_teleporter",self, "_activate")
 	if not get_parent().is_connected("transition_exited",self, "_deactivate"):
 		get_parent().connect("transition_exited",self, "_deactivate")
-	$AnimationPlayer.play("Idle") 
-	$Timer.wait_time = time_between_drops 
+	$AnimationPlayer.play("Idle")
+	$Timer.wait_time = time_between_drops
 	$Timer.connect("timeout", self, "drop_water")
 
 #-------------------------------------------------
@@ -33,7 +33,7 @@ func _ready():
 #-------------------------------------------------
 func drop_water():
 	$AnimationPlayer.play("Drop")
-	
+
 func make_droplet():
 	if is_active:
 		var droplet = DROPLET.instance()
@@ -43,9 +43,9 @@ func make_droplet():
 #      Private Methods
 #-------------------------------------------------
 func _activate(throwaway):
-	is_active = true 
+	is_active = true
 	$Timer.start()
-	
+
 func _deactivate(throwaway):
 	is_active = false
 	$Timer.stop()
@@ -61,4 +61,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$AnimationPlayer.play("Idle")
 		$Timer.start()
 		make_droplet()
-

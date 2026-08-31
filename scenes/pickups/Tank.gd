@@ -8,7 +8,7 @@ enum TANKS {E,W,M}
 export (TANKS) var TankType = TANKS.E
 var tankLetter = ""
 #By Default Tanks do not fall. they will float in the air
-export var HasGravity = false 
+export var HasGravity = false
 #tanks are not dropped by enemies. so they cannot despawn. emit should be defaulted to true
 var emit = true
 var can_despawn = false
@@ -45,7 +45,7 @@ func _physics_process(delta):
 		move_and_slide(velocity)
 		if PlayerValues.player.is_dead:
 			queue_free()
-			
+
 func _maelstrom_absorb():
 	if !is_homing_on_player:
 		velocity = Vector2.ZERO * SUCTION_SPEED

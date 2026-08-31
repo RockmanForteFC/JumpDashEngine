@@ -88,4 +88,3 @@ func on_camera_exited() -> void:
 
 func on_muzzle_flash_finish():
 	$MuzzleFlashAnimatedSprite.queue_free()
-	

@@ -21,7 +21,7 @@ func _ready():
 func _enter():
 	owner.is_blocking = true
 	$"../../AnimationPlayer".play("idle")
-	
+
 func _update(delta: float) -> void:
 	get_parent().velocity.y = \
 		clamp(get_parent().velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
@@ -45,7 +45,7 @@ func _on_Timer_timeout():
 	if _trigger_area.player:
 		# Change facing direction if necessary
 		owner.face_player()
-			
+
 		emit_signal("finished", "shoot")
 	else:
 		_trigger_area.is_shot_ready = true

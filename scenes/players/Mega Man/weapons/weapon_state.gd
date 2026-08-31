@@ -68,7 +68,7 @@ func _get_weapon_reference_index()->void:
 		if not w == null and w.full_name == weapon_name:
 			_weapon_reference_index = i
 		i+=1
-		
+
 func check_for_weapon_balancer(_amount,ignore_energy_balancer:bool = false):
 	if !ignore_energy_balancer:
 		if PlayerValues.has_energy_balancer and not PlayerValues.has_energy_balancer_neo :
@@ -85,7 +85,7 @@ func check_for_weapon_balancer(_amount,ignore_energy_balancer:bool = false):
 		elif PlayerValues.has_energy_balancer_neo:
 			for i in PlayerValues.obtained_weapons:
 				PlayerValues.add_ammo(i, _amount)
-			
+
 # When weapon is exited the defaul weapon state gets equipped which is [0: Buster]
 func _exit():
 	_set_equipped_weapon(0)
@@ -100,7 +100,7 @@ func _enter() -> void:
 	if not can_power_charge:
 		owner.buffering_charge = false
 		owner._cancel_charge()
-	
+
 	if not is_weapon_hold_to_shoot:
 		is_input_held = false
 
@@ -143,7 +143,7 @@ func _process_update(delta: float) -> void:
 
 	_charge_playback_position = 0.0
 
-#overwrite as needed. 
+#overwrite as needed.
 func _release():
 	pass
 

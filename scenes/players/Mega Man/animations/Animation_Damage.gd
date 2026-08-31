@@ -5,12 +5,12 @@ const SWEAT = preload("res://scenes/players/Mega Man/animations/Animation_Sweat.
 
 func face_left():
 	direction = "l"
-	
+
 func face_right():
 	direction = "r"
 
 func _ready():
-	begin()	
+	begin()
 
 func begin():
 	$DamageSound.play()
@@ -26,14 +26,14 @@ func begin():
 		s1.face_right()
 		s2.face_right()
 		s3.face_right()
-		
+
 	#get_parent().add_child(s1)
 	#get_parent().add_child(s2)
 	#get_parent().add_child(s3)
 	#s1.position = $sweat_1.global_position
 	#s2.position = $sweat_2.global_position
 	#s3.position = $sweat_3.global_position
-	
+
 	call_deferred("add_child",s1)
 	call_deferred("add_child",s2)
 	call_deferred("add_child",s3)
@@ -42,6 +42,6 @@ func begin():
 	s2.position = Vector2(-10,-22)
 	s3.position = Vector2(10,-22)
 	$AnimationPlayer.play("Damage")
-	
+
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	queue_free()

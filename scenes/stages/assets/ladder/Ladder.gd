@@ -31,10 +31,10 @@ func _physics_process(delta: float) -> void:
 			continue
 		if not player.is_climbing and not player.is_sliding and \
 				player.get_node("StateMachine").current_state != player.get_node("StateMachine/Hurt"):
-			
+
 			if	((((!player.is_upside_down and player.get_node("Inputs").is_action_pressed(InputHandler.Action.UP)) or (player.is_upside_down and player.get_node("Inputs").is_action_pressed(InputHandler.Action.DOWN))) and not _is_above_ladder(player) )or \
 				player.get_node("Inputs").is_action_pressed(InputHandler.Action.DOWN) and _is_above_ladder(player)):
-			
+
 				var distance_to_center = $"Ladder/LadderCollision".global_position - player.global_position
 				distance_to_center.y = 0
 				if player.get_node("Inputs").is_action_pressed(InputHandler.Action.DOWN) and _is_above_ladder(player):
@@ -64,7 +64,7 @@ func time_to_exit(player:Player):
 		return _get_distance_to_ladder_top(player) < 7
 	else:
 		return false
-		
+
 func get_top():
 	return $CollisionSegment.global_position.y
 #-------------------------------------------------
@@ -84,7 +84,7 @@ func _get_distance_to_ladder_top(player: Player) -> float:
 func _set_size(value: int) -> void:
 	if not has_node("Ladder"):
 		return
-	
+
 	size_in_tiles = value
 	$Ladder/LadderCollision.shape.extents.y = size_in_tiles * Physics.TILE_SIZE.y / 2
 	$Ladder/LadderCollision.position.y = size_in_tiles * (Physics.TILE_SIZE.y / 2) - 1
@@ -105,7 +105,7 @@ func _on_body_exited(body: PhysicsBody2D) -> void:
 
 	if _is_above_ladder(_players[index]) and _players[index].is_climbing:
 		_players[index].move_and_collide(Vector2(0, -_get_distance_to_ladder_top(_players[index]) - 0.5))
-	
+
 	# _players[index].get_node("Sprite").offset.y = 0
 	# _players[index].get_node("CollisionShape2D").shape.extents.y = 12
 	_players[index].stop_climb()

@@ -101,7 +101,7 @@ func _update_direction(previous_section: Section) -> void:
 func _set_width(value: int) -> void:
 	width = value
 	_update_size()
-	
+
 func _set_height(value: int) -> void:
 	height = value
 	_update_size()
@@ -126,7 +126,7 @@ func on_body_entered(body: Node) -> void:
 			else:
 				update_limits()
 				var cam: Camera2D = Physics.current_stage.current_camera
-				
+
 				cam.set_active_section(self)
 				emit_signal("transition_entered_by_teleporter", self)
 				emit_signal("transmit_section_info",self)
@@ -154,14 +154,14 @@ func on_body_entered(body: Node) -> void:
 		#revert to use body.
 		if transition_dir == Vector2.UP and (not PlayerValues.player.is_climbing and not PlayerValues.player.boss_door_transition and not PlayerValues.player.is_upside_down):
 			return
-			
+
 		if transition_dir == Vector2.DOWN and PlayerValues.player.is_upside_down and (not PlayerValues.player.is_climbing and not PlayerValues.player.boss_door_transition):
 			return
-		
+
 		add_boss_door_offset = false
 		emit_signal("transition_entered", self)
 		emit_signal("transmit_section_info",self)
-		
+
 func on_body_entered_for_boss_doors(body: Node, boss_door: Node2D) -> void:
 	if not body is Player or active: #revert to is Player
 		return
@@ -202,12 +202,12 @@ func _on_body_exited(body: Node) -> void:
 	if self != Physics.current_stage.current_section:
 		if not body is Player:
 			return
-	
+
 		if seal_on_screen_leave:
 			$BlockingWall.set_collision_layer_bit(Bitmask.stage, true)
 		emit_signal("transition_exited", self)
-	
-	#when you die set all of the blocking walls to free. 
+
+	#when you die set all of the blocking walls to free.
 func on_restarted() -> void:
 	if seal_on_screen_leave:
 		$BlockingWall.set_collision_layer_bit(Bitmask.stage, false)
@@ -217,4 +217,3 @@ func _on_midboss_death():
 
 func _on_midboss_despawn():
 	emit_signal("signal_midboss_despawn")
-

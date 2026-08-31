@@ -47,8 +47,8 @@ func _process(delta):
 	else:
 		velocity = direction * (MOVE_SPEED*2)
 		move_and_slide(velocity,Vector2.UP)
-		
-	
+
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -70,7 +70,7 @@ func reflect() -> void:
 	set_collision_mask_bit(Bitmask.enemy, false)
 	set_collision_layer_bit(Bitmask.projectile, false)
 	$CollisionShape2D.set_deferred("disabled", true)
-	
+
 func _free_groups():
 	if is_in_group("BubbleLeadP1"):
 		remove_from_group("BubbleLeadP1")

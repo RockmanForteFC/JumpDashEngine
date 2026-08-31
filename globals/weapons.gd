@@ -12,8 +12,8 @@ const MAX_HEALTH:float = 28.0
 #-------------------------------------------------
 #      Properties
 #-------------------------------------------------
-# full_name: to be used in Weapon Get Cut Scenes 
-# menu_name: to be used in the start menu 
+# full_name: to be used in Weapon Get Cut Scenes
+# menu_name: to be used in the start menu
 # key_name: to be used in the weapon state machine
 # description: body text describing the weapon in the weapon get cut scene
 # ammo: the number of ammo left
@@ -23,7 +23,7 @@ const MAX_HEALTH:float = 28.0
 # shader: the color pallate for shading this weapon
 # node: the node that will be referenced for this weapon's script.
 
-##-------------------BUSTER-------------------- 
+##-------------------BUSTER--------------------
 var buster = { #1
 	"full_name":"Mega Buster",
 	"menu_name":"M.Buster",
@@ -31,7 +31,7 @@ var buster = { #1
 	"description":"WEAPON_DESCRIPTION_MEGA_BUSTER",
 	"ammo":NO_LIMIT,
 	"max_ammo":NO_LIMIT,
-	"is_equipped": true, 
+	"is_equipped": true,
 	"icon": "res://assets/images/weapon icons/buster.png"
 }
 

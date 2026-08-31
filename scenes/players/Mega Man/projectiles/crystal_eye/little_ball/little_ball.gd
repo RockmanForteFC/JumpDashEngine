@@ -33,7 +33,7 @@ func queue_free() -> void:
 	_free_groups()
 	consumed = true
 	.queue_free()
-	
+
 func explode():
 	set_physics_process(false)
 	$AnimatedSprite.visible = false
@@ -50,7 +50,7 @@ func explode():
 func _free_groups():
 	if is_in_group("CrystalEyeP1"):
 		remove_from_group("CrystalEyeP1")
-		
+
 func reflect() -> void:
 	_free_groups()
 	$deflect.play()

@@ -21,7 +21,7 @@ func _enter():
 
 func _update(delta):
 	owner.move_and_slide(get_parent().velocity,Vector2.UP)
-	
+
 	if owner.is_on_ceiling() or owner.is_on_floor():
 		make_particles()
 		owner.direction.y *= -1

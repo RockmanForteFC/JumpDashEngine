@@ -69,7 +69,7 @@ func _update(delta: float) -> void:
 				elif not _is_move_anim:
 					_is_move_anim = true
 					animation_player.play("Climb")
-				
+
 				# Exit when touching the floor while climbing.
 				if sign(direction.y) == sign(owner.gravity_direction.y) and _will_touch_floor():
 					emit_signal("finished", "idle")

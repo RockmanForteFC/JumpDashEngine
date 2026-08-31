@@ -48,7 +48,7 @@ func update_gradual(hit_points) -> void:
 	if _is_updating:
 		PlayerValues.item_queue = []
 		return
-	
+
 	Physics.is_in_pausible_state = false
 	_is_updating = true
 	var was_paused: bool = get_tree().paused

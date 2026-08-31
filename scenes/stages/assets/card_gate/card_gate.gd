@@ -24,15 +24,15 @@ var is_within_range_to_play_sound:bool = true
 
 func _ready():
 	add_to_group("key_card_door")
-	
+
 	$Sprite.material.set_shader_param("replace_0", primary_color)
 	$Sprite.material.set_shader_param("replace_1", secondary_color)
 	$Sprite.use_parent_material = false
-	
+
 	$Control/ColorRect/Label.text = "requires level " + str(card_level_required) + " key card"
 	if PlayerValues.card_level > card_level_required:
 		is_closed = false
-	
+
 	if is_closed:
 		$AnimationPlayer.play("Locked")
 	else:

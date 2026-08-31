@@ -52,7 +52,7 @@ func on_game_resumed() -> void:
 
 func on_boss_entered() -> void:
 	_current_track.stop()
-	
+
 func on_boss_ready() -> void:
 	_current_track.stop()
 	_current_track = $BossMusicIntro

@@ -21,7 +21,7 @@ func _ready():
 
 func _enter():
 	$"../../AnimationPlayer".play("Squirm",-1,0.5)
-	
+
 func _update(delta):
 	get_parent().velocity.x = 20 * owner.get_facing_direction().x
 	get_parent().velocity.y = Physics.GRAVITY
@@ -30,11 +30,11 @@ func _update(delta):
 		$"../../Hitbox/CollisionShape2D2".position.x *= -1
 		if owner.get_facing_direction().x == -1:
 			owner.toggle_flip_h()
-		else: 
+		else:
 			owner.toggle_flip_h()
 	if not owner.is_on_floor():
 		emit_signal("finished", "fall")
-		
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

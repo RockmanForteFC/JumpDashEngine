@@ -39,7 +39,7 @@ func _on_hit(body: PhysicsBody2D) -> void:
 						body.queue_free()
 					elif body.is_piercing and body.breaks_on_enemy:
 						body.queue_free()
-					
+
 				_animations.play("Blink")
 
 				var was_beast_net = body.is_in_group("BeastNetP1")
@@ -48,7 +48,7 @@ func _on_hit(body: PhysicsBody2D) -> void:
 						buster_damage = 1
 					buster_damage *= 2
 				_take_damage(buster_damage,false, was_beast_net)
-				
+
 
 
 	if body and body.is_in_group("Trap"):
@@ -65,5 +65,3 @@ func _on_hit(body: PhysicsBody2D) -> void:
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------
-
-

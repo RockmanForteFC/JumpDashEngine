@@ -35,7 +35,7 @@ func _spawn_pickax():
 	pick.element = Physics.Element.neutral
 	pick.damage_type = Physics.Damage.projectile
 	pick.damage = owner.projectile_damage
-	Physics.current_stage.call_deferred("add_child", pick)	
+	Physics.current_stage.call_deferred("add_child", pick)
 
 func _enter():
 	if get_parent().attack_limit == 0:

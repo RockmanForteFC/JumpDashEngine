@@ -26,12 +26,12 @@ func _ready() -> void:
 func can_use() -> bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group("MineSweeperP%s" % owner.player_number)
 	return on_screen_bullets.size() < MINE_SWEEPER_MAX_COUNT and weapon_energy > 0
-		
+
 func use() -> void:
 	if can_use():
 		if not _deplete_energy():
 			return
-			
+
 		mega_buster.position.x = abs(mega_buster.position.x) * owner.get_facing_direction().x
 		owner.get_parent().add_child(_get_bullet())
 
@@ -45,7 +45,7 @@ func _get_bullet() -> Node:
 
 	bullet.position = mega_buster.global_position
 	$"../../CollisionShape2D/SuperArrowRayCast".cast_to.x =  17 * owner.get_facing_direction().x
-	$"../../CollisionShape2D/SuperArrowRayCast".enabled = true 
+	$"../../CollisionShape2D/SuperArrowRayCast".enabled = true
 	$"../../CollisionShape2D/SuperArrowRayCast".force_raycast_update()
 	if $"../../CollisionShape2D/SuperArrowRayCast".is_colliding():
 		bullet.position.x = owner.global_position.x

@@ -13,7 +13,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		if event.is_action_pressed(_get_name(Action.JUMP)):
 			_get_state()._handle_command("jump")
-		
+
 		if event.is_action_released(_get_name(Action.JUMP)):
 			_get_state()._handle_command("jump_stop")
 
@@ -52,7 +52,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		elif event.is_action_pressed(_get_name(Action.WEAPON_PREVIOUS)):
 			_get_state()._handle_command("weapon_previous")
-			
+
 
 
 func send(command: String) -> void:

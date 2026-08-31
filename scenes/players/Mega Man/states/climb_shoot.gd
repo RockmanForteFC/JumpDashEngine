@@ -28,7 +28,7 @@ func _enter() -> void:
 	owner.was_previously_in_slide = false
 	owner.is_climbing = true
 	mega_buster.position = buster_position
-	shoot("Climb_" + weapons.current_state.anim_name) 
+	shoot("Climb_" + weapons.current_state.anim_name)
 
 func _exit() -> void:
 	owner.is_climbing = false
@@ -41,7 +41,7 @@ func _handle_command(command: String) -> void:
 		emit_signal("finished", "jump")
 	if command.begins_with("weapon_"):
 		weapons.change_weapon(command)
-		
+
 #warning-ignore:unused_argument
 func _update(delta: float) -> void:
 	# collision_shape.shape.extents.y = 12

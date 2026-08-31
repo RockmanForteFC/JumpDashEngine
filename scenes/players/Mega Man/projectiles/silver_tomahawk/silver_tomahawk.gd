@@ -30,11 +30,11 @@ func _ready():
 func _physics_process(delta):
 	if !is_reflecting:
 		#starting with no no increase and every frame it will add more of an arc
-		speed_increase = clamp(speed_increase + 1, -MAX_SPEED_INCREASE, MAX_SPEED_INCREASE) 
+		speed_increase = clamp(speed_increase + 1, -MAX_SPEED_INCREASE, MAX_SPEED_INCREASE)
 		velocity.y = clamp(velocity.y - speed_increase, -MAX_SPEED, MAX_SPEED)
-		 
+
 	move_and_slide(velocity, Vector2.UP)
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -50,7 +50,7 @@ func queue_free() -> void:
 func _free_groups():
 	if is_in_group("SilverTomahawkP1"):
 		remove_from_group("SilverTomahawkP1")
-		
+
 func reflect()-> void:
 	_free_groups()
 	$Audio/Deflect.play()

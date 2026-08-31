@@ -54,7 +54,7 @@ func _change_state(state_name: String) -> void:
 		$JumpShoot.preset($BeamBoost.velocity)
 	if state_name == "jump_shoot" and current_state == $SpringBounce:
 		$JumpShoot.preset($SpringBounce.velocity)
-		
+
 		#the following are for springs
 	if state_name == "bomb-boost" and current_state == $Jump:
 		$BombBoost.preset($Jump.velocity)
@@ -80,7 +80,7 @@ func _change_state(state_name: String) -> void:
 		$Bounce.preset($Bounce.velocity)
 	if state_name == "high-bounce" and current_state == $SpringBounce:
 		$Bounce.preset($SpringBounce.velocity)
-		
+
 	if state_name == "jump" and current_state == $JumpShoot:
 		$Jump.preset($JumpShoot.velocity)
 	if state_name == "jump" and current_state == $Slide:
@@ -89,7 +89,7 @@ func _change_state(state_name: String) -> void:
 		$Jump.preset($Hurt.velocity)
 	if state_name != "move" and current_state == $Idle:
 		owner.is_still = false
-		
+
 		#the following are all for keeping momentum on ice
 	if state_name == "idle" and current_state == $JumpShoot:
 		$Idle.preset($JumpShoot.velocity)
@@ -99,7 +99,7 @@ func _change_state(state_name: String) -> void:
 		$Idle.preset($Bounce.velocity)
 	if state_name == "idle" and current_state == $SpringBounce:
 		$Idle.preset($SpringBounce.velocity)
-	
+
 	if owner.state_machine_lockdown:
 		if owner.is_on_floor():
 			state_name = "idle"

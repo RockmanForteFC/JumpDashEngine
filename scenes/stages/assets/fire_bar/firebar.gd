@@ -11,7 +11,7 @@ extends StaticBody2D
 #-------------------------------------------------
 #      Properties
 #-------------------------------------------------
-export (String, "Right", "Left","Up","Down") var direction:String = "Right" 
+export (String, "Right", "Left","Up","Down") var direction:String = "Right"
 export (float) var time_between_fire:float = 2.5
 var is_active:bool = false
 var is_timer_running:bool = false
@@ -22,12 +22,12 @@ func _ready():
 	$Timer.wait_time = time_between_fire
 	$AnimatedSprite.set_animation(direction)
 	$Timer.connect("timeout", self, "prepare")
-	
+
 func _physics_process(delta):
 	if is_active and not is_timer_running:
 		is_timer_running = true
 		$Timer.start()
-	
+
 	if direction == "Left" or direction == "Right":
 		for body in $Firebar_h.get_overlapping_bodies():
 			if body is Player:
@@ -37,7 +37,7 @@ func _physics_process(delta):
 		for area in $Firebar_h.get_overlapping_areas():
 			if area.is_in_group("Tar"):
 				area.get_parent().catch_fire()
-	
+
 	elif direction == "Up" or direction == "Down":
 		for body in $firebar_v.get_overlapping_bodies():
 			if body is Player:
@@ -77,5 +77,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	else:
 		if is_active:
 			$Timer.start()
-
-

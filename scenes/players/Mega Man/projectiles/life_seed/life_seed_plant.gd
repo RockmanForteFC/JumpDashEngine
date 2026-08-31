@@ -51,11 +51,11 @@ func spawn_health():
 		get_parent().call_deferred("add_child",h)
 		h.set_deferred("global_position",$Position2D.global_position)
 		$AnimatedSprite.play("Idle")
-		health_spawn_count += 1 
+		health_spawn_count += 1
 		if health_spawn_count == 2:
 			$AnimationPlayer.play("Flash")
 		$Spit_Timer.start()
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

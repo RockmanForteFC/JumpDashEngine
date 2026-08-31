@@ -18,7 +18,7 @@ var did_timer_start:bool = false
 #-------------------------------------------------
 
 func _enter():
-	
+
 	owner.face_player()
 	get_parent().velocity.x = FLY_SPEED * owner.get_facing_direction().x
 
@@ -37,7 +37,7 @@ func _update(delta):
 #      Connections
 #-------------------------------------------------
 func _on_Timer_timeout():
-	did_timer_start= false 
+	did_timer_start= false
 	emit_signal("finished", "zoom_away")
 
 
@@ -55,7 +55,5 @@ func _on_Player_Detector_Straight_body_entered(body):
 		owner.get_parent().call_deferred("add_child",bullet)
 		bullet.set_deferred("global_position", bullet_pos)
 		if not did_timer_start:
-			did_timer_start = true 
+			did_timer_start = true
 			$"../../Timer".start()
-		
-

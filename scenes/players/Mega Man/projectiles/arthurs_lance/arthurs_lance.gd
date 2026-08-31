@@ -47,7 +47,7 @@ func reflect() -> void:
 	$Sprite.flip_h = !$Sprite.flip_h
 	set_collision_mask_bit(Bitmask.enemy, false)
 	set_collision_layer_bit(Bitmask.projectile, false)
-	
+
 func _free_groups():
 	if is_in_group("ArthursLanceP1"):
 		remove_from_group("ArthursLanceP1")

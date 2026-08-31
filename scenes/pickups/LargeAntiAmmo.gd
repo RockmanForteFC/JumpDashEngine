@@ -38,7 +38,7 @@ func _maelstrom_absorb():
 		velocity = Vector2.ZERO * SUCTION_SPEED
 		$CollisionShape2D.set_deferred("disabled", true)
 		is_homing_on_player = true
-	
+
 func _on_AudioStreamPlayer2D_finished():
 	cleanup(emit and not can_despawn)
 
@@ -49,7 +49,7 @@ func _on_PickupDetector_body_entered(body):
 		$AudioStreamPlayer2D.play()
 		body.charge_weapon(heal_amount)
 		emit = true
-		
+
 		if not $AudioStreamPlayer2D.playing:
 			cleanup(emit and not can_despawn)
 	elif body.is_in_group("PlayerWeapons") and body.key_name == "maelstrom_absorber":

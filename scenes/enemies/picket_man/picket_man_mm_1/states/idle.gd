@@ -30,7 +30,7 @@ func _enter():
 	owner.is_blocking = true
 	$"../../EnemyAnimations".play("Idle")
 	$"../../AttackTimer".start()
-	
+
 func _update(delta):
 	get_parent().velocity.y = \
 	clamp(get_parent().velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)

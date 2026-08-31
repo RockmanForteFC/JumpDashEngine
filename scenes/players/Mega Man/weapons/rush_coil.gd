@@ -20,7 +20,7 @@ var buster_on_screen_limit = 3
 #-------------------------------------------------
 func _ready():
 	_get_weapon_reference_index()
-	# This will be for the wily levels when ammo isn't recharged between levels. 
+	# This will be for the wily levels when ammo isn't recharged between levels.
 	weapon_energy = PlayerValues.obtained_weapons[str(_weapon_reference_index)].ammo
 	anim_name = ANIMATIONS[animation.shoot]
 #-------------------------------------------------
@@ -30,7 +30,7 @@ func can_use_rush()->bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group(
 	"RushCoilProjectilesP%s" % owner.player_number)
 
-	return on_screen_bullets.size() < rush_on_sceen_limit 
+	return on_screen_bullets.size() < rush_on_sceen_limit
 
 func can_use() ->bool:
 	return weapon_energy > 0 and (can_use_rush() or can_use_buster())
@@ -38,7 +38,7 @@ func can_use() ->bool:
 func can_use_buster()->bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group("RushBusterProjectilesP%s" % owner.player_number)
 	return on_screen_bullets.size() < buster_on_screen_limit
-	
+
 func use() -> void:
 	if can_use_rush():
 
@@ -62,7 +62,7 @@ func use() -> void:
 		bullet.key_name = "rush_mega_buster"
 		bullet.direction = owner.get_facing_direction()
 		owner.get_parent().add_child(bullet)
-		
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
@@ -72,4 +72,3 @@ func use() -> void:
 #-------------------------------------------------
 func on_bounced():
 	_deplete_energy()
-		

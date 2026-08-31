@@ -29,7 +29,7 @@ func check_if_still_exists():
 	var exists = get_node_or_null(linked_item)
 	if !exists:
 		queue_free()
-		
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

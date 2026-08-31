@@ -27,7 +27,7 @@ func _exit():
 
 func _handle_command(command: String) -> void:
 	._handle_command(command)
-	
+
 	if command == "shoot":
 		shoot("Idle_" + weapons.current_state.anim_name)
 	if command == "hold_shoot":
@@ -41,15 +41,15 @@ func _update(_delta: float) -> void:
 		if _frame_count > STILL_FRAME_COUNT:
 			owner.moving_duration = 0.0
 			owner.is_still = true
-		
+
 		if owner.is_still and owner.is_in_cold_environment:
 			var random_number = Physics.rng.randi_range(0,600)
 			if random_number == 1:
 				animation_player.play("Sneeze")
-		
+
 		# To check if on floor
 		owner.move_and_slide_with_snap(Vector2.DOWN * owner.gravity, owner.snap, -owner.gravity_direction)
-			
+
 		if !owner.is_on_floor():
 			emit_signal("finished", "jump")
 		elif get_input_direction().x != 0 and not owner.is_feet_locked:
@@ -58,7 +58,7 @@ func _update(_delta: float) -> void:
 		if owner.charge_level > 0 and not weapons.is_holding_shoot():
 			if !owner.is_charge_locked:
 				_handle_command("shoot")
-		
+
 		if weapons.current_state.is_holding_shoot():
 			_handle_command("hold_shoot")
 

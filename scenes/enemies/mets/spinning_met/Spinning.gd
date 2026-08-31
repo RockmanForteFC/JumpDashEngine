@@ -60,6 +60,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_shot_delay_timeout():
 	if shot_count == 3:
 		$"../../AnimationPlayer".play("popdown")
-	else: 
+	else:
 		shoot()
 		$"../../shot_delay".start()

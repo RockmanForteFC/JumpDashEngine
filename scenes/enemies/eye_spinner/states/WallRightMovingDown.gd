@@ -29,7 +29,7 @@ func _exit():
 	get_parent().frame = 0
 
 func _update(delta):
-	get_parent().frame += 1 
+	get_parent().frame += 1
 	get_parent().velocity.x = clamp(get_parent().velocity.x + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
 	owner.move_and_slide(get_parent().velocity,Vector2.UP)
 	if get_parent().frame > get_parent().TURN_FRAME_DELAY:
@@ -37,7 +37,7 @@ func _update(delta):
 			emit_signal("finished","wall-up-moving-right")
 		if owner.is_on_floor():
 			emit_signal("finished", "wall-down-moving-left")
-		
+
 
 #-------------------------------------------------
 #      Public Methods

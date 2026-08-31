@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 
-	#gets player's position in the stage 
+	#gets player's position in the stage
 	rect_position = PlayerValues.player.get_global_transform_with_canvas().origin
 #-------------------------------------------------
 #      Public Methods
@@ -65,5 +65,3 @@ func on_weaopn_swapped():
 func _on_timeout() -> void:
 	hide()
 	set_process(false)
-
-

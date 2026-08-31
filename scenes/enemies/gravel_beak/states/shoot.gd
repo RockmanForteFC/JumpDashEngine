@@ -21,7 +21,7 @@ func _ready():
 
 func _enter():
 	$"../../AnimationPlayer".play("Shoot")
-	
+
 
 #-------------------------------------------------
 #      Public Methods

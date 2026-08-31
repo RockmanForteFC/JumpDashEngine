@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	#occasionally an enemy can slip by the bounds of the screen detection. this is just a safty check
 	#if not $PreciseVisibilityNotifier2D.is_on_screen() and not is_midboss:
 	#	queue_free()
-		
+
 	if _player_collision_area:
 		for body in _player_collision_area.get_overlapping_bodies():
 			if body is Player and _is_collidable:
@@ -108,8 +108,8 @@ func get_distance_from_player():
 		h_distance = PlayerValues.player.global_position.x - global_position.x
 	else:
 		h_distance = global_position.x - PlayerValues.player.global_position.x
-		
-	var v_distance:float = 0.0	
+
+	var v_distance:float = 0.0
 	if  global_position.y < PlayerValues.player.global_position.y:
 		v_distance = PlayerValues.player.global_position.y - global_position.y
 	else:
@@ -150,7 +150,7 @@ func set_state(state:String):
 
 func get_facing_direction() -> Vector2:
 	return Vector2.RIGHT if $Sprite.flip_h else Vector2.LEFT
-	
+
 func start_yield_timer(time: float) -> Timer:
 	_timer = Timer.new()
 	add_child(_timer)
@@ -162,20 +162,20 @@ func queue_free() -> void:
 	if _timer and _timer.time_left > 0:
 		yield(_timer, "timeout")
 	.queue_free()
-	
+
 func on_crush()->void:
 	if not is_dead and get_collision_layer_bit(Bitmask.crushable):
 		set_collision_mask_bit(Bitmask.land_gimick, false)
 		_hit_sound.play()
 		_die()
-		
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
 func _disable_iframes():
 	has_iframes = false
-	
-# instead of hiding an enemy when it dies. it will get replaced 
+
+# instead of hiding an enemy when it dies. it will get replaced
 # with a low-resource spawner that will provide new enemies to kill while saving on potential lag
 func _replace_with_spawner() -> void:
 	spawn_info["flip_direction"] = flip_direction
@@ -221,7 +221,7 @@ func _force_damage(damage):
 		_animations.play("Blink")
 		var prevent_appending_to_user_stats = false
 		_take_damage(damage,  prevent_appending_to_user_stats)
-		
+
 func _external_damage(damage):
 	if not is_dead and not has_iframes:
 		_hit_sound.play()
@@ -301,41 +301,40 @@ func check_is_weakness(body_element:int) -> bool:
 	var weakness = false
 	if body_element == Physics.Element.neutral:
 		return false
-		
+
 	if body_element == Physics.Element.dark and element == Physics.Element.light:
-		weakness = true 
+		weakness = true
 	elif body_element == Physics.Element.light and element == Physics.Element.dark:
-		weakness = true 
-	
+		weakness = true
+
 	elif body_element == Physics.Element.fire and element == Physics.Element.ice:
-		weakness = true 
-		
+		weakness = true
+
 	elif body_element == Physics.Element.ice and element == Physics.Element.leaf:
-		weakness = true 
-	
+		weakness = true
+
 	elif body_element == Physics.Element.leaf and element == Physics.Element.ground:
-		weakness = true 
-	
+		weakness = true
+
 	elif body_element == Physics.Element.ground and element == Physics.Element.electric:
-		weakness = true 
-	
+		weakness = true
+
 	elif body_element == Physics.Element.electric and element == Physics.Element.water:
-		weakness = true 
-	
+		weakness = true
+
 	elif body_element == Physics.Element.water and element == Physics.Element.fire:
-		weakness = true 
+		weakness = true
 
 	elif body_element == Physics.Element.blade and element == Physics.Element.leaf:
-		weakness = true 
+		weakness = true
 	elif body_element == Physics.Element.chemical and element == Physics.Element.ground:
-		weakness = true 
+		weakness = true
 	elif body_element == Physics.Element.wind and element == Physics.Element.fire:
-		weakness = true 
+		weakness = true
 	return weakness
-	
+
 func _on_lava(area):
 	if area:
 		if area.get_collision_layer_bit(Bitmask.lava):
 			if not is_dead:
 				_die(true,false)
-

@@ -19,7 +19,7 @@ var sboost = null
 #-------------------------------------------------
 func _ready():
 	_get_weapon_reference_index()
-	# This will be for the wily levels when ammo isn't recharged between levels. 
+	# This will be for the wily levels when ammo isn't recharged between levels.
 	weapon_energy = PlayerValues.obtained_weapons[str(_weapon_reference_index)].ammo
 	anim_name = ANIMATIONS[animation.shoot]
 #-------------------------------------------------
@@ -27,7 +27,7 @@ func _ready():
 #-------------------------------------------------
 func can_use_speed_boost()->bool:
 	var on_screen_bullets: Array = get_tree().get_nodes_in_group("SpeedBoostProjectilesP%s" % owner.player_number)
-	return on_screen_bullets.size() < on_sceen_limit 
+	return on_screen_bullets.size() < on_sceen_limit
 
 func can_use() ->bool:
 	return weapon_energy > 0
@@ -56,4 +56,3 @@ func on_speed_boost_ammo_tick(first_tick):
 	if weapon_energy <= 0 and sboost != null:
 		sboost.queue_free()
 		sboost = null
-		

@@ -20,11 +20,11 @@ var velocity:Vector2
 func _ready():
 	$AnimationPlayer.play("Idle")
 	velocity = Vector2(0,0)
-	
+
 func _physics_process(delta):
 	velocity.y = clamp(velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX, Physics.FALL_SPEED_MAX)
 	move_and_slide(velocity, Vector2.UP)
-	
+
 	if is_on_floor():
 		set_physics_process(false)
 		$AnimationPlayer.play("Splash")

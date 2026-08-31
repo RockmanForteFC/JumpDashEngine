@@ -30,11 +30,11 @@ func _ready():
 func _enter() -> void:
 	animated_sprite.play("Jump")
 	velocity.y = min_jump_speed
-	var playerx = PlayerValues.player.global_position.x 
+	var playerx = PlayerValues.player.global_position.x
 	var wavex = owner.global_position.x
 	distance = (wavex - playerx) if (wavex>playerx) else (playerx - wavex)
-	
-	#if you are within 3 tiles distance. lower the height of wave man's jump  
+
+	#if you are within 3 tiles distance. lower the height of wave man's jump
 	if distance < (Physics.TILE_SIZE.x * 3):
 		velocity.y += 20
 

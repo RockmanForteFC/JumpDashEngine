@@ -11,9 +11,9 @@ signal closed()
 #-------------------------------------------------
 #      Properties
 #-------------------------------------------------
-export var lightest_color:Color = Color("ffffff") 
-export var mid_color:Color = Color("bcbcbc") 
-export var darkest_color:Color = Color("787878") 
+export var lightest_color:Color = Color("ffffff")
+export var mid_color:Color = Color("bcbcbc")
+export var darkest_color:Color = Color("787878")
 
 var temp_lock = false
 var locked := false setget locked_collision
@@ -26,7 +26,7 @@ var is_animating = false
 #      Processes
 #-------------------------------------------------
 func _ready() -> void:
-	
+
 	if Engine.editor_hint:
 		$arrow.show()
 	else:
@@ -58,7 +58,7 @@ func locked_collision(value:bool):
 		$locked_shape/CollisionShape2D.set_deferred("disabled",false)
 	else:
 		$locked_shape/CollisionShape2D.set_deferred("disabled",true)
-		
+
 func open() -> void:
 	get_tree().paused = true
 	$"Sprite/AnimationPlayer".play("Open_and_Close")
@@ -103,7 +103,7 @@ func on_section_entered(section: Node2D) -> void:
 			_section_2 = section.owner as Section
 
 func on_entered(body: PhysicsBody2D) -> void:
-	if not body is Player or (locked or temp_lock):	
+	if not body is Player or (locked or temp_lock):
 		return
 	_player = body as Player
 	_player.boss_door_transition = true
@@ -140,4 +140,3 @@ func on_locking_enemy_dead():
 	$Area2D/CollisionShape2D.set_deferred("disabled",true)
 	yield(get_tree(),"idle_frame")
 	$Area2D/CollisionShape2D.set_deferred("disabled",false)
-

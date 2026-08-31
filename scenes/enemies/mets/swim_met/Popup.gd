@@ -21,7 +21,7 @@ func _ready():
 func _enter():
 	owner.is_blocking = false
 	$"../../AnimationPlayer".play("popup")
-	
+
 func _update(delta):
 	get_parent().velocity.y = clamp(get_parent().velocity.y + Physics.GRAVITY_WATER, -Physics.FALL_SPEED_MAX_IN_WATER, Physics.FALL_SPEED_MAX_IN_WATER)
 	if owner.is_on_floor():
@@ -48,4 +48,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$"../../AnimationPlayer".play("popdown")
 	if anim_name == ("popdown"):
 		emit_signal("finished", "idle")
-

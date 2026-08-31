@@ -29,7 +29,7 @@ var is_running:bool = false
 func _ready():
 	pause_time = character_delay * 2
 	stop()
-	
+
 	$CharacterDelay.wait_time = character_delay
 	$CharacterDelay.connect("timeout",self,"_show_next_character")
 
@@ -71,13 +71,13 @@ func _show_next_character():
 	if pause_on_punctuation:
 		if punctuation.has(final_output[_character_index]):
 			yield(get_tree().create_timer(pause_time),"timeout")
-	_character_index += 1 
+	_character_index += 1
 	if $RichTextLabel.bbcode_text == speaker + final_output:
 		$Control/TextureRect.show()
 		set_process(true)
 	else:
 		$CharacterDelay.start()
-	
+
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------

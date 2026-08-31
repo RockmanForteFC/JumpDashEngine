@@ -28,7 +28,7 @@ func _enter() -> void:
 	# Stop state machine
 	get_parent().set_active(false)
 	owner.is_dead = true
-	owner.is_in_water = false 
+	owner.is_in_water = false
 	owner.buffering_charge = false
 
 	# Short screen freeze before death explosion.

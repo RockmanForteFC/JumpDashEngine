@@ -31,12 +31,12 @@ func _enter():
 	baby1.set_deferred("global_position",owner.global_position)
 
 	baby2 = MET_BABIES.instance()
-	baby2.direction = Vector2.RIGHT 
+	baby2.direction = Vector2.RIGHT
 	owner.get_parent().call_deferred("add_child",baby2)
 	baby2.set_deferred("global_position",owner.global_position)
 
 	baby3 = MET_BABIES.instance()
-	baby3.direction = Vector2.LEFT 
+	baby3.direction = Vector2.LEFT
 	owner.get_parent().call_deferred("add_child",baby3)
 	baby3.set_deferred("global_position",owner.global_position)
 	._enter()

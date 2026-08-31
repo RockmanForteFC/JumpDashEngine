@@ -42,7 +42,7 @@ func start():
 	final_output = text
 	text = ""
 	if speaker:
-		speaker = TITLE_OPEN + speaker + TITLE_CLOSE 
+		speaker = TITLE_OPEN + speaker + TITLE_CLOSE
 		text += speaker
 		$Speaker.show()
 	show()
@@ -69,14 +69,14 @@ func _show_next_character():
 	if pause_on_punctuation:
 		if punctuation.has(final_output[_character_index]):
 			yield(get_tree().create_timer(pause_time),"timeout")
-	_character_index += 1 
+	_character_index += 1
 	if text == speaker + final_output:
 		yield(get_tree().create_timer(wait_time),"timeout")
 		emit_signal("label_complete")
 		stop()
 	else:
 		$CharacterDelay.start()
-	
+
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------

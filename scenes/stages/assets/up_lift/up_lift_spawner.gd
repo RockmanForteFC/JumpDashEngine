@@ -31,7 +31,7 @@ func _physics_process(delta):
 	if !did_flash and spawn_delay == SPAWN_DELAY_LIMIT:
 		did_flash = true
 		$AnimationPlayer.play("flash")
-		
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

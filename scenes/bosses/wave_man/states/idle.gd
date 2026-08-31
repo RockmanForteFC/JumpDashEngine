@@ -36,7 +36,7 @@ func _update(delta: float) -> void:
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------
-#here is the magic. when a timeout on the "Idle Delay" is done, perform your logic here. 
+#here is the magic. when a timeout on the "Idle Delay" is done, perform your logic here.
 func _on_timeout() -> void:
 		# roll a random number between 0 and 7
 		var random_number: float = Physics.rng.randi_range(0, 5)
@@ -44,6 +44,6 @@ func _on_timeout() -> void:
 		if random_number <= 2:
 			emit_signal("finished", "shoot")
 		else:
-			# jump is in the common.gd for wave man 
+			# jump is in the common.gd for wave man
 			# statemachine/jump has a connection attack to perform water_wave
 			jump()

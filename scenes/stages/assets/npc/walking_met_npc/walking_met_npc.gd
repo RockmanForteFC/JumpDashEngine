@@ -31,7 +31,7 @@ func start():
 	yield($AnimatedSprite,"animation_finished")
 	$AnimatedSprite.play("Walk")
 	velocity.x = Vector2.LEFT.x * WALKSPEED
-	
+
 func die():
 	is_dead = true
 	$die_sound.play()
@@ -39,7 +39,7 @@ func die():
 	$AnimatedSprite.play("Die")
 	yield($die_sound,"finished")
 	queue_free()
-	
+
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

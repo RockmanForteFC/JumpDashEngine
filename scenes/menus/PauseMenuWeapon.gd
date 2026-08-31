@@ -15,7 +15,7 @@ func set_active():
 	# if it is set to 16 the pause menu will show highlighted weapons in blue.
 	$WeaponIcon.texture.region.position.x = 0
 	$WeaponContainer/WeaponAmmoBar.modulate = Color(1, 1 ,1)
-	
+
 func set_inactive():
 	$WeaponIcon.texture.region.position.x = 32
 	$WeaponContainer/WeaponAmmoBar.modulate = Color(188.0/255, 188.0/255 ,188.0/255)

@@ -29,7 +29,7 @@ func _update(delta):
 			var n = NINJUUN.instance()
 			n.connect("enemy_died",Statistics, "_on_enemy_died", [n.enemy_name])
 			n.connect("enemy_died", LevelValues, "_on_enemy_died", [owner.unique_id])
-			# This is a situation where we dont use call deferred because we dont want to accidentally despawn the enemy 
+			# This is a situation where we dont use call deferred because we dont want to accidentally despawn the enemy
 			# because it will immediately GO UP from 0,0 and despawn before it can ever live.
 			owner.get_parent().add_child(n)
 			n.global_position = $"../../BaseShootPos".global_position
@@ -38,7 +38,7 @@ func _update(delta):
 #      Public Methods
 #-------------------------------------------------
 func _on_timer_expired():
-	can_spawn = true 
+	can_spawn = true
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------

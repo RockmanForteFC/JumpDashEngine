@@ -49,4 +49,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		hide()
 		yield($AudioStreamPlayer, "finished")
 	queue_free()
-

@@ -13,7 +13,7 @@ const HARPOON_DAMAGE = 4
 #-------------------------------------------------
 export (Physics.Element)var element:int = Physics.Element.neutral
 export (Physics.Damage)var damage_type:int = Physics.Damage.projectile
-var direction 
+var direction
 var speed = 250
 var _velocity:Vector2 = Vector2()
 #-------------------------------------------------

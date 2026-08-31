@@ -17,7 +17,7 @@ const FLY_SPEED:float = 180.0
 #-------------------------------------------------
 
 func _enter():
-	
+
 	owner.face_player()
 	get_parent().velocity.x = FLY_SPEED * owner.get_facing_direction().x
 

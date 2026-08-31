@@ -16,7 +16,7 @@ signal item_pickup
 var item_name = ""
 var SUCTION_SPEED:float = 275.0
 var is_homing_on_player:bool = false
-var has_physics:bool = false 
+var has_physics:bool = false
 var index:String = ""
 
 export(String,"health","ammo","bolt","1up","tank","trash","bomb","key_item") var item_type:String = ""

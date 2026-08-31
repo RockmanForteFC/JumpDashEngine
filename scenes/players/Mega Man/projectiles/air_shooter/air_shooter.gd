@@ -28,13 +28,13 @@ func _ready():
 func _physics_process(delta):
 	if !is_reflecting:
 		 velocity.y = clamp(velocity.y - SPEED_INCREASE, -MAX_SPEED, MAX_SPEED)
-		 
+
 	move_and_slide(velocity, Vector2.UP)
-	
+
 	if did_hit_enemy:
 		queue_free()
-	
-	
+
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -58,7 +58,7 @@ func queue_free() -> void:
 func _free_groups():
 	if is_in_group("AirShooterP1"):
 		remove_from_group("AirShooterP1")
-		
+
 func reflect()-> void:
 	$Audio/Deflect.play()
 	queue_free()

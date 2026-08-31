@@ -26,7 +26,7 @@ func _ready():
 		return
 	if PlayerValues.has_music_upgrade:
 		queue_free()
-	
+
 func _physics_process(delta):
 	velocity.y = clamp(velocity.y + gravity_direction.y * Physics.GRAVITY,
 		-Physics.FALL_SPEED_MAX,Physics.FALL_SPEED_MAX)

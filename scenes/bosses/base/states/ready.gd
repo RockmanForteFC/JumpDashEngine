@@ -34,13 +34,13 @@ func _enter() -> void:
 	#get_tree().paused = true
 	get_tree().set_group("BossDoors", "locked", true)
 	owner.face_player()
-	
+
 	#begin dropping down.
 	_animations.play("Drop_In")
-	
+
 	#small delay before music starts
 	yield(get_tree().create_timer(0.5),"timeout")
-	
+
 	owner.emit_signal("boss_ready")
 	yield(_animations, "animation_finished")
 
@@ -64,4 +64,3 @@ func _enter() -> void:
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------
-

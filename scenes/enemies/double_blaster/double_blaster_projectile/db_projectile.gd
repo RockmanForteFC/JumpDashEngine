@@ -22,7 +22,7 @@ var did_explode:bool = false
 
 func _ready():
 	$AnimatedSprite.play("default")
-	
+
 func _physics_process(delta):
 	velocity.y = clamp(velocity.y + Physics.GRAVITY, -Physics.FALL_SPEED_MAX,Physics.FALL_SPEED_MAX)
 	move_and_slide(velocity,Vector2.UP)
@@ -58,4 +58,3 @@ func _on_Area2D_body_entered(body):
 		velocity.x = 0
 		body.on_hit(damage, Physics.Damage.projectile,element)
 		explode()
-		

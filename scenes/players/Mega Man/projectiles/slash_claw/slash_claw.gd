@@ -22,7 +22,7 @@ func _ready():
 	if direction.x < 0:
 		$Sprite.flip_h = true
 
-		
+
 func _physics_process(delta):
 	if direction.x < 0:
 		global_position.x = PlayerValues.player.global_position.x - 10

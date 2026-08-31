@@ -43,7 +43,7 @@ func _physics_process(delta):
 		velocity.x *= -1
 	if is_on_ceiling():
 		velocity.y = 0
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -59,7 +59,7 @@ func queue_free() -> void:
 func _free_groups():
 	if is_in_group("WindStormP1"):
 		remove_from_group("WindStormP1")
-		
+
 func reflect()-> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	_free_groups()

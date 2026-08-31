@@ -24,7 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	move_and_slide((direction.normalized() * METAL_BLADE_SPEED), Vector2.UP)
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------
@@ -42,7 +42,7 @@ func queue_free() -> void:
 func _free_groups():
 	if is_in_group("MetalBladeP1"):
 		remove_from_group("MetalBladeP1")
-		
+
 func reflect() -> void:
 	_free_groups()
 	$Audio/deflect.play()

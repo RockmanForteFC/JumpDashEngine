@@ -28,7 +28,7 @@ func _enter():
 func _update(delta):
 	for body in  $"../../playerDetector".get_overlapping_bodies():
 		if body is Player and get_parent().is_in_ready_state:
-			get_parent().is_in_ready_state = false 
+			get_parent().is_in_ready_state = false
 			emit_signal("finished", "open")
 #-------------------------------------------------
 #      Public Methods
@@ -43,4 +43,3 @@ func _update(delta):
 #-------------------------------------------------
 func _open():
 	get_parent().is_in_ready_state = true
-

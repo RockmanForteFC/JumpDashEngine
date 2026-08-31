@@ -21,7 +21,7 @@ func _ready():
 
 func _enter():
 	owner.face_player()
-	owner.is_blocking = true 
+	owner.is_blocking = true
 	$"../../AnimationPlayer".play("Idle")
 	hide_timer.start()
 

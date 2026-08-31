@@ -46,7 +46,7 @@ func _update(delta):
 		splash.global_position.x = owner.global_position.x
 		splash.global_position.y = owner.global_position.y - 5
 		owner.queue_free()
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

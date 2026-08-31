@@ -19,8 +19,8 @@ var player:Player = null
 
 func _ready():
 	if unlock_from_side == "Right":
-		$Unlock/CollisionShape2D.position.x *= -1  
-		
+		$Unlock/CollisionShape2D.position.x *= -1
+
 func _process(delta):
 	if player and $Unlock.overlaps_body(player):
 		set_collision_layer_bit(Bitmask.invisible_walls, false)

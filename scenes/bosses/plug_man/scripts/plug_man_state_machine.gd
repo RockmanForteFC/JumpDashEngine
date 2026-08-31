@@ -20,7 +20,7 @@ func _ready():
 	states_map["shoot"] = $Shoot
 	states_map["hop"] = $TripleHop
 	states_map["jump"] = $Jump
-	
+
 
 #-------------------------------------------------
 #      Public Methods
@@ -33,4 +33,3 @@ func _ready():
 #-------------------------------------------------
 #      Connections
 #-------------------------------------------------
-	

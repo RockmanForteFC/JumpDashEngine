@@ -43,9 +43,9 @@ func _physics_process(_delta: float) -> void:
 
 	if _was_on_screen != _is_on_screen:
 		emit_signal("camera_entered" if _is_on_screen else "camera_exited")
-	
+
 	_was_on_screen = _is_on_screen
-	
+
 #-------------------------------------------------
 #      Public Methods
 #-------------------------------------------------

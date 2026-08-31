@@ -54,4 +54,3 @@ func _on_animation_finished(anim_name: String) -> void:
 			emit_signal("finished", "idle")
 		else:
 			emit_signal("finished", "jump")
-

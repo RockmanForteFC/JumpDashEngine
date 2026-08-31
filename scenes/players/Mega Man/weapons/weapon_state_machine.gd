@@ -40,7 +40,7 @@ func change_weapon(name: String) -> void:
 		_change_state(states_map.keys()[0])
 		owner.emit_signal("weapon_changed_swap")
 		# Remove weapon_ prefix. eg. weapon_M.Buster will become M.Buster
-	elif states_map.keys().has(name.substr(7)):  
+	elif states_map.keys().has(name.substr(7)):
 		_change_state(name.substr(7))
 	else:
 		printerr("Failed to change weapon. %s is not a valid weapon name." % name)
@@ -56,7 +56,7 @@ func get_weapons_info() -> Dictionary:
 #      Private Methods
 #-------------------------------------------------
 func _remove_on_screen_projectiles():
-	if Config.clear_projectiles_on_swap: 
+	if Config.clear_projectiles_on_swap:
 		for n in owner.get_parent().get_children():
 			if n.is_in_group("PlayerWeapons"):
 				if n.is_in_group("Shachi_DroneP%s" % owner.player_number):
@@ -78,7 +78,7 @@ func _remove_on_screen_projectiles():
 					pass
 				if n.is_in_group("LifeSeedP%s" % owner.player_number):
 					n.queue_free()
-				
+
 func _get_adjacent_key(previous: bool = false) -> String:
 	var keys: Array = states_map.keys()
 	var current_key: String
@@ -86,7 +86,7 @@ func _get_adjacent_key(previous: bool = false) -> String:
 	for key in keys:
 		if states_map[key] == current_state:
 			current_key = key
-	
+
 	var adjacent_index: int = 0
 	var current_index: int = keys.find(current_key)
 
@@ -106,10 +106,10 @@ func reinit_state_map():
 
 func _init_states_map() -> void:
 	states_map.clear()
-	
+
 	for weapon in PlayerValues.obtained_weapons.values():
 		if not weapon == null:
-			
+
 			match weapon.key_name:
 				"mega_buster": states_map[weapon.key_name] = $MegaBuster
 				"rush_coil":states_map[weapon.key_name] = $RushCoil

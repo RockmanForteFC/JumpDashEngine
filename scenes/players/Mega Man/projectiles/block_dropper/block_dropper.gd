@@ -39,7 +39,7 @@ func _break():
 	$Audio/Break.play()
 	yield($AnimatedSprite,"animation_finished")
 	queue_free()
-	
+
 func queue_free() -> void:
 	emit_signal("block_despawn")
 	_free_groups()
@@ -49,7 +49,7 @@ func queue_free() -> void:
 		$CollisionShape2D.set_deferred("disabled", true)
 		yield($Audio/Break, "finished")
 	.queue_free()
-	
+
 func reflect() -> void:
 	_break()
 

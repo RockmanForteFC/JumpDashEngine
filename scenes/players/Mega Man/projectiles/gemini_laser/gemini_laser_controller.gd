@@ -42,7 +42,7 @@ func spawn():
 	spawn_count += 1
 
 func segment_died():
-	kill_count += 1 
+	kill_count += 1
 	if kill_count ==  spawn_count:
 		queue_free()
 
@@ -50,7 +50,7 @@ func queue_free() -> void:
 	_free_groups()
 	consumed = true
 	.queue_free()
-	
+
 func _free_groups():
 	if is_in_group("GeminiLaserP1"):
 		remove_from_group("GeminiLaserP1")

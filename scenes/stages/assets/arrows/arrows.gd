@@ -9,5 +9,3 @@ func _ready():
 func _set_texture(value):
 	direction = value
 	$Sprite.texture = load("res://assets/images/sprites/level_assets/arrows/" + direction + ".png")
-
-

@@ -36,12 +36,12 @@ func _process(delta):
 						is_full_ammo = false
 				else:
 					continue
-			if is_full_ammo:	
+			if is_full_ammo:
 				ammoScore *= Score.HEALTH_AMMO_FULL_MODIFIER
 			Score.change(ammoScore)
 			if not $AudioStreamPlayer2D.playing:
 				cleanup(emit and not can_despawn)
-				
+
 func _physics_process(delta):
 	if !is_homing_on_player:
 		if not is_on_floor():
@@ -72,7 +72,7 @@ func _on_AudioStreamPlayer2D_finished():
 func _on_PickupDetector_body_entered(body):
 	if body.is_in_group("PlayerWeapons") and body.key_name == "maelstrom_absorber":
 		_maelstrom_absorb()
-			
+
 func _on_DespawnNormal_timeout():
 	modulate.a = 0.7
 	$DespawnFlashing.wait_time = $DespawnFlashing.wait_time * Physics.item_despawn_rate

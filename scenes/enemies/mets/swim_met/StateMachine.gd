@@ -12,7 +12,7 @@ extends "res://scenes/enemies/base/scripts/state_machine.gd"
 #      Properties
 #-------------------------------------------------
 var velocity:Vector2
-var is_in_water:bool = false 
+var is_in_water:bool = false
 var is_top_of_water:bool = false
 #-------------------------------------------------
 #      Processes

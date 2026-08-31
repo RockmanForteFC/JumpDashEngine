@@ -36,7 +36,7 @@ func change_bolt():
 			tween.tween_property(self, "modulate:a", 1.0, 0.6)
 		yield(tween,"finished")
 		tween = null
-	
+
 func fade_out():
 	if tween:
 		tween.stop()

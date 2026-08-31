@@ -12,7 +12,7 @@ extends "res://scenes/players/Mega Man/projectiles/projectile_base.gd"
 #      Properties
 #-------------------------------------------------
 var is_timer_running : bool = false
-var platform_died : bool 
+var platform_died : bool
 #-------------------------------------------------
 #      Processes
 #-------------------------------------------------
