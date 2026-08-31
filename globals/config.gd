@@ -173,7 +173,6 @@ func load_config_from_file():
 		_set_or_default(global_config, "auto_fire_mode")
 		_set_or_default(global_config, "auto_charge_enabled")
 	file.close()
-	TranslationServer.set_locale(locale)
 	return content
 
 func save_defaults():
