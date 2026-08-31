@@ -108,7 +108,6 @@ func _ready() -> void:
 	if (Config.skip_boss_dialog and Config.has_beat_game) or PlayerValues.is_in_special_game_mode:
 		skip_dialog = true
 		if PlayerValues.game_mode == "time_trial":
-			check_time_trial_ghost()
 			get_tree().call_group("Checkpoints", "queue_free")
 			get_tree().call_group("CD", "queue_free")
 			get_tree().call_group("pickup_letter", "queue_free")
@@ -205,18 +204,6 @@ func get_file_name()->String:
 	level_name = level_name.substr(0 , level_name.find("."))
 	level_name = level_name.replace(" ", "_").replace("-", "_")
 	return level_name
-
-func check_time_trial_ghost():
-	if not Config.time_trial_ghosts_enabled:
-		return
-	var filecheck = File.new()
-	if (filecheck.file_exists("user://" +  ProjectSettings.get_setting("application/config/time_trial") + "/" + get_file_name() + ".json")):
-		var starting_position = Vector2(0,0)
-		if get_node_or_null("LevelSpawnPosition"):
-			starting_position = get_node_or_null("LevelSpawnPosition").global_position
-		yield(get_tree(),"idle_frame")
-		ghost_node = get_tree().get_nodes_in_group("time_trial_ghost")[0]
-		ghost_node.global_position = starting_position
 
 func shake_screen(speed = NOISE_SHAKE_SPEED,strength = NOISE_SHAKE_STRENGTH,decay = SHAKE_DECAY_RATE):
 	shake_speed = speed

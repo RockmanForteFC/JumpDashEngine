@@ -27,7 +27,6 @@ var start_position:Vector2
 
 func _ready():
 	did_boss_dialog = true
-	check_time_trial_ghost()
 	Physics.is_in_pausible_state = false
 	Physics.is_pause_enabled = false
 	Physics.current_stage = self
