@@ -20,7 +20,7 @@ func _ready():
 	$AnimationPlayer.play("fade-in-out")
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("action_jump_p1"):
 		$AnimationPlayer.play("quick-fade-out")
 #-------------------------------------------------
 #      Public Methods
