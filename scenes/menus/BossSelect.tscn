@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/audio/songs/menu/03 Stage Select.mp3" type="AudioStream" id=8]
 [ext_resource path="res://assets/audio/menu/error.ogg" type="AudioStream" id=9]
 [ext_resource path="res://assets/images/decorations/3232wrench2.png" type="Texture" id=10]
-[ext_resource path="res://assets/images/sprites/menus/Stage_Select_Portrait_Frames.png" type="Texture" id=11]
+[ext_resource path="res://game/data/image/portrait/boss_select_frame.png" type="Texture" id=11]
 [ext_resource path="res://game/data/image/portrait/magic_man.png" type="Texture" id=12]
 [ext_resource path="res://game/data/image/portrait/astro_man.png" type="Texture" id=13]
 [ext_resource path="res://assets/images/sprites/menus/select_screen_shop_icon.png" type="Texture" id=14]
