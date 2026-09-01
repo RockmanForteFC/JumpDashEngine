@@ -190,7 +190,7 @@ func _process(_delta):
 
 func _get_eye_location():
 	$Boss_Layer/BossLabels/Middle.hide()
-	$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+	$Boss_Layer/scanlines/Mid_Mid.hide()
 	match selected:
 		POS.TL:
 			_eye_location.play("UpLeft")
@@ -216,21 +216,21 @@ func _get_eye_location():
 					$Boss_Layer/BossLabels/Middle.show()
 				if selected_middle == "v":
 					_eye_location.play("Miss_Wily")
-					$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+					$Boss_Layer/scanlines/Mid_Mid.hide()
 				elif selected_middle == "dw":
 					_eye_location.play("Doctor_Wily")
-					$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+					$Boss_Layer/scanlines/Mid_Mid.hide()
 				elif selected_middle == "s":
 					if PlayerValues.is_serenade_unlocked:
 						if PlayerValues.beat_levels[boss_names[boss.serenade]]:
 							_eye_location.play("Serenade_Defeated")
-							$Boss_Layer/scanlines/Boss_Mid_Mid.show()
+							$Boss_Layer/scanlines/Mid_Mid.show()
 						else:
-							$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+							$Boss_Layer/scanlines/Mid_Mid.hide()
 							_eye_location.play("Serenade")
 			else:
 				_eye_location.play("Middle")
-				$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+				$Boss_Layer/scanlines/Mid_Mid.hide()
 		POS.RM:
 			_eye_location.play("Right")
 			$left_arrow.play("nothing")
@@ -256,43 +256,43 @@ func _get_eye_location():
 func hide_beat_bosses():
 	if PlayerValues.beat_levels[boss_names[boss.incinerate]]:
 		$Boss_Layer/BossLabels/Mid_Right.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Mid_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/incinerate.png")
-		$Boss_Layer/scanlines/Boss_Mid_Right.show()
+		$Boss_Layer/BossImages/Mid_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/incinerate.png")
+		$Boss_Layer/scanlines/Mid_Right.show()
 
 	if PlayerValues.beat_levels[boss_names[boss.tremor]]:
 		$Boss_Layer/BossLabels/Bottom_Right.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Bottom_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/tremor.png")
-		$Boss_Layer/scanlines/Boss_Bottom_Right.show()
+		$Boss_Layer/BossImages/Bottom_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/tremor.png")
+		$Boss_Layer/scanlines/Bottom_Right.show()
 
 	if PlayerValues.beat_levels[boss_names[boss.maelstrom]]:
 		$Boss_Layer/BossLabels/Bottom_Left.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Bottom_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/maelstrom.png")
-		$Boss_Layer/scanlines/Boss_Bottom_Left.show()
+		$Boss_Layer/BossImages/Bottom_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/maelstrom.png")
+		$Boss_Layer/scanlines/Bottom_Left.show()
 
 	if PlayerValues.beat_levels[boss_names[boss.ninja]]:
 		$Boss_Layer/BossLabels/Top_Right.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Top_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/ninja.png")
-		$Boss_Layer/scanlines/Boss_Top_Right.show()
+		$Boss_Layer/BossImages/Top_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/ninja.png")
+		$Boss_Layer/scanlines/Top_Right.show()
 
 	if PlayerValues.beat_levels[boss_names[boss.beam]]:
 		$Boss_Layer/BossLabels/Top_Middle.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Top_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/beam.png")
-		$Boss_Layer/scanlines/Boss_Top_Middle.show()
+		$Boss_Layer/BossImages/Top_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/beam.png")
+		$Boss_Layer/scanlines/Top_Middle.show()
 
 	if PlayerValues.beat_levels[boss_names[boss.gladiator]]:
 		$Boss_Layer/BossLabels/Top_Left.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Top_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/gladiator.png")
-		$Boss_Layer/scanlines/Boss_Top_Left.show()
+		$Boss_Layer/BossImages/Top_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/gladiator.png")
+		$Boss_Layer/scanlines/Top_Left.show()
 
 	if PlayerValues.beat_levels[boss_names[boss.arctic]]:
 		$Boss_Layer/BossLabels/Bottom_Middle.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Bottom_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/arctic.png")
-		$Boss_Layer/scanlines/Boss_Bottom_Middle.show()
+		$Boss_Layer/BossImages/Bottom_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/arctic.png")
+		$Boss_Layer/scanlines/Bottom_Middle.show()
 
 	if PlayerValues.beat_levels[boss_names[boss.detonate]]:
 		$Boss_Layer/BossLabels/Mid_Left.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Mid_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/detonate.png")
-		$Boss_Layer/scanlines/Boss_Mid_Left.show()
+		$Boss_Layer/BossImages/Mid_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/detonate.png")
+		$Boss_Layer/scanlines/Mid_Left.show()
 
 
 func loadStage():

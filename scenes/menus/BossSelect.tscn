@@ -842,56 +842,56 @@ valign = 1
 
 [node name="BossImages" type="CanvasLayer" parent="Boss_Layer"]
 
-[node name="Boss_Top_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Top_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 48.0
 margin_top = 16.0
 margin_right = 80.0
 margin_bottom = 48.0
 texture = ExtResource( 12 )
 
-[node name="Boss_Top_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Top_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 112.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 48.0
 texture = ExtResource( 12 )
 
-[node name="Boss_Top_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Top_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 176.0
 margin_top = 16.0
 margin_right = 208.0
 margin_bottom = 48.0
 texture = ExtResource( 12 )
 
-[node name="Boss_Mid_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Mid_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 48.0
 margin_top = 80.0
 margin_right = 80.0
 margin_bottom = 112.0
 texture = ExtResource( 12 )
 
-[node name="Boss_Mid_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Mid_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 176.0
 margin_top = 80.0
 margin_right = 208.0
 margin_bottom = 112.0
 texture = ExtResource( 2 )
 
-[node name="Boss_Bottom_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Bottom_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 48.0
 margin_top = 144.0
 margin_right = 80.0
 margin_bottom = 176.0
 texture = ExtResource( 12 )
 
-[node name="Boss_Bottom_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Bottom_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 112.0
 margin_top = 144.0
 margin_right = 144.0
 margin_bottom = 176.0
 texture = ExtResource( 12 )
 
-[node name="Boss_Bottom_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
+[node name="Bottom_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 176.0
 margin_top = 144.0
 margin_right = 208.0
@@ -906,7 +906,7 @@ playing = true
 
 [node name="scanlines" type="CanvasLayer" parent="Boss_Layer"]
 
-[node name="Boss_Top_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Top_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 48.0
 margin_top = 16.0
@@ -914,7 +914,7 @@ margin_right = 80.0
 margin_bottom = 48.0
 texture = ExtResource( 33 )
 
-[node name="Boss_Top_Middle" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Top_Middle" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 112.0
 margin_top = 16.0
@@ -922,7 +922,7 @@ margin_right = 158.0
 margin_bottom = 55.0
 texture = ExtResource( 33 )
 
-[node name="Boss_Top_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Top_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 176.0
 margin_top = 16.0
@@ -930,7 +930,7 @@ margin_right = 208.0
 margin_bottom = 48.0
 texture = ExtResource( 33 )
 
-[node name="Boss_Mid_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Mid_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 48.0
 margin_top = 80.0
@@ -938,7 +938,7 @@ margin_right = 80.0
 margin_bottom = 118.0
 texture = ExtResource( 33 )
 
-[node name="Boss_Mid_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Mid_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 176.0
 margin_top = 80.0
@@ -946,7 +946,7 @@ margin_right = 208.0
 margin_bottom = 118.0
 texture = ExtResource( 33 )
 
-[node name="Boss_Bottom_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Bottom_Left" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 48.0
 margin_top = 144.0
@@ -955,7 +955,7 @@ margin_bottom = 176.0
 texture = ExtResource( 33 )
 flip_h = true
 
-[node name="Boss_Bottom_Middle" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Bottom_Middle" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 112.0
 margin_top = 144.0
@@ -963,7 +963,7 @@ margin_right = 144.0
 margin_bottom = 176.0
 texture = ExtResource( 33 )
 
-[node name="Boss_Bottom_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Bottom_Right" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 176.0
 margin_top = 144.0
@@ -971,7 +971,7 @@ margin_right = 208.0
 margin_bottom = 176.0
 texture = ExtResource( 33 )
 
-[node name="Boss_Mid_Mid" type="TextureRect" parent="Boss_Layer/scanlines"]
+[node name="Mid_Mid" type="TextureRect" parent="Boss_Layer/scanlines"]
 visible = false
 margin_left = 112.0
 margin_top = 80.0
