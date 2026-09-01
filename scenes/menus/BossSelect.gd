@@ -5,21 +5,21 @@ extends Node2D
 const MENU = "res://scenes/menus/existing_game_menu/existing_game_menu.tscn"
 const LETTER_TEXTURE_MASK: String = "res://assets/images/sprites/pickups/letters/letter_%s.png"
 
-const positions = [
+onready var positions = [
 	#top row
-	Vector2(64,32),
-	Vector2(128,32),
-	Vector2(192,32),
+	Vector2($Boss_Layer/BossImages/Top_Left.rect_position.x+16, $Boss_Layer/BossImages/Top_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Top_Middle.rect_position.x+16, $Boss_Layer/BossImages/Top_Middle.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Top_Right.rect_position.x+16, $Boss_Layer/BossImages/Top_Right.rect_position.y+16),
 
 	#middle row
-	Vector2(64,96),
-	Vector2(128,96),
-	Vector2(192,96),
+	Vector2($Boss_Layer/BossImages/Mid_Left.rect_position.x+16, $Boss_Layer/BossImages/Mid_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Top_Middle.rect_position.x+16, $Boss_Layer/BossImages/Mid_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Mid_Right.rect_position.x+16, $Boss_Layer/BossImages/Mid_Right.rect_position.y+16),
 
 	#bottom row
-	Vector2(64,160),
-	Vector2(128,160),
-	Vector2(192,160),
+	Vector2($Boss_Layer/BossImages/Bottom_Left.rect_position.x+16, $Boss_Layer/BossImages/Bottom_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Bottom_Middle.rect_position.x+16, $Boss_Layer/BossImages/Bottom_Middle.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Bottom_Right.rect_position.x+16, $Boss_Layer/BossImages/Bottom_Right.rect_position.y+16),
 
 	#shop icon
 	Vector2(128,212)
