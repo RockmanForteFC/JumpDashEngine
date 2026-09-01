@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/images/sprites/menus/boss_selected_screen.png" type="Texture" id=1]
-[ext_resource path="res://assets/audio/songs/MMW_StageStart.ogg" type="AudioStream" id=2]
+[ext_resource path="res://game/data/audio/music/rm_intro.ogg" type="AudioStream" id=2]
 [ext_resource path="res://scenes/menus/boss_selected_display/boss_selected_animation.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/sprites/bosses/introduction_warp/introduction.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/sprites/bosses/unknown/unknownboss.png" type="Texture" id=5]
