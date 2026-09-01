@@ -5,10 +5,6 @@ extends Node2D
 const MENU = "res://scenes/menus/existing_game_menu/existing_game_menu.tscn"
 const LETTER_TEXTURE_MASK: String = "res://assets/images/sprites/pickups/letters/letter_%s.png"
 
-# a list of boss names. this will be used to determine if a boss is cleared
-var boss_names:Array = ["example_level","a_man","b_woman","c_man","d_man","e_man", "f_man","g_man","h"]
-enum boss{incinerate,tremor,maelstrom,ninja,beam,gladiator,arctic,detonate,serenade}
-
 const positions = [
 	#top row
 	Vector2(64,32),
@@ -265,46 +261,67 @@ func _get_eye_location():
 		$right_arrow.play("nothing")
 
 func hide_beat_bosses():
-	if PlayerValues.beat_levels[boss_names[boss.incinerate]]:
-		$Boss_Layer/BossLabels/Mid_Right.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Mid_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/incinerate.png")
-		$Boss_Layer/scanlines/Mid_Right.show()
+	for pos_id in POS:
+		var pos = POS[pos_id]
+		var stage = STAGES[pos] if pos in STAGES else null
 
-	if PlayerValues.beat_levels[boss_names[boss.tremor]]:
-		$Boss_Layer/BossLabels/Bottom_Right.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Bottom_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/tremor.png")
-		$Boss_Layer/scanlines/Bottom_Right.show()
+		if not stage or not PlayerValues.beat_levels[stage.id]:
+			continue
 
-	if PlayerValues.beat_levels[boss_names[boss.maelstrom]]:
-		$Boss_Layer/BossLabels/Bottom_Left.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Bottom_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/maelstrom.png")
-		$Boss_Layer/scanlines/Bottom_Left.show()
+		var label: Label
+		var image: TextureRect
+		var scanlines: TextureRect
+		# FIXME: should use generic names or stage IDs for textures
+		var texture_name: String
 
-	if PlayerValues.beat_levels[boss_names[boss.ninja]]:
-		$Boss_Layer/BossLabels/Top_Right.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Top_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/ninja.png")
-		$Boss_Layer/scanlines/Top_Right.show()
+		match pos:
+			POS.TL:
+				label = $Boss_Layer/BossLabels/Top_Left
+				image = $Boss_Layer/BossImages/Top_Left
+				scanlines = $Boss_Layer/scanlines/Top_Left
+				texture_name = "gladiator"
+			POS.TM:
+				label = $Boss_Layer/BossLabels/Top_Middle
+				image = $Boss_Layer/BossImages/Top_Middle
+				scanlines = $Boss_Layer/scanlines/Top_Middle
+				texture_name = "beam"
+			POS.TR:
+				label = $Boss_Layer/BossLabels/Top_Right
+				image = $Boss_Layer/BossImages/Top_Right
+				scanlines = $Boss_Layer/scanlines/Top_Right
+				texture_name = "ninja"
+			POS.LM:
+				label = $Boss_Layer/BossLabels/Mid_Left
+				image = $Boss_Layer/BossImages/Mid_Left
+				scanlines = $Boss_Layer/scanlines/Mid_Left
+				texture_name = "detonate"
+			POS.RM:
+				label = $Boss_Layer/BossLabels/Mid_Right
+				image = $Boss_Layer/BossImages/Mid_Right
+				scanlines = $Boss_Layer/scanlines/Mid_Right
+				texture_name = "incinerate"
+			POS.BL:
+				label = $Boss_Layer/BossLabels/Bottom_Left
+				image = $Boss_Layer/BossImages/Bottom_Left
+				scanlines = $Boss_Layer/scanlines/Bottom_Left
+				texture_name = "maelstrom"
+			POS.BM:
+				label = $Boss_Layer/BossLabels/Bottom_Middle
+				image = $Boss_Layer/BossImages/Bottom_Middle
+				scanlines = $Boss_Layer/scanlines/Bottom_Middle
+				texture_name = "arctic"
+			POS.BR:
+				label = $Boss_Layer/BossLabels/Bottom_Right
+				image = $Boss_Layer/BossImages/Bottom_Right
+				scanlines = $Boss_Layer/scanlines/Bottom_Right
+				texture_name = "tremor"
+			_:
+				# shouldn't get to this point
+				continue
 
-	if PlayerValues.beat_levels[boss_names[boss.beam]]:
-		$Boss_Layer/BossLabels/Top_Middle.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Top_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/beam.png")
-		$Boss_Layer/scanlines/Top_Middle.show()
-
-	if PlayerValues.beat_levels[boss_names[boss.gladiator]]:
-		$Boss_Layer/BossLabels/Top_Left.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Top_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/gladiator.png")
-		$Boss_Layer/scanlines/Top_Left.show()
-
-	if PlayerValues.beat_levels[boss_names[boss.arctic]]:
-		$Boss_Layer/BossLabels/Bottom_Middle.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Bottom_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/arctic.png")
-		$Boss_Layer/scanlines/Bottom_Middle.show()
-
-	if PlayerValues.beat_levels[boss_names[boss.detonate]]:
-		$Boss_Layer/BossLabels/Mid_Left.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Mid_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/detonate.png")
-		$Boss_Layer/scanlines/Mid_Left.show()
-
+		label.modulate = Color("bfb3b3")
+		image.texture = load("res://assets/images/sprites/menus/beat_bosses/%s.png" % texture_name)
+		scanlines.show()
 
 func loadStage():
 	$CanvasLayer/AnimationPlayer.play("Close_Transition")
