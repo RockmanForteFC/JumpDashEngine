@@ -46,6 +46,9 @@ func show_boss():
 #      Private Methods
 #-------------------------------------------------
 func _set_vapor_colors(default_colors:bool = false ):
+	if not $vapor_down or not $vapor_up:
+		return
+
 	if default_colors:
 		$vapor_down.background_color = _default_background_color
 		$vapor_down.line_color = _default_grid_color
