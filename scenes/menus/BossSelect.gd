@@ -86,107 +86,107 @@ func _ready():
 	Config.save_config()
 
 func _process(_delta):
-		_get_eye_location()
-		if Input.is_action_just_pressed("ui_up") and is_accepting_inputs:
-			if selected == 9:
-				$SelectedMenuObject.hide()
-				selected = 7
-				is_shop_highlighted = false
-				was_position_changed = true
-				$AnimationPlayer.play("Shine")
-				yield($SelectedMenuObject,"texture_changed")
-				$SelectedMenuObject.show()
-			else:
-				selected -= 3
-				if selected < 0:
-					selected += 9
-				was_position_changed = true
-		elif Input.is_action_just_pressed("ui_right") and is_accepting_inputs:
-			if not is_shop_highlighted:
-				if selected == POS.TR or selected == POS.RM or selected == POS.BR:
-					selected -=2
-				else:
-					selected += 1
-				was_position_changed = true
-			else:
-				pass
-		elif Input.is_action_just_pressed("ui_left") and is_accepting_inputs:
-			if not is_shop_highlighted:
-				if selected == POS.TL or selected == POS.LM or selected == POS.BL:
-					selected +=2
-				else:
-					selected -= 1
-				was_position_changed = true
-			else:
-				pass
-		elif Input.is_action_just_pressed("ui_down") and is_accepting_inputs:
-			selected += 3
-			if selected >= 9 and not is_shop_highlighted:
-				$SelectedMenuObject.hide()
-				selected = 9
-				is_shop_highlighted = true
-				$AnimationPlayer.play("Shine_Shop")
-				yield($SelectedMenuObject,"texture_changed")
-				$SelectedMenuObject.show()
-			elif selected > 9 and is_shop_highlighted:
-				$SelectedMenuObject.hide()
-				selected = 1
-				is_shop_highlighted = false
-				$AnimationPlayer.play("Shine")
-				yield($SelectedMenuObject,"texture_changed")
-				$SelectedMenuObject.show()
+	_get_eye_location()
+	if Input.is_action_just_pressed("ui_up") and is_accepting_inputs:
+		if selected == 9:
+			$SelectedMenuObject.hide()
+			selected = 7
+			is_shop_highlighted = false
 			was_position_changed = true
-		if was_position_changed:
-			$Switch.play()
-			was_position_changed = false
-			$SelectedMenuObject.position = positions[selected]
-		if (Input.is_action_just_pressed("action_left_swap_p1") or Input.is_action_just_pressed("action_right_swap_p1")):
-			if selected == POS.MM:
-				if selected_middle == "s":
-					if PlayerValues.is_in_wily_fortress and beat_level_count == 8  :
-						selected_middle = "dw"
-					elif !PlayerValues.is_in_virus_fortress and beat_level_count == 8  :
-						selected_middle = "v"
-				elif selected_middle != "s" and PlayerValues.is_serenade_unlocked :
-					selected_middle = "s"
-		if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("action_jump_p1")) and is_accepting_inputs:
-			if selected == POS.RM or is_shop_highlighted:
+			$AnimationPlayer.play("Shine")
+			yield($SelectedMenuObject,"texture_changed")
+			$SelectedMenuObject.show()
+		else:
+			selected -= 3
+			if selected < 0:
+				selected += 9
+			was_position_changed = true
+	elif Input.is_action_just_pressed("ui_right") and is_accepting_inputs:
+		if not is_shop_highlighted:
+			if selected == POS.TR or selected == POS.RM or selected == POS.BR:
+				selected -=2
+			else:
+				selected += 1
+			was_position_changed = true
+		else:
+			pass
+	elif Input.is_action_just_pressed("ui_left") and is_accepting_inputs:
+		if not is_shop_highlighted:
+			if selected == POS.TL or selected == POS.LM or selected == POS.BL:
+				selected +=2
+			else:
+				selected -= 1
+			was_position_changed = true
+		else:
+			pass
+	elif Input.is_action_just_pressed("ui_down") and is_accepting_inputs:
+		selected += 3
+		if selected >= 9 and not is_shop_highlighted:
+			$SelectedMenuObject.hide()
+			selected = 9
+			is_shop_highlighted = true
+			$AnimationPlayer.play("Shine_Shop")
+			yield($SelectedMenuObject,"texture_changed")
+			$SelectedMenuObject.show()
+		elif selected > 9 and is_shop_highlighted:
+			$SelectedMenuObject.hide()
+			selected = 1
+			is_shop_highlighted = false
+			$AnimationPlayer.play("Shine")
+			yield($SelectedMenuObject,"texture_changed")
+			$SelectedMenuObject.show()
+		was_position_changed = true
+	if was_position_changed:
+		$Switch.play()
+		was_position_changed = false
+		$SelectedMenuObject.position = positions[selected]
+	if (Input.is_action_just_pressed("action_left_swap_p1") or Input.is_action_just_pressed("action_right_swap_p1")):
+		if selected == POS.MM:
+			if selected_middle == "s":
+				if PlayerValues.is_in_wily_fortress and beat_level_count == 8  :
+					selected_middle = "dw"
+				elif !PlayerValues.is_in_virus_fortress and beat_level_count == 8  :
+					selected_middle = "v"
+			elif selected_middle != "s" and PlayerValues.is_serenade_unlocked :
+				selected_middle = "s"
+	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("action_jump_p1")) and is_accepting_inputs:
+		if selected == POS.RM or is_shop_highlighted:
+			is_accepting_inputs = false
+			$ColorRect.show()
+			$SelectedMenuObject.hide()
+			$shop_icon.hide()
+			set_process(false)
+#			$StageSelectFlash.play("RESET")
+			if not is_shop_highlighted:
+				_eye_location.play("Determined")
+			else:
+				_eye_location.play("Happy")
+			$AnimationPlayer.play("Flash_Screen")
+			$Boss_Select.play()
+		elif selected == POS.MM:
+			if PlayerValues.is_serenade_unlocked and selected_middle == "s":
 				is_accepting_inputs = false
 				$ColorRect.show()
 				$SelectedMenuObject.hide()
 				$shop_icon.hide()
 				set_process(false)
-	#			$StageSelectFlash.play("RESET")
-				if not is_shop_highlighted:
-					_eye_location.play("Determined")
-				else:
-					_eye_location.play("Happy")
+				_eye_location.play("Determined")
 				$AnimationPlayer.play("Flash_Screen")
 				$Boss_Select.play()
-			elif selected == POS.MM:
-				if PlayerValues.is_serenade_unlocked and selected_middle == "s":
-					is_accepting_inputs = false
-					$ColorRect.show()
-					$SelectedMenuObject.hide()
-					$shop_icon.hide()
-					set_process(false)
-					_eye_location.play("Determined")
-					$AnimationPlayer.play("Flash_Screen")
-					$Boss_Select.play()
-				elif beat_level_count == 8 and selected_middle == "dw":
-					is_accepting_inputs = false
-					$ColorRect.show()
-					$SelectedMenuObject.hide()
-					$shop_icon.hide()
-					set_process(false)
-					_eye_location.play("Determined")
-					$AnimationPlayer.play("Flash_Screen")
-					$Boss_Select.play()
-					pass
-				else:
-					$Error.play()
+			elif beat_level_count == 8 and selected_middle == "dw":
+				is_accepting_inputs = false
+				$ColorRect.show()
+				$SelectedMenuObject.hide()
+				$shop_icon.hide()
+				set_process(false)
+				_eye_location.play("Determined")
+				$AnimationPlayer.play("Flash_Screen")
+				$Boss_Select.play()
+				pass
 			else:
 				$Error.play()
+		else:
+			$Error.play()
 
 func _get_eye_location():
 	$Boss_Layer/BossLabels/Middle_Label.hide()
