@@ -92,7 +92,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="JumpDashEngine"
+config/name="Rockman & Forte FC"
 config/description="A blank Mega Man engine to make your own fan projects!"
 run/main_scene="res://scenes/menus/logo_splash_screen/logo_splash_screen.tscn"
 config/use_custom_user_dir=true
