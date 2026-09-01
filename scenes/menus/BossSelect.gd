@@ -2,38 +2,24 @@ extends Node2D
 #warning-ignore-all:return_value_discarded
 
 
-#This should be the scene path to the boss level
-const BOTTOM_RIGHT = ""
-const TOP_RIGHT = ""
-const TOP_LEFT = ""
-const MIDDLE_RIGHT = "res://scenes/stages/levels/example_1/example_1.tscn"
-const BOTTOM_MIDDLE = ""
-const BOTTOM_LEFT = ""
-const LEFT_MIDDLE = ""
-const TOP_MIDDLE = ""
-const BONUS_BOSS = ""
 const MENU = "res://scenes/menus/existing_game_menu/existing_game_menu.tscn"
 const LETTER_TEXTURE_MASK: String = "res://assets/images/sprites/pickups/letters/letter_%s.png"
 
-# a list of boss names. this will be used to determine if a boss is cleared
-var boss_names:Array = ["example_level","a_man","b_woman","c_man","d_man","e_man", "f_man","g_man","h"]
-enum boss{incinerate,tremor,maelstrom,ninja,beam,gladiator,arctic,detonate,serenade}
-
-const positions = [
+onready var positions = [
 	#top row
-	Vector2(64,32),
-	Vector2(128,32),
-	Vector2(192,32),
+	Vector2($Boss_Layer/BossImages/Top_Left.rect_position.x+16, $Boss_Layer/BossImages/Top_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Top_Middle.rect_position.x+16, $Boss_Layer/BossImages/Top_Middle.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Top_Right.rect_position.x+16, $Boss_Layer/BossImages/Top_Right.rect_position.y+16),
 
 	#middle row
-	Vector2(64,96),
-	Vector2(128,96),
-	Vector2(192,96),
+	Vector2($Boss_Layer/BossImages/Mid_Left.rect_position.x+16, $Boss_Layer/BossImages/Mid_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Top_Middle.rect_position.x+16, $Boss_Layer/BossImages/Mid_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Mid_Right.rect_position.x+16, $Boss_Layer/BossImages/Mid_Right.rect_position.y+16),
 
 	#bottom row
-	Vector2(64,160),
-	Vector2(128,160),
-	Vector2(192,160),
+	Vector2($Boss_Layer/BossImages/Bottom_Left.rect_position.x+16, $Boss_Layer/BossImages/Bottom_Left.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Bottom_Middle.rect_position.x+16, $Boss_Layer/BossImages/Bottom_Middle.rect_position.y+16),
+	Vector2($Boss_Layer/BossImages/Bottom_Right.rect_position.x+16, $Boss_Layer/BossImages/Bottom_Right.rect_position.y+16),
 
 	#shop icon
 	Vector2(128,212)
@@ -47,7 +33,28 @@ var is_accepting_inputs = false
 var beat_level_count = 0
 var selected_middle = ""
 
+# tables containing stage ID & path to stage scene
+const STAGES = {
+	POS.TL: null,
+	POS.TM: null,
+	POS.TR: null,
+	POS.LM: null,
+	POS.MM: null,
+	POS.RM: {"id": "example_level", "scene": "res://scenes/stages/levels/example_1/example_1.tscn"},
+	POS.BL: null,
+	POS.BM: null,
+	POS.BR: null,
+	"bonus": null
+}
+
 onready var _eye_location = $Boss_Layer/BossImages/Eye_Location
+
+func _init():
+	# add custom stage IDs to beat levels registry
+	for pos in STAGES:
+		var stage = STAGES[pos]
+		if stage and not stage.id in PlayerValues.beat_levels:
+			PlayerValues.beat_levels[stage.id] = false
 
 func _ready():
 	PlayerValues.newly_obtained_weapon_name = ""
@@ -68,7 +75,7 @@ func _ready():
 	# stage select is disabled, they need to go straight to the virus fortress
 	if beat_level_count == 8 and (PlayerValues.is_eight_boss_cutscene_seen and PlayerValues.is_in_virus_fortress):
 		get_tree().change_scene("res://scenes/cut_scene/virus_fortress_map/virus_fortress_map.tscn")
-	$Boss_Layer/BossLabels/Middle_Label.hide()
+	$Boss_Layer/BossLabels/Middle.hide()
 	$left_arrow.play("nothing")
 	$right_arrow.play("nothing")
 	$Animate_Shop_Icon.play("ShopFlash")
@@ -150,7 +157,7 @@ func _process(_delta):
 			elif selected_middle != "s" and PlayerValues.is_serenade_unlocked :
 				selected_middle = "s"
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("action_jump_p1")) and is_accepting_inputs:
-		if selected == POS.RM or is_shop_highlighted:
+		if (selected in STAGES and STAGES[selected] != null) or is_shop_highlighted:
 			is_accepting_inputs = false
 			$ColorRect.show()
 			$SelectedMenuObject.hide()
@@ -170,6 +177,8 @@ func _process(_delta):
 				$SelectedMenuObject.hide()
 				$shop_icon.hide()
 				set_process(false)
+				# disable scanlines in case bonus level beaten
+				$Boss_Layer/scanlines/Mid_Mid.hide()
 				_eye_location.play("Determined")
 				$AnimationPlayer.play("Flash_Screen")
 				$Boss_Select.play()
@@ -189,8 +198,8 @@ func _process(_delta):
 			$Error.play()
 
 func _get_eye_location():
-	$Boss_Layer/BossLabels/Middle_Label.hide()
-	$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+	$Boss_Layer/BossLabels/Middle.hide()
+	$Boss_Layer/scanlines/Mid_Mid.hide()
 	match selected:
 		POS.TL:
 			_eye_location.play("UpLeft")
@@ -213,24 +222,24 @@ func _get_eye_location():
 				if beat_level_count == 8 and PlayerValues.is_serenade_unlocked:
 					$left_arrow.play("flash")
 					$right_arrow.play("flash")
-					$Boss_Layer/BossLabels/Middle_Label.show()
+					$Boss_Layer/BossLabels/Middle.show()
 				if selected_middle == "v":
 					_eye_location.play("Miss_Wily")
-					$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+					$Boss_Layer/scanlines/Mid_Mid.hide()
 				elif selected_middle == "dw":
 					_eye_location.play("Doctor_Wily")
-					$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+					$Boss_Layer/scanlines/Mid_Mid.hide()
 				elif selected_middle == "s":
-					if PlayerValues.is_serenade_unlocked:
-						if PlayerValues.beat_levels[boss_names[boss.serenade]]:
+					if STAGES.bonus and PlayerValues.is_serenade_unlocked:
+						if PlayerValues.beat_levels[STAGES.bonus.id]:
 							_eye_location.play("Serenade_Defeated")
-							$Boss_Layer/scanlines/Boss_Mid_Mid.show()
+							$Boss_Layer/scanlines/Mid_Mid.show()
 						else:
-							$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+							$Boss_Layer/scanlines/Mid_Mid.hide()
 							_eye_location.play("Serenade")
 			else:
 				_eye_location.play("Middle")
-				$Boss_Layer/scanlines/Boss_Mid_Mid.hide()
+				$Boss_Layer/scanlines/Mid_Mid.hide()
 		POS.RM:
 			_eye_location.play("Right")
 			$left_arrow.play("nothing")
@@ -254,89 +263,97 @@ func _get_eye_location():
 		$right_arrow.play("nothing")
 
 func hide_beat_bosses():
-	if PlayerValues.beat_levels[boss_names[boss.incinerate]]:
-		$Boss_Layer/BossLabels/IncinerateLady.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Mid_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/incinerate.png")
-		$Boss_Layer/scanlines/Boss_Mid_Right.show()
+	for pos_id in POS:
+		var pos = POS[pos_id]
+		var stage = STAGES[pos] if pos in STAGES else null
 
-	if PlayerValues.beat_levels[boss_names[boss.tremor]]:
-		$Boss_Layer/BossLabels/TremorMan.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Bottom_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/tremor.png")
-		$Boss_Layer/scanlines/Boss_Bottom_Right.show()
+		if not stage or not PlayerValues.beat_levels[stage.id]:
+			continue
 
-	if PlayerValues.beat_levels[boss_names[boss.maelstrom]]:
-		$Boss_Layer/BossLabels/MaelstromWoman.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Bottom_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/maelstrom.png")
-		$Boss_Layer/scanlines/Boss_Bottom_Left.show()
+		var label: Label
+		var image: TextureRect
+		var scanlines: TextureRect
+		# FIXME: should use generic names or stage IDs for textures
+		var texture_name: String
 
-	if PlayerValues.beat_levels[boss_names[boss.ninja]]:
-		$Boss_Layer/BossLabels/NinjaMan.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Top_Right.texture = load("res://assets/images/sprites/menus/beat_bosses/ninja.png")
-		$Boss_Layer/scanlines/Boss_Top_Right.show()
+		match pos:
+			POS.TL:
+				label = $Boss_Layer/BossLabels/Top_Left
+				image = $Boss_Layer/BossImages/Top_Left
+				scanlines = $Boss_Layer/scanlines/Top_Left
+				texture_name = "gladiator"
+			POS.TM:
+				label = $Boss_Layer/BossLabels/Top_Middle
+				image = $Boss_Layer/BossImages/Top_Middle
+				scanlines = $Boss_Layer/scanlines/Top_Middle
+				texture_name = "beam"
+			POS.TR:
+				label = $Boss_Layer/BossLabels/Top_Right
+				image = $Boss_Layer/BossImages/Top_Right
+				scanlines = $Boss_Layer/scanlines/Top_Right
+				texture_name = "ninja"
+			POS.LM:
+				label = $Boss_Layer/BossLabels/Mid_Left
+				image = $Boss_Layer/BossImages/Mid_Left
+				scanlines = $Boss_Layer/scanlines/Mid_Left
+				texture_name = "detonate"
+			POS.RM:
+				label = $Boss_Layer/BossLabels/Mid_Right
+				image = $Boss_Layer/BossImages/Mid_Right
+				scanlines = $Boss_Layer/scanlines/Mid_Right
+				texture_name = "incinerate"
+			POS.BL:
+				label = $Boss_Layer/BossLabels/Bottom_Left
+				image = $Boss_Layer/BossImages/Bottom_Left
+				scanlines = $Boss_Layer/scanlines/Bottom_Left
+				texture_name = "maelstrom"
+			POS.BM:
+				label = $Boss_Layer/BossLabels/Bottom_Middle
+				image = $Boss_Layer/BossImages/Bottom_Middle
+				scanlines = $Boss_Layer/scanlines/Bottom_Middle
+				texture_name = "arctic"
+			POS.BR:
+				label = $Boss_Layer/BossLabels/Bottom_Right
+				image = $Boss_Layer/BossImages/Bottom_Right
+				scanlines = $Boss_Layer/scanlines/Bottom_Right
+				texture_name = "tremor"
+			_:
+				# shouldn't get to this point
+				continue
 
-	if PlayerValues.beat_levels[boss_names[boss.beam]]:
-		$Boss_Layer/BossLabels/BeamMan.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Top_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/beam.png")
-		$Boss_Layer/scanlines/Boss_Top_Middle.show()
-
-	if PlayerValues.beat_levels[boss_names[boss.gladiator]]:
-		$Boss_Layer/BossLabels/GladiatorMan.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Top_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/gladiator.png")
-		$Boss_Layer/scanlines/Boss_Top_Left.show()
-
-	if PlayerValues.beat_levels[boss_names[boss.arctic]]:
-		$Boss_Layer/BossLabels/ArcticMan.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Bottom_Middle.texture = load("res://assets/images/sprites/menus/beat_bosses/arctic.png")
-		$Boss_Layer/scanlines/Boss_Bottom_Middle.show()
-
-	if PlayerValues.beat_levels[boss_names[boss.detonate]]:
-		$Boss_Layer/BossLabels/DetonateMan.modulate = Color("bfb3b3")
-		$Boss_Layer/BossImages/Boss_Mid_Left.texture = load("res://assets/images/sprites/menus/beat_bosses/detonate.png")
-		$Boss_Layer/scanlines/Boss_Mid_Left.show()
-
+		label.modulate = Color("bfb3b3")
+		image.texture = load("res://assets/images/sprites/menus/beat_bosses/%s.png" % texture_name)
+		scanlines.show()
 
 func loadStage():
 	$CanvasLayer/AnimationPlayer.play("Close_Transition")
 	yield($CanvasLayer/AnimationPlayer,"animation_finished")
-	if selected == POS.BR:
-		$Error.play()
-	if selected == POS.TR:
-		$Error.play()
-	if selected == POS.TL:
-		$Error.play()
-	if selected == POS.RM:
-		PlayerValues.last_played_level = MIDDLE_RIGHT
-		PlayerValues.boss_display_name = boss_names[boss.incinerate]
+
+	var stage = STAGES[selected] if selected in STAGES else null
+	if stage:
+		PlayerValues.last_played_level = stage.scene
+		PlayerValues.boss_display_name = stage.id
 		PlayerValues.refill_everything()
-		if not PlayerValues.beat_levels[boss_names[boss.incinerate]]:
+		if not PlayerValues.beat_levels[stage.id]:
 			get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
 		else:
-			get_tree().change_scene(MIDDLE_RIGHT)
-	if selected == POS.BM:
-		$Error.play()
-	if selected == POS.BL:
-		$Error.play()
-	if selected == POS.LM:
-		$Error.play()
-	if selected == POS.TM:
-		$Error.play()
-	if selected == POS.MM:
-		if selected_middle == "v":
+			get_tree().change_scene(stage.scene)
+	elif selected == POS.MM:
+		if selected_middle == "v" or not STAGES.bonus:
 			pass
 		elif selected_middle == "dw":
-			PlayerValues.boss_display_name = boss_names[boss.serenade]
+			PlayerValues.boss_display_name = STAGES.bonus.id
 			get_tree().change_scene("res://scenes/cut_scene/wily_fortress_map/wily_fortress.tscn")
 		elif selected_middle == "s":
 			if PlayerValues.is_serenade_unlocked:
-				PlayerValues.last_played_level = BONUS_BOSS
-				PlayerValues.boss_display_name = boss_names[boss.serenade]
+				PlayerValues.last_played_level = STAGES.bonus.scene
+				PlayerValues.boss_display_name = STAGES.bonus.id
 				PlayerValues.refill_everything()
-				if not PlayerValues.beat_levels[boss_names[boss.serenade]]:
+				if not PlayerValues.beat_levels[STAGES.bonus.id]:
 					get_tree().change_scene("res://scenes/menus/boss_selected_display/boss_selected_animation.tscn")
 				else:
-					get_tree().change_scene(BONUS_BOSS)
-
-	if is_shop_highlighted:
+					get_tree().change_scene(STAGES.bonus.scene)
+	elif is_shop_highlighted:
 		PlayerValues.last_played_level = "existing_game_menu"
 		get_tree().change_scene(MENU)
 
