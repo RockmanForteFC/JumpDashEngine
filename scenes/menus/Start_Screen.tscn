@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://assets/audio/songs/menu/01. Title Screen.mp3" type="AudioStream" id=1]
+[ext_resource path="res://game/data/audio/music/title.tres" type="AudioStream" id=1]
+[ext_resource path="res://game/data/image/menu/title.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/menu/menu_logo_shine.ogg" type="AudioStream" id=3]
 [ext_resource path="res://scenes/menus/Start_Screen.gd" type="Script" id=4]
 [ext_resource path="res://scenes/themes/MegaManTheme.tres" type="Theme" id=5]
@@ -215,6 +216,11 @@ color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Title" type="TextureRect" parent="."]
+margin_right = 256.0
+margin_bottom = 224.0
+texture = ExtResource( 2 )
 
 [node name="Sprites" type="Node2D" parent="."]
 

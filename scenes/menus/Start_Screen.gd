@@ -13,7 +13,7 @@ func _ready():
 	$Audio/BackgroundMusic.play()
 	$Labels/MenuContainer.hide()
 	$Labels/Version.text = ProjectSettings.get_setting("application/config/version") if ProjectSettings.get_setting("application/config/version") != "" else "0.0.0"
-	$Sprites/megaman_title_text.play("fade_in")
+	#$Sprites/megaman_title_text.play("fade_in")
 
 	$Labels/Version.show()
 	$Labels/Year.show()
