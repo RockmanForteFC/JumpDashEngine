@@ -781,7 +781,6 @@ text = "Astro
 Man"
 align = 2
 uppercase = true
-percent_visible = -0.125
 
 [node name="Mid_Right" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 184.0
@@ -1103,14 +1102,12 @@ position = Vector2( 101, 144 )
 z_index = 2
 frames = SubResource( 34 )
 animation = "flash"
-frame = 2
 playing = true
 
 [node name="right_arrow" type="AnimatedSprite" parent="."]
 position = Vector2( 155, 144 )
 frames = SubResource( 41 )
 animation = "flash"
-frame = 2
 playing = true
 
 [connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_transition_animation"]
