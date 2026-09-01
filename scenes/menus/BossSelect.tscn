@@ -711,7 +711,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 7 )
 
-[node name="GladiatorMan" type="Label" parent="Boss_Layer/BossLabels"]
+[node name="Top_Left" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 40.0
 margin_top = 56.0
 margin_right = 88.0
@@ -726,82 +726,7 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="NinjaMan" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 168.0
-margin_top = 56.0
-margin_right = 216.0
-margin_bottom = 72.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/line_spacing = -2
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 0
-text = "TR"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="TremorMan" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 168.0
-margin_top = 184.0
-margin_right = 216.0
-margin_bottom = 200.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/line_spacing = -2
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 0
-text = "BR"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="MaelstromWoman" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 40.0
-margin_top = 184.0
-margin_right = 88.0
-margin_bottom = 200.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/line_spacing = -2
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 0
-text = "BL"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="DetonateMan" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 40.0
-margin_top = 120.0
-margin_right = 88.0
-margin_bottom = 136.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/line_spacing = -2
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 0
-text = "LM"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="IncinerateLady" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 168.0
-margin_top = 120.0
-margin_right = 216.0
-margin_bottom = 136.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/line_spacing = -2
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 0
-text = "RM"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="BeamMan" type="Label" parent="Boss_Layer/BossLabels"]
+[node name="Top_Middle" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 104.0
 margin_top = 56.0
 margin_right = 152.0
@@ -816,7 +741,67 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="ArcticMan" type="Label" parent="Boss_Layer/BossLabels"]
+[node name="Top_Right" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 168.0
+margin_top = 56.0
+margin_right = 216.0
+margin_bottom = 72.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "TR"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Mid_Left" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 40.0
+margin_top = 120.0
+margin_right = 88.0
+margin_bottom = 136.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "LM"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Mid_Right" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 168.0
+margin_top = 120.0
+margin_right = 216.0
+margin_bottom = 136.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "RM"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Bottom_Left" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 40.0
+margin_top = 184.0
+margin_right = 88.0
+margin_bottom = 200.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "BL"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Bottom_Middle" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 104.0
 margin_top = 184.0
 margin_right = 152.0
@@ -831,7 +816,22 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="Middle_Label" type="Label" parent="Boss_Layer/BossLabels"]
+[node name="Bottom_Right" type="Label" parent="Boss_Layer/BossLabels"]
+margin_left = 168.0
+margin_top = 184.0
+margin_right = 216.0
+margin_bottom = 200.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -2
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "BR"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Middle" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 104.0
 margin_top = 120.0
 margin_right = 152.0
@@ -1086,14 +1086,14 @@ position = Vector2( 101, 128 )
 z_index = 2
 frames = SubResource( 34 )
 animation = "flash"
-frame = 2
+frame = 5
 playing = true
 
 [node name="right_arrow" type="AnimatedSprite" parent="."]
 position = Vector2( 155, 128 )
 frames = SubResource( 41 )
 animation = "flash"
-frame = 2
+frame = 5
 playing = true
 
 [connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_transition_animation"]
