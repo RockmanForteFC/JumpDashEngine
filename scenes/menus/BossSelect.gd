@@ -177,6 +177,8 @@ func _process(_delta):
 				$SelectedMenuObject.hide()
 				$shop_icon.hide()
 				set_process(false)
+				# disable scanlines in case bonus level beaten
+				$Boss_Layer/scanlines/Mid_Mid.hide()
 				_eye_location.play("Determined")
 				$AnimationPlayer.play("Flash_Screen")
 				$Boss_Select.play()
