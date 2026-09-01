@@ -1,7 +1,7 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=77 format=2]
 
-[ext_resource path="res://assets/images/sprites/menus/boss_select/template.png" type="Texture" id=1]
-[ext_resource path="res://assets/images/sprites/menus/boss_icons/question_mark.png" type="Texture" id=2]
+[ext_resource path="res://game/data/image/menu/stage_select.png" type="Texture" id=1]
+[ext_resource path="res://game/data/image/portrait/ground_man.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/sprites/menus/Stage_Select_Center_Bottom_Frame.png" type="Texture" id=3]
 [ext_resource path="res://scenes/menus/BossSelect.gd" type="Script" id=4]
 [ext_resource path="res://assets/audio/menu/menu_option.ogg" type="AudioStream" id=5]
@@ -11,15 +11,22 @@
 [ext_resource path="res://assets/audio/menu/error.ogg" type="AudioStream" id=9]
 [ext_resource path="res://assets/images/decorations/3232wrench2.png" type="Texture" id=10]
 [ext_resource path="res://assets/images/sprites/menus/Stage_Select_Portrait_Frames.png" type="Texture" id=11]
-[ext_resource path="res://assets/images/sprites/menus/under_construction.png" type="Texture" id=12]
+[ext_resource path="res://game/data/image/portrait/magic_man.png" type="Texture" id=12]
+[ext_resource path="res://game/data/image/portrait/astro_man.png" type="Texture" id=13]
 [ext_resource path="res://assets/images/sprites/menus/select_screen_shop_icon.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/sprites/menus/stage_select_mega_head.png" type="Texture" id=15]
 [ext_resource path="res://assets/images/tilesets/dual_w_fortress/fortress_1/dual_w_plate_1.png" type="Texture" id=16]
 [ext_resource path="res://assets/images/decorations/weaseletta_boss_select_plate.png" type="Texture" id=17]
+[ext_resource path="res://game/theme/stage_select_text.tres" type="Theme" id=18]
+[ext_resource path="res://game/data/image/portrait/cold_man.png" type="Texture" id=19]
+[ext_resource path="res://game/data/image/portrait/pirate_man.png" type="Texture" id=20]
+[ext_resource path="res://game/data/image/portrait/burner_man.png" type="Texture" id=21]
+[ext_resource path="res://game/data/image/portrait/tengu_man.png" type="Texture" id=22]
 [ext_resource path="res://assets/images/sprites/menus/determined_face.png" type="Texture" id=23]
 [ext_resource path="res://assets/images/decorations/happy_mega.png" type="Texture" id=24]
 [ext_resource path="res://assets/images/sprites/menus/boss_icons/serenade.png" type="Texture" id=25]
 [ext_resource path="res://assets/images/sprites/menus/beat_bosses/serenade.png" type="Texture" id=26]
+[ext_resource path="res://game/data/image/portrait/dynamo_man.png" type="Texture" id=27]
 [ext_resource path="res://assets/images/sprites/menus/arrow_right_full_menu.png" type="Texture" id=29]
 [ext_resource path="res://assets/images/sprites/menus/arrow_left_full_menu.png" type="Texture" id=30]
 [ext_resource path="res://assets/images/sprites/menus/scan_lines/scanlines.tres" type="Texture" id=33]
@@ -681,7 +688,7 @@ anims/RESET = SubResource( 5 )
 anims/Stage_Select = SubResource( 6 )
 
 [node name="shop_icon" type="Sprite" parent="."]
-position = Vector2( 127, 216 )
+position = Vector2( 127, 232 )
 texture = ExtResource( 14 )
 vframes = 4
 
@@ -690,7 +697,7 @@ anims/RESET = SubResource( 7 )
 anims/ShopFlash = SubResource( 8 )
 
 [node name="SelectedMenuObject" type="Sprite" parent="."]
-position = Vector2( 128, 96 )
+position = Vector2( 128, 112 )
 texture = ExtResource( 11 )
 hframes = 3
 frame = 1
@@ -712,194 +719,204 @@ anchor_bottom = 1.0
 theme = ExtResource( 7 )
 
 [node name="Top_Left" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 40.0
-margin_top = 56.0
-margin_right = 88.0
-margin_bottom = 72.0
+margin_left = 24.0
+margin_top = 71.0
+margin_right = 72.0
+margin_bottom = 87.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "TL"
-align = 1
-valign = 1
+text = "Cold
+Man"
+align = 2
 uppercase = true
 
 [node name="Top_Middle" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 104.0
-margin_top = 56.0
+margin_top = 71.0
 margin_right = 152.0
-margin_bottom = 72.0
+margin_bottom = 87.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "TM"
-align = 1
-valign = 1
+text = "Pirate
+Man"
+align = 2
 uppercase = true
 
 [node name="Top_Right" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 168.0
-margin_top = 56.0
-margin_right = 216.0
-margin_bottom = 72.0
+margin_left = 184.0
+margin_top = 71.0
+margin_right = 232.0
+margin_bottom = 87.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "TR"
-align = 1
-valign = 1
+text = "Burner
+Man"
+align = 2
 uppercase = true
 
 [node name="Mid_Left" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 40.0
-margin_top = 120.0
-margin_right = 88.0
-margin_bottom = 136.0
+margin_left = 24.0
+margin_top = 135.0
+margin_right = 72.0
+margin_bottom = 153.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "LM"
-align = 1
-valign = 1
+text = "Astro
+Man"
+align = 2
 uppercase = true
+percent_visible = -0.125
 
 [node name="Mid_Right" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 168.0
-margin_top = 120.0
-margin_right = 216.0
-margin_bottom = 136.0
+margin_left = 184.0
+margin_top = 135.0
+margin_right = 232.0
+margin_bottom = 151.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "RM"
-align = 1
-valign = 1
+text = "Dynamo
+Man"
+align = 2
 uppercase = true
 
 [node name="Bottom_Left" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 40.0
-margin_top = 184.0
-margin_right = 88.0
-margin_bottom = 200.0
+margin_left = 24.0
+margin_top = 199.0
+margin_right = 72.0
+margin_bottom = 215.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "BL"
-align = 1
-valign = 1
+text = "Ground
+Man"
+align = 2
 uppercase = true
 
 [node name="Bottom_Middle" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 104.0
-margin_top = 184.0
+margin_top = 199.0
 margin_right = 152.0
-margin_bottom = 200.0
+margin_bottom = 215.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "BM"
-align = 1
-valign = 1
+text = "Tengu
+Man"
+align = 2
 uppercase = true
 
 [node name="Bottom_Right" type="Label" parent="Boss_Layer/BossLabels"]
-margin_left = 168.0
-margin_top = 184.0
-margin_right = 216.0
-margin_bottom = 200.0
+margin_left = 184.0
+margin_top = 199.0
+margin_right = 232.0
+margin_bottom = 215.0
+theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -2
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-text = "BR"
-align = 1
-valign = 1
+text = "Magic
+Man"
+align = 2
 uppercase = true
 
 [node name="Middle" type="Label" parent="Boss_Layer/BossLabels"]
+visible = false
 margin_left = 104.0
-margin_top = 120.0
+margin_top = 135.0
 margin_right = 152.0
-margin_bottom = 136.0
+margin_bottom = 151.0
+theme = ExtResource( 18 )
 text = "MM"
-align = 1
-valign = 1
+align = 2
 
 [node name="BossImages" type="CanvasLayer" parent="Boss_Layer"]
 
 [node name="Top_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
-margin_left = 48.0
-margin_top = 16.0
-margin_right = 80.0
-margin_bottom = 48.0
-texture = ExtResource( 12 )
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 19 )
 
 [node name="Top_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 112.0
-margin_top = 16.0
+margin_top = 32.0
 margin_right = 144.0
-margin_bottom = 48.0
-texture = ExtResource( 12 )
+margin_bottom = 64.0
+texture = ExtResource( 20 )
 
 [node name="Top_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
-margin_left = 176.0
-margin_top = 16.0
-margin_right = 208.0
-margin_bottom = 48.0
-texture = ExtResource( 12 )
+margin_left = 192.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 64.0
+texture = ExtResource( 21 )
 
 [node name="Mid_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
-margin_left = 48.0
-margin_top = 80.0
-margin_right = 80.0
-margin_bottom = 112.0
-texture = ExtResource( 12 )
+margin_left = 32.0
+margin_top = 96.0
+margin_right = 64.0
+margin_bottom = 128.0
+texture = ExtResource( 13 )
 
 [node name="Mid_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
-margin_left = 176.0
-margin_top = 80.0
-margin_right = 208.0
-margin_bottom = 112.0
-texture = ExtResource( 2 )
+margin_left = 192.0
+margin_top = 96.0
+margin_right = 224.0
+margin_bottom = 128.0
+texture = ExtResource( 27 )
 
 [node name="Bottom_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
-margin_left = 48.0
-margin_top = 144.0
-margin_right = 80.0
-margin_bottom = 176.0
-texture = ExtResource( 12 )
+margin_left = 32.0
+margin_top = 160.0
+margin_right = 64.0
+margin_bottom = 192.0
+texture = ExtResource( 2 )
 
 [node name="Bottom_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 112.0
-margin_top = 144.0
+margin_top = 160.0
 margin_right = 144.0
-margin_bottom = 176.0
-texture = ExtResource( 12 )
+margin_bottom = 192.0
+texture = ExtResource( 22 )
 
 [node name="Bottom_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
-margin_left = 176.0
-margin_top = 144.0
-margin_right = 208.0
-margin_bottom = 176.0
+margin_left = 192.0
+margin_top = 160.0
+margin_right = 224.0
+margin_bottom = 192.0
 texture = ExtResource( 12 )
 
 [node name="Eye_Location" type="AnimatedSprite" parent="Boss_Layer/BossImages"]
-position = Vector2( 128, 96 )
+position = Vector2( 128, 112 )
 frames = SubResource( 18 )
 animation = "Middle"
 playing = true
@@ -1082,18 +1099,18 @@ anims/Open_Transition = SubResource( 22 )
 anims/RESET = SubResource( 23 )
 
 [node name="left_arrow" type="AnimatedSprite" parent="."]
-position = Vector2( 101, 128 )
+position = Vector2( 101, 144 )
 z_index = 2
 frames = SubResource( 34 )
 animation = "flash"
-frame = 5
+frame = 2
 playing = true
 
 [node name="right_arrow" type="AnimatedSprite" parent="."]
-position = Vector2( 155, 128 )
+position = Vector2( 155, 144 )
 frames = SubResource( 41 )
 animation = "flash"
-frame = 5
+frame = 2
 playing = true
 
 [connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_transition_animation"]
