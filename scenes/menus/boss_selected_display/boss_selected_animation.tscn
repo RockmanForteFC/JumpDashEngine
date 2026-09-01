@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/images/sprites/menus/boss_selected_screen.png" type="Texture" id=1]
 [ext_resource path="res://assets/audio/songs/MMW_StageStart.ogg" type="AudioStream" id=2]
@@ -6,9 +6,12 @@
 [ext_resource path="res://assets/images/sprites/bosses/introduction_warp/introduction.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/sprites/bosses/unknown/unknownboss.png" type="Texture" id=5]
 [ext_resource path="res://scenes/themes/dark_boss.gdshader" type="Shader" id=6]
+[ext_resource path="res://game/data/image/rm_intro_bg_front.png" type="Texture" id=7]
 [ext_resource path="res://scenes/themes/screen_scroll.gdshader" type="Shader" id=8]
-[ext_resource path="res://assets/images/decorations/stars.png" type="Texture" id=9]
-[ext_resource path="res://scenes/menus/boss_selected_display/vapor/vapor_down.tscn" type="PackedScene" id=10]
+[ext_resource path="res://game/data/image/rm_intro_bg_rear.png" type="Texture" id=9]
+[ext_resource path="res://game/data/image/rm_intro_bg_rear.gd" type="Script" id=11]
+[ext_resource path="res://game/data/image/rm_intro_bg_mid.gd" type="Script" id=12]
+[ext_resource path="res://game/data/image/rm_intro_bg_mid.png" type="Texture" id=13]
 [ext_resource path="res://assets/audio/enemies/bosses/brawler/tink.ogg" type="AudioStream" id=18]
 [ext_resource path="res://scenes/themes/glitch.gdshader" type="Shader" id=20]
 [ext_resource path="res://assets/audio/environment/tv_static.ogg" type="AudioStream" id=21]
@@ -242,8 +245,8 @@ tracks/2/keys = {
 "update": 0,
 "values": [ false ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("../vapor_down:visible")
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -251,11 +254,13 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"values": [ {
+"args": [ true ],
+"method": "_set_vapor_colors"
+} ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../vapor_up:visible")
+tracks/4/path = NodePath("../Node/hit_shield:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -263,11 +268,11 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ false ]
 }
-tracks/5/type = "method"
-tracks/5/path = NodePath("..")
+tracks/5/type = "value"
+tracks/5/path = NodePath("../glitch:material:shader_param/fade")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -275,13 +280,11 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "_set_vapor_colors"
-} ]
+"update": 0,
+"values": [ 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../vapor_down:background_color")
+tracks/6/path = NodePath("../BossTitle/Label:material:shader")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -290,87 +293,15 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
+"values": [ null ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("../vapor_down:line_color")
+tracks/7/path = NodePath("../Node/static:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.972549, 0.470588, 0.972549, 1 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("../vapor_up:background_color")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("../vapor_up:line_color")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.972549, 0.470588, 0.972549, 1 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("../Node/hit_shield:playing")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("../glitch:material:shader_param/fade")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("../BossTitle/Label:material:shader")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ null ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("../Node/static:playing")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -431,22 +362,33 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="stars" type="TextureRect" parent="."]
+[node name="stars" type="Node" parent="."]
+
+[node name="stars_rear" type="TextureRect" parent="stars"]
 material = SubResource( 8 )
-margin_right = 285.0
-margin_bottom = 229.0
-rect_rotation = 4.95306
+margin_top = -8.0
+margin_right = 256.0
+margin_bottom = 232.0
 texture = ExtResource( 9 )
 stretch_mode = 2
+script = ExtResource( 11 )
 
-[node name="vapor_down" parent="." instance=ExtResource( 10 )]
-position = Vector2( 0, 152 )
-line_color = Color( 0.972549, 0.470588, 0.972549, 1 )
+[node name="stars_mid" type="TextureRect" parent="stars"]
+material = SubResource( 8 )
+margin_top = -8.0
+margin_right = 256.0
+margin_bottom = 232.0
+texture = ExtResource( 13 )
+stretch_mode = 2
+script = ExtResource( 12 )
 
-[node name="vapor_up" parent="." instance=ExtResource( 10 )]
-position = Vector2( 0, 72 )
-scale = Vector2( 1, -1 )
-line_color = Color( 0.972549, 0.470588, 0.972549, 1 )
+[node name="stars_front" type="TextureRect" parent="stars"]
+material = SubResource( 8 )
+margin_top = -8.0
+margin_right = 256.0
+margin_bottom = 232.0
+texture = ExtResource( 7 )
+stretch_mode = 2
 
 [node name="CenterBossDisplay" type="Control" parent="."]
 margin_top = 64.0
@@ -457,26 +399,30 @@ __meta__ = {
 }
 
 [node name="Background" type="ColorRect" parent="CenterBossDisplay"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = 40.0
-margin_right = 256.0
-margin_bottom = 56.0
+margin_left = -128.0
+margin_top = -8.0
+margin_right = 128.0
+margin_bottom = 8.0
 color = Color( 0.0313726, 0.192157, 0.290196, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="BottomBar" type="TextureRect" parent="CenterBossDisplay"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = 46.5
-margin_right = 256.0
-margin_bottom = 55.5
+margin_left = -128.0
+margin_top = -1.5
+margin_right = 128.0
+margin_bottom = 7.5
 texture = ExtResource( 1 )
 stretch_mode = 2
 __meta__ = {
@@ -484,13 +430,15 @@ __meta__ = {
 }
 
 [node name="TopBar" type="TextureRect" parent="CenterBossDisplay"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = 37.5
-margin_right = 256.0
-margin_bottom = 46.5
+margin_left = -128.0
+margin_top = -10.5
+margin_right = 128.0
+margin_bottom = -1.5
 texture = ExtResource( 1 )
 stretch_mode = 2
 flip_v = true
