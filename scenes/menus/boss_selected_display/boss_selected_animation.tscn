@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/images/sprites/menus/boss_selected_screen.png" type="Texture" id=1]
 [ext_resource path="res://game/data/audio/music/rm_intro.ogg" type="AudioStream" id=2]
@@ -9,9 +9,11 @@
 [ext_resource path="res://game/data/image/rm_intro_bg_front.png" type="Texture" id=7]
 [ext_resource path="res://scenes/themes/screen_scroll.gdshader" type="Shader" id=8]
 [ext_resource path="res://game/data/image/rm_intro_bg_rear.png" type="Texture" id=9]
+[ext_resource path="res://game/data/image/rm_intro_border_top.png" type="Texture" id=10]
 [ext_resource path="res://game/data/image/rm_intro_bg_rear.gd" type="Script" id=11]
 [ext_resource path="res://game/data/image/rm_intro_bg_mid.gd" type="Script" id=12]
 [ext_resource path="res://game/data/image/rm_intro_bg_mid.png" type="Texture" id=13]
+[ext_resource path="res://game/data/image/rm_intro_border_bottom.png" type="Texture" id=14]
 [ext_resource path="res://assets/audio/enemies/bosses/brawler/tink.ogg" type="AudioStream" id=18]
 [ext_resource path="res://scenes/themes/glitch.gdshader" type="Shader" id=20]
 [ext_resource path="res://assets/audio/environment/tv_static.ogg" type="AudioStream" id=21]
@@ -137,7 +139,7 @@ tracks/0/path = NodePath("AppearAnimation:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
@@ -361,53 +363,56 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="stars" type="Node" parent="."]
-
-[node name="stars_rear" type="TextureRect" parent="stars"]
-material = SubResource( 8 )
+[node name="DisplayArea" type="Control" parent="."]
 margin_top = -8.0
 margin_right = 256.0
-margin_bottom = 232.0
+margin_bottom = 216.0
+
+[node name="stars" type="Node2D" parent="DisplayArea"]
+
+[node name="stars_rear" type="TextureRect" parent="DisplayArea/stars"]
+material = SubResource( 8 )
+margin_right = 256.0
+margin_bottom = 240.0
 texture = ExtResource( 9 )
 stretch_mode = 2
 script = ExtResource( 11 )
 
-[node name="stars_mid" type="TextureRect" parent="stars"]
+[node name="stars_mid" type="TextureRect" parent="DisplayArea/stars"]
 material = SubResource( 8 )
-margin_top = -8.0
 margin_right = 256.0
-margin_bottom = 232.0
+margin_bottom = 240.0
 texture = ExtResource( 13 )
 stretch_mode = 2
 script = ExtResource( 12 )
 
-[node name="stars_front" type="TextureRect" parent="stars"]
+[node name="stars_front" type="TextureRect" parent="DisplayArea/stars"]
 material = SubResource( 8 )
-margin_top = -8.0
 margin_right = 256.0
-margin_bottom = 232.0
+margin_bottom = 240.0
 texture = ExtResource( 7 )
 stretch_mode = 2
+
+[node name="BorderBottom" type="TextureRect" parent="DisplayArea"]
+margin_top = 128.0
+margin_right = 256.0
+margin_bottom = 189.0
+texture = ExtResource( 14 )
+
+[node name="BorderTop" type="TextureRect" parent="DisplayArea"]
+margin_top = 67.0
+margin_right = 256.0
+margin_bottom = 128.0
+texture = ExtResource( 10 )
+
+[node name="BorderTimer" type="Timer" parent="."]
+wait_time = 0.04
+autostart = true
 
 [node name="CenterBossDisplay" type="Control" parent="."]
 margin_top = 64.0
 margin_right = 256.0
 margin_bottom = 160.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Background" type="ColorRect" parent="CenterBossDisplay"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -128.0
-margin_top = -8.0
-margin_right = 128.0
-margin_bottom = 8.0
-color = Color( 0.0313726, 0.192157, 0.290196, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -441,6 +446,21 @@ margin_bottom = -1.5
 texture = ExtResource( 1 )
 stretch_mode = 2
 flip_v = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="ColorRect" parent="CenterBossDisplay"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -8.0
+margin_right = 128.0
+margin_bottom = 8.0
+color = Color( 0.0313726, 0.192157, 0.290196, 1 )
 __meta__ = {
 "_edit_lock_": true
 }

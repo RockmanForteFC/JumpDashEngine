@@ -19,6 +19,8 @@ var _default_grid_color:Color = Color("f878f8")
 
 var _boss_background_color:Color = Color("08314a")
 var _boss_grid_color:Color = Color("f89838")
+
+var border_steps: int
 #-------------------------------------------------
 #      Processes
 #-------------------------------------------------
@@ -34,6 +36,9 @@ func _ready():
 	yield(get_tree().create_timer(1.5),"timeout")
 	$CenterBossDisplay/CenterDisplayAnimation.play("open")
 	PlayerValues.boss_display_name = ""
+
+	border_steps = 0
+	$BorderTimer.connect("timeout", self, "_step_border")
 
 #-------------------------------------------------
 #      Public Methods
@@ -85,3 +90,11 @@ func _on_animation_finished(anim_name):
 func _on_BGM_finished():
 	yield(get_tree().create_timer(1.5),"timeout")
 	get_tree().change_scene(PlayerValues.last_played_level)
+
+# Steps border position.
+func _step_border() -> void:
+	$DisplayArea/BorderTop.rect_position.y += 1
+	$DisplayArea/BorderBottom.rect_position.y -= 1
+	border_steps += 1
+	if border_steps >= 20:
+		$BorderTimer.stop()
