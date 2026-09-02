@@ -345,7 +345,7 @@ func reset_all_params_to_default(reset_upgrade:bool = true):
 
 	has_energy_balancer = false
 	has_energy_balancer_neo = false
-	can_charge = false
+	can_charge = true
 	can_max_charge = false
 	can_double_jump = false
 	has_music_upgrade = false
