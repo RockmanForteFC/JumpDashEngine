@@ -916,7 +916,7 @@ margin_bottom = 184.0
 texture = ExtResource( 12 )
 
 [node name="Eye_Location" type="AnimatedSprite" parent="Boss_Layer/BossImages"]
-position = Vector2( 128, 104 )
+position = Vector2( 128, 106 )
 frames = SubResource( 18 )
 animation = "Middle"
 playing = true
