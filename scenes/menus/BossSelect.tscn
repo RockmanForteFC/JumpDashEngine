@@ -688,7 +688,7 @@ anims/RESET = SubResource( 5 )
 anims/Stage_Select = SubResource( 6 )
 
 [node name="shop_icon" type="Sprite" parent="."]
-position = Vector2( 127, 232 )
+position = Vector2( 127, 219 )
 texture = ExtResource( 14 )
 vframes = 4
 
@@ -697,7 +697,7 @@ anims/RESET = SubResource( 7 )
 anims/ShopFlash = SubResource( 8 )
 
 [node name="SelectedMenuObject" type="Sprite" parent="."]
-position = Vector2( 128, 112 )
+position = Vector2( 128, 104 )
 texture = ExtResource( 11 )
 hframes = 3
 frame = 1
@@ -706,8 +706,9 @@ frame = 1
 layer = -1
 
 [node name="Background" type="TextureRect" parent="Boss_Layer"]
+margin_top = -8.0
 margin_right = 256.0
-margin_bottom = 224.0
+margin_bottom = 232.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -720,9 +721,9 @@ theme = ExtResource( 7 )
 
 [node name="Top_Left" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 24.0
-margin_top = 71.0
+margin_top = 63.0
 margin_right = 72.0
-margin_bottom = 87.0
+margin_bottom = 81.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -736,9 +737,9 @@ uppercase = true
 
 [node name="Top_Middle" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 104.0
-margin_top = 71.0
+margin_top = 63.0
 margin_right = 152.0
-margin_bottom = 87.0
+margin_bottom = 81.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -752,9 +753,9 @@ uppercase = true
 
 [node name="Top_Right" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 184.0
-margin_top = 71.0
+margin_top = 63.0
 margin_right = 232.0
-margin_bottom = 87.0
+margin_bottom = 81.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -768,9 +769,9 @@ uppercase = true
 
 [node name="Mid_Left" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 24.0
-margin_top = 135.0
+margin_top = 127.0
 margin_right = 72.0
-margin_bottom = 153.0
+margin_bottom = 145.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -784,9 +785,9 @@ uppercase = true
 
 [node name="Mid_Right" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 184.0
-margin_top = 135.0
+margin_top = 127.0
 margin_right = 232.0
-margin_bottom = 151.0
+margin_bottom = 145.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -800,9 +801,9 @@ uppercase = true
 
 [node name="Bottom_Left" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 24.0
-margin_top = 199.0
+margin_top = 191.0
 margin_right = 72.0
-margin_bottom = 215.0
+margin_bottom = 209.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -816,9 +817,9 @@ uppercase = true
 
 [node name="Bottom_Middle" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 104.0
-margin_top = 199.0
+margin_top = 191.0
 margin_right = 152.0
-margin_bottom = 215.0
+margin_bottom = 209.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -832,9 +833,9 @@ uppercase = true
 
 [node name="Bottom_Right" type="Label" parent="Boss_Layer/BossLabels"]
 margin_left = 184.0
-margin_top = 199.0
+margin_top = 191.0
 margin_right = 232.0
-margin_bottom = 215.0
+margin_bottom = 209.0
 theme = ExtResource( 18 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -849,9 +850,9 @@ uppercase = true
 [node name="Middle" type="Label" parent="Boss_Layer/BossLabels"]
 visible = false
 margin_left = 104.0
-margin_top = 135.0
+margin_top = 127.0
 margin_right = 152.0
-margin_bottom = 151.0
+margin_bottom = 143.0
 theme = ExtResource( 18 )
 text = "MM"
 align = 2
@@ -860,62 +861,62 @@ align = 2
 
 [node name="Top_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 32.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = 64.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 texture = ExtResource( 19 )
 
 [node name="Top_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 112.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = 144.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 texture = ExtResource( 20 )
 
 [node name="Top_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 192.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = 224.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 texture = ExtResource( 21 )
 
 [node name="Mid_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 32.0
-margin_top = 96.0
+margin_top = 88.0
 margin_right = 64.0
-margin_bottom = 128.0
+margin_bottom = 120.0
 texture = ExtResource( 13 )
 
 [node name="Mid_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 192.0
-margin_top = 96.0
+margin_top = 88.0
 margin_right = 224.0
-margin_bottom = 128.0
+margin_bottom = 120.0
 texture = ExtResource( 27 )
 
 [node name="Bottom_Left" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 32.0
-margin_top = 160.0
+margin_top = 152.0
 margin_right = 64.0
-margin_bottom = 192.0
+margin_bottom = 184.0
 texture = ExtResource( 2 )
 
 [node name="Bottom_Middle" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 112.0
-margin_top = 160.0
+margin_top = 152.0
 margin_right = 144.0
-margin_bottom = 192.0
+margin_bottom = 184.0
 texture = ExtResource( 22 )
 
 [node name="Bottom_Right" type="TextureRect" parent="Boss_Layer/BossImages"]
 margin_left = 192.0
-margin_top = 160.0
+margin_top = 152.0
 margin_right = 224.0
-margin_bottom = 192.0
+margin_bottom = 184.0
 texture = ExtResource( 12 )
 
 [node name="Eye_Location" type="AnimatedSprite" parent="Boss_Layer/BossImages"]
-position = Vector2( 128, 112 )
+position = Vector2( 128, 104 )
 frames = SubResource( 18 )
 animation = "Middle"
 playing = true
