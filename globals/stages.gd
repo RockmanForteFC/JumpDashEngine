@@ -298,6 +298,8 @@ func _set_stage_start_pos() -> void:
 		player.global_position = start_pos
 	else:
 		start_pos = player.global_position
+		# compensate for Mega Man's center of collision
+		start_pos.y += 1
 		stage_start_pos = start_pos
 	set_lever_state_to_last_state_before_restart()
 	player.set_facing_direction(start_dir)
