@@ -165,7 +165,7 @@ func _process(_delta):
 			set_process(false)
 #			$StageSelectFlash.play("RESET")
 			if not is_shop_highlighted:
-				_eye_location.play("Determined")
+				_eye_location.play("Middle")
 			else:
 				_eye_location.play("Happy")
 			$AnimationPlayer.play("Flash_Screen")
