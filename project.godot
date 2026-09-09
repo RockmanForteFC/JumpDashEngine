@@ -99,11 +99,11 @@ config/use_custom_user_dir=true
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
-config/version="0.0.0"
 config/controller_mappings="cntrl"
 config/config="opt"
 config/save_file_extention=".jde"
 config/debug_mode=false
+config/version="alpha1"
 
 [autoload]
 
