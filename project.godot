@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "GameConfig",
+"language": "GDScript",
+"path": "res://game/GameConfig.gd"
+}, {
+"base": "Node",
 "class": "InputHandler",
 "language": "GDScript",
 "path": "res://globals/input_handler.gd"
@@ -75,6 +80,7 @@ _global_script_classes=[ {
 "path": "res://scenes/stages/assets/Yoku/yoku_block.gd"
 } ]
 _global_script_class_icons={
+"GameConfig": "",
 "InputHandler": "",
 "LadderController": "",
 "Pickup": "",
