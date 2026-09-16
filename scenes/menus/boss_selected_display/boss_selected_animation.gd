@@ -20,7 +20,9 @@ var _default_grid_color:Color = Color("f878f8")
 var _boss_background_color:Color = Color("08314a")
 var _boss_grid_color:Color = Color("f89838")
 
+var step_borders = false
 var border_steps: int
+var last_step_time: int
 #-------------------------------------------------
 #      Processes
 #-------------------------------------------------
@@ -37,8 +39,18 @@ func _ready():
 	$CenterBossDisplay/CenterDisplayAnimation.play("open")
 	PlayerValues.boss_display_name = ""
 
+	step_borders = true
 	border_steps = 0
-	$BorderTimer.connect("timeout", self, "_step_border")
+	last_step_time = OS.get_ticks_msec()
+#	$BorderTimer.connect("timeout", self, "_step_border")
+
+func _physics_process(delta):
+	if step_borders and border_steps < 20:
+		var current_time = OS.get_ticks_msec()
+		var time_diff = current_time - last_step_time
+		if time_diff >= 40:
+			last_step_time = current_time
+			_step_border()
 
 #-------------------------------------------------
 #      Public Methods
@@ -96,5 +108,3 @@ func _step_border() -> void:
 	$DisplayArea/BorderTop.rect_position.y += 1
 	$DisplayArea/BorderBottom.rect_position.y -= 1
 	border_steps += 1
-	if border_steps >= 20:
-		$BorderTimer.stop()

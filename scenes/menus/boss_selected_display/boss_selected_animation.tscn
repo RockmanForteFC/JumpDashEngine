@@ -405,10 +405,6 @@ margin_right = 256.0
 margin_bottom = 128.0
 texture = ExtResource( 10 )
 
-[node name="BorderTimer" type="Timer" parent="."]
-wait_time = 0.04
-autostart = true
-
 [node name="CenterBossDisplay" type="Control" parent="."]
 margin_top = 64.0
 margin_right = 256.0
