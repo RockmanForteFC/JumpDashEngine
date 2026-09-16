@@ -36,7 +36,7 @@ var selected_middle = ""
 # tables containing stage ID & path to stage scene
 const STAGES = {
 	POS.TL: {"id": "cold_man", "scene": "res://game/scene/stage/Cold_Man.tscn"},
-	POS.TM: null,
+	POS.TM: {"id": "example_stage", "scene": "res://scenes/stages/levels/example_1/example_1.tscn"},
 	POS.TR: null,
 	POS.LM: {"id": "astro_man", "scene": "res://game/scene/stage/Astro_Man.tscn"},
 	POS.MM: null,
