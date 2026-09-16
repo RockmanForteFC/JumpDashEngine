@@ -94,7 +94,7 @@ _global_script_class_icons={
 
 config/name="Rockman & Forte FC"
 config/description="A blank Mega Man engine to make your own fan projects!"
-run/main_scene="res://scenes/menus/logo_splash_screen/logo_splash_screen.tscn"
+run/main_scene="res://game/scene/Startup1.tscn"
 config/use_custom_user_dir=true
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
