@@ -57,6 +57,14 @@ func is_action_just_pressed(action: int) -> bool:
 	else:
 		return Input.is_action_just_pressed(action_name)
 
+## Wrapper function to return `true` when menu confirmation action is emitted.
+#
+#  @return
+#    `true` if either "accept" or "jump" button was pressed.
+static func is_confirm_just_pressed() -> bool:
+	return Input.is_action_just_pressed("ui_accept") or \
+			Input.is_action_just_pressed("action_jump_p1")
+
 func emulate_command(command: String, state: State) -> void:
 	if _can_handle_action(state):
 		state._handle_command(command)
