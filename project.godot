@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ItemCounter",
+"class": "BoltCounter",
+"language": "GDScript",
+"path": "res://game/node/BoltCounter.gd"
+}, {
 "base": "Node",
 "class": "GameConfig",
 "language": "GDScript",
@@ -18,6 +23,11 @@ _global_script_classes=[ {
 "class": "InputHandler",
 "language": "GDScript",
 "path": "res://globals/input_handler.gd"
+}, {
+"base": "Label",
+"class": "ItemCounter",
+"language": "GDScript",
+"path": "res://game/node/ItemCounter.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "LadderController",
@@ -80,8 +90,10 @@ _global_script_classes=[ {
 "path": "res://scenes/stages/assets/Yoku/yoku_block.gd"
 } ]
 _global_script_class_icons={
+"BoltCounter": "",
 "GameConfig": "",
 "InputHandler": "",
+"ItemCounter": "",
 "LadderController": "",
 "Pickup": "",
 "Player": "",
