@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/pickups/LargeHealth.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/sprites/pickups/individual_items/large_health_11.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/pickups/energy-fill.ogg" type="AudioStream" id=3]
 [ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=4]
+[ext_resource path="res://game/data/image/sprite/item/energy.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
@@ -20,12 +20,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 2 ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "Shine"
-length = 0.8
+length = 0.32
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -34,10 +34,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.16 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 3, 2, 1 ]
+"values": [ 2, 3 ]
 }
 
 [sub_resource type="CircleShape2D" id=4]
@@ -52,9 +52,10 @@ script = ExtResource( 1 )
 item_type = "health"
 
 [node name="Sprite" type="Sprite" parent="."]
-light_mask = 2
-texture = ExtResource( 2 )
-hframes = 5
+texture = ExtResource( 5 )
+hframes = 8
+vframes = 13
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
