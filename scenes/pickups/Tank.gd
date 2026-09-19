@@ -20,12 +20,12 @@ func _ready():
 	if TankType == TANKS.E:
 		$AnimationPlayer.play("E")
 		tankLetter = "E"
-	elif TankType == TANKS.W:
-		$AnimationPlayer.play("W")
-		tankLetter = "W"
-	else:
-		$AnimationPlayer.play("M")
-		tankLetter = "M"
+#	elif TankType == TANKS.W:
+#		$AnimationPlayer.play("W")
+#		tankLetter = "W"
+#	else:
+#		$AnimationPlayer.play("M")
+#		tankLetter = "M"
 	item_name = (tankLetter + "_tank").to_lower()
 
 func _physics_process(delta):
@@ -65,4 +65,5 @@ func _on_PickupDetector_body_entered(body):
 		_maelstrom_absorb()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	$AnimationPlayer.play("Idle")
+#	$AnimationPlayer.play("Idle")
+	pass
