@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/pickups/ExtraLife.gd" type="Script" id=1]
 [ext_resource path="res://game/data/image/sprite/item/1up-forte.png" type="Texture" id=2]
-[ext_resource path="res://assets/audio/pickups/1up.ogg" type="AudioStream" id=3]
+[ext_resource path="res://game/data/audio/sfx/item_pickup.ogg" type="AudioStream" id=3]
 [ext_resource path="res://scenes/players/Mega Man/shaders/ColorSwap.tres" type="Material" id=4]
 [ext_resource path="res://scenes/common/PreciseNotifier2D.gd" type="Script" id=5]
 [ext_resource path="res://game/data/image/sprite/item/1up-rock.png" type="Texture" id=6]
