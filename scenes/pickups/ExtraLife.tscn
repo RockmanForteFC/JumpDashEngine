@@ -21,12 +21,14 @@ collision_mask = 270626
 script = ExtResource( 1 )
 item_type = "1up"
 
-[node name="SpriteForte" type="Sprite" parent="."]
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="SpriteForte" type="Sprite" parent="Sprite"]
 visible = false
 texture = ExtResource( 2 )
 vframes = 12
 
-[node name="SpriteRock" type="Sprite" parent="."]
+[node name="SpriteRock" type="Sprite" parent="Sprite"]
 texture = ExtResource( 6 )
 vframes = 12
 
