@@ -10,7 +10,7 @@ func _ready():
 	item_name = "small_bolt"
 	if Engine.editor_hint:
 		return
-	$AnimationPlayer.play("Spin",-1,1.25)
+#	$AnimationPlayer.play("Spin",-1,1.25)
 	if can_despawn:
 		$DespawnNormal.wait_time = $DespawnNormal.wait_time * Physics.item_despawn_rate
 		$DespawnNormal.start()
