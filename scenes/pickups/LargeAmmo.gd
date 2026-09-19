@@ -10,7 +10,7 @@ func _ready():
 	item_name = "large_ammo"
 	if Engine.editor_hint:
 		return
-	$AnimationPlayer.play("Spin")
+	$AnimationPlayer.play("Shine")
 	if can_despawn:
 		$DespawnNormal.wait_time = $DespawnNormal.wait_time * Physics.item_despawn_rate
 		$DespawnNormal.start()
