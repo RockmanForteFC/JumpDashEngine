@@ -37,7 +37,7 @@ var selected_middle = ""
 const STAGES = {
 	POS.TL: {"id": "cold_man", "scene": "res://game/scene/stage/Cold_Man.tscn"},
 	POS.TM: {"id": "example_stage", "scene": "res://scenes/stages/levels/example_1/example_1.tscn"},
-	POS.TR: null,
+	POS.TR: {"id": "burner_man", "scene": "res://game/scene/stage/Burner_Man.tscn"},
 	POS.LM: {"id": "astro_man", "scene": "res://game/scene/stage/Astro_Man.tscn"},
 	POS.MM: null,
 	POS.RM: {"id": "dynamo_man", "scene": "res://game/scene/stage/Dynamo_Man.tscn"},
