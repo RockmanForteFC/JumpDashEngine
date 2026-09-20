@@ -121,7 +121,7 @@ config/controller_mappings="cntrl"
 config/config="opt"
 config/save_file_extention=".jde"
 config/debug_mode=false
-config/version="alpha4"
+config/version="alpha5"
 
 [autoload]
 
