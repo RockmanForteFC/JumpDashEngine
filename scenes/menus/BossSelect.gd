@@ -41,7 +41,7 @@ const STAGES = {
 	POS.LM: {"id": "astro_man", "scene": "res://game/scene/stage/Astro_Man.tscn"},
 	POS.MM: null,
 	POS.RM: {"id": "dynamo_man", "scene": "res://game/scene/stage/Dynamo_Man.tscn"},
-	POS.BL: null,
+	POS.BL: {"id": "ground_man", "scene": "res://game/scene/stage/Ground_Man.tscn"},
 	POS.BM: null,
 	POS.BR: null,
 	"bonus": null
