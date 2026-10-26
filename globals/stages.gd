@@ -79,7 +79,7 @@ var is_player_ready_for_first_input:bool = false
 var time_trial_first_input:bool = false
 var best_time_trial_world_record:float = 999999.0
 
-onready var _fade_effect := $"UI/FadeEffects"
+#onready var _fade_effect := $"UI/FadeEffects"
 onready var _health_bar := get_bar("health")
 onready var _weapon_bar := get_bar("weapon")
 onready var _pause := $"UI/PauseMenu"
@@ -313,7 +313,7 @@ func _connect_signals() -> void:
 
 	_try_connect(self, "restarted", player, "on_restarted")
 	_try_connect(self, "restarted", current_camera, "on_restarted")
-	_try_connect(self, "restarted", _fade_effect, "fade_in", [FADE_IN_DURATION])
+#	_try_connect(self, "restarted", _fade_effect, "fade_in", [FADE_IN_DURATION])
 	_try_connect(self, "restarted", _health_bar, "on_restarted")
 #	for switch in get_tree().get_nodes_in_group("lever_switch"):
 #		_try_connect(switch,"change_state",self,"set_lever_state")
@@ -334,12 +334,12 @@ func _connect_signals() -> void:
 	_try_connect(_pause,"game_paused",self,"detect_pause")
 	_try_connect(player,"ready_to_move", _pause, "set_can_pause", [true])
 	_try_connect(player, "ready_to_move", self, "set_is_player_ready_for_first_input")
-	_try_connect(self, "player_died", _fade_effect, "fade_out", [FADE_OUT_DURATION])
+#	_try_connect(self, "player_died", _fade_effect, "fade_out", [FADE_OUT_DURATION])
 	_try_connect(self, "stage_cleared", player, "on_stage_cleared")
 
 	# Connect children signals to stage methods.
 	_try_connect(player, "died", self, "_on_died")
-	_try_connect(_fade_effect, "screen_faded_out", self, "_on_screen_faded_out")
+#	_try_connect(_fade_effect, "screen_faded_out", self, "_on_screen_faded_out")
 	_try_connect(player, "exited", self, "_on_stage_exited")
 #
 #	# Connect children signals to other children methods.
@@ -509,7 +509,7 @@ func _on_boss_died() -> void:
 func _on_stage_exited() -> void:
 	PlayerValues.active_in_stage = false
 	stage_exited = true
-	_fade_effect.fade_out(FADE_OUT_DURATION)
+#	_fade_effect.fade_out(FADE_OUT_DURATION)
 
 func _on_screen_faded_out() -> void:
 	yield(get_tree().create_timer(BLACK_SCREEN_DELAY), "timeout")
